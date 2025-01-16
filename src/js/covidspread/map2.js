@@ -38,19 +38,19 @@ function mapMercator() {
       if (previousZoomLevel > currentZoomLevel)
         clicked = false;
 
-      svg.selectAll("g").attr("transform", event.transform);
+      svg.selectAll("mappa").attr("transform", event.transform);
     });
 
   // Aggiungere SVG con sfondo
-  const svg = d3.select("#map-container-mercator")
+  const svg = d3.select("#map-container")
     .append("svg")
     .attr("width", width)
     .attr("height", height)
-    .style("background", "#fdfdfd") // Set the background color
+    .style("background", "#fdfdfd") // Colore di sfondo visibile
     .style("border", "1px solid #ccc")
     .call(zoom);
 
-  const g = svg.append("g");
+  const mappa = svg.append("mappa");
 
   // Caricare i dati GeoJSON e il dataset
   Promise.all([
@@ -76,7 +76,7 @@ function mapMercator() {
         selectedMetric === "deaths" ? deathsByCountry :
         recoveredByCountry;
 
-      g.selectAll("path")
+      mappa.selectAll("path")
         .data(world.features)
         .join("path")
         .attr("d", path)

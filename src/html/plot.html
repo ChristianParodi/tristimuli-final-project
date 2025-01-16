@@ -10,12 +10,13 @@
     <script src="./../../libs/d3.v7.min.js"></script>
     <script src="./../../libs/d3-sankey.min.js"></script>
     <script src="./../../libs/tailwind.js"></script>
-    <script src="./../js/home.js"></script>
-    <script src="./../js/map2.js"></script>
+    <script src="./../js/home.js"></script> 
+    <script src="./../js/covidspread/map2.js"></script>
     <link href="./../css/plot.css" rel="stylesheet">
     <link href="./../css/mapMercator.css" rel="stylesheet">
     <link href="./../../dist/plot.css" rel="stylesheet">
-    <script src="https://d3js.org/d3.v6.min.js"></script>.
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="./../js/covidspread/linechart.js"></script>
 
 </head>
 <body class="bg-blue-900 text-white min-h-screen flex">
@@ -49,8 +50,14 @@
             <button id="reset">Reset Zoom</button>
 
       </div>
-      <div id="section2" class="min-h-screen flex items-center justify-center">
-          <h2 class="text-3xl font-semibold">Section 2</h2>
+      <div id="section2" class="min-h-screen flex justify-center">
+
+         <h1 class="text-4xl font-bold">Infection Trends by Country</h1>
+         <label for="country-selector">Select Country:</label>
+         <select id="country-selector" class="h-10 text-black"></select>
+         <div id="chart-container" style="width: 20%; margin: auto; height: 40px;"></div>
+         
+
       </div>
       <div id="section3" class="min-h-screen flex items-center justify-center">
           <h2 class="text-3xl font-semibold">Section 3</h2>
