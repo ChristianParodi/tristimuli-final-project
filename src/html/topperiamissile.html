@@ -1,0 +1,60 @@
+
+          
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid</title>
+    <script src="./../../libs/d3.v7.min.js"></script>
+    <script src="./../../libs/d3-sankey.min.js"></script>
+    <script src="./../../libs/tailwind.js"></script>
+    <script src="./../js/home.js"></script>
+    <script src="./../js/map2.js"></script>
+    <link href="./../css/plot.css" rel="stylesheet">
+    <link href="./../../dist/plot.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v6.min.js"></script>.
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        canvas {
+            max-width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex gap-4">
+        <h1 class="text-4xl font-bold">Covid Spread</h1>
+        <div id="map-container-mercator" class="w-full h-96 border-black border-2"></div>
+        <div id="legend-container-mercator"></div>
+        <div id="selection-bar"></div>
+    </div>
+        <!-- switch -->
+      <div class="flex gap-4">
+        <button id="reset">Reset Zoom</button>
+        <span class="ml-2 text-gray-800">Total</span>
+        <label for="toggle-mercator" class="relative flex items-center cursor-pointer">
+          <input type="checkbox" id="toggle-mercator" class="sr-only peer" />
+          <div class="switch"></div>
+          <span class="ml-2 text-gray-800">Per capita</span>
+        </label>
+      </div>
+      <!-- end switch -->
+      <div>
+        <label for="data-selector">Seleziona un dato:</label>
+        <select id="data-selector">
+          <option value="cases">Infetti</option>
+          <option value="deaths">Morti</option>
+          <option value="recovered">Guariti</option>
+        </select>
+      </div>
+
+</body>
+</html>
+
+    
