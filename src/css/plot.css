@@ -7,10 +7,7 @@
 @layer components {
 
   .dotss {
-    @apply w-6 h-6 bg-gray-200 rounded-full border-2 border-gray-200 hover:bg-blue-400;
-     /* Centra il dot sulla linea */
-    transform: translateX(50%); /* Centra il dot orizzontalmente */
-
+     @apply w-6 h-6 bg-gray-200 rounded-full border-2 border-gray-200 hover:bg-blue-400;
   }
 
   .backgroundwindow {

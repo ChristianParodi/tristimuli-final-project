@@ -26,11 +26,8 @@
           <!-- Vertical Line -->
           <div class="absolute w-1 bg-gray-200 top-0 bottom-0 left-10 transform -translate-x-1/2 z-0"></div>
           <!-- Dots -->
-          <div class="flex flex-col items-center space-y-20 z-10 ">
-              <a href="#section1" class="dotss">
-                <div class="flex" id="legend-container-mercator"></div>
-                <div class="flex" id="map-container-mercator"></div>
-            </a>
+          <div class="absolute flex flex-col items-center space-y-20 z-10 top-[20%] left-7">
+              <a href="#section1" class="dotss"></a>
               <a href="#section2" class="dotss"></a>
               <a href="#section3" class="dotss"></a>
               <a href="#section4" class="dotss"></a>
@@ -46,7 +43,9 @@
       <h1 class="text-4xl font-bold">Covid Spread</h1>
     </div>
       <div id="section1" class="min-h-screen flex items-center justify-center">
-          <h2 class="text-3xl font-semibold">Section 1</h2>
+            <h2 class="text-3xl font-semibold">Section 1</h2>
+            <div class="flex" id="legend-container-mercator"></div>
+            <div class="flex" id="map-container-mercator"></div>
       </div>
       <div id="section2" class="min-h-screen flex items-center justify-center">
           <h2 class="text-3xl font-semibold">Section 2</h2>
