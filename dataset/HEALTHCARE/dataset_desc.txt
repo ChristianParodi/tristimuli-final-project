@@ -1,0 +1,28 @@
+estat_hlth_cd_asdr2.tsv: deaths over 100000 inhabitants 
+
+    icd10 values:
+    [A-R_V-Y]: All
+    [X60-X84_Y870]: Intentional self-harm
+    [F01-F99]: Mental and behavioural disorders
+
+    Drugs:
+        [F11-F16]: Mental and behavioural disorders due to psychoactive substance use
+        [F18-F19]: Mental and behavioural disorders due to use of volatile solvents
+
+    COVID:
+        [U071]: COVID-19, virus identified
+        [U072]: COVID-19, virus not identified
+        [U0_COV_OTH]: Other COVID-19 related deaths
+
+
+estat_educ_uoe_enrt01.tsv: enrollment in tertiary education
+
+    isced11 values:
+    [ED5-8]: Tertiary education
+    [ED6]: Bachelor's or equivalent level
+    [ED64]: Bachelor's or equivalent level (academic)
+    [ED65]: Bachelor's or equivalent level (professional)
+    [ED7]: Master's or equivalent level
+    [ED74]: Master's or equivalent level (academic)
+    [ED75]: Master's or equivalent level (professional)
+    [ED8]: Doctoral or equivalent level
