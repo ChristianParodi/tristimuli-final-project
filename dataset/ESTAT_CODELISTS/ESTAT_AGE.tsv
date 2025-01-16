@@ -6,7 +6,7 @@ LFD2	Late foetal death (group 2)
 MN0	Zero minutes
 MN1-9	From 1 to 9 minutes
 MN1-14	From 1 to 14 minutes
-MN1-59	From 1 to 59 minutes	
+MN1-59	From 1 to 59 minutes
 MN1-74	From 1 to 74 minutes
 MN1-149	From 1 to 149 minutes
 MN_GE1	1 minute or over
