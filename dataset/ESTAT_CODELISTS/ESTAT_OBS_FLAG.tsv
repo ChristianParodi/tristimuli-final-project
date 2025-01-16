@@ -1,0 +1,47 @@
+CODE	Label	Note
+b	break in time series	with statistical value or ':'
+bc	break in time series, confidential	only with ':'
+bcd	break in time series, confidential, definition differs (see metadata)	only with ':'
+bd	break in time series, definition differs (see metadata)	with statistical value or ':'
+bde	break in time series, definition differs (see metadata), estimated	only with statistical value
+bdep	break in time series, definition differs (see metadata), estimated, provisional	only with statistical value (not recommended)
+bdf	break in time series, definition differs (see metadata), forecast	only with statistical value
+bdn	break in time series, definition differs (see metadata), not significant	only with 0 (less than half of the unit used and different from real zero)
+bdp	break in time series, definition differs (see metadata), provisional	only with statistical value
+bdps	break in time series, definition differs (see metadata), provisional, Eurostat estimate	only with statistical value (not recommended)
+bds	break in time series, definition differs (see metadata), Eurostat estimate	only with statistical value
+bdu	break in time series, definition differs (see metadata), low reliability	with statistical value or ':'
+bdz	break in time series, definition differs (see metadata), not applicable	only with ':'
+be	break in time series, estimated	only with statistical value
+bep	break in time series, estimated, provisional	only with statistical value (not recommended)
+bf	break in time series, forecast	only with statistical value
+bn	break in time series, not significant	only with 0 (less than half of the unit used and different from real zero)
+bp	break in time series, provisional	only with statistical value
+bps	break in time series, provisional, Eurostat estimate	only with statistical value
+bpu	break in time series, provisional, low reliability	only with statistical value
+bs	break in time series, Eurostat estimate	only with statistical value
+bu	break in time series, low reliability	with statistical value or ':'
+bz	break in time series, not applicable	only with ':'
+c	confidential	only with ':'
+cd	confidential, definition differs (see metadata)	only with ':'
+d	definition differs (see metadata)	with statistical value or ':'
+de	definition differs (see metadata), estimated	only with statistical value
+dep	definition differs (see metadata), estimated, provisional	only with statistical value (not recommended)
+df	definition differs (see metadata), forecast	only with statistical value
+dn	definition differs (see metadata), not significant	only with 0 (less than half of the unit used and different from real zero)
+dp	definition differs (see metadata), provisional	only with statistical value
+dps	definition differs (see metadata), provisional, Eurostat estimate	only with statistical value (not recommended)
+dpu	definition differs (see metadata), provisional, low reliability	only with statistical value
+ds	definition differs (see metadata), Eurostat estimate	only with statistical value
+du	definition differs (see metadata), low reliability	with statistical value or ':'
+dz	definition differs (see metadata), not applicable	only with ':'
+e	estimated	only with statistical value
+ep	estimated, provisional	only with statistical value (not recommended)
+f	forecast	only with statistical value
+n	not significant	only with 0 (less than half of the unit used and different from real zero)
+p	provisional	only with statistical value
+ps	provisional, Eurostat estimate	only with statistical value (not recommended)
+pu	provisional, low reliability	only with statistical value
+s	Eurostat estimate	only with statistical value
+u	low reliability	with statistical value or ':'
+z	not applicable	only with ':'
