@@ -1,0 +1,77 @@
+CODE	Label - English	Standard code	Note (EN only)
+S1_S2	Total economy and rest of the world	Y	
+S1	Total economy	Y	
+S1D	Non-educational private sector	M	
+S1D_OTH	Other non-educational private entities	M	
+S1N	Not sectorised	M	
+S11_S14_S15	Non-financial corporations; households; non-profit institutions serving households	Y	
+S1V	Non-financial corporations, households and non-profit institutions serving households	M	This aggregate includes the ESA10 sectors S11, S14, and S15. It is equivalent of the code S11_S14_S15.
+S11_S12	Corporations	Y	
+S11	Non-financial corporations	Y	
+S11DO	Domestically controlled non-financial corporations	M	
+S11001	Public non-financial corporations	Y	
+S110011	Public non-financial corporations, which are part of domestic multinationals	M	
+S11002	National private non-financial corporations	Y	
+S110021	National private non-financial corporations, which are part of domestic multinationals	M	
+S11003	Foreign controlled non-financial corporations	Y	
+S12	Financial corporations	Y	
+S12DO	Domestically controlled financial corporations	M	
+S12001	Public financial corporations	M	
+S120011	Public financial corporations, which are part of domestic multinationals	M	
+S12002	National private financial corporations	M	
+S120021	National private financial corporations, which are part of domestic multinationals	M	
+S12003	Foreign controlled financial corporations	M	
+S121_S122_S123	Monetary financial institutions	Y	
+S12K	Monetary financial institutions (MFI)	M	This aggregate includes the ESA10 sectors S121, S122, and S123. It is equivalent of the code S121_S122_S123.
+S121	Central bank	Y	
+S122	Deposit taking corporations, except the central bank	Y	
+S122_S123	Monetary financial institutions other than central bank	Y	
+S12T	Monetary Financial Institutions (MFI) other than central bank	M	This aggregate includes the ESA10 sectors S122 and S123. It is equivalent of the code S122_S123.
+S125_S126_S127	Other financial intermediaries (except ICPFs), financial auxiliaries, CFIs, and money lenders	Y	
+S123	Money market funds	Y	
+S124	Non-MMF investment funds	Y	
+S124_TO_S127	Other financial institutions (financial corporations other than MFIs, insurance corporations and pension funds)	M	
+S125	Other financial intermediaries, except insurance corporations and pension funds	Y	
+S126	Financial auxiliaries	Y	
+S127	Captive financial institutions and money lenders	Y	
+S128	Insurance corporations	Y	
+S128_S129	Insurance corporations and pension funds	Y	
+S12Q	Insurance corporations and pension funds	M	This aggregate includes the ESA10 sectors S128 and S129. It is equivalent of the code S128_S129.
+S129	Pension funds	Y	
+S12M	Financial corporations other than MFIs	M	This aggregate includes the ESA10 sectors S124, S125, S126, S127, S128, and S129.
+S12R	Other financial corporations	M	This aggregate includes the ESA10 sectors S123, S124, S125, S126, S127, S128, and S129.
+S12O	Other financial institutions	M	
+S13_S212	General government; institutions of the EU	Y	
+S13	General government	Y	
+S1311	Central government	Y	
+S13111	Budgetary central government	M	
+S13112	Central government other than budgetary central government	M	
+S1312_S1313	State and local government	Y	
+S1312	State government	Y	
+S1313	Local government	Y	
+S1314	Social security funds	Y	
+S1315	European institutions and bodies	Y	
+S13_S15	General government; non-profit institutions serving households	Y	
+S13_BC	Base case	M	
+S13_SC1	Base case minus 1% change in discount rate	M	
+S13_SC2	Base case plus 1% change in discount rate	M	
+S1X	Monetary authorities	M	This aggregate includes the ESA10 sectors S121 and S134.
+S14_S15	Households; non-profit institutions serving households	Y	
+S14	Households	Y	
+S15	Non-profit institutions serving households	Y	
+S1M	Households and non-profit institutions serving households	M	This aggregate includes the ESA10 sectors S14 and S15. It is equivalent of the code S14_S15.
+S1P	Other sectors than MFIs and general government	M	This aggregate includes the ESA10 sectors S11, S14, S15, S124, S125, S126, S127, S128, and S129.
+S1A	Affiliates	M	
+S1W	Other sectors than general government	M	This aggregate includes the ESA10 sectors S11, S12, S14, S15, and S1N (Not sectorised).
+S1Z	Sectors other than deposit-taking corporations and general government	M	This aggregate includes the ESA10 sectors S11, S14, S15, S123, S124, S125, S126, S127, S128, and S129.
+S2	Rest of the world	Y	
+S2I	Rest of the world - of which: intra Euro area	M	
+S21	European Union	Y	
+S212	Institutions of the EU	Y	
+S22	Third countries and international organisations	Y	
+INTLORG	International organisations	N	
+TOT_SEC	Total	Y	
+PUBL	Public institutions	N	
+PRIV	Private institutions	N	
+PRIV_DEP	Private government dependant institutions	N	
+PRIV_IND	Private government independent institutions	N	
