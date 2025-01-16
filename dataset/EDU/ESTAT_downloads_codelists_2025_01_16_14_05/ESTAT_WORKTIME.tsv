@@ -1,0 +1,41 @@
+CODE	Label - English	Label - French	Label - German	Standard code	Note (EN only)
+TOTAL	Total	Total	Insgesamt	Y	
+PC0	Zero percent of a full-time	Zéro pour cent d'un temps plein	Null Prozent der Vollzeit	Y	
+PC1-24	From 1 to 24 percent of a full-time	De 1 à 24 pour cent d'un temps plein	1 bis 24 Prozent der Vollzeit	Y	
+PC25-49	From 25 to 49 percent of a full-time	De 25 à 49 pour cent d'un temps plein	25 bis 49 Prozent der Vollzeit	Y	
+PC50-74	From 50 to 74 percent of a full-time	De 50 à 74 pour cent d'un temps plein	50 bis 74 Prozent der Vollzeit	Y	
+PC75-99	From 75 to 99 percent of a full-time	De 75 à 99 pour cent d'un temps plein	75 bis 99 Prozent der Vollzeit	Y	
+PC100	100 percent of a full-time	100 pour cent d'un temps plein	100 Prozent der Vollzeit	Y	
+H0	Zero hours	Zéro heure	Null Stunden	Y	
+H_LT1	Less than 1 hour	Moins de 1 heure	Weniger als 1 Stunde	Y	
+H1-9	From 1 to 9 hours	De 1 à 9 heures	1 bis 9 Stunden	Y	
+H1-19	From 1 to 19 hours	De 1 à 19 heures	1 bis 19 Stunden	Y	
+H10-19	From 10 to 19 hours	De 10 à 19 heures	10 bis 19 Stunden	Y	
+H20-29	From 20 to 29 hours	De 20 à 29 heures	20 bis 29 Stunden	Y	
+H20-31	From 20 to 31 hours	De 20 à 31 heures	20 bis 31 Stunden	Y	
+H30-39	From 30 to 39 hours	De 30 à 39 heures	30 bis 39 Stunden	Y	
+H30-49	From 30 to 49 hours	De 30 à 49 heures	30 bis 49 Stunden	Y	
+H_GE32	32 hours or over	32 heures et plus	32 Stunden und mehr	Y	
+H40-49	From 40 to 49 hours	De 40 à 49 heures	40 bis 49 Stunden	Y	
+H_GE50	50 hours or over	50 heures et plus	50 Stunden und mehr	Y	
+PT	Part-time	Temps partiel	Teilzeit	Y	
+FT	Full-time	Temps plein	Vollzeit	Y	
+TEMP	Temporary contracts	Contrat à durée déterminée	Zeitverträge	Y	
+TOT_FTE	Total in full-time equivalents	Total en équivalent temps plein	Insgesamt in Vollzeitäquivalente	Y	
+AVG_FTE	Yearly average in full-time equivalents	Moyenne annuelle en équivalent temps plein	Jahresdurchschnitt in Vollzeitäquivalente	Y	
+PT_FTE	Part-time in full-time equivalents	Temps partiel en équivalent temps plein	Teilzeit in Vollzeitäquivalente	Y	
+NORM	Normal working time	Temps de travail normal	Normale Arbeitszeit	Y	
+ATYP	Atypical working time	Temps de travail atypique	Atypische Arbeitszeit	Y	
+GE_HLF	At least half of the working time	Au moins la moitié du temps de travail	Wenigstens die Hälfte der Arbeitszeit	Y	
+ALL_MOST	All or most of the working time	La totalité ou quasi-totalité du temps de travail	Die gesamte oder die meiste Arbeitszeit	Y	
+HLF_SLGMORE	Half of the working time or slightly more	La moitié du temps de travail ou légèrement plus	Die Hälfte der Arbeitszeit oder etwas mehr	Y	
+SOME	Some of the working time	Une partie du temps de travail	Einen Teil der Arbeitszeit	Y	
+LTL_NONE	Little or none of the working time	Une faible partie du temps de travail ou aucun	Einen geringen Teil der Arbeitszeit oder keine	Y	
+LTL	Little of the working time	Une faible partie du temps de travail	Einen geringen Teil der Arbeitszeit	Y	
+INCR	Increase working hours	Augmenter le nombre d'heures de travail	Arbeitsstunden erhöhen	Y	
+DECR	Decrease working hours	Diminuer le nombre d'heures de travail	Arbeitsstunden verringern	Y	
+NCHG	No changes to working hours	Pas de changement du nombre d'heures de travail	Keine Änderung der Arbeitsstunden	Y	
+NONE	None	Aucun	Keine	Y	
+NAP	Not applicable	Non applicable	Nicht anwendbar	Y	
+NRP	No response	Sans réponse	Keine Antwort	Y	
+UNK	Unknown	Inconnu	Unbekannt	Y	

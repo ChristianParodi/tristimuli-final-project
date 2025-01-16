@@ -1,0 +1,77 @@
+CODE	Label - English	Label - French	Label - German	Standard code	Note (EN only)	EC_corporate_code	EC_corporate_uri
+S1_S2	Total economy and rest of the world	Economie totale et reste du monde	Volkswirtschaft und Übrige Welt	Y			
+S1	Total economy	Economie totale	Volkswirtschaft	Y			
+S1D	Non-educational private sector	Secteur privé non-lié à l'éducation	Nicht-bildungsbezogener Privatsektor	M			
+S1D_OTH	Other non-educational private entities	Autres entités non-liées à l'éducation	Andere nicht-bildungsbezogene Einheiten	M			
+S1N	Not sectorised	Non sectorisé	Keinem Sektor zugerechnet	M			
+S11_S14_S15	Non-financial corporations; households; non-profit institutions serving households	Sociétés non financières; ménages; institutions sans but lucratif au service des ménages	Nichtfinanzielle Kapitalgesellschaften; private Haushalte; private Organisationen ohne Erwerbszweck	Y			
+S1V	Non-financial corporations, households and non-profit institutions serving households	Sociétés non financières; ménages; institutions sans but lucratif au service des ménages	Nichtfinanzielle Kapitalgesellschaften; private Haushalte; private Organisationen ohne Erwerbszweck	M	This aggregate includes the ESA10 sectors S11, S14, and S15. It is equivalent of the code S11_S14_S15.		
+S11_S12	Corporations	Sociétés	Kapitalgesellschaften	Y			
+S11	Non-financial corporations	Sociétés non financières	Nichtfinanzielle Kapitalgesellschaften	Y			
+S11DO	Domestically controlled non-financial corporations	Sociétés non financières contrôlées par des entités du territoire intérieur	Im Inland kontrollierte nichtfinanzielle Kapitalgesellschaften	M			
+S11001	Public non-financial corporations	Sociétés non financières publiques	Öffentliche nichtfinanzielle Kapitalgesellschaften	Y			
+S110011	Public non-financial corporations, which are part of domestic multinationals	Sociétés non financières publiques faisant partie de multinationales nationales	Öffentliche nichtfinanzielle Kapitalgesellschaften, die Teil inländischer multinationaler Unternehmen sind	M			
+S11002	National private non-financial corporations	Sociétés non financières privées nationales	Inländische private nichtfinanzielle Kapitalgesellschaften	Y			
+S110021	National private non-financial corporations, which are part of domestic multinationals	Sociétés non financières privées nationales faisant partie de multinationales nationales	Inländische private nichtfinanzielle Kapitalgesellschaften, die Teil inländischer multinationaler Unternehmen  sind	M			
+S11003	Foreign controlled non-financial corporations	Sociétés non financières sous contrôle étranger	Ausländisch kontrollierte nichtfinanzielle Kapitalgesellschaften	Y			
+S12	Financial corporations	Sociétés financières	Finanzielle Kapitalgesellschaften	Y			
+S12DO	Domestically controlled financial corporations	Sociétés financières contrôlées par des entités du territoire intérieur	Im Inland kontrollierte Finanz-Kapitalgesellschaften	M			
+S12001	Public financial corporations	Sociétés financières publiques	Öffentliche finanzielle Kapitalgesellschaften	M			
+S120011	Public financial corporations, which are part of domestic multinationals	Sociétés financières publiques faisant de multinationales nationales	Öffentliche finanzielle Kapitalgesellschaften, die Teil inländischer multinationaler Unternehmen sind	M			
+S12002	National private financial corporations	Sociétés non financières privées nationales	Inländische private finanzielle Kapitalgesellschaften	M			
+S120021	National private financial corporations, which are part of domestic multinationals	Sociétés financières privées nationales faisant partie de multinationales nationales	Inländische private finanzielle Kapitalgesellschaften, die Teil inländischer multinationaler Unternehmen sind	M			
+S12003	Foreign controlled financial corporations	Sociétés non financières sous contrôle étranger	Ausländisch kontrollierte finanzielle Kapitalgesellschaften	M			
+S121_S122_S123	Monetary financial institutions	Institutions financières monétaires	Zentralbank/Kreditinstitute	Y			
+S12K	Monetary financial institutions (MFI)	Institutions financières monétaires	Zentralbank/Kreditinstitute	M	This aggregate includes the ESA10 sectors S121, S122, and S123. It is equivalent of the code S121_S122_S123.		
+S121	Central bank	Banque centrale	Zentralbank	Y			
+S122	Deposit taking corporations, except the central bank	Institutions de dépôts, à l'exclusion de la banque centrale	Kreditinstitute ohne die Zentralbank	Y			
+S122_S123	Monetary financial institutions other than central bank	Institutions de dépôts (banque centrale exclue) et fonds d'investissement monétaires	Kreditinstitute (ohne Zentralbank) und Geldmarktfonds	Y			
+S12T	Monetary Financial Institutions (MFI) other than central bank	Institutions de dépôts (banque centrale exclue) et fonds d'investissement monétaires	Kreditinstitute (ohne Zentralbank) und Geldmarktfonds	M	This aggregate includes the ESA10 sectors S122 and S123. It is equivalent of the code S122_S123.		
+S125_S126_S127	Other financial intermediaries (except ICPFs), financial auxiliaries, CFIs, and money lenders	Autres intermédiaires financiers (sociétés d'assurance et fonds de pension exclues), auxiliaires financiers et institutions financières captives et prêteurs non institutionnels	Sonstige Finanzinstitute (ohne Versicherungsgesellschaften und Alterssicherungssysteme), Kredit- und Versicherungshilfstätigkeiten sowie firmeneigene Finanzinstitute und Kapitalgeber	Y			
+S123	Money market funds	Fonds d'investissement monétaires	Geldmarktfonds	Y			
+S124	Non-MMF investment funds	Fonds d'investissement non monétaires	Investmentfonds (ohne Geldmarktfonds)	Y			
+S124_TO_S127	Other financial institutions (financial corporations other than MFIs, insurance corporations and pension funds)	Autres intermédiaires financiers (sociétés financières à l'exclusion des institutions financières monétaires, des sociétés d'assurance et des fonds de pension)	Sonstige Finanzinstitute (finanzielle Kapitalgesellschaften ohne Zentralbank/Kreditinstitute, Versicherungsgesellschaften und Altersabsicherungssysteme)	M			
+S125	Other financial intermediaries, except insurance corporations and pension funds	Autres intermédiaires financiers, à l'exclusion des sociétés d'assurance et des fonds de pension	Sonstige Finanzinstitute (ohne Versicherungsgesellschaften und Alterssicherungssysteme)	Y			
+S126	Financial auxiliaries	Auxiliaires financiers	Kredit- und Versicherungshilfstätigkeiten	Y			
+S127	Captive financial institutions and money lenders	Institutions financières captives et prêteurs non institutionnels	Firmeneigene Finanzierungseinrichtungen und Kapitalgeber	Y			
+S128	Insurance corporations	Sociétés d'assurance	Versicherungsgesellschaften	Y			
+S128_S129	Insurance corporations and pension funds	Sociétés d'assurance et fonds de pension	Versicherungsgesellschaften und Pensionskassen	Y			
+S12Q	Insurance corporations and pension funds	Sociétés d'assurance et fonds de pension	Versicherungsgesellschaften und Pensionskassen	M	This aggregate includes the ESA10 sectors S128 and S129. It is equivalent of the code S128_S129.		
+S129	Pension funds	Fonds de pension	Altersvorsorgeeinrichtungen	Y			
+S12M	Financial corporations other than MFIs	Sociétés financières autres que institutions de dépôts et fonds d'investissement monétaires	Finanzielle Kapitalgesellschaften andere als Kreditinstitute und Geldmarktfonds	M	This aggregate includes the ESA10 sectors S124, S125, S126, S127, S128, and S129.		
+S12R	Other financial corporations	Autres sociétés financières	Sonstige Finanzielle Kapitalgesellschaften	M	This aggregate includes the ESA10 sectors S123, S124, S125, S126, S127, S128, and S129.		
+S12O	Other financial institutions	Autres intermédiaires financiers	Sonstige Finanzinstitute	M			
+S13_S212	General government; institutions of the EU	Administrations publiques; institutions de l'Union européenne	Staat; Institutionen der Europäischen Union	Y			
+S13	General government	Administrations publiques	Staat	Y			
+S1311	Central government	Administration centrale	Zentralstaat	Y			
+S13111	Budgetary central government	Administration centrale budgétaire	Zentralstaat, Kernhaushalt	M			
+S13112	Central government other than budgetary central government	Administration centrale autre que administration centrale budgétaire	Zentralstaat, mit Ausnahme von Kernhaushalt	M			
+S1312_S1313	State and local government	Administration locale et d'Etats fédérés	Gemeinden und Länder	Y			
+S1312	State government	Administrations d'Etats fédérés	Länder	Y			
+S1313	Local government	Administrations locales	Gemeinden	Y			
+S1314	Social security funds	Administrations de sécurité sociale	Sozialversicherung	Y			
+S1315	European institutions and bodies	Institutions et organes de l’Union européenne	Organe und Einrichtungen der Europäischen Union	Y			
+S13_S15	General government; non-profit institutions serving households	Administrations publiques; institutions sans but lucratif au service des ménages	Staat; private Organisationen ohne Erwerbszweck	Y			
+S13_BC	Base case	Cas de base	Basisfall	M			
+S13_SC1	Base case minus 1% change in discount rate	Cas de base moins changement du taux d'escompte de 1%	Basisfall minus eine Änderung im Diskontsatz von 1%	M			
+S13_SC2	Base case plus 1% change in discount rate	Cas de base plus changement du taux d'escompte de 1%	Basisfall plus eine Änderung im Diskontsatz von 1%	M			
+S1X	Monetary authorities	Autorités monétaires	Währungsbehörden	M	This aggregate includes the ESA10 sectors S121 and S134.		
+S14_S15	Households; non-profit institutions serving households	Ménages; institutions sans but lucratif au service des ménages	Private Haushalte; private Organisationen ohne Erwerbszweck	Y			
+S14	Households	Ménages	Private Haushalte	Y			
+S15	Non-profit institutions serving households	Institutions sans but lucratif au service des ménages	Private Organisationen ohne Erwerbszweck	Y			
+S1M	Households and non-profit institutions serving households	Ménages; institutions sans but lucratif au service des ménages	Private Haushalte; private Organisationen ohne Erwerbszweck	M	This aggregate includes the ESA10 sectors S14 and S15. It is equivalent of the code S14_S15.		
+S1P	Other sectors than MFIs and general government	Autres secteurs que IFM et administration publiques	Übrige Sektoren als MFI und Staat	M	This aggregate includes the ESA10 sectors S11, S14, S15, S124, S125, S126, S127, S128, and S129.		
+S1A	Affiliates	Affiliés	Tochtergesellschaften	M			
+S1W	Other sectors than general government	Autres secteurs que administrations publiques	Sonstige Sektoren als Staat	M	This aggregate includes the ESA10 sectors S11, S12, S14, S15, and S1N (Not sectorised).		
+S1Z	Sectors other than deposit-taking corporations and general government	Autres secteurs que institutions de dépôts et administrations publiques	Sonstige Sektoren als Kreditinstitute und Staat	M	This aggregate includes the ESA10 sectors S11, S14, S15, S123, S124, S125, S126, S127, S128, and S129.		
+S2	Rest of the world	Reste du monde	Übrige Welt	Y			
+S2I	Rest of the world - of which: intra Euro area	Reste du monde - Intra-zone euro	Restliche Welt, davon: innerhalb der Eurozone	M			
+S21	European Union	Union européenne	Europäische Union	Y			
+S212	Institutions of the EU	Institutions de l'Union européenne	Institutionen der Europäischen Union	Y			
+S22	Third countries and international organisations	Pays tiers et organisations internationales	Drittländer und internationale Organisationen	Y			
+INTLORG	International organisations	Organisations internationales	Internationale Organisationen	N			
+TOT_SEC	Total	Total	Insgesamt	Y			
+PUBL	Public institutions	Institutions publiques	Öffentliche Institutionen	N			
+PRIV	Private institutions	Institutions privées	Private Institutionen	N			
+PRIV_DEP	Private government dependant institutions	Institutions privées dépendantes du gouvernement	Vom Staat abhängige private Institutionen	N			
+PRIV_IND	Private government independent institutions	Institutions privées indépendantes du gouvernement	Vom Staat unabhängige private Institutionen	N			

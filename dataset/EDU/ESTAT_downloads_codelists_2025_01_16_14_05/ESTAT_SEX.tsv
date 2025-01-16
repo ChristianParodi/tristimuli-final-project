@@ -1,0 +1,8 @@
+CODE	Label - English	Label - French	Label - German	Standard code	Note (EN only)	EC_corporate_code	EC_corporate_uri
+T	Total	Total	Insgesamt	Y			
+M	Males	Hommes	Männer	Y			
+F	Females	Femmes	Frauen	Y			
+DIFF	Absolute difference between males and females	Différence absolue entre hommes et femmes	Absolute Differenz zwischen Männern und Frauen	M			
+NAP	Not applicable	Non applicable	Nicht anwendbar	Y			
+NRP	No response	Sans réponse	Keine Antwort	Y			
+UNK	Unknown	Inconnu	Unbekannt	Y			

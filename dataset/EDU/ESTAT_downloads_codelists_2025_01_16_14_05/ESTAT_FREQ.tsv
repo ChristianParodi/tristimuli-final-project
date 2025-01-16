@@ -1,0 +1,12 @@
+CODE	Label - English	Label - French	Label - German	Standard code	Note (EN only)	EC_corporate_code	EC_corporate_uri
+P	Pluri-annual	Pluri-annuel	Mehrjährig	Y			
+A	Annual	Annuel	Jährlich	Y			
+S	Half-yearly, semesterly	Semestriel	Halbjährlich, pro Semester	Y			
+Q	Quarterly	Trimestriel	Vierteljährlich	Y			
+M	Monthly	Mensuel	Monatlich	Y			
+W	Weekly	Hebdomadaire	Wöchentlich	Y			
+B	Daily - business week	Jours ouvrable	Täglich - pro Geschäftswoche	Y			
+D	Daily	Journalier	Täglich	Y			
+H	Hourly	Horaire	Stündlich	Y			
+I	Irregular / A-periodic	Irrégulier / Non périodique	Unregelmäßig / Nichtperiodisch	Y			
+NAP	Not applicable	Non applicable	Nicht zutreffend	Y			
