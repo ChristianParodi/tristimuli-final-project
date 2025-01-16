@@ -1,0 +1,67 @@
+
+          
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid</title>
+    <script src="./../../libs/d3.v7.min.js"></script>
+    <script src="./../../libs/d3-sankey.min.js"></script>
+    <script src="./../../libs/tailwind.js"></script>
+    <script src="./../../libs/flowbite.min.js"></script>
+    <script src="./../js/home.js"></script>
+    <script src="./../js/map.js"></script>
+    <link href="./../css/plot.css" rel="stylesheet">
+    <link href="./../../dist/plot.css" rel="stylesheet">
+
+</head>
+<body class="bg-blue-900 text-white min-h-screen flex">
+
+  <!-- Sidebar -->
+  <div class="fixed left-0 top-0 h-full flex flex-col items-center justify-center">
+  
+      <div class="relative flex flex-col items-center h-full">
+          <!-- Vertical Line -->
+          <div class="absolute w-1 bg-gray-200 top-0 bottom-0 left-10 transform -translate-x-1/2 z-0"></div>
+          <!-- Dots -->
+          <div class="flex flex-col items-center space-y-20 z-10 ">
+              <a href="#section1" class="dotss">
+                <div class="flex" id="legend-container-mercator"></div>
+                <div class="flex" id="map-container-mercator"></div>
+            </a>
+              <a href="#section2" class="dotss"></a>
+              <a href="#section3" class="dotss"></a>
+              <a href="#section4" class="dotss"></a>
+              <a href="#section5" class="dotss"></a>
+          </div>
+      </div>
+      
+  </div>
+  
+  <!-- Content -->
+  <div class="ml-16 w-full">
+    <div class="text-center mb-10">
+      <h1 class="text-4xl font-bold">Covid Spread</h1>
+    </div>
+      <div id="section1" class="min-h-screen flex items-center justify-center">
+          <h2 class="text-3xl font-semibold">Section 1</h2>
+      </div>
+      <div id="section2" class="min-h-screen flex items-center justify-center">
+          <h2 class="text-3xl font-semibold">Section 2</h2>
+      </div>
+      <div id="section3" class="min-h-screen flex items-center justify-center">
+          <h2 class="text-3xl font-semibold">Section 3</h2>
+      </div>
+      <div id="section4" class="min-h-screen flex items-center justify-center">
+          <h2 class="text-3xl font-semibold">Section 4</h2>
+      </div>
+      <div id="section5" class="min-h-screen flex items-center justify-center">
+          <h2 class="text-3xl font-semibold">Section 5</h2>
+      </div>
+  </div>
+
+</body>
+</html>
+    

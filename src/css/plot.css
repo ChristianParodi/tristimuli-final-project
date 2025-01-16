@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+  .dotss {
+    @apply w-6 h-6 bg-gray-200 rounded-full border-2 border-gray-200 hover:bg-blue-400;
+     /* Centra il dot sulla linea */
+    transform: translateX(50%); /* Centra il dot orizzontalmente */
+
+  }
+
+  .backgroundwindow {
+    @apply bg-mfn_green bg-opacity-80 text-white rounded-lg shadow-lg p-10 text-center flex flex-col items-center justify-center w-full h-full;
+  }
+
+}
+
+
+
+
+html {
+    scroll-behavior: smooth;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+}
+.dot {
+    transition: background-color 0.3s;
+}

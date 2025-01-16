@@ -1,0 +1,24 @@
+/* Transizione per l'entrata */
+.transition-enter {
+    opacity: 0;
+    transform: translateY(1rem); /* translate-y-1 */
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+  
+  .transition-enter-active {
+    opacity: 1;
+    transform: translateY(0); /* translate-y-0 */
+  }
+  
+  /* Transizione per l'uscita */
+  .transition-leave {
+    opacity: 1;
+    transform: translateY(0); /* translate-y-0 */
+    transition: opacity 0.15s ease-in, transform 0.15s ease-in;
+  }
+  
+  .transition-leave-active {
+    opacity: 0;
+    transform: translateY(1rem); /* translate-y-1 */
+  }
+  
