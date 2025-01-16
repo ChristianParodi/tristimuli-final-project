@@ -617,6 +617,10 @@ video {
   left: 2.5rem;
 }
 
+.left-7{
+  left: 1.75rem;
+}
+
 .left-\[calc\(50\%\+3rem\)\]{
   left: calc(50% + 3rem);
 }
@@ -627,6 +631,10 @@ video {
 
 .top-0{
   top: 0px;
+}
+
+.top-\[20\%\]{
+  top: 20%;
 }
 
 .top-\[calc\(100\%-13rem\)\]{
@@ -652,10 +660,6 @@ video {
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
-}
-
-.mb-10{
-  margin-bottom: 2.5rem;
 }
 
 .ml-16{
