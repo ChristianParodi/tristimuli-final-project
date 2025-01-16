@@ -1,4 +1,4 @@
-CODE	Label - English	Note (EN only)
+CODE	Label	Note
 b	break in time series	with statistical value or ':'
 bc	break in time series, confidential	only with ':'
 bcd	break in time series, confidential, definition differs (see metadata)	only with ':'

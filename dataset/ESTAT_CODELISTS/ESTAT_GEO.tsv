@@ -1,4 +1,4 @@
-CODE	Label - English	Standard code	Note (EN only)
+CODE	Label	Standard code	Note
 EUR	Europe	Y	This aggregate covers following countries: BE, BG, CZ, DK, DE, EE, IE, EL, ES, FR, HR, IT, CY, LV, LT, LU, HU, MT, NL, AT, PL, PT, RO, SI, SK, FI, SE, UK, MK, TR, IS, NO, CH, LI, BY, MD, RU, UA, AX, FO, GG, IM, JE, SJ, AL, AD, BA, GI, VA, ME, SM, RS, MC
 EU	European Union (EU6-1958, EU9-1973, EU10-1981, EU12-1986, EU15-1995, EU25-2004, EU27-2007, EU28-2013, EU27-2020)	Y	
 EU_V	European Union (aggregate changing according to the context)	N	
