@@ -1,8 +1,8 @@
-CODE	Label	Standard code
-T	Total	Y
-M	Males	Y
-F	Females	Y
-DIFF	Absolute difference between males and females	M
-NAP	Not applicable	Y
-NRP	No response	Y
-UNK	Unknown	Y
+CODE	Label
+T	Total
+M	Males
+F	Females
+DIFF	Absolute difference between males and females
+NAP	Not applicable
+NRP	No response
+UNK	Unknown
