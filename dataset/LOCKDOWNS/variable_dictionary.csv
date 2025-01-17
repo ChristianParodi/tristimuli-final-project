@@ -1,6 +1,5 @@
 measure,description
 StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown')
-RegionalStayHomeOrder,Regional stay-at-home orders for the general population at least in one region (these are enforced and also referred to as 'lockdown')
 StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced)
 StayHomeRiskG,"Stay-at-home recommendations for risk groups or vulnerable populations (such as the elderly, people with underlying health conditions, physically disabled people, etc.)"
 SocialCircle,Social circle/bubble to limit social contacts e.g. to limited number of households
