@@ -9,9 +9,6 @@ function mapMercator() {
   // Select the reset button
   const resetButton = document.getElementById("reset");
 
-
-
-
   // Tooltip per mostrare informazioni
   const tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
@@ -74,7 +71,7 @@ function mapMercator() {
       console.log("Dati selezionati:", selectedMetric);
       const dataMap = selectedMetric === "cases" ? casesByCountry :
         selectedMetric === "deaths" ? deathsByCountry :
-        recoveredByCountry;
+          recoveredByCountry;
 
       mappa.selectAll("path")
         .data(world.features)
@@ -97,7 +94,7 @@ function mapMercator() {
           tooltip.style("opacity", 0);
         });
     }
-   
+
     updateMap();
 
     // Aggiungere un event listener per il selettore
