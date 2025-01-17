@@ -10,13 +10,11 @@
     <script src="./../../libs/d3.v7.min.js"></script>
     <script src="./../../libs/d3-sankey.min.js"></script>
     <script src="./../../libs/tailwind.js"></script>
-    <script src="./../js/home.js"></script> 
-    <script src="./../js/covidspread/map2.js"></script>
     <link href="./../css/plot.css" rel="stylesheet">
     <link href="./../css/mapMercator.css" rel="stylesheet">
     <link href="./../../dist/plot.css" rel="stylesheet">
     <script src="https://d3js.org/d3.v6.min.js"></script>
-    <script src="./../js/covidspread/linechart.js"></script>
+    
 
 </head>
 <body class="bg-blue-900 text-white min-h-screen flex">
@@ -42,128 +40,117 @@
   <!-- Content -->
   <div class="ml-16 w-full">
 
-      <div id="section1" class="min-h-screen flex justify-center">
-            <h1 class="text-4xl font-bold">Covid Spread</h1>
-            <div id="map-container-mercator" class="w-full h-96 "></div>
-            <div id="legend-container-mercator"></div>
-            <div id="selection-bar"></div>
-            <button id="reset">Reset Zoom</button>
+    <div id="section1" class="min-h-screen flex flex-col items-center gap-8">
+        
+        <div class="flex flex-col gap-4 w-full max-w-4xl">
+           
+            <h1 class="text-4xl font-bold text-center">Covid Spread</h1>
+          
+            <!--Container-->
+            <div id="map-container" class="w-full h-[500px] border"></div>
+          
+            <!--Switch-->
+            <div class="flex justify-between items-center mt-28">
+              <button id="reset" class="bg-blue-500 text-white px-4 py-2 rounded">Reset Zoom</button>
+            
+          
+              <div id="selection-bar"></div>
+            
+            <div>
+                <label for="data-selector">Select type of data:</label>
+                <select id="data-selector">
+                  <option value="cases">Infetti</option>
+                  <option value="deaths">Morti</option>
+                  <option value="recovered">Guariti</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!--MAP_END-->
 
-      </div>
-      <div id="section2" class="min-h-screen flex justify-center">
-
-         <h1 class="text-4xl font-bold">Infection Trends by Country</h1>
-         <div>
-            <label for="country-selector">Seleziona un paese:</label>
-            <select id="country-selector"></select>
+          <!--LINECHART-->
+        <div class="flex flex-col gap-4 w-full max-w-4xl ">
+            <h1 class="text-4xl font-bold">Infection Trends by Country</h1>
+            <div>
+                <label for="country-selector">Select country:</label>
+                <select id="country-selector"></select>
+            </div>
+            <div id="chart-container"></div>
         </div>
-        <div id="chart-container"></div>
-    
-        <script>
-            // Dati di esempio per i paesi
-            const data = [
-              { country: "Italia", values: [
-                { date: "2020-01", infections: 500 },
-                { date: "2020-02", infections: 700 },
-                { date: "2020-03", infections: 1500 },
-                // Aggiungi altri dati per ogni mese fino al 2024
-              ]},
-              { country: "Francia", values: [
-                { date: "2020-01", infections: 300 },
-                { date: "2020-02", infections: 600 },
-                { date: "2020-03", infections: 1200 },
-                // Aggiungi altri dati per ogni mese fino al 2024
-              ]},
-              // Aggiungi altri paesi
-            ];
-    
-            // Configurazione del grafico
-            const margin = { top: 20, right: 30, bottom: 50, left: 60 };
-            const width = 800 - margin.left - margin.right;
-            const height = 400 - margin.top - margin.bottom;
-    
-            const svg = d3.select("#chart-container")
-              .append("svg")
-              .attr("width", width + margin.left + margin.right)
-              .attr("height", height + margin.top + margin.bottom)
-              .append("g")
-              .attr("transform", `translate(${margin.left},${margin.top})`);
-    
-            // Scala del tempo (asse x)
-            const x = d3.scaleTime()
-              .domain([new Date(2020, 0, 1), new Date(2024, 11, 31)])
-              .range([0, width]);
-    
-            const xAxis = d3.axisBottom(x).ticks(d3.timeMonth.every(3)).tickFormat(d3.timeFormat("%b %Y"));
-    
-            // Scala delle infezioni (asse y)
-            const y = d3.scaleLinear()
-              .domain([0, d3.max(data.flatMap(d => d.values.map(v => v.infections)))])
-              .nice()
-              .range([height, 0]);
-    
-            const yAxis = d3.axisLeft(y);
-    
-            // Aggiungi gli assi
-            svg.append("g")
-              .attr("transform", `translate(0,${height})`)
-              .call(xAxis)
-              .selectAll("text")
-              .attr("transform", "rotate(-45)")
-              .style("text-anchor", "end");
-    
-            svg.append("g")
-              .call(yAxis);
-    
-            // Linea del grafico
-            const line = d3.line()
-              .x(d => x(new Date(d.date)))
-              .y(d => y(d.infections));
-    
-            // Aggiorna il grafico in base al paese selezionato
-            function updateChart(country) {
-              const countryData = data.find(d => d.country === country);
-    
-              svg.selectAll(".line").remove();
-    
-              svg.append("path")
-                .datum(countryData.values)
-                .attr("class", "line")
-                .attr("fill", "none")
-                .attr("stroke", "steelblue")
-                .attr("stroke-width", 2)
-                .attr("d", line);
-            }
-    
-            // Dropdown per selezionare il paese
-            const selector = d3.select("#country-selector")
-              .on("change", function() {
-                updateChart(this.value);
-              });
-    
-            selector.selectAll("option")
-              .data(data.map(d => d.country))
-              .enter()
-              .append("option")
-              .text(d => d);
-    
-            // Disegna il grafico iniziale
-            updateChart(data[0].country);
-        </script>
-    
+          <!--LINECHART_END-->
 
-      </div>
+          <!--STACKBARCHART-->
+          <div class="flex flex-col gap-4 w-full max-w-4xl ">
+            <h1 class="text-4xl font-bold">Infection Trends by Top</h1>
+            <div>
+                <label for="group">Groups for:</label>
+                <select id="group">
+                  <option value="sesso">Sex</option>
+                  <option value="età">Age</option>
+                </select>
+              </div>
+              <div>
+                <label for="metric">Select type of data:</label>
+                <select id="metric">
+                  <option value="guarite">Guarite</option>
+                  <option value="morte">Morte</option>
+                  <option value="infette">Infette</option>
+                </select>
+              </div>
+              <div id="stackbarchart_container"></div>
+        </div>
+
+          <!--STACKBARCHART_END-->
+
+    </div>
+
+    <div id="section2" class="min-h-screen flex justify-center">
+        <h1 class="text-4xl font-bold">Economy</h1>
+        <!--LINECHART-->
+        <!--LINECHART_END-->
+
+        <!--BUBBLECHART-->
+        <div class="flex flex-col gap-4 w-full max-w-4xl ">
+            <h1 class="text-4xl font-bold">Economy</h1>
+            <div>
+                <label for="contry_selector_bubble">Seleziona Paese:</label>
+                <select id="contry_selector_bubble"></select>
+              </div>
+              <div>
+                <label for="metric_selector_bubble">Dimensione delle Bolle:</label>
+                <select id="metric_selector_bubble"></select>
+              </div>
+              <div id="my_dataviz"></div>
+        </div>
+        <!--BUBBLECHART_END-->
+        
+    </div>
       <div id="section3" class="min-h-screen flex items-center justify-center">
-          <h2 class="text-3xl font-semibold">Section 3</h2>
+        <h2 class="text-3xl font-semibold">Section 3</h2>
+        <!--DUMBBELLCHART-->
+        <!--DUMBBELLCHART_END-->
       </div>
       <div id="section4" class="min-h-screen flex items-center justify-center">
-          <h2 class="text-3xl font-semibold">Section 4</h2>
+        <h2 class="text-3xl font-semibold">Section 4</h2>
+        <!--HISTOGRAM-->
+        <!--HISTOGRAM_END-->
+
+        <!--MAP-->
+        <!--MAP_END-->
+
+        <!--HIGHLIGHTS-->
+        <!--HIGHLIGHTS_END-->
       </div>
       <div id="section5" class="min-h-screen flex items-center justify-center">
-          <h2 class="text-3xl font-semibold">Section 5</h2>
+        <h2 class="text-3xl font-semibold">Section 5</h2>
       </div>
   </div>
 
+<script src="./../js/home.js"></script> 
+<script src="./../js/covidspread/map.js"></script>
+<script src="./../js/covidspread/linechart.js"></script>
+<script src="./../js/covidspread/stackbarchart.js"></script>
+<script src="./../js/economy/bubblechart.js"></script>
 </body>
 </html>
     
