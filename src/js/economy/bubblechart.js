@@ -155,6 +155,7 @@ function BubbleChart() {// Set the dimensions and margins of the graph
             .attr("cy", d => y(d.infectedRate)) // Posizione sull'asse Y
             .attr("r", d => z(d[selectedMetric])) // Dimensione basata sulla metrica
             .style("fill", d => myColor(d.country)) // Colore in base al paese
+            .style("opacity", 0.7)
             .on("mouseover", showTooltip)
             .on("mousemove", moveTooltip)
             .on("mouseleave", hideTooltip);
