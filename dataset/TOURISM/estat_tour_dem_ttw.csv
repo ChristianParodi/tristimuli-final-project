@@ -1,4 +1,4 @@
-freq,c_dest,purpose,duration,unit,geo\TIME_PERIOD,2012 ,2013 ,2014 ,2015 ,2016 ,2017 ,2018 ,2019 ,2020 ,2021 ,2022 ,2023 
+freq,c_dest,purpose,duration,unit,geo,2012 ,2013 ,2014 ,2015 ,2016 ,2017 ,2018 ,2019 ,2020 ,2021 ,2022 ,2023 
 A,AFR,PER,N1-3,NR,AT,: u,: u,: ,: u,: u,: u,: u,: u,: ,: u,: u,: u
 A,AFR,PER,N1-3,NR,BE,: u,: u,: u,: u,: u,: u,: u,: u,: u,: u,: u,: u
 A,AFR,PER,N1-3,NR,BG,: ,: ,: ,: ,: ,: ,: ,: u,: ,: ,: ,: u
