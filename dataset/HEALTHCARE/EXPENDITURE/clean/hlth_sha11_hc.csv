@@ -9,7 +9,7 @@ Euro per inhabitant,Czechia,1174.0,1136.0,1138.0,1179.0,1241.0,1344.0,1480.0,160
 Euro per inhabitant,Germany,3704.0,3834.0,3985.0,4145.0,4279.0,4476.0,4657.0,4898.0,5194.0,5609.0,5831.0,
 Euro per inhabitant,Denmark,4790.0,4759.0,4854.0,4969.0,5066.0,5164.0,5269.0,5404.0,5722.0,6293.0,6109.0,
 Euro per inhabitant,Euro area - 19 countries  (2015-2022),,,3086.0,3174.0,3250.0,3349.0,3453.0,3590.0,3761.0,4075.0,4205.0,
-Euro per inhabitant,Euro area – 20 countries (from 2023),,,3057.0,3144.0,3220.0,3319.0,3422.0,3558.0,3728.0,4042.0,4172.0,
+Euro per inhabitant,Euro area - 20 countries (from 2023),,,3057.0,3144.0,3220.0,3319.0,3422.0,3558.0,3728.0,4042.0,4172.0,
 Euro per inhabitant,Estonia,825.0,901.0,970.0,1041.0,1107.0,1193.0,1312.0,1426.0,1565.0,1766.0,1874.0,
 Euro per inhabitant,Greece,1522.0,1384.0,1284.0,1339.0,1368.0,1338.0,1358.0,1401.0,1469.0,1577.0,1682.0,
 Euro per inhabitant,Spain,2018.0,1984.0,2018.0,2117.0,2145.0,2232.0,2314.0,2413.0,2535.0,2657.0,2745.0,
@@ -47,7 +47,7 @@ Million euro,Czechia,12347.0,11952.0,11986.0,12437.0,13118.0,14247.0,15739.0,171
 Million euro,Germany,297961.0,309222.0,322775.0,338638.0,352397.0,370023.0,386123.0,407025.0,431941.0,466713.0,488677.0,486257.0
 Million euro,Denmark,26786.0,26725.0,27397.0,28241.0,29023.0,29770.0,30528.0,31424.0,33372.0,36859.0,36066.0,35286.0
 Million euro,Euro area - 19 countries  (2015-2022),,,1043901.0,1076721.0,1105752.0,1141999.0,1180098.0,1228193.0,1288614.0,1397308.0,1447988.0,
-Million euro,Euro area – 20 countries (from 2023),,,1046809.0,1079749.0,1108935.0,1145327.0,1183659.0,1231978.0,1292511.0,1402028.0,1452921.0,
+Million euro,Euro area - 20 countries (from 2023),,,1046809.0,1079749.0,1108935.0,1145327.0,1183659.0,1231978.0,1292511.0,1402028.0,1452921.0,
 Million euro,Estonia,1092.0,1187.0,1275.0,1370.0,1457.0,1572.0,1735.0,1892.0,2081.0,2351.0,2528.0,2848.0
 Million euro,Greece,16811.0,15178.0,13986.0,14497.0,14742.0,14391.0,14580.0,15031.0,15716.0,16670.0,17562.0,
 Million euro,Spain,94407.0,92533.0,93830.0,98363.0,99729.0,104002.0,108330.0,113776.0,120093.0,126001.0,131114.0,
@@ -120,7 +120,7 @@ Million purchasing power standards (PPS),Czechia,17863.0,18331.0,19745.0,20035.0
 Million purchasing power standards (PPS),Germany,285138.0,292982.0,305351.0,317029.0,330764.0,347550.0,363481.0,378058.0,400078.0,428016.0,445547.0,443074.0
 Million purchasing power standards (PPS),Denmark,18520.0,18642.0,18983.0,19675.0,19873.0,20757.0,21443.0,21888.0,23316.0,25830.0,24522.0,24634.0
 Million purchasing power standards (PPS),Euro area - 19 countries  (2015-2022),,,988252.0,1017868.0,1044660.0,1079609.0,1113258.0,1156719.0,1209523.0,1312890.0,1362517.0,
-Million purchasing power standards (PPS),Euro area – 20 countries (from 2023),,,993790.0,1023623.0,1050675.0,1085834.0,1119722.0,1163506.0,1216744.0,1321334.0,1371120.0,
+Million purchasing power standards (PPS),Euro area - 20 countries (from 2023),,,993790.0,1023623.0,1050675.0,1085834.0,1119722.0,1163506.0,1216744.0,1321334.0,1371120.0,
 Million purchasing power standards (PPS),Estonia,1564.0,1651.0,1751.0,1869.0,1952.0,2042.0,2179.0,2308.0,2526.0,2739.0,2716.0,3027.0
 Million purchasing power standards (PPS),Greece,17704.0,16795.0,16027.0,16824.0,17227.0,17046.0,17327.0,17712.0,18467.0,19720.0,20731.0,
 Million purchasing power standards (PPS),Spain,95350.0,94560.0,97204.0,102733.0,103636.0,108885.0,111888.0,118026.0,121287.0,129140.0,134379.0,
@@ -191,7 +191,7 @@ Percentual share of total current health expenditure (CHE),Czechia,100.0,100.0,1
 Percentual share of total current health expenditure (CHE),Germany,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0
 Percentual share of total current health expenditure (CHE),Denmark,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0
 Percentual share of total current health expenditure (CHE),Euro area - 19 countries  (2015-2022),,,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,
-Percentual share of total current health expenditure (CHE),Euro area – 20 countries (from 2023),,,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,
+Percentual share of total current health expenditure (CHE),Euro area - 20 countries (from 2023),,,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,
 Percentual share of total current health expenditure (CHE),Estonia,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0
 Percentual share of total current health expenditure (CHE),Greece,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,
 Percentual share of total current health expenditure (CHE),Spain,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,
@@ -229,7 +229,7 @@ Percentage of gross domestic product (GDP),Czechia,7.0,7.0,7.0,7.0,7.0,7.0,7.0,7
 Percentage of gross domestic product (GDP),Germany,10.0,11.0,11.0,11.0,11.0,11.0,11.0,11.0,12.0,12.0,12.0,11.0
 Percentage of gross domestic product (GDP),Denmark,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,9.0,9.0
 Percentage of gross domestic product (GDP),Euro area - 19 countries  (2015-2022),,,10.0,10.0,10.0,10.0,10.0,10.0,11.0,11.0,10.0,
-Percentage of gross domestic product (GDP),Euro area – 20 countries (from 2023),,,10.0,10.0,10.0,10.0,10.0,10.0,11.0,11.0,10.0,
+Percentage of gross domestic product (GDP),Euro area - 20 countries (from 2023),,,10.0,10.0,10.0,10.0,10.0,10.0,11.0,11.0,10.0,
 Percentage of gross domestic product (GDP),Estonia,6.0,6.0,6.0,6.0,6.0,6.0,6.0,6.0,7.0,7.0,7.0,7.0
 Percentage of gross domestic product (GDP),Greece,8.0,8.0,7.0,8.0,8.0,8.0,8.0,8.0,9.0,9.0,8.0,
 Percentage of gross domestic product (GDP),Spain,9.0,9.0,9.0,9.0,8.0,8.0,9.0,9.0,10.0,10.0,9.0,
@@ -266,7 +266,7 @@ Purchasing power standard (PPS) per inhabitant,Czechia,1699.0,1743.0,1876.0,1899
 Purchasing power standard (PPS) per inhabitant,Germany,3545.0,3632.0,3770.0,3881.0,4016.0,4204.0,4384.0,4549.0,4810.0,5144.0,5316.0,
 Purchasing power standard (PPS) per inhabitant,Denmark,3312.0,3320.0,3363.0,3461.0,3469.0,3600.0,3701.0,3764.0,3998.0,4410.0,4154.0,
 Purchasing power standard (PPS) per inhabitant,Euro area - 19 countries  (2015-2022),,,2922.0,3001.0,3071.0,3166.0,3257.0,3381.0,3530.0,3829.0,3957.0,
-Purchasing power standard (PPS) per inhabitant,Euro area – 20 countries (from 2023),,,2902.0,2981.0,3051.0,3147.0,3238.0,3361.0,3510.0,3810.0,3937.0,
+Purchasing power standard (PPS) per inhabitant,Euro area - 20 countries (from 2023),,,2902.0,2981.0,3051.0,3147.0,3238.0,3361.0,3510.0,3810.0,3937.0,
 Purchasing power standard (PPS) per inhabitant,Estonia,1182.0,1253.0,1332.0,1421.0,1484.0,1550.0,1648.0,1739.0,1900.0,2058.0,2014.0,
 Purchasing power standard (PPS) per inhabitant,Greece,1602.0,1531.0,1471.0,1554.0,1598.0,1585.0,1614.0,1652.0,1726.0,1865.0,1986.0,
 Purchasing power standard (PPS) per inhabitant,Spain,2038.0,2028.0,2091.0,2211.0,2229.0,2336.0,2390.0,2504.0,2560.0,2723.0,2813.0,
