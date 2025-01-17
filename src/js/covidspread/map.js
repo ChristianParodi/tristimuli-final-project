@@ -51,7 +51,7 @@ function mapMercator() {
 
   // Caricare i dati GeoJSON e il dataset
   Promise.all([
-    d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson"), // GeoJSON
+    d3.json("https://raw.githubusercontent.com/leakyMirror/map-of-europe/refs/heads/master/GeoJSON/europe.geojson"), // GeoJSON
     d3.csv("./../../dataset/covid_data.csv") // Dataset con dati COVID-19
   ]).then(([world, covidData]) => {
     // Creare una mappa per ogni dato del COVID-19
