@@ -24,9 +24,9 @@ Austria,EntertainmentVenues,Closure of entertainment venues,2020-11-03,2021-02-0
 Austria,EntertainmentVenuesPartial,Closure of entertainment venues - partially relaxed measure,2021-02-08,2022-03-04
 Austria,GymsSportsCentres,Closure of gyms/sports centres,2020-11-03,2021-05-18
 Austria,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2021-05-19,2022-03-04
-Austria,HotelsOtherAccommodation,,2020-03-31,2020-05-29
-Austria,HotelsOtherAccommodation,,2020-11-03,2021-05-18
-Austria,HotelsOtherAccommodationPartial,,2021-05-19,2022-03-04
+Austria,HotelsOtherAccommodation,Closure of other hotels/accommodation services,2020-03-31,2020-05-29
+Austria,HotelsOtherAccommodation,Closure of other hotels/accommodation services,2020-11-03,2021-05-18
+Austria,HotelsOtherAccommodationPartial,Closure of other hotels/accommodation services - partially relaxed measure,2021-05-19,2022-03-04
 Austria,IndoorOver100,Interventions are in place to limit indoor mass/public gatherings of over 100 participants,2020-03-11,2020-06-30
 Austria,IndoorOver1000,Interventions are in place to limit indoor mass/public gatherings of over 1000 participants,2020-08-01,2020-09-13
 Austria,IndoorOver50,Interventions are in place to limit indoor mass/public gatherings of over 50 participants,2020-09-14,2020-11-02
@@ -37,8 +37,8 @@ Austria,MasksMandatoryAllSpacesPartial,Protective mask use in all public spaces 
 Austria,MasksMandatoryClosedSpaces,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law),2021-06-10,2022-01-10
 Austria,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2020-06-15,2020-07-08
 Austria,MasksVoluntaryClosedSpacesPartial,Protective mask use in closed public spaces/transport on voluntary basis (general recommendation not enforced) - partially relaxed measure,2020-03-31,2020-04-05
-Austria,MassGather50,,2020-11-03,2021-05-18
-Austria,MassGather50Partial,,2020-09-14,2020-11-02
+Austria,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-11-03,2021-05-18
+Austria,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2020-09-14,2020-11-02
 Austria,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-11,2020-07-31
 Austria,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-11-03,2021-05-18
 Austria,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2020-08-01,2020-11-02
@@ -64,7 +64,7 @@ Austria,PlaceOfWorshipPartial,Closure of places of worship - partially relaxed m
 Austria,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-03-16,2020-04-30
 Austria,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-10-23,2020-11-16
 Austria,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-05-19,2022-03-05
-Austria,QuarantineForInternationalTravellers,,2020-03-10,2022-05-15
+Austria,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-10,2022-05-15
 Austria,RegionalStayHomeOrder,Regional stay-at-home orders for the general population at least in one region (these are enforced and also referred to as 'lockdown'),2021-04-01,2021-05-02
 Austria,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-16,2020-05-14
 Austria,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-11-03,2021-05-14
@@ -113,8 +113,8 @@ Belgium,IndoorOver500,Interventions are in place to limit indoor mass/public gat
 Belgium,IndoorOver500,Interventions are in place to limit indoor mass/public gatherings of over 500 participants,2021-10-28,2021-11-28
 Belgium,IndoorOver500,Interventions are in place to limit indoor mass/public gatherings of over 500 participants,2021-12-06,2022-03-06
 Belgium,MasksMandatoryAllSpacesPartial,Protective mask use in all public spaces on mandatory basis (enforced by law) - partially relaxed measure,2020-05-04,2022-05-22
-Belgium,MassGather50,,2020-10-29,2021-06-08
-Belgium,MassGather50Partial,,2021-11-29,2021-12-05
+Belgium,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-10-29,2021-06-08
+Belgium,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2021-11-29,2021-12-05
 Belgium,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-10,2020-03-17
 Belgium,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-07-01,2021-06-08
 Belgium,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-10-28,2021-11-28
@@ -136,7 +136,7 @@ Belgium,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-07-
 Belgium,PrivateGatheringRestrictions,Restrictions on private gatherings,2021-04-26,2021-09-01
 Belgium,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-03-08,2021-03-19
 Belgium,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-11-20,2022-01-27
-Belgium,QuarantineForInternationalTravellersPartial,,2020-07-08,2022-03-06
+Belgium,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2020-07-08,2022-03-06
 Belgium,RegionalStayHomeOrderPartial,Regional stay-at-home orders for the general population at least in one region (these are enforced and also referred to as 'lockdown') - partially relaxed measure,2020-07-28,2020-08-26
 Belgium,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-04-03,2020-06-07
 Belgium,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-10-19,2021-04-25
@@ -186,10 +186,10 @@ Bulgaria,MasksMandatoryAllSpacesPartial,Protective mask use in all public spaces
 Bulgaria,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2022-07-18,
 Bulgaria,MasksVoluntaryAllSpaces,Protective mask use in all public spaces on voluntary basis (general recommendation not enforced),2020-03-31,2020-04-11
 Bulgaria,MasksVoluntaryAllSpacesPartial,Protective mask use in all public spaces on voluntary basis (general recommendation not enforced) - partially relaxed measure,2022-04-01,2022-07-17
-Bulgaria,MassGather50,,2020-03-08,2020-05-14
-Bulgaria,MassGather50Partial,,2020-05-15,2020-06-30
-Bulgaria,MassGather50Partial,,2021-01-04,2021-03-31
-Bulgaria,MassGather50Partial,,2021-11-02,2022-03-17
+Bulgaria,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-08,2020-05-14
+Bulgaria,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2020-05-15,2020-06-30
+Bulgaria,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2021-01-04,2021-03-31
+Bulgaria,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2021-11-02,2022-03-17
 Bulgaria,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-08,2020-03-12
 Bulgaria,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2020-03-13,2020-06-30
 Bulgaria,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2021-01-04,2021-03-31
@@ -201,10 +201,10 @@ Bulgaria,NonEssentialShopsPartial,Closures of non-essential shops - partially re
 Bulgaria,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-03-08,2020-06-30
 Bulgaria,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-11-27,2021-05-31
 Bulgaria,PrivateGatheringRestrictions,Restrictions on private gatherings,2021-09-07,2022-03-20
-Bulgaria,QuarantineForInternationalTravellers,,2020-03-17,2020-07-27
-Bulgaria,QuarantineForInternationalTravellers,,2020-08-01,2020-11-30
-Bulgaria,QuarantineForInternationalTravellersPartial,,2020-07-28,2020-07-31
-Bulgaria,QuarantineForInternationalTravellersPartial,,2020-12-01,2022-04-30
+Bulgaria,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-17,2020-07-27
+Bulgaria,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-08-01,2020-11-30
+Bulgaria,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2020-07-28,2020-07-31
+Bulgaria,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2020-12-01,2022-04-30
 Bulgaria,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-13,2020-05-31
 Bulgaria,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-11-27,2021-02-28
 Bulgaria,RestaurantsCafes,Closure of restaurants and cafes/bars,2021-03-22,2021-03-31
@@ -239,8 +239,8 @@ Croatia,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mand
 Croatia,MasksMandatoryAllSpacesPartial,Protective mask use in all public spaces on mandatory basis (enforced by law) - partially relaxed measure,2021-07-03,2022-04-08
 Croatia,MasksMandatoryClosedSpaces,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law),2020-04-24,2020-10-24
 Croatia,MasksVoluntaryAllSpacesPartial,Protective mask use in all public spaces on voluntary basis (general recommendation not enforced) - partially relaxed measure,2022-04-09,
-Croatia,MassGather50,,2020-03-19,2021-05-27
-Croatia,MassGather50Partial,,2021-11-06,2022-03-17
+Croatia,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-19,2021-05-27
+Croatia,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2021-11-06,2022-03-17
 Croatia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-19,2021-05-27
 Croatia,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2021-05-28,2022-04-08
 Croatia,NonEssentialShopsPartial,Closures of non-essential shops - partially relaxed measure,2020-03-19,2020-05-25
@@ -251,7 +251,7 @@ Croatia,OutdoorOver50,Interventions are in place to limit outdoor mass/public ga
 Croatia,OutdoorOver50,Interventions are in place to limit outdoor mass/public gatherings of over 50 participants,2022-01-08,2022-02-28
 Croatia,OutdoorOver500,Interventions are in place to limit outdoor mass/public gatherings of over 500 participants,2022-03-18,2022-04-08
 Croatia,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-03-20,2022-04-08
-Croatia,QuarantineForInternationalTravellersPartial,,2020-05-11,2022-04-30
+Croatia,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2020-05-11,2022-04-30
 Croatia,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-19,2020-05-11
 Croatia,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-11-28,2021-02-28
 Croatia,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-05-12,2020-11-27
@@ -286,18 +286,18 @@ Cyprus,GymsSportsCentres,Closure of gyms/sports centres,2021-01-08,2021-03-31
 Cyprus,GymsSportsCentres,Closure of gyms/sports centres,2021-04-26,2021-05-09
 Cyprus,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2020-05-04,2020-06-13
 Cyprus,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2021-05-10,2022-06-05
-Cyprus,HotelsOtherAccommodation,,2020-03-16,2020-05-03
-Cyprus,HotelsOtherAccommodationPartial,,2020-05-04,2020-06-09
-Cyprus,HotelsOtherAccommodationPartial,,2021-05-17,2021-07-19
-Cyprus,HotelsOtherAccommodationPartial,,2022-01-10,2022-06-05
+Cyprus,HotelsOtherAccommodation,Closure of other hotels/accommodation services,2020-03-16,2020-05-03
+Cyprus,HotelsOtherAccommodationPartial,Closure of other hotels/accommodation services - partially relaxed measure,2020-05-04,2020-06-09
+Cyprus,HotelsOtherAccommodationPartial,Closure of other hotels/accommodation services - partially relaxed measure,2021-05-17,2021-07-19
+Cyprus,HotelsOtherAccommodationPartial,Closure of other hotels/accommodation services - partially relaxed measure,2022-01-10,2022-06-05
 Cyprus,IndoorOver100,Interventions are in place to limit indoor mass/public gatherings of over 100 participants,2020-07-12,2020-11-04
 Cyprus,IndoorOver50,Interventions are in place to limit indoor mass/public gatherings of over 50 participants,2020-06-24,2020-07-11
 Cyprus,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-11-05,2022-04-10
 Cyprus,MasksMandatoryClosedSpaces,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law),2022-04-11,2022-05-31
 Cyprus,MasksMandatoryClosedSpaces,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law),2022-07-08,
 Cyprus,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2022-06-01,2022-07-07
-Cyprus,MassGather50,,2020-03-10,2020-07-11
-Cyprus,MassGather50Partial,,2020-11-05,2021-05-16
+Cyprus,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-10,2020-07-11
+Cyprus,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2020-11-05,2021-05-16
 Cyprus,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-10,2020-11-04
 Cyprus,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2020-11-05,2021-05-16
 Cyprus,NonEssentialShops,Closures of non-essential shops,2020-03-16,2020-06-08
@@ -314,8 +314,8 @@ Cyprus,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-11-0
 Cyprus,PrivateGatheringRestrictions,Restrictions on private gatherings,2021-04-26,2021-05-28
 Cyprus,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-02-08,2021-04-25
 Cyprus,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-05-29,2022-04-14
-Cyprus,QuarantineForInternationalTravellers,,2020-06-30,2021-05-09
-Cyprus,QuarantineForInternationalTravellersPartial,,2021-05-10,2022-05-14
+Cyprus,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-06-30,2021-05-09
+Cyprus,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2021-05-10,2022-05-14
 Cyprus,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-16,2020-05-20
 Cyprus,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-12-11,2021-03-14
 Cyprus,RestaurantsCafes,Closure of restaurants and cafes/bars,2021-04-26,2021-05-09
@@ -372,11 +372,11 @@ Czechia,GymsSportsCentres,Closure of gyms/sports centres,2020-12-18,2021-05-16
 Czechia,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2020-04-27,2020-10-13
 Czechia,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2020-12-03,2020-12-17
 Czechia,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2021-05-17,2021-09-30
-Czechia,HotelsOtherAccommodation,,2020-03-16,2020-05-25
-Czechia,HotelsOtherAccommodation,,2020-10-22,2020-12-03
-Czechia,HotelsOtherAccommodation,,2020-12-18,2021-05-23
-Czechia,HotelsOtherAccommodationPartial,,2021-05-24,2021-06-08
-Czechia,HotelsOtherAccommodationPartial,,2022-01-03,
+Czechia,HotelsOtherAccommodation,Closure of other hotels/accommodation services,2020-03-16,2020-05-25
+Czechia,HotelsOtherAccommodation,Closure of other hotels/accommodation services,2020-10-22,2020-12-03
+Czechia,HotelsOtherAccommodation,Closure of other hotels/accommodation services,2020-12-18,2021-05-23
+Czechia,HotelsOtherAccommodationPartial,Closure of other hotels/accommodation services - partially relaxed measure,2021-05-24,2021-06-08
+Czechia,HotelsOtherAccommodationPartial,Closure of other hotels/accommodation services - partially relaxed measure,2022-01-03,
 Czechia,IndoorOver100,Interventions are in place to limit indoor mass/public gatherings of over 100 participants,2020-03-10,2020-05-24
 Czechia,IndoorOver1000,Interventions are in place to limit indoor mass/public gatherings of over 1000 participants,2020-06-22,2020-08-31
 Czechia,IndoorOver1000,Interventions are in place to limit indoor mass/public gatherings of over 1000 participants,2021-06-26,2022-03-01
@@ -390,7 +390,7 @@ Czechia,MasksMandatoryAllSpacesPartial,Protective mask use in all public spaces 
 Czechia,MasksMandatoryClosedSpaces,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law),2020-09-01,2020-10-20
 Czechia,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2020-07-25,2020-08-31
 Czechia,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2022-03-14,2022-04-13
-Czechia,MassGather50,,2020-10-22,2021-06-07
+Czechia,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-10-22,2021-06-07
 Czechia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-10,2022-03-01
 Czechia,NonEssentialShops,Closures of non-essential shops,2020-03-14,2020-05-11
 Czechia,NonEssentialShops,Closures of non-essential shops,2020-10-22,2020-12-02
@@ -414,8 +414,8 @@ Czechia,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-10-
 Czechia,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-12-27,2021-05-09
 Czechia,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2020-12-03,2020-12-26
 Czechia,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-05-10,2022-05-05
-Czechia,QuarantineForInternationalTravellers,,2020-03-13,2020-06-30
-Czechia,QuarantineForInternationalTravellers,,2021-07-01,2022-04-08
+Czechia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-13,2020-06-30
+Czechia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2021-07-01,2022-04-08
 Czechia,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-14,2020-05-10
 Czechia,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-10-14,2020-12-02
 Czechia,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-12-18,2021-05-16
@@ -464,9 +464,9 @@ Denmark,MasksMandatoryAllSpacesPartial,Protective mask use in all public spaces 
 Denmark,MasksMandatoryClosedSpaces,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law),2020-10-29,2021-06-10
 Denmark,MasksVoluntaryAllSpacesPartial,Protective mask use in all public spaces on voluntary basis (general recommendation not enforced) - partially relaxed measure,2020-07-09,2021-11-28
 Denmark,MasksVoluntaryClosedSpacesPartial,Protective mask use in closed public spaces/transport on voluntary basis (general recommendation not enforced) - partially relaxed measure,2020-08-21,2020-08-22
-Denmark,MassGather50,,2020-03-18,2020-06-14
-Denmark,MassGather50,,2020-10-26,2021-04-05
-Denmark,MassGather50,,2021-05-06,2021-06-10
+Denmark,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-18,2020-06-14
+Denmark,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-10-26,2021-04-05
+Denmark,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2021-05-06,2021-06-10
 Denmark,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-18,2020-06-14
 Denmark,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-06-11,2021-07-31
 Denmark,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2020-06-15,2021-06-10
@@ -486,7 +486,7 @@ Denmark,PlaceOfWorshipPartial,Closure of places of worship - partially relaxed m
 Denmark,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-03-18,2020-06-14
 Denmark,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-10-26,2021-07-05
 Denmark,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-12-19,2022-01-31
-Denmark,QuarantineForInternationalTravellers,,2020-03-18,2020-03-30
+Denmark,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-18,2020-03-30
 Denmark,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-18,2020-05-17
 Denmark,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-12-16,2021-04-20
 Denmark,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-05-18,2020-12-15
@@ -540,9 +540,9 @@ Estonia,MasksVoluntaryClosedSpaces,Protective mask use in closed public spaces/t
 Estonia,MasksVoluntaryClosedSpacesPartial,Protective mask use in closed public spaces/transport on voluntary basis (general recommendation not enforced) - partially relaxed measure,2020-05-17,2020-07-31
 Estonia,MasksVoluntaryClosedSpacesPartial,Protective mask use in closed public spaces/transport on voluntary basis (general recommendation not enforced) - partially relaxed measure,2020-10-12,2020-11-23
 Estonia,MasksVoluntaryClosedSpacesPartial,Protective mask use in closed public spaces/transport on voluntary basis (general recommendation not enforced) - partially relaxed measure,2022-03-31,
-Estonia,MassGather50,,2020-05-18,2020-05-31
-Estonia,MassGather50Partial,,2021-03-03,2021-05-02
-Estonia,MassGather50Partial,,2021-08-09,2022-03-15
+Estonia,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-05-18,2020-05-31
+Estonia,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2021-03-03,2021-05-02
+Estonia,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2021-08-09,2022-03-15
 Estonia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-05-18,2020-05-31
 Estonia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-07-15,2021-03-02
 Estonia,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2020-06-01,2020-07-14
@@ -567,11 +567,11 @@ Estonia,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-11-
 Estonia,PrivateGatheringRestrictions,Restrictions on private gatherings,2021-02-01,2021-04-25
 Estonia,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-01-11,2021-01-31
 Estonia,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-04-26,2021-06-22
-Estonia,QuarantineForInternationalTravellers,,2020-01-28,2020-05-31
-Estonia,QuarantineForInternationalTravellers,,2020-07-31,2021-01-31
-Estonia,QuarantineForInternationalTravellers,,2022-01-10,2022-06-30
-Estonia,QuarantineForInternationalTravellersPartial,,2020-06-01,2020-07-30
-Estonia,QuarantineForInternationalTravellersPartial,,2021-02-01,2022-01-09
+Estonia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-01-28,2020-05-31
+Estonia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-07-31,2021-01-31
+Estonia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2022-01-10,2022-06-30
+Estonia,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2020-06-01,2020-07-30
+Estonia,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2021-02-01,2022-01-09
 Estonia,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-27,2020-05-17
 Estonia,RestaurantsCafes,Closure of restaurants and cafes/bars,2021-03-11,2021-05-02
 Estonia,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-11-16,2021-03-10
@@ -596,9 +596,9 @@ Finland,IndoorOver500,Interventions are in place to limit indoor mass/public gat
 Finland,MasksVoluntaryAllSpacesPartial,Protective mask use in all public spaces on voluntary basis (general recommendation not enforced) - partially relaxed measure,2022-01-07,2022-04-13
 Finland,MasksVoluntaryClosedSpaces,Protective mask use in closed public spaces/transport on voluntary basis (general recommendation not enforced),2020-09-18,2022-01-06
 Finland,MasksVoluntaryClosedSpacesPartial,Protective mask use in closed public spaces/transport on voluntary basis (general recommendation not enforced) - partially relaxed measure,2020-08-13,2020-09-17
-Finland,MassGather50,,2020-03-17,2020-06-30
-Finland,MassGather50Partial,,2020-07-01,2020-07-31
-Finland,MassGather50Partial,,2020-10-15,2021-10-04
+Finland,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-17,2020-06-30
+Finland,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2020-07-01,2020-07-31
+Finland,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2020-10-15,2021-10-04
 Finland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-12,2020-06-30
 Finland,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2020-07-01,2021-10-04
 Finland,NonEssentialShops,Closures of non-essential shops,2020-11-30,2021-06-14
@@ -607,8 +607,8 @@ Finland,OutdoorOver50,Interventions are in place to limit outdoor mass/public ga
 Finland,OutdoorOver500,Interventions are in place to limit outdoor mass/public gatherings of over 500 participants,2020-03-12,2020-03-16
 Finland,OutdoorOver500,Interventions are in place to limit outdoor mass/public gatherings of over 500 participants,2020-07-02,2020-10-14
 Finland,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2022-01-07,2022-02-01
-Finland,QuarantineForInternationalTravellers,,2020-03-18,2020-06-14
-Finland,QuarantineForInternationalTravellersPartial,,2020-06-15,2022-06-30
+Finland,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-18,2020-06-14
+Finland,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2020-06-15,2022-06-30
 Finland,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-04-03,2020-07-12
 Finland,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-10-01,2021-04-17
 Finland,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2021-07-24,2022-01-30
@@ -648,8 +648,8 @@ France,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public sp
 France,MasksVoluntaryAllSpaces,Protective mask use in all public spaces on voluntary basis (general recommendation not enforced),2020-05-11,2020-07-19
 France,MasksVoluntaryClosedSpaces,Protective mask use in closed public spaces/transport on voluntary basis (general recommendation not enforced),2022-06-29,2022-07-31
 France,MasksVoluntaryClosedSpacesPartial,Protective mask use in closed public spaces/transport on voluntary basis (general recommendation not enforced) - partially relaxed measure,2022-05-16,2022-06-28
-France,MassGather50,,2020-10-16,2021-06-29
-France,MassGather50Partial,,2020-09-18,2020-10-15
+France,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-10-16,2021-06-29
+France,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2020-09-18,2020-10-15
 France,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-02-29,2020-09-17
 France,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-10-16,2021-06-29
 France,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2020-09-18,2020-10-15
@@ -662,7 +662,7 @@ France,OutdoorOver50,Interventions are in place to limit outdoor mass/public gat
 France,PlaceOfWorshipPartial,Closure of places of worship - partially relaxed measure,2020-10-28,2021-06-30
 France,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-03-17,2020-06-15
 France,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-10-28,2020-12-15
-France,QuarantineForInternationalTravellersPartial,,2021-06-09,2022-03-14
+France,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2021-06-09,2022-03-14
 France,RegionalStayHomeOrderPartial,Regional stay-at-home orders for the general population at least in one region (these are enforced and also referred to as 'lockdown') - partially relaxed measure,2020-10-17,2020-10-28
 France,RegionalStayHomeOrderPartial,Regional stay-at-home orders for the general population at least in one region (these are enforced and also referred to as 'lockdown') - partially relaxed measure,2021-02-26,2021-03-19
 France,RegionalStayHomeOrderPartial,Regional stay-at-home orders for the general population at least in one region (these are enforced and also referred to as 'lockdown') - partially relaxed measure,2021-07-30,2022-03-31
@@ -699,7 +699,7 @@ Germany,EntertainmentVenuesPartial,Closure of entertainment venues - partially r
 Germany,EntertainmentVenuesPartial,Closure of entertainment venues - partially relaxed measure,2021-03-08,2022-03-19
 Germany,GymsSportsCentres,Closure of gyms/sports centres,2020-11-02,2021-03-07
 Germany,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2021-03-08,2021-05-31
-Germany,HotelsOtherAccommodationPartial,,2020-10-07,2021-05-31
+Germany,HotelsOtherAccommodationPartial,Closure of other hotels/accommodation services - partially relaxed measure,2020-10-07,2021-05-31
 Germany,IndoorOver100,Interventions are in place to limit indoor mass/public gatherings of over 100 participants,2020-06-29,2020-09-28
 Germany,IndoorOver1000,Interventions are in place to limit indoor mass/public gatherings of over 1000 participants,2020-03-10,2020-03-22
 Germany,IndoorOver1000,Interventions are in place to limit indoor mass/public gatherings of over 1000 participants,2020-06-17,2020-06-28
@@ -711,9 +711,9 @@ Germany,MasksMandatoryClosedSpaces,Protective mask use in closed public spaces/t
 Germany,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2021-06-21,2021-11-17
 Germany,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2022-04-01,
 Germany,MasksVoluntaryAllSpaces,Protective mask use in all public spaces on voluntary basis (general recommendation not enforced),2020-04-02,2020-04-27
-Germany,MassGather50,,2020-03-23,2020-05-10
-Germany,MassGather50,,2020-11-02,2021-03-28
-Germany,MassGather50Partial,,2020-09-29,2020-11-01
+Germany,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-23,2020-05-10
+Germany,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-11-02,2021-03-28
+Germany,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2020-09-29,2020-11-01
 Germany,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-10,2020-05-10
 Germany,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-06-08,2020-06-28
 Germany,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-11-02,2021-03-28
@@ -729,10 +729,10 @@ Germany,PlaceOfWorshipPartial,Closure of places of worship - partially relaxed m
 Germany,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-11-02,2021-05-31
 Germany,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2020-05-11,2020-06-29
 Germany,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-12-02,2022-03-19
-Germany,QuarantineForInternationalTravellers,,2020-02-14,2020-06-15
-Germany,QuarantineForInternationalTravellers,,2020-11-08,2021-05-11
-Germany,QuarantineForInternationalTravellersPartial,,2020-06-16,2020-11-07
-Germany,QuarantineForInternationalTravellersPartial,,2021-05-12,2022-06-10
+Germany,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-02-14,2020-06-15
+Germany,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-11-08,2021-05-11
+Germany,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2020-06-16,2020-11-07
+Germany,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2021-05-12,2022-06-10
 Germany,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-23,2020-05-03
 Germany,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-11-02,2021-04-22
 Germany,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-05-04,2020-06-08
@@ -772,17 +772,17 @@ Greece,GymsSportsCentres,Closure of gyms/sports centres,2020-11-07,2021-05-30
 Greece,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2020-03-14,2020-06-15
 Greece,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2020-11-04,2020-11-06
 Greece,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2021-09-13,2022-04-30
-Greece,HotelsOtherAccommodation,,2020-03-15,2020-05-24
-Greece,HotelsOtherAccommodationPartial,,2020-05-25,2020-07-01
+Greece,HotelsOtherAccommodation,Closure of other hotels/accommodation services,2020-03-15,2020-05-24
+Greece,HotelsOtherAccommodationPartial,Closure of other hotels/accommodation services - partially relaxed measure,2020-05-25,2020-07-01
 Greece,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-07-17,2021-06-27
 Greece,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2021-12-24,2022-03-04
 Greece,MasksMandatoryAllSpacesPartial,Protective mask use in all public spaces on mandatory basis (enforced by law) - partially relaxed measure,2021-06-28,2021-12-23
 Greece,MasksMandatoryClosedSpaces,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law),2020-04-28,2020-07-06
 Greece,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2022-03-05,
 Greece,MasksVoluntaryClosedSpaces,Protective mask use in closed public spaces/transport on voluntary basis (general recommendation not enforced),2020-07-07,2020-07-16
-Greece,MassGather50,,2020-11-07,2021-01-25
-Greece,MassGather50Partial,,2020-07-13,2020-11-06
-Greece,MassGather50Partial,,2021-12-24,2022-03-20
+Greece,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-11-07,2021-01-25
+Greece,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2020-07-13,2020-11-06
+Greece,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2021-12-24,2022-03-20
 Greece,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-11-07,2021-05-20
 Greece,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2020-07-13,2020-11-06
 Greece,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2021-12-24,2022-03-20
@@ -796,9 +796,9 @@ Greece,PlaceOfWorshipPartial,Closure of places of worship - partially relaxed me
 Greece,PlaceOfWorshipPartial,Closure of places of worship - partially relaxed measure,2020-11-07,2022-04-30
 Greece,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-03-19,2020-05-03
 Greece,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-11-07,2021-05-13
-Greece,QuarantineForInternationalTravellers,,2020-03-19,2020-06-30
-Greece,QuarantineForInternationalTravellers,,2020-12-18,2021-04-18
-Greece,QuarantineForInternationalTravellersPartial,,2021-04-19,2022-04-30
+Greece,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-19,2020-06-30
+Greece,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-12-18,2021-04-18
+Greece,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2021-04-19,2022-04-30
 Greece,RegionalStayHomeOrder,Regional stay-at-home orders for the general population at least in one region (these are enforced and also referred to as 'lockdown'),2020-11-03,2020-11-06
 Greece,RegionalStayHomeOrder,Regional stay-at-home orders for the general population at least in one region (these are enforced and also referred to as 'lockdown'),2021-01-11,2021-02-05
 Greece,RegionalStayHomeOrderPartial,Regional stay-at-home orders for the general population at least in one region (these are enforced and also referred to as 'lockdown') - partially relaxed measure,2021-02-06,2021-04-19
@@ -843,8 +843,8 @@ Hungary,MasksMandatoryClosedSpaces,Protective mask use in closed public spaces/t
 Hungary,MasksMandatoryClosedSpaces,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law),2021-11-20,2022-03-07
 Hungary,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2020-05-04,2020-11-01
 Hungary,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2021-07-07,2021-11-19
-Hungary,MassGather50Partial,,2020-03-16,2020-06-11
-Hungary,MassGather50Partial,,2020-11-11,2022-03-07
+Hungary,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2020-03-16,2020-06-11
+Hungary,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2020-11-11,2022-03-07
 Hungary,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-11,2020-03-15
 Hungary,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2020-03-16,2020-06-11
 Hungary,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2020-09-21,2022-03-07
@@ -857,7 +857,7 @@ Hungary,OutdoorOver500,Interventions are in place to limit outdoor mass/public g
 Hungary,OutdoorOver500,Interventions are in place to limit outdoor mass/public gatherings of over 500 participants,2021-05-01,2022-03-07
 Hungary,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-11-11,2021-05-21
 Hungary,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-05-22,2022-03-07
-Hungary,QuarantineForInternationalTravellers,,2020-09-01,2022-03-07
+Hungary,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-09-01,2022-03-07
 Hungary,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-28,2020-05-18
 Hungary,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-11-11,2021-04-23
 Hungary,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-09-21,2020-11-10
@@ -906,10 +906,10 @@ Iceland,IndoorOver500,Interventions are in place to limit indoor mass/public gat
 Iceland,MasksMandatoryAllSpacesPartial,Protective mask use in all public spaces on mandatory basis (enforced by law) - partially relaxed measure,2020-10-05,2021-05-24
 Iceland,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2021-05-25,2022-02-25
 Iceland,MasksVoluntaryAllSpacesPartial,Protective mask use in all public spaces on voluntary basis (general recommendation not enforced) - partially relaxed measure,2020-07-31,2020-10-05
-Iceland,MassGather50,,2020-03-24,2020-05-25
-Iceland,MassGather50,,2020-10-04,2021-03-23
-Iceland,MassGather50,,2021-05-10,2021-05-24
-Iceland,MassGather50,,2021-11-13,2022-02-11
+Iceland,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-24,2020-05-25
+Iceland,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-10-04,2021-03-23
+Iceland,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2021-05-10,2021-05-24
+Iceland,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2021-11-13,2022-02-11
 Iceland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-16,2020-05-24
 Iceland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-10-04,2021-03-23
 Iceland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-05-10,2021-06-25
@@ -933,8 +933,8 @@ Iceland,PlaceOfWorship,Closure of places of worship,2021-07-25,2021-08-13
 Iceland,PlaceOfWorshipPartial,Closure of places of worship - partially relaxed measure,2021-02-05,2021-06-15
 Iceland,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-10-04,2021-02-23
 Iceland,PrivateGatheringRestrictions,Restrictions on private gatherings,2021-03-24,2021-05-09
-Iceland,QuarantineForInternationalTravellers,,2020-01-28,2021-01-24
-Iceland,QuarantineForInternationalTravellersPartial,,2021-01-25,2022-02-25
+Iceland,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-01-28,2021-01-24
+Iceland,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2021-01-25,2022-02-25
 Iceland,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-16,2020-05-25
 Iceland,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-10-31,2021-06-25
 Iceland,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2021-07-25,2022-02-25
@@ -964,17 +964,17 @@ Ireland,GymsSportsCentres,Closure of gyms/sports centres,2020-12-31,2021-06-06
 Ireland,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2020-10-06,2020-10-20
 Ireland,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2020-12-01,2020-12-30
 Ireland,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2021-06-07,2022-01-21
-Ireland,HotelsOtherAccommodation,,2020-03-24,2020-06-29
-Ireland,HotelsOtherAccommodation,,2020-10-21,2020-12-01
-Ireland,HotelsOtherAccommodation,,2020-12-24,2021-06-01
-Ireland,HotelsOtherAccommodationPartial,,2021-06-02,2021-10-28
+Ireland,HotelsOtherAccommodation,Closure of other hotels/accommodation services,2020-03-24,2020-06-29
+Ireland,HotelsOtherAccommodation,Closure of other hotels/accommodation services,2020-10-21,2020-12-01
+Ireland,HotelsOtherAccommodation,Closure of other hotels/accommodation services,2020-12-24,2021-06-01
+Ireland,HotelsOtherAccommodationPartial,Closure of other hotels/accommodation services - partially relaxed measure,2021-06-02,2021-10-28
 Ireland,IndoorOver100,Interventions are in place to limit indoor mass/public gatherings of over 100 participants,2020-03-12,2020-03-23
 Ireland,IndoorOver1000,Interventions are in place to limit indoor mass/public gatherings of over 1000 participants,2021-12-20,2022-01-21
 Ireland,IndoorOver50,Interventions are in place to limit indoor mass/public gatherings of over 50 participants,2020-06-29,2020-10-20
 Ireland,MasksMandatoryAllSpacesPartial,Protective mask use in all public spaces on mandatory basis (enforced by law) - partially relaxed measure,2020-06-29,2022-02-27
 Ireland,MasksVoluntaryClosedSpacesPartial,Protective mask use in closed public spaces/transport on voluntary basis (general recommendation not enforced) - partially relaxed measure,2022-02-22,
-Ireland,MassGather50,,2020-06-29,2020-11-30
-Ireland,MassGather50,,2021-01-11,2021-05-09
+Ireland,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-06-29,2020-11-30
+Ireland,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2021-01-11,2021-05-09
 Ireland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-12,2020-03-23
 Ireland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-06-29,2020-11-30
 Ireland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-01-11,2021-05-09
@@ -998,8 +998,8 @@ Ireland,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-10-
 Ireland,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-12-31,2021-05-09
 Ireland,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2020-12-01,2020-12-30
 Ireland,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-05-10,2022-01-21
-Ireland,QuarantineForInternationalTravellers,,2020-01-27,2020-03-13
-Ireland,QuarantineForInternationalTravellersPartial,,2020-03-14,2022-01-06
+Ireland,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-01-27,2020-03-13
+Ireland,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2020-03-14,2022-01-06
 Ireland,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-24,2020-06-28
 Ireland,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-12-25,2021-06-06
 Ireland,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-10-06,2020-10-26
@@ -1062,9 +1062,9 @@ Italy,MasksMandatoryAllSpacesPartial,Protective mask use in all public spaces on
 Italy,MasksMandatoryClosedSpaces,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law),2020-07-15,2020-08-15
 Italy,MasksMandatoryClosedSpaces,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law),2021-06-28,2021-12-24
 Italy,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2022-06-15,
-Italy,MassGather50,,2020-03-09,2020-06-11
-Italy,MassGather50,,2020-11-06,2021-04-25
-Italy,MassGather50Partial,,2020-03-04,2020-03-08
+Italy,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-09,2020-06-11
+Italy,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-11-06,2021-04-25
+Italy,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2020-03-04,2020-03-08
 Italy,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-09,2020-06-11
 Italy,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-11-06,2022-04-30
 Italy,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2020-03-04,2020-03-08
@@ -1076,8 +1076,8 @@ Italy,OutdoorOver1000,Interventions are in place to limit outdoor mass/public ga
 Italy,OutdoorOver1000,Interventions are in place to limit outdoor mass/public gatherings of over 1000 participants,2021-04-26,2022-04-30
 Italy,PlaceOfWorship,Closure of places of worship,2020-03-10,2020-06-15
 Italy,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-02-22,2022-04-30
-Italy,QuarantineForInternationalTravellers,,2020-03-04,2020-03-10
-Italy,QuarantineForInternationalTravellers,,2020-06-12,2021-04-30
+Italy,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-04,2020-03-10
+Italy,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-06-12,2021-04-30
 Italy,RegionalStayHomeOrderPartial,Regional stay-at-home orders for the general population at least in one region (these are enforced and also referred to as 'lockdown') - partially relaxed measure,2020-10-22,2021-06-21
 Italy,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-12-24,2021-01-06
 Italy,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-03-10,2020-05-18
@@ -1123,9 +1123,9 @@ Latvia,IndoorOver500,Interventions are in place to limit indoor mass/public gath
 Latvia,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2020-05-12,2020-06-30
 Latvia,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2020-10-07,2022-05-14
 Latvia,MasksVoluntaryAllSpacesPartial,Protective mask use in all public spaces on voluntary basis (general recommendation not enforced) - partially relaxed measure,2020-03-17,2020-06-30
-Latvia,MassGather50,,2021-10-21,2021-11-14
-Latvia,MassGather50Partial,,2020-11-09,2021-10-20
-Latvia,MassGather50Partial,,2021-11-15,2022-02-28
+Latvia,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2021-10-21,2021-11-14
+Latvia,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2020-11-09,2021-10-20
+Latvia,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2021-11-15,2022-02-28
 Latvia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-08-01,2020-11-08
 Latvia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-10-21,2021-11-14
 Latvia,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2020-06-10,2020-07-31
@@ -1144,8 +1144,8 @@ Latvia,PlaceOfWorshipPartial,Closure of places of worship - partially relaxed me
 Latvia,PlaceOfWorshipPartial,Closure of places of worship - partially relaxed measure,2021-10-21,2022-03-31
 Latvia,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-03-17,2020-06-10
 Latvia,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2020-10-17,2022-03-31
-Latvia,QuarantineForInternationalTravellers,,2020-03-12,2020-05-11
-Latvia,QuarantineForInternationalTravellersPartial,,2020-05-12,
+Latvia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-12,2020-05-11
+Latvia,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2020-05-12,
 Latvia,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-11-09,2021-05-06
 Latvia,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-07-11,2020-11-08
 Latvia,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2021-05-07,2022-03-31
@@ -1181,11 +1181,11 @@ Liechtenstein,MasksMandatoryClosedSpacesPartial,Protective mask use in closed pu
 Liechtenstein,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2021-07-05,2021-11-22
 Liechtenstein,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2022-02-17,2022-03-31
 Liechtenstein,MasksVoluntaryClosedSpacesPartial,Protective mask use in closed public spaces/transport on voluntary basis (general recommendation not enforced) - partially relaxed measure,2020-05-13,2020-07-05
-Liechtenstein,MassGather50,,2020-03-14,2020-06-05
-Liechtenstein,MassGather50,,2020-12-20,2021-05-23
-Liechtenstein,MassGather50,,2021-06-14,2021-09-14
-Liechtenstein,MassGather50Partial,,2021-05-24,2021-06-13
-Liechtenstein,MassGather50Partial,,2021-09-15,2022-03-31
+Liechtenstein,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-14,2020-06-05
+Liechtenstein,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-12-20,2021-05-23
+Liechtenstein,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2021-06-14,2021-09-14
+Liechtenstein,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2021-05-24,2021-06-13
+Liechtenstein,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2021-09-15,2022-03-31
 Liechtenstein,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-02-28,2020-07-02
 Liechtenstein,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-12-20,2021-05-23
 Liechtenstein,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-06-14,2021-08-15
@@ -1201,7 +1201,7 @@ Liechtenstein,OutdoorOver500,Interventions are in place to limit outdoor mass/pu
 Liechtenstein,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-03-16,2020-05-20
 Liechtenstein,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-10-19,2021-06-13
 Liechtenstein,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-06-14,2021-06-28
-Liechtenstein,QuarantineForInternationalTravellers,,2020-07-06,2022-02-17
+Liechtenstein,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-07-06,2022-02-17
 Liechtenstein,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-10-24,2020-11-29
 Liechtenstein,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-12-20,2021-04-25
 Liechtenstein,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-11-30,2020-12-19
@@ -1239,7 +1239,7 @@ Lithuania,GymsSportsCentres,Closure of gyms/sports centres,2020-11-07,2021-05-02
 Lithuania,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2020-03-16,2020-06-16
 Lithuania,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2021-05-03,2021-06-30
 Lithuania,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2021-09-13,2022-03-17
-Lithuania,HotelsOtherAccommodationPartial,,2020-11-07,2021-05-31
+Lithuania,HotelsOtherAccommodationPartial,Closure of other hotels/accommodation services - partially relaxed measure,2020-11-07,2021-05-31
 Lithuania,IndoorOver100,Interventions are in place to limit indoor mass/public gatherings of over 100 participants,2020-06-17,2020-08-15
 Lithuania,IndoorOver100,Interventions are in place to limit indoor mass/public gatherings of over 100 participants,2020-09-01,2020-11-06
 Lithuania,IndoorOver100,Interventions are in place to limit indoor mass/public gatherings of over 100 participants,2021-05-10,2021-06-30
@@ -1257,9 +1257,9 @@ Lithuania,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public
 Lithuania,MasksVoluntaryAllSpaces,Protective mask use in all public spaces on voluntary basis (general recommendation not enforced),2020-03-23,2020-04-09
 Lithuania,MasksVoluntaryAllSpaces,Protective mask use in all public spaces on voluntary basis (general recommendation not enforced),2020-06-16,2020-07-31
 Lithuania,MasksVoluntaryClosedSpaces,Protective mask use in closed public spaces/transport on voluntary basis (general recommendation not enforced),2022-04-04,
-Lithuania,MassGather50,,2020-03-12,2020-06-16
-Lithuania,MassGather50,,2020-11-07,2021-04-18
-Lithuania,MassGather50Partial,,2021-04-19,2021-05-09
+Lithuania,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-12,2020-06-16
+Lithuania,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-11-07,2021-04-18
+Lithuania,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2021-04-19,2021-05-09
 Lithuania,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-12,2020-08-31
 Lithuania,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-10-30,2021-04-18
 Lithuania,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-06-02,2021-06-30
@@ -1283,9 +1283,9 @@ Lithuania,PlaceOfWorshipPartial,Closure of places of worship - partially relaxed
 Lithuania,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-11-07,2020-12-16
 Lithuania,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2020-03-19,2020-06-08
 Lithuania,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-05-24,2021-06-30
-Lithuania,QuarantineForInternationalTravellers,,2020-03-17,2021-06-13
-Lithuania,QuarantineForInternationalTravellersPartial,,2020-02-24,2020-03-16
-Lithuania,QuarantineForInternationalTravellersPartial,,2021-06-14,2022-02-13
+Lithuania,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-17,2021-06-13
+Lithuania,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2020-02-24,2020-03-16
+Lithuania,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2021-06-14,2022-02-13
 Lithuania,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-16,2020-04-22
 Lithuania,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-11-07,2021-04-21
 Lithuania,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-04-23,2020-11-06
@@ -1324,8 +1324,8 @@ Luxembourg,IndoorOver50,Interventions are in place to limit indoor mass/public g
 Luxembourg,IndoorOver500,Interventions are in place to limit indoor mass/public gatherings of over 500 participants,2021-05-16,2021-06-21
 Luxembourg,MasksMandatoryAllSpacesPartial,Protective mask use in all public spaces on mandatory basis (enforced by law) - partially relaxed measure,2020-03-18,2022-03-10
 Luxembourg,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2022-03-11,2022-06-13
-Luxembourg,MassGather50,,2020-03-15,2020-05-10
-Luxembourg,MassGather50Partial,,2020-05-11,2020-09-21
+Luxembourg,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-15,2020-05-10
+Luxembourg,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2020-05-11,2020-09-21
 Luxembourg,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-09,2020-03-16
 Luxembourg,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-09-22,2021-06-12
 Luxembourg,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2022-01-05,2022-02-11
@@ -1342,8 +1342,8 @@ Luxembourg,OutdoorOver500,Interventions are in place to limit outdoor mass/publi
 Luxembourg,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-03-16,2020-05-11
 Luxembourg,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-07-19,2021-06-12
 Luxembourg,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-06-13,2022-02-11
-Luxembourg,QuarantineForInternationalTravellers,,2021-05-06,2021-05-15
-Luxembourg,QuarantineForInternationalTravellers,,2021-11-27,2022-01-14
+Luxembourg,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2021-05-06,2021-05-15
+Luxembourg,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2021-11-27,2022-01-14
 Luxembourg,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-18,2020-05-28
 Luxembourg,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-11-25,2021-04-06
 Luxembourg,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-05-29,2020-11-24
@@ -1383,8 +1383,8 @@ Malta,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandat
 Malta,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2021-12-11,2022-05-08
 Malta,MasksMandatoryAllSpacesPartial,Protective mask use in all public spaces on mandatory basis (enforced by law) - partially relaxed measure,2021-07-01,2021-12-10
 Malta,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2022-05-02,2022-05-15
-Malta,MassGather50,,2020-03-13,2021-04-25
-Malta,MassGather50Partial,,2021-11-01,2022-04-21
+Malta,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-13,2021-04-25
+Malta,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2021-11-01,2022-04-21
 Malta,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-13,2021-04-25
 Malta,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-07-05,2021-10-31
 Malta,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2021-11-01,2022-04-21
@@ -1394,8 +1394,8 @@ Malta,NonEssentialShopsPartial,Closures of non-essential shops - partially relax
 Malta,PlaceOfWorship,Closure of places of worship,2020-08-20,2021-03-30
 Malta,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-08-17,2021-04-25
 Malta,PrivateGatheringRestrictions,Restrictions on private gatherings,2021-05-24,2022-02-06
-Malta,QuarantineForInternationalTravellers,,2020-03-13,2021-07-26
-Malta,QuarantineForInternationalTravellersPartial,,2021-07-27,2022-07-24
+Malta,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-13,2021-07-26
+Malta,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2021-07-27,2022-07-24
 Malta,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-18,2020-05-21
 Malta,RestaurantsCafes,Closure of restaurants and cafes/bars,2021-03-11,2021-05-09
 Malta,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-05-22,2021-03-10
@@ -1458,12 +1458,12 @@ Netherlands,MasksMandatoryClosedSpacesPartial,Protective mask use in closed publ
 Netherlands,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2022-01-26,2022-05-20
 Netherlands,MasksVoluntaryAllSpaces,Protective mask use in all public spaces on voluntary basis (general recommendation not enforced),2022-01-26,2022-02-24
 Netherlands,MasksVoluntaryClosedSpacesPartial,Protective mask use in closed public spaces/transport on voluntary basis (general recommendation not enforced) - partially relaxed measure,2020-10-05,2020-11-30
-Netherlands,MassGather50,,2020-03-24,2020-05-31
-Netherlands,MassGather50,,2020-09-29,2020-10-13
-Netherlands,MassGather50,,2020-11-04,2021-06-04
-Netherlands,MassGather50,,2021-12-19,2022-03-15
-Netherlands,MassGather50Partial,,2020-10-14,2020-11-03
-Netherlands,MassGather50Partial,,2021-06-05,2021-06-25
+Netherlands,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-24,2020-05-31
+Netherlands,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-09-29,2020-10-13
+Netherlands,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-11-04,2021-06-04
+Netherlands,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2021-12-19,2022-03-15
+Netherlands,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2020-10-14,2020-11-03
+Netherlands,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2021-06-05,2021-06-25
 Netherlands,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-12,2020-06-30
 Netherlands,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-09-29,2020-10-13
 Netherlands,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-11-04,2021-06-04
@@ -1487,9 +1487,9 @@ Netherlands,PrivateGatheringRestrictions,Restrictions on private gatherings,2020
 Netherlands,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-08-18,2021-06-25
 Netherlands,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-07-10,2021-08-13
 Netherlands,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-11-13,2022-03-14
-Netherlands,QuarantineForInternationalTravellers,,2020-03-14,2021-09-21
-Netherlands,QuarantineForInternationalTravellers,,2022-02-25,2022-03-22
-Netherlands,QuarantineForInternationalTravellersPartial,,2021-09-22,2022-02-24
+Netherlands,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-14,2021-09-21
+Netherlands,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2022-02-25,2022-03-22
+Netherlands,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2021-09-22,2022-02-24
 Netherlands,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-15,2020-05-31
 Netherlands,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-10-14,2021-04-27
 Netherlands,RestaurantsCafes,Closure of restaurants and cafes/bars,2021-12-19,2022-01-25
@@ -1546,9 +1546,9 @@ Norway,IndoorOver50,Interventions are in place to limit indoor mass/public gathe
 Norway,IndoorOver50,Interventions are in place to limit indoor mass/public gatherings of over 50 participants,2021-12-13,2022-02-01
 Norway,IndoorOver500,Interventions are in place to limit indoor mass/public gatherings of over 500 participants,2020-06-15,2021-02-18
 Norway,MasksVoluntaryAllSpacesPartial,Protective mask use in all public spaces on voluntary basis (general recommendation not enforced) - partially relaxed measure,2020-08-14,2022-02-12
-Norway,MassGather50,,2020-03-12,2020-06-14
-Norway,MassGather50,,2021-03-25,2021-04-15
-Norway,MassGather50Partial,,2021-12-13,2022-02-01
+Norway,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-12,2020-06-14
+Norway,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2021-03-25,2021-04-15
+Norway,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2021-12-13,2022-02-01
 Norway,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-12,2020-06-14
 Norway,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-10-12,2021-05-26
 Norway,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2020-06-15,2020-10-11
@@ -1561,11 +1561,11 @@ Norway,OutdoorOver500,Interventions are in place to limit outdoor mass/public ga
 Norway,OutdoorOver500,Interventions are in place to limit outdoor mass/public gatherings of over 500 participants,2021-04-16,2021-06-17
 Norway,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-06-02,2021-09-25
 Norway,PrivateGatheringRestrictions,Restrictions on private gatherings,2021-12-09,2022-02-12
-Norway,QuarantineForInternationalTravellers,,2020-07-15,2021-03-05
-Norway,QuarantineForInternationalTravellers,,2021-03-29,2021-06-11
-Norway,QuarantineForInternationalTravellersPartial,,2020-05-07,2020-07-14
-Norway,QuarantineForInternationalTravellersPartial,,2021-03-06,2021-03-28
-Norway,QuarantineForInternationalTravellersPartial,,2021-06-12,2022-01-26
+Norway,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-07-15,2021-03-05
+Norway,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2021-03-29,2021-06-11
+Norway,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2020-05-07,2020-07-14
+Norway,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2021-03-06,2021-03-28
+Norway,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2021-06-12,2022-01-26
 Norway,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-12,2020-05-31
 Norway,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-06-01,2021-09-25
 Norway,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2021-12-09,2022-01-14
@@ -1609,8 +1609,8 @@ Poland,GymsSportsCentres,Closure of gyms/sports centres,2020-03-14,2020-06-04
 Poland,GymsSportsCentres,Closure of gyms/sports centres,2021-03-20,2021-04-15
 Poland,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2020-06-05,2020-08-06
 Poland,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2021-04-16,2022-02-28
-Poland,HotelsOtherAccommodation,,2020-03-14,2020-05-04
-Poland,HotelsOtherAccommodationPartial,,2020-10-24,2022-02-28
+Poland,HotelsOtherAccommodation,Closure of other hotels/accommodation services,2020-03-14,2020-05-04
+Poland,HotelsOtherAccommodationPartial,Closure of other hotels/accommodation services - partially relaxed measure,2020-10-24,2022-02-28
 Poland,IndoorOver100,Interventions are in place to limit indoor mass/public gatherings of over 100 participants,2020-10-10,2020-10-16
 Poland,IndoorOver100,Interventions are in place to limit indoor mass/public gatherings of over 100 participants,2021-12-01,2022-02-28
 Poland,IndoorOver50,Interventions are in place to limit indoor mass/public gatherings of over 50 participants,2020-10-23,2020-11-02
@@ -1622,9 +1622,9 @@ Poland,MasksMandatoryAllSpaces,Protective mask use in all public spaces on manda
 Poland,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-10-10,2021-05-14
 Poland,MasksMandatoryClosedSpaces,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law),2021-05-15,2022-03-27
 Poland,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2020-05-30,2020-09-18
-Poland,MassGather50,,2020-03-14,2020-05-29
-Poland,MassGather50,,2020-10-23,2021-05-07
-Poland,MassGather50,,2021-05-28,2021-06-05
+Poland,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-14,2020-05-29
+Poland,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-10-23,2021-05-07
+Poland,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2021-05-28,2021-06-05
 Poland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-10,2020-06-18
 Poland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-07-17,2020-08-05
 Poland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-10-23,2021-05-07
@@ -1646,7 +1646,7 @@ Poland,PlaceOfWorshipPartial,Closure of places of worship - partially relaxed me
 Poland,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-04-02,2020-05-29
 Poland,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-10-17,2021-05-07
 Poland,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-05-08,2021-05-27
-Poland,QuarantineForInternationalTravellers,,2020-03-15,2022-03-27
+Poland,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-15,2022-03-27
 Poland,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-14,2020-05-17
 Poland,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-10-24,2021-05-14
 Poland,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-05-18,2020-10-23
@@ -1680,7 +1680,7 @@ Portugal,GymsSportsCentres,Closure of gyms/sports centres,2021-01-15,2021-03-31
 Portugal,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2020-05-04,2020-11-23
 Portugal,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2021-04-01,2021-04-30
 Portugal,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2021-07-08,2021-07-31
-Portugal,HotelsOtherAccommodationPartial,,2021-07-08,2022-02-17
+Portugal,HotelsOtherAccommodationPartial,Closure of other hotels/accommodation services - partially relaxed measure,2021-07-08,2022-02-17
 Portugal,IndoorOver100,Interventions are in place to limit indoor mass/public gatherings of over 100 participants,2020-03-15,2020-03-18
 Portugal,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-10-28,2021-09-30
 Portugal,MasksMandatoryClosedSpaces,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law),2020-05-04,2020-10-27
@@ -1688,7 +1688,7 @@ Portugal,MasksMandatoryClosedSpaces,Protective mask use in closed public spaces/
 Portugal,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2021-10-01,2021-11-30
 Portugal,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2022-04-21,
 Portugal,MasksVoluntaryAllSpaces,Protective mask use in all public spaces on voluntary basis (general recommendation not enforced),2020-10-15,2020-10-27
-Portugal,MassGather50,,2020-03-19,2021-05-02
+Portugal,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-19,2021-05-02
 Portugal,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-15,2021-05-02
 Portugal,NonEssentialShops,Closures of non-essential shops,2021-01-15,2021-03-14
 Portugal,NonEssentialShopsPartial,Closures of non-essential shops - partially relaxed measure,2020-03-16,2020-03-18
@@ -1698,9 +1698,9 @@ Portugal,NonEssentialShopsPartial,Closures of non-essential shops - partially re
 Portugal,OutdoorOver100,Interventions are in place to limit outdoor mass/public gatherings of over 100 participants,2020-03-15,2020-03-18
 Portugal,PlaceOfWorship,Closure of places of worship,2020-03-13,2020-05-30
 Portugal,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-05-03,2021-06-28
-Portugal,QuarantineForInternationalTravellers,,2020-02-27,2020-03-17
-Portugal,QuarantineForInternationalTravellers,,2021-01-31,2021-06-28
-Portugal,QuarantineForInternationalTravellersPartial,,2021-11-28,2022-06-30
+Portugal,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-02-27,2020-03-17
+Portugal,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2021-01-31,2021-06-28
+Portugal,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2021-11-28,2022-06-30
 Portugal,RegionalStayHomeOrder,Regional stay-at-home orders for the general population at least in one region (these are enforced and also referred to as 'lockdown'),2020-04-02,2020-05-03
 Portugal,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-15,2021-09-30
 Portugal,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2021-05-01,2021-06-28
@@ -1739,8 +1739,8 @@ Romania,EntertainmentVenuesPartial,Closure of entertainment venues - partially r
 Romania,GymsSportsCentres,Closure of gyms/sports centres,2020-03-18,2020-05-30
 Romania,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2020-05-31,2020-06-14
 Romania,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2021-03-25,2022-03-08
-Romania,HotelsOtherAccommodation,,2020-03-18,2020-05-15
-Romania,HotelsOtherAccommodationPartial,,2021-05-15,2021-06-30
+Romania,HotelsOtherAccommodation,Closure of other hotels/accommodation services,2020-03-18,2020-05-15
+Romania,HotelsOtherAccommodationPartial,Closure of other hotels/accommodation services - partially relaxed measure,2021-05-15,2021-06-30
 Romania,IndoorOver100,Interventions are in place to limit indoor mass/public gatherings of over 100 participants,2021-06-09,2021-06-30
 Romania,IndoorOver50,Interventions are in place to limit indoor mass/public gatherings of over 50 participants,2020-09-01,2021-06-08
 Romania,IndoorOver500,Interventions are in place to limit indoor mass/public gatherings of over 500 participants,2021-07-01,2022-03-08
@@ -1748,7 +1748,7 @@ Romania,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mand
 Romania,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2021-10-25,2022-03-08
 Romania,MasksMandatoryAllSpacesPartial,Protective mask use in all public spaces on mandatory basis (enforced by law) - partially relaxed measure,2021-05-15,2021-10-24
 Romania,MasksMandatoryClosedSpaces,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law),2020-05-15,2020-07-31
-Romania,MassGather50,,2020-09-01,2021-06-08
+Romania,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-09-01,2021-06-08
 Romania,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-18,2021-05-31
 Romania,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2021-06-01,2022-03-08
 Romania,NonEssentialShops,Closures of non-essential shops,2020-03-22,2020-05-13
@@ -1761,8 +1761,8 @@ Romania,OutdoorOver500,Interventions are in place to limit outdoor mass/public g
 Romania,PlaceOfWorship,Closure of places of worship,2020-03-18,2020-05-14
 Romania,PlaceOfWorshipPartial,Closure of places of worship - partially relaxed measure,2020-05-15,2022-03-08
 Romania,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-03-22,2022-03-08
-Romania,QuarantineForInternationalTravellers,,2020-03-25,2020-08-16
-Romania,QuarantineForInternationalTravellersPartial,,2020-08-17,2022-03-08
+Romania,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-25,2020-08-16
+Romania,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2020-08-17,2022-03-08
 Romania,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-18,2020-05-31
 Romania,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-06-01,2022-03-08
 Romania,StayHomeOrderPartial,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown') - partially relaxed measure,2020-03-22,2020-05-13
@@ -1807,19 +1807,19 @@ Slovakia,GymsSportsCentres,Closure of gyms/sports centres,2021-11-25,2021-12-16
 Slovakia,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2020-11-16,2020-12-18
 Slovakia,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2021-04-26,2021-11-24
 Slovakia,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2021-12-17,2022-03-13
-Slovakia,HotelsOtherAccommodation,,2021-01-01,2021-01-10
-Slovakia,HotelsOtherAccommodationPartial,,2020-03-12,2020-05-20
-Slovakia,HotelsOtherAccommodationPartial,,2020-12-14,2020-12-31
-Slovakia,HotelsOtherAccommodationPartial,,2021-01-11,2022-03-13
+Slovakia,HotelsOtherAccommodation,Closure of other hotels/accommodation services,2021-01-01,2021-01-10
+Slovakia,HotelsOtherAccommodationPartial,Closure of other hotels/accommodation services - partially relaxed measure,2020-03-12,2020-05-20
+Slovakia,HotelsOtherAccommodationPartial,Closure of other hotels/accommodation services - partially relaxed measure,2020-12-14,2020-12-31
+Slovakia,HotelsOtherAccommodationPartial,Closure of other hotels/accommodation services - partially relaxed measure,2021-01-11,2022-03-13
 Slovakia,IndoorOver100,Interventions are in place to limit indoor mass/public gatherings of over 100 participants,2020-06-03,2020-06-14
 Slovakia,IndoorOver1000,Interventions are in place to limit indoor mass/public gatherings of over 1000 participants,2020-06-15,2020-08-31
 Slovakia,IndoorOver500,Interventions are in place to limit indoor mass/public gatherings of over 500 participants,2020-09-01,2020-09-30
 Slovakia,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-03-25,2020-06-09
 Slovakia,MasksMandatoryAllSpacesPartial,Protective mask use in all public spaces on mandatory basis (enforced by law) - partially relaxed measure,2020-10-01,2022-04-20
 Slovakia,MasksMandatoryClosedSpaces,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law),2020-06-10,2020-09-30
-Slovakia,MassGather50,,2020-03-10,2020-06-02
-Slovakia,MassGather50Partial,,2020-11-02,2021-08-15
-Slovakia,MassGather50Partial,,2021-11-25,2022-03-13
+Slovakia,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-10,2020-06-02
+Slovakia,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2020-11-02,2021-08-15
+Slovakia,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2021-11-25,2022-03-13
 Slovakia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-10,2020-09-30
 Slovakia,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2020-11-02,2021-08-15
 Slovakia,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2021-11-25,2022-03-13
@@ -1834,7 +1834,7 @@ Slovakia,OutdoorOver100,Interventions are in place to limit outdoor mass/public 
 Slovakia,OutdoorOver1000,Interventions are in place to limit outdoor mass/public gatherings of over 1000 participants,2020-06-15,2020-09-30
 Slovakia,PlaceOfWorshipPartial,Closure of places of worship - partially relaxed measure,2021-01-01,2022-03-13
 Slovakia,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-11-25,2022-03-13
-Slovakia,QuarantineForInternationalTravellersPartial,,2020-03-12,2022-04-05
+Slovakia,QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure,2020-03-12,2022-04-05
 Slovakia,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-24,2020-05-19
 Slovakia,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-12-19,2021-04-25
 Slovakia,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-03-12,2020-03-23
@@ -1895,10 +1895,10 @@ Slovenia,IndoorOver50,Interventions are in place to limit indoor mass/public gat
 Slovenia,IndoorOver500,Interventions are in place to limit indoor mass/public gatherings of over 500 participants,2020-03-07,2020-03-09
 Slovenia,MasksMandatoryClosedSpaces,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law),2020-03-30,2020-06-11
 Slovenia,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2020-06-25,2022-04-13
-Slovenia,MassGather50,,2020-03-20,2020-05-31
-Slovenia,MassGather50,,2020-10-17,2021-04-18
-Slovenia,MassGather50,,2021-04-23,2021-06-20
-Slovenia,MassGather50,,2021-11-08,2022-02-20
+Slovenia,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-20,2020-05-31
+Slovenia,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-10-17,2021-04-18
+Slovenia,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2021-04-23,2021-06-20
+Slovenia,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2021-11-08,2022-02-20
 Slovenia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-07,2020-06-14
 Slovenia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-10-17,
 Slovenia,NonEssentialShops,Closures of non-essential shops,2020-03-16,2020-05-17
@@ -1918,7 +1918,7 @@ Slovenia,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-03
 Slovenia,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-11-13,2021-04-11
 Slovenia,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2020-10-14,2020-11-12
 Slovenia,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2021-04-12,2022-02-20
-Slovenia,QuarantineForInternationalTravellers,,2020-04-04,2022-02-18
+Slovenia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-04-04,2022-02-18
 Slovenia,RestaurantsCafes,Closure of restaurants and cafes/bars,2020-03-15,2020-05-17
 Slovenia,RestaurantsCafes,Closure of restaurants and cafes/bars,2021-02-15,2021-04-25
 Slovenia,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-09-21,2021-02-14
@@ -1946,8 +1946,8 @@ Spain,GymsSportsCentres,Closure of gyms/sports centres,2020-03-14,2020-04-23
 Spain,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2020-04-24,2020-06-21
 Spain,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2020-10-01,2021-05-08
 Spain,GymsSportsCentresPartial,Closure of gyms/sports centres - partially relaxed measure,2021-08-04,2022-03-31
-Spain,HotelsOtherAccommodation,,2020-03-14,2020-05-21
-Spain,HotelsOtherAccommodationPartial,,2020-05-22,2020-06-21
+Spain,HotelsOtherAccommodation,Closure of other hotels/accommodation services,2020-03-14,2020-05-21
+Spain,HotelsOtherAccommodationPartial,Closure of other hotels/accommodation services - partially relaxed measure,2020-05-22,2020-06-21
 Spain,IndoorOver100,Interventions are in place to limit indoor mass/public gatherings of over 100 participants,2020-05-18,2020-10-24
 Spain,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2021-03-30,2021-06-25
 Spain,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2021-12-24,2022-02-08
@@ -1958,10 +1958,10 @@ Spain,MasksMandatoryClosedSpaces,Protective mask use in closed public spaces/tra
 Spain,MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/transport on mandatory basis (enforced by law) - partially relaxed measure,2022-04-20,
 Spain,MasksVoluntaryClosedSpaces,Protective mask use in closed public spaces/transport on voluntary basis (general recommendation not enforced),2020-03-13,2020-05-03
 Spain,MasksVoluntaryClosedSpaces,Protective mask use in closed public spaces/transport on voluntary basis (general recommendation not enforced),2022-07-05,
-Spain,MassGather50,,2020-03-14,2020-05-17
-Spain,MassGather50,,2020-12-23,2021-01-05
-Spain,MassGather50,,2021-03-17,2021-03-21
-Spain,MassGather50,,2021-03-26,2021-04-09
+Spain,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-14,2020-05-17
+Spain,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-12-23,2021-01-05
+Spain,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2021-03-17,2021-03-21
+Spain,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2021-03-26,2021-04-09
 Spain,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-14,2020-05-17
 Spain,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-12-23,2021-01-05
 Spain,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-03-17,2021-03-21
@@ -1974,7 +1974,7 @@ Spain,OutdoorOver1000,Interventions are in place to limit outdoor mass/public ga
 Spain,PlaceOfWorshipPartial,Closure of places of worship - partially relaxed measure,2020-03-14,2020-06-21
 Spain,PlaceOfWorshipPartial,Closure of places of worship - partially relaxed measure,2020-10-01,2021-05-08
 Spain,PrivateGatheringRestrictionsPartial,Restrictions on private gatherings - partially relaxed measure,2020-05-25,2021-05-08
-Spain,QuarantineForInternationalTravellers,,2020-05-15,2021-12-26
+Spain,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-05-15,2021-12-26
 Spain,RegionalStayHomeOrderPartial,Regional stay-at-home orders for the general population at least in one region (these are enforced and also referred to as 'lockdown') - partially relaxed measure,2020-10-25,2021-06-07
 Spain,RegionalStayHomeOrderPartial,Regional stay-at-home orders for the general population at least in one region (these are enforced and also referred to as 'lockdown') - partially relaxed measure,2021-07-19,2021-09-10
 Spain,RegionalStayHomeOrderPartial,Regional stay-at-home orders for the general population at least in one region (these are enforced and also referred to as 'lockdown') - partially relaxed measure,2021-12-24,2022-01-29
@@ -2006,8 +2006,8 @@ Sweden,IndoorOver500,Interventions are in place to limit indoor mass/public gath
 Sweden,IndoorOver500,Interventions are in place to limit indoor mass/public gatherings of over 500 participants,2022-01-19,2022-02-09
 Sweden,MasksVoluntaryClosedSpacesPartial,Protective mask use in closed public spaces/transport on voluntary basis (general recommendation not enforced) - partially relaxed measure,2021-01-07,2021-07-01
 Sweden,MasksVoluntaryClosedSpacesPartial,Protective mask use in closed public spaces/transport on voluntary basis (general recommendation not enforced) - partially relaxed measure,2021-12-23,2022-02-08
-Sweden,MassGather50,,2020-03-29,2021-05-31
-Sweden,MassGather50Partial,,2021-12-23,2022-01-18
+Sweden,MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included),2020-03-29,2021-05-31
+Sweden,MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure,2021-12-23,2022-01-18
 Sweden,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-12,2021-09-29
 Sweden,MassGatherAllPartial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included) - partially relaxed measure,2021-12-01,2022-02-09
 Sweden,NonEssentialShopsPartial,Closures of non-essential shops - partially relaxed measure,2021-01-10,2021-05-17
@@ -2015,7 +2015,7 @@ Sweden,OutdoorOver50,Interventions are in place to limit outdoor mass/public gat
 Sweden,OutdoorOver500,Interventions are in place to limit outdoor mass/public gatherings of over 500 participants,2021-06-01,2021-09-29
 Sweden,PrivateGatheringRestrictions,Restrictions on private gatherings,2020-11-30,2021-09-29
 Sweden,PrivateGatheringRestrictions,Restrictions on private gatherings,2022-01-19,2022-02-09
-Sweden,QuarantineForInternationalTravellers,,2021-01-22,2022-03-31
+Sweden,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2021-01-22,2022-03-31
 Sweden,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2020-07-01,2021-09-28
 Sweden,RestaurantsCafesPartial,Closure of restaurants and cafes/bars - partially relaxed measure,2022-01-12,2022-02-09
 Sweden,StayHomeRiskG,"Stay-at-home recommendations for risk groups or vulnerable populations (such as the elderly, people with underlying health conditions, physically disabled people, etc.)",2020-04-01,2020-10-22

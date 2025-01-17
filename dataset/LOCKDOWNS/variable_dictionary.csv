@@ -10,6 +10,8 @@ ClosPrim,Closure of educational institutions: primary schools.
 ClosSec,Closure of educational institutions: secondary schools.
 ClosHigh,Closure of educational institutions: higher education.
 MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included)
+MassGather50,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included)
+MassGather50Partial,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 50 participants included) - partially relaxed measure
 BanOnAllEvents,Interventions are in place to limit all indoor/outdoor mass/public gatherings
 IndoorOver50,Interventions are in place to limit indoor mass/public gatherings of over 50 participants
 IndoorOver100,Interventions are in place to limit indoor mass/public gatherings of over 100 participants
@@ -24,6 +26,8 @@ EntertainmentVenues,Closure of entertainment venues
 ClosureOfPublicTransport,Closure of public transport
 GymsSportsCentres,Closure of gyms/sports centres
 HotelsAccommodation,Closure of hotels/accommodation services
+HotelsOtherAccommodation,Closure of other hotels/accommodation services
+HotelsOtherAccommodationPartial,Closure of other hotels/accommodation services - partially relaxed measure
 NonEssentialShops,Closures of non-essential shops
 PlaceOfWorship,Closure of places of worship
 RestaurantsCafes,Closure of restaurants and cafes/bars
@@ -69,3 +73,5 @@ MasksMandatoryClosedSpacesPartial,Protective mask use in closed public spaces/tr
 TeleworkingPartial,Teleworking recommendation or workplace closures - partially relaxed measure
 AdaptationOfWorkplacePartial,Adaptation of workplaces (e.g. to reduce risk of transmission) - partially relaxed measure
 WorkplaceClosuresPartial,Closures of workplaces - partially relaxed measure
+QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad
+QuarantineForInternationalTravellersPartial, Quarantine for individuals arriving from abroad - partially relaxed measure
