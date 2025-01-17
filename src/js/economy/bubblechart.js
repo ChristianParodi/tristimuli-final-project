@@ -1,13 +1,12 @@
 function BubbleChart() {// Set the dimensions and margins of the graph
 
-<<<<<<< HEAD
     // set the dimensions and margins of the graph
-    var margin = { top: 10, right: 20, bottom: 30, left: 50 },
-        width = 500 - margin.left - margin.right,
-        height = 420 - margin.top - margin.bottom;
+    var margin = { top: 60, right: 20, bottom: 40, left: 50 },
+        width = 700,
+        height = 420;
 
     // append the svg object to the body of the page
-    var svg = d3.select("#my_dataviz")
+    var svg = d3.select("#bubblechart_container")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -16,32 +15,11 @@ function BubbleChart() {// Set the dimensions and margins of the graph
             "translate(" + margin.left + "," + margin.top + ")");
 
     const data = [
-        { country: "Italia", yearMonth: "2020-01", infectedRate: 20, gdpPercap: 35000, tourism: 50000, housePrices: 250000, inflation: 2 },
+        { country: "Italia", yearMonth: "2020-01", infectedRate: 20, gdpPercap: 35000, tourism: 5000000, housePrices: 250000, inflation: 2 },
         { country: "Italia", yearMonth: "2021-02", infectedRate: 25, gdpPercap: 35500, tourism: 5500, housePrices: 252000, inflation: 2.5 },
-        { country: "Germania", yearMonth: "2022-01", infectedRate: 15, gdpPercap: 40000, tourism: 300000, housePrices: 300000, inflation: 1.8 },
-        { country: "Germania", yearMonth: "2023-02", infectedRate: 18, gdpPercap: 40500, tourism: 320000, housePrices: 305000, inflation: 2.2 }
-=======
-// set the dimensions and margins of the graph
-var margin = {top: 60, right: 20, bottom: 40, left: 50},
-    width = 700 ,
-    height = 420 ;
-
-// append the svg object to the body of the page
-var svg = d3.select("#bubblechart_container")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
-
-    const data = [
-    { country: "Italia", yearMonth: "2020-01", infectedRate: 20, gdpPercap: 35000, tourism: 5000000, housePrices: 250000, inflation: 2 },
-    { country: "Italia", yearMonth: "2021-02", infectedRate: 25, gdpPercap: 35500, tourism: 5500, housePrices: 252000, inflation: 2.5 },
-    { country: "Germania", yearMonth: "2022-01", infectedRate: 15, gdpPercap: 40, tourism: 300000, housePrices: 300000, inflation: 1.8 },
-    { country: "Germania", yearMonth: "2023-02", infectedRate: 18, gdpPercap: 100, tourism: 320000, housePrices: 305000, inflation: 2.2 },
-    { country: "Germania", yearMonth: "2023-03", infectedRate: 1, gdpPercap: 400, tourism: 320000, housePrices: 305000, inflation: 2.2 }
->>>>>>> e1dee2c0070c5de4085ded4613b4c88a9a55d00f
+        { country: "Germania", yearMonth: "2022-01", infectedRate: 15, gdpPercap: 40, tourism: 300000, housePrices: 300000, inflation: 1.8 },
+        { country: "Germania", yearMonth: "2023-02", infectedRate: 18, gdpPercap: 100, tourism: 320000, housePrices: 305000, inflation: 2.2 },
+        { country: "Germania", yearMonth: "2023-03", infectedRate: 1, gdpPercap: 400, tourism: 320000, housePrices: 305000, inflation: 2.2 }
     ];
 
     // Scala del tempo (asse x)
@@ -51,21 +29,13 @@ var svg = d3.select("#bubblechart_container")
 
     const xAxis = d3.axisBottom(x).ticks(d3.timeMonth.every(3)).tickFormat(d3.timeFormat("%b %Y"));
     svg.append("g")
-<<<<<<< HEAD
         .attr("transform", `translate(0,${height})`)
         .call(xAxis)
         .selectAll("text")
         .attr("transform", "rotate(-45)")
-        .style("text-anchor", "end");
-=======
-    .attr("transform", `translate(0,${height})`)
-    .call(xAxis)
-    .selectAll("text")
-    .attr("transform", "rotate(-45)")
-    .style("text-anchor", "end")
-    .style("fill", "black");
-    
->>>>>>> e1dee2c0070c5de4085ded4613b4c88a9a55d00f
+        .style("text-anchor", "end")
+        .style("fill", "black");
+
 
     // Add Y axis
     const y = d3.scaleLinear()
@@ -79,34 +49,34 @@ var svg = d3.select("#bubblechart_container")
     //grid
     // Add horizontal grid lines
     svg.append("g")
-    .attr("class", "grid")
-    .attr("transform", `translate(0, 0)`)
-    .call(
-    d3.axisLeft(y)
-        .tickSize(-width) // Lunghezza delle linee di griglia
-        .tickFormat("")   // Rimuove i valori dei tick
-    )
-    .selectAll("line")
-    .style("stroke", "#ccc") // Colore della griglia
-    .style("stroke-opacity", 0.7) // Opacità della griglia
-    .style("shape-rendering", "crispEdges"); // Bordo definito
+        .attr("class", "grid")
+        .attr("transform", `translate(0, 0)`)
+        .call(
+            d3.axisLeft(y)
+                .tickSize(-width) // Lunghezza delle linee di griglia
+                .tickFormat("")   // Rimuove i valori dei tick
+        )
+        .selectAll("line")
+        .style("stroke", "#ccc") // Colore della griglia
+        .style("stroke-opacity", 0.7) // Opacità della griglia
+        .style("shape-rendering", "crispEdges"); // Bordo definito
 
     // Add vertical grid lines
     svg.append("g")
-    .attr("class", "grid")
-    .attr("transform", `translate(0, ${height})`)
-    .call(
-    d3.axisBottom(x)
-        .tickSize(-height) // Lunghezza delle linee di griglia
-        .tickFormat("")    // Rimuove i valori dei tick
-    )
-    .selectAll("line")
-    .style("stroke", "#ccc") // Colore della griglia
-    .style("stroke-opacity", 0.7) // Opacità della griglia
-    .style("shape-rendering", "crispEdges"); // Bordo definito
+        .attr("class", "grid")
+        .attr("transform", `translate(0, ${height})`)
+        .call(
+            d3.axisBottom(x)
+                .tickSize(-height) // Lunghezza delle linee di griglia
+                .tickFormat("")    // Rimuove i valori dei tick
+        )
+        .selectAll("line")
+        .style("stroke", "#ccc") // Colore della griglia
+        .style("stroke-opacity", 0.7) // Opacità della griglia
+        .style("shape-rendering", "crispEdges"); // Bordo definito
 
 
-   
+
     // Add a scale for bubble color
     var myColor = d3.scaleOrdinal().range(d3.schemeSet2);
 
@@ -128,14 +98,14 @@ var svg = d3.select("#bubblechart_container")
             .style("opacity", 1);
         tooltip
             .html("Country: " + d.country)
-            .style("left", (d3.mouse(this)[0]+30) + "px")
-            .style("top", (d3.mouse(this)[1]-20) + "px")
+            .style("left", (d3.mouse(this)[0] + 30) + "px")
+            .style("top", (d3.mouse(this)[1] - 20) + "px")
     };
 
     var moveTooltip = function (event, d) {
         tooltip
-        .style("left", (d3.mouse(this)[0]+30) + "px")
-        .style("top", (d3.mouse(this)[1]-20) + "px")
+            .style("left", (d3.mouse(this)[0] + 30) + "px")
+            .style("top", (d3.mouse(this)[1] - 20) + "px")
     };
 
     var hideTooltip = function (d) {
@@ -158,30 +128,20 @@ var svg = d3.select("#bubblechart_container")
         // Filtra i dati per il paese selezionato
         var filteredData = data.filter(d => d.country === selectedCountry);
 
-<<<<<<< HEAD
+        // Add a scale for bubble size
+        var z = d3.scaleLinear()
+            .domain([0, d3.max(data, d => d[selectedMetric])])
+            .range([0, 600000]);
+
         // Calcola il dominio della scala z basato sulla metrica selezionata
         z.domain(d3.extent(filteredData, d => d[selectedMetric] || 0))
             .range([4, 40]); // Mantieni un range fisso per le dimensioni delle bolle
 
+
+
         // Seleziona tutte le bolle esistenti
         var bubbles = svg.selectAll(".bubbles")
             .data(filteredData, d => d.yearMonth); // Usa yearMonth come chiave unica
-=======
-     // Add a scale for bubble size
-     var z = d3.scaleLinear()
-     .domain([0, d3.max(data, d => d[selectedMetric] )])
-     .range([0, 600000]);
-
-    // Calcola il dominio della scala z basato sulla metrica selezionata
-    z.domain(d3.extent(filteredData, d => d[selectedMetric] || 0))
-     .range([4, 40]); // Mantieni un range fisso per le dimensioni delle bolle
-
-     
-
-    // Seleziona tutte le bolle esistenti
-    var bubbles = svg.selectAll(".bubbles")
-        .data(filteredData, d => d.yearMonth); // Usa yearMonth come chiave unica
->>>>>>> e1dee2c0070c5de4085ded4613b4c88a9a55d00f
 
         // Rimuovi le bolle non necessarie
         bubbles.exit().remove();
@@ -200,7 +160,7 @@ var svg = d3.select("#bubblechart_container")
             .on("mouseleave", hideTooltip);
     }
 
-<<<<<<< HEAD
+
     // Populate the country selector
     d3.select("#contry_selector_bubble")
         .selectAll("option")
@@ -212,22 +172,7 @@ var svg = d3.select("#bubblechart_container")
 
     // metric select
     // Opzioni per il selettore
-    const metrics = ["infectedRate", "gdpPercap", "tourism", "housePrices", "inflation"];
-=======
-
-// Populate the country selector
-d3.select("#contry_selector_bubble")
-  .selectAll("option")
-  .data([...new Set(data.map(d => d.country))])
-  .enter()
-  .append("option")
-    .text(function(d) { return d; })
-    .attr("value", function(d) { return d; });
-
-    // metric select
-// Opzioni per il selettore
-const metrics = ["gdpPercap", "tourism", "housePrices", "inflation"];
->>>>>>> e1dee2c0070c5de4085ded4613b4c88a9a55d00f
+    const metrics = ["gdpPercap", "tourism", "housePrices", "inflation"];
 
     // Creazione del selettore
     d3.select("#metric_selector_bubble")
