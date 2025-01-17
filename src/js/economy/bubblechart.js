@@ -1,26 +1,26 @@
-function BubbleChart(){// Set the dimensions and margins of the graph
+function BubbleChart() {// Set the dimensions and margins of the graph
 
-// set the dimensions and margins of the graph
-var margin = {top: 10, right: 20, bottom: 30, left: 50},
-    width = 500 - margin.left - margin.right,
-    height = 420 - margin.top - margin.bottom;
+    // set the dimensions and margins of the graph
+    var margin = { top: 10, right: 20, bottom: 30, left: 50 },
+        width = 500 - margin.left - margin.right,
+        height = 420 - margin.top - margin.bottom;
 
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
+    // append the svg object to the body of the page
+    var svg = d3.select("#my_dataviz")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
 
     const data = [
-    { country: "Italia", yearMonth: "2020-01", infectedRate: 20, gdpPercap: 35000, tourism: 50000, housePrices: 250000, inflation: 2 },
-    { country: "Italia", yearMonth: "2021-02", infectedRate: 25, gdpPercap: 35500, tourism: 5500, housePrices: 252000, inflation: 2.5 },
-    { country: "Germania", yearMonth: "2022-01", infectedRate: 15, gdpPercap: 40000, tourism: 300000, housePrices: 300000, inflation: 1.8 },
-    { country: "Germania", yearMonth: "2023-02", infectedRate: 18, gdpPercap: 40500, tourism: 320000, housePrices: 305000, inflation: 2.2 }
+        { country: "Italia", yearMonth: "2020-01", infectedRate: 20, gdpPercap: 35000, tourism: 50000, housePrices: 250000, inflation: 2 },
+        { country: "Italia", yearMonth: "2021-02", infectedRate: 25, gdpPercap: 35500, tourism: 5500, housePrices: 252000, inflation: 2.5 },
+        { country: "Germania", yearMonth: "2022-01", infectedRate: 15, gdpPercap: 40000, tourism: 300000, housePrices: 300000, inflation: 1.8 },
+        { country: "Germania", yearMonth: "2023-02", infectedRate: 18, gdpPercap: 40500, tourism: 320000, housePrices: 305000, inflation: 2.2 }
     ];
-        
+
     // Scala del tempo (asse x)
     const x = d3.scaleTime()
         .domain([new Date(2020, 1, 1), new Date(2024, 11, 31)])
@@ -28,15 +28,15 @@ var svg = d3.select("#my_dataviz")
 
     const xAxis = d3.axisBottom(x).ticks(d3.timeMonth.every(3)).tickFormat(d3.timeFormat("%b %Y"));
     svg.append("g")
-    .attr("transform", `translate(0,${height})`)
-    .call(xAxis)
-    .selectAll("text")
-    .attr("transform", "rotate(-45)")
-    .style("text-anchor", "end");
+        .attr("transform", `translate(0,${height})`)
+        .call(xAxis)
+        .selectAll("text")
+        .attr("transform", "rotate(-45)")
+        .style("text-anchor", "end");
 
     // Add Y axis
-    const y= d3.scaleLinear()
-        .domain([0, d3.max(data.map(d => d.infectedRate))]) 
+    const y = d3.scaleLinear()
+        .domain([0, d3.max(data.map(d => d.infectedRate))])
         .range([height, 0]);
     svg.append("g")
         .call(d3.axisLeft(y));
@@ -49,16 +49,16 @@ var svg = d3.select("#my_dataviz")
 
     // Tooltip
     var tooltip = d3.select("#my_dataviz")
-    .append("div")
-      .style("opacity", 0)
-      .attr("class", "tooltip")
-      .style("background-color", "black")
-      .style("border-radius", "5px")
-      .style("padding", "10px")
-      .style("color", "white")
+        .append("div")
+        .style("opacity", 0)
+        .attr("class", "tooltip")
+        .style("background-color", "black")
+        .style("border-radius", "5px")
+        .style("padding", "10px")
+        .style("color", "white")
 
     // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
-    var showTooltip = function(event, d) {
+    var showTooltip = function (event, d) {
         tooltip
             .transition()
             .duration(200)
@@ -68,85 +68,82 @@ var svg = d3.select("#my_dataviz")
             .style("left", (event.pageX + 30) + "px")
             .style("top", (event.pageY + 30) + "px");
     };
-    
-    var moveTooltip = function(event, d) {
+
+    var moveTooltip = function (event, d) {
         tooltip
             .style("left", (event.pageX + 30) + "px")
             .style("top", (event.pageY + 30) + "px");
     };
-    
-    var hideTooltip = function(d) {
+
+    var hideTooltip = function (d) {
         tooltip
-        .transition()
-        .duration(200)
-        .style("opacity", 0)
+            .transition()
+            .duration(200)
+            .style("opacity", 0)
     }
 
-// Aggiungi listener per il cambio dei selettori
-d3.select("#contry_selector_bubble").on("change", updateChart);
-d3.select("#metric_selector_bubble").on("change", updateChart);
+    // Aggiungi listener per il cambio dei selettori
+    d3.select("#contry_selector_bubble").on("change", updateChart);
+    d3.select("#metric_selector_bubble").on("change", updateChart);
 
-// Funzione updateChart migliorata
-function updateChart() {
-    // Ottieni la metrica e il paese selezionati
-    var selectedMetric = d3.select("#metric_selector_bubble").property("value");
-    var selectedCountry = d3.select("#contry_selector_bubble").property("value");
+    // Funzione updateChart migliorata
+    function updateChart() {
+        // Ottieni la metrica e il paese selezionati
+        var selectedMetric = d3.select("#metric_selector_bubble").property("value");
+        var selectedCountry = d3.select("#contry_selector_bubble").property("value");
 
-    // Filtra i dati per il paese selezionato
-    var filteredData = data.filter(d => d.country === selectedCountry);
+        // Filtra i dati per il paese selezionato
+        var filteredData = data.filter(d => d.country === selectedCountry);
 
-    // Calcola il dominio della scala z basato sulla metrica selezionata
-    z.domain(d3.extent(filteredData, d => d[selectedMetric] || 0))
-     .range([4, 40]); // Mantieni un range fisso per le dimensioni delle bolle
+        // Calcola il dominio della scala z basato sulla metrica selezionata
+        z.domain(d3.extent(filteredData, d => d[selectedMetric] || 0))
+            .range([4, 40]); // Mantieni un range fisso per le dimensioni delle bolle
 
-    // Seleziona tutte le bolle esistenti
-    var bubbles = svg.selectAll(".bubbles")
-        .data(filteredData, d => d.yearMonth); // Usa yearMonth come chiave unica
+        // Seleziona tutte le bolle esistenti
+        var bubbles = svg.selectAll(".bubbles")
+            .data(filteredData, d => d.yearMonth); // Usa yearMonth come chiave unica
 
-    // Rimuovi le bolle non necessarie
-    bubbles.exit().remove();
+        // Rimuovi le bolle non necessarie
+        bubbles.exit().remove();
 
-    // Aggiungi le nuove bolle e aggiorna quelle esistenti
-    bubbles.enter()
-        .append("circle")
-        .attr("class", "bubbles")
-        .merge(bubbles) // Unisci con gli elementi esistenti
-        .attr("cx", d => x(new Date(d.yearMonth))) // Posizione sull'asse X
-        .attr("cy", d => y(d.infectedRate)) // Posizione sull'asse Y
-        .attr("r", d => z(d[selectedMetric])) // Dimensione basata sulla metrica
-        .style("fill", d => myColor(d.country)) // Colore in base al paese
-        .on("mouseover", showTooltip)
-        .on("mousemove", moveTooltip)
-        .on("mouseleave", hideTooltip);
-}
+        // Aggiungi le nuove bolle e aggiorna quelle esistenti
+        bubbles.enter()
+            .append("circle")
+            .attr("class", "bubbles")
+            .merge(bubbles) // Unisci con gli elementi esistenti
+            .attr("cx", d => x(new Date(d.yearMonth))) // Posizione sull'asse X
+            .attr("cy", d => y(d.infectedRate)) // Posizione sull'asse Y
+            .attr("r", d => z(d[selectedMetric])) // Dimensione basata sulla metrica
+            .style("fill", d => myColor(d.country)) // Colore in base al paese
+            .on("mouseover", showTooltip)
+            .on("mousemove", moveTooltip)
+            .on("mouseleave", hideTooltip);
+    }
 
-
-
-
-// Populate the country selector
-d3.select("#contry_selector_bubble")
-  .selectAll("option")
-  .data([...new Set(data.map(d => d.country))])
-  .enter()
-  .append("option")
-    .text(function(d) { return d; })
-    .attr("value", function(d) { return d; });
+    // Populate the country selector
+    d3.select("#contry_selector_bubble")
+        .selectAll("option")
+        .data([...new Set(data.map(d => d.country))])
+        .enter()
+        .append("option")
+        .text(function (d) { return d; })
+        .attr("value", function (d) { return d; });
 
     // metric select
-// Opzioni per il selettore
-const metrics = ["infectedRate", "gdpPercap", "tourism", "housePrices", "inflation"];
+    // Opzioni per il selettore
+    const metrics = ["infectedRate", "gdpPercap", "tourism", "housePrices", "inflation"];
 
-// Creazione del selettore
-d3.select("#metric_selector_bubble")
-    .selectAll("option")
-    .data(metrics)
-    .enter()
-    .append("option")
-    .text(d => d)
-    .attr("value", d => d);
+    // Creazione del selettore
+    d3.select("#metric_selector_bubble")
+        .selectAll("option")
+        .data(metrics)
+        .enter()
+        .append("option")
+        .text(d => d)
+        .attr("value", d => d);
 
-// Initial render
-updateChart();
+    // Initial render
+    updateChart();
 
 
 }
