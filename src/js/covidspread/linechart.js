@@ -48,12 +48,49 @@ function LineChart() {
           svg.append("g")
             .attr("transform", `translate(0,${height})`)
             .call(xAxis)
+            .style("color", "#ccc")
             .selectAll("text")
             .attr("transform", "rotate(-45)")
-            .style("text-anchor", "end");
+            .style("text-anchor", "end")
+            .style("fill", "black");
   
           svg.append("g")
-            .call(yAxis);
+            .call(yAxis)
+            .style("color", "#ccc")
+            .selectAll("text")
+            .style("text-anchor", "end")
+            .style("fill", "black");
+
+        //grid
+        // Add horizontal grid lines
+        svg.append("g")
+        .attr("class", "grid")
+        .attr("transform", `translate(0, 0)`)
+        .call(
+        d3.axisLeft(y)
+            .tickSize(-width) // Lunghezza delle linee di griglia
+            .tickFormat("")   // Rimuove i valori dei tick
+        )
+        .selectAll("line")
+        .style("stroke", "#ccc") // Colore della griglia
+        .style("stroke-opacity", 0.7) // Opacità della griglia
+        .style("shape-rendering", "crispEdges"); // Bordo definito
+
+        // Add vertical grid lines
+        svg.append("g")
+        .attr("class", "grid")
+        .attr("transform", `translate(0, ${height})`)
+        .call(
+        d3.axisBottom(x)
+            .tickSize(-height) // Lunghezza delle linee di griglia
+            .tickFormat("")    // Rimuove i valori dei tick
+        )
+        .selectAll("line")
+        .style("stroke", "#ccc") // Colore della griglia
+        .style("stroke-opacity", 0.7) // Opacità della griglia
+        .style("shape-rendering", "crispEdges"); // Bordo definito
+
+
   
           // Linea del grafico
           const line = d3.line()

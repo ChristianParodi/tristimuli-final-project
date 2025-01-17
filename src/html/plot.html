@@ -83,33 +83,37 @@
           <!--LINECHART-->
         <div class="flex flex-col gap-4 w-full max-w-4xl ">
             <h1 class="text-4xl font-bold">Infection Trends by Country</h1>
-            <div>
-                <label for="country-selector" >Select country:</label>
-                <select id="country-selector" class=" text-black"></select>
+            <div class="window">
+                <div>
+                    <label for="country-selector" class=" text-black">Select country:</label>
+                    <select id="country-selector" class=" text-black"></select>
+                </div>
+                <div id="chart-container"  ></div>
             </div>
-            <div id="chart-container"></div>
         </div>
           <!--LINECHART_END-->
 
           <!--STACKBARCHART-->
           <div class="flex flex-col gap-4 w-full max-w-4xl ">
             <h1 class="text-4xl font-bold">Infection Trends by Top</h1>
-            <div>
-                <label for="group">Groups for:</label>
-                <select id="group" class=" text-black">
-                  <option value="sesso">Sex</option>
-                  <option value="età">Age</option>
-                </select>
-              </div>
-              <div>
-                <label for="metric">Select type of data:</label>
-                <select id="metric" class=" text-black">
-                  <option value="guarite">Guariti</option>
-                  <option value="morte">Morte</option>
-                  <option value="infette">Infetti</option>
-                </select>
-              </div>
-              <div id="stackbarchart_container"></div>
+            <div class="window">
+                <div>
+                    <label for="group" class=" text-black">Groups for:</label>
+                    <select id="group" class=" text-black">
+                    <option value="sesso">Sex</option>
+                    <option value="età">Age</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="metric" class=" text-black">Select type of data:</label>
+                    <select id="metric" class=" text-black">
+                    <option value="guarite">Guariti</option>
+                    <option value="morte">Morte</option>
+                    <option value="infette">Infetti</option>
+                    </select>
+                </div>
+                <div id="stackbarchart_container" ></div>
+                </div>
         </div>
 
           <!--STACKBARCHART_END-->
@@ -124,15 +128,17 @@
         <!--BUBBLECHART-->
         <div class="flex flex-col gap-4 w-full max-w-4xl ">
             <h1 class="text-4xl font-bold">Economy</h1>
-            <div>
-                <label for="contry_selector_bubble">Seleziona Paese:</label>
-                <select id="contry_selector_bubble" class=" text-black"></select>
-              </div>
-              <div>
-                <label for="metric_selector_bubble">Dimensione delle Bolle:</label>
-                <select id="metric_selector_bubble" class=" text-black"></select>
-              </div>
-              <div id="bubblechart_container" class="bg-white"></div>
+            <div class="window">
+                <div>
+                    <label for="contry_selector_bubble" class=" text-black">Seleziona Paese:</label>
+                    <select id="contry_selector_bubble" class=" text-black"></select>
+                </div>
+                <div>
+                    <label for="metric_selector_bubble" class=" text-black">Dimensione delle Bolle:</label>
+                    <select id="metric_selector_bubble" class=" text-black"></select>
+                </div>
+                <div id="bubblechart_container" ></div>
+            </div>
         </div>
         <!--BUBBLECHART_END-->
         

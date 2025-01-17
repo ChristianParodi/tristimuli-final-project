@@ -13,6 +13,9 @@
   .backgroundwindow {
     @apply bg-mfn_green bg-opacity-80 text-white rounded-lg shadow-lg p-10 text-center flex flex-col items-center justify-center w-full h-full;
   }
+  .window {
+    @apply w-[1000px] sm:w-[1000px] bg-gray-50 p-8  rounded-lg shadow-lg hover:shadow-2xl ;
+  }
 
 }
 

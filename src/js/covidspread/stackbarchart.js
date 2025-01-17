@@ -55,14 +55,21 @@ const data = [
   
     // Aggiunge assi
     svg
-      .append("g")
-      .attr("transform", `translate(0,${height - margin.bottom})`)
-      .call(d3.axisBottom(xScale).ticks(5));
+        .append("g")
+        .attr("transform", `translate(0,${height - margin.bottom})`)
+        .call(d3.axisBottom(xScale).ticks(5))
+        .style("color", "#ccc")
+        .selectAll("text")
+        .style("text-anchor", "end")
+        .style("fill", "black");
   
     svg
       .append("g")
       .attr("transform", `translate(${margin.left},0)`)
-      .call(d3.axisLeft(yScale));
+      .call(d3.axisLeft(yScale))
+      .style("color", "#ccc")
+      .selectAll("text")
+        .style("fill", "black");
   
     // Aggiunge barre
     const groups = svg
