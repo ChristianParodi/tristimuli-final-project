@@ -1,5 +1,5 @@
 function mapMercator() {
-  const width = 1200;
+  const width = 900;
   const height = 600;
   let zoomed = false;
   let clicked = false;
@@ -21,7 +21,7 @@ function mapMercator() {
     .style("opacity", 0);
 
   // Creare la proiezione e il path
-  const projection = d3.geoMercator().scale(150).translate([width / 2, height / 2]);
+  const projection = d3.geoMercator().scale(500).translate([width/2, height*1.5]);
   const path = d3.geoPath().projection(projection);
 
   // Zoom e panoramica
@@ -43,18 +43,17 @@ function mapMercator() {
     .append("svg")
     .attr("width", width)
     .attr("height", height)
-    .style("background", "#fdfdfd") // Colore di sfondo visibile
-    .style("border", "1px solid #ccc")
     .call(zoom);
 
-  const mappa = svg.append("mappa");
+  const mappa = svg.append("g");
 
   // Caricare i dati GeoJSON e il dataset
   Promise.all([
     d3.json("https://raw.githubusercontent.com/leakyMirror/map-of-europe/refs/heads/master/GeoJSON/europe.geojson"), // GeoJSON
-    d3.csv("./../../dataset/covid_data.csv") // Dataset con dati COVID-19
+    d3.csv("./../../../dataset/COVID/covid.csv") // Dataset con dati COVID-19
   ]).then(([world, covidData]) => {
     // Creare una mappa per ogni dato del COVID-19
+    console.log(covidData);
     const casesByCountry = new Map(covidData.map(d => [d.country_code, +d.cases]));
     const deathsByCountry = new Map(covidData.map(d => [d.country_code, +d.deaths]));
     const recoveredByCountry = new Map(covidData.map(d => [d.country_code, +d.recovered]));
