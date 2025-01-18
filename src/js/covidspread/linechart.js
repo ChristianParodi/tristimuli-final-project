@@ -1,130 +1,141 @@
-// Creazione di un Line Chart con un selector per selezionare il paese
 function LineChart() {
-          // Dati di esempio per i paesi
-          const data = [
-            { country: "Italia", values: [
-              { date: "2020-01", infections: 500 },
-              { date: "2020-02", infections: 700 },
-              { date: "2020-03", infections: 1500 },
-              // Aggiungi altri dati per ogni mese fino al 2024
-            ]},
-            { country: "Francia", values: [
-              { date: "2020-01", infections: 300 },
-              { date: "2020-02", infections: 600 },
-              { date: "2020-03", infections: 1200 },
-              // Aggiungi altri dati per ogni mese fino al 2024
-            ]},
-            // Aggiungi altri paesi
-          ];
+    d3.csv("./../../../dataset/COVID/covid.csv", d => ({
+      country: d.country,
+      year: +d.year,
+      month: +d.month,
+      total_cases: +d.total_cases,
+    })).then(covidData => {
+      // Raggruppa i dati per paese
+      const groupedData = d3.group(covidData, d => d.country);
   
-          // Configurazione del grafico
-          const margin = { top: 20, right: 30, bottom: 50, left: 60 };
-          const width = 800 - margin.left - margin.right;
-          const height = 400 - margin.top - margin.bottom;
+      // Trasforma i dati in un formato più adatto
+      const parsedData = Array.from(groupedData, ([country, values]) => ({
+        country,
+        values: values.map(d => ({
+          date: new Date(d.year, d.month - 1),
+          total_cases: d.total_cases,
+        })),
+      }));
   
-          const svg = d3.select("#chart-container")
-            .append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-            .attr("transform", `translate(${margin.left},${margin.top})`);
+      // Configurazione del grafico
+      const margin = { top: 20, right: 30, bottom: 50, left: 60 };
+      const width = 800 - margin.left - margin.right;
+      const height = 400 - margin.top - margin.bottom;
   
-          // Scala del tempo (asse x)
-          const x = d3.scaleTime()
-            .domain([new Date(2020, 0, 1), new Date(2024, 11, 31)])
-            .range([0, width]);
+      const svg = d3.select("#chart-container")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
   
-          const xAxis = d3.axisBottom(x).ticks(d3.timeMonth.every(3)).tickFormat(d3.timeFormat("%b %Y"));
+      // Scala del tempo (asse x)
+      const x = d3.scaleTime()
+        .domain(d3.extent(covidData, d => new Date(d.year, d.month - 1)))
+        .range([0, width]);
   
-          // Scala delle infezioni (asse y)
-          const y = d3.scaleLinear()
-            .domain([0, d3.max(data.flatMap(d => d.values.map(v => v.infections)))])
-            .nice()
-            .range([height, 0]);
+      const xAxis = d3.axisBottom(x)
+        .ticks(d3.timeMonth.every(3))
+        .tickFormat(d3.timeFormat("%b %Y"));
   
-          const yAxis = d3.axisLeft(y);
+      // Aggiungi l'asse x
+      svg.append("g")
+        .attr("transform", `translate(0,${height})`)
+        .call(xAxis)
+        .style("color", "#ccc")
+        .selectAll("text")
+        .attr("transform", "rotate(-45)")
+        .style("text-anchor", "end")
+        .style("fill", "black");
   
-          // Aggiungi gli assi
-          svg.append("g")
-            .attr("transform", `translate(0,${height})`)
-            .call(xAxis)
-            .style("color", "#ccc")
-            .selectAll("text")
-            .attr("transform", "rotate(-45)")
-            .style("text-anchor", "end")
-            .style("fill", "black");
+      // Scala delle infezioni (asse y)
+      const y = d3.scaleLinear()
+        .range([height, 0]);
   
-          svg.append("g")
-            .call(yAxis)
-            .style("color", "#ccc")
-            .selectAll("text")
-            .style("text-anchor", "end")
-            .style("fill", "black");
+      const yAxisGroup = svg.append("g")
+        .attr("class", "y-axis");
+  
+      // Griglia orizzontale
+      const horizontalGrid = svg.append("g")
+        .attr("class", "grid-horizontal");
+  
+      // Griglia verticale
+      const verticalGrid = svg.append("g")
+        .attr("class", "grid-vertical");
+  
+      // Linea del grafico
+      const line = d3.line()
+        .x(d => x(d.date))
+        .y(d => y(d.total_cases));
+  
+      // Funzione per aggiornare il grafico in base al paese selezionato
+      function updateChart(country) {
+        const countryData = parsedData.find(d => d.country === country);
+  
+        // Determina il dominio dell'asse Y
+        const maxTotalCases = d3.max(countryData.values, d => d.total_cases);
+        console.log(maxTotalCases)
+        y.domain([0, d3.max(covidData, d => d.total_cases)]).nice();
+        if (maxTotalCases < '500000') {
+          y.domain([0, maxTotalCases]).nice();
+        } 
 
-        //grid
-        // Add horizontal grid lines
-        svg.append("g")
-        .attr("class", "grid")
-        .attr("transform", `translate(0, 0)`)
-        .call(
-        d3.axisLeft(y)
-            .tickSize(-width) // Lunghezza delle linee di griglia
-            .tickFormat("")   // Rimuove i valori dei tick
-        )
-        .selectAll("line")
-        .style("stroke", "#ccc") // Colore della griglia
-        .style("stroke-opacity", 0.7) // Opacità della griglia
-        .style("shape-rendering", "crispEdges"); // Bordo definito
-
-        // Add vertical grid lines
-        svg.append("g")
-        .attr("class", "grid")
-        .attr("transform", `translate(0, ${height})`)
-        .call(
-        d3.axisBottom(x)
-            .tickSize(-height) // Lunghezza delle linee di griglia
-            .tickFormat("")    // Rimuove i valori dei tick
-        )
-        .selectAll("line")
-        .style("stroke", "#ccc") // Colore della griglia
-        .style("stroke-opacity", 0.7) // Opacità della griglia
-        .style("shape-rendering", "crispEdges"); // Bordo definito
-
-
+        
   
-          // Linea del grafico
-          const line = d3.line()
-            .x(d => x(new Date(d.date)))
-            .y(d => y(d.infections));
+        // Aggiorna l'asse Y
+        yAxisGroup.call(d3.axisLeft(y))
+          .selectAll("text")
+          .style("fill", "black");
   
-          // Aggiorna il grafico in base al paese selezionato
-          function updateChart(country) {
-            const countryData = data.find(d => d.country === country);
+        // Aggiorna la griglia orizzontale
+        horizontalGrid.call(
+          d3.axisLeft(y)
+            .tickSize(-width)
+            .tickFormat("")
+        ).selectAll("line")
+          .style("stroke", "#ccc")
+          .style("stroke-opacity", 0.7)
+          .style("shape-rendering", "crispEdges");
   
-            svg.selectAll(".line").remove();
+        // Aggiorna la griglia verticale
+        verticalGrid.call(
+          d3.axisBottom(x)
+            .tickSize(-height)
+            .tickFormat("")
+        ).attr("transform", `translate(0, ${height})`)
+          .selectAll("line")
+          .style("stroke", "#ccc")
+          .style("stroke-opacity", 0.7)
+          .style("shape-rendering", "crispEdges");
   
-            svg.append("path")
-              .datum(countryData.values)
-              .attr("class", "line")
-              .attr("fill", "none")
-              .attr("stroke", "steelblue")
-              .attr("stroke-width", 2)
-              .attr("d", line);
-          }
+        // Rimuove la linea precedente
+        svg.selectAll(".line").remove();
   
-          // Dropdown per selezionare il paese
-          const selector = d3.select("#country-selector")
-            .on("change", function() {
-              updateChart(this.value);
-            });
+        // Aggiunge la nuova linea
+        svg.append("path")
+          .datum(countryData.values)
+          .attr("class", "line")
+          .attr("fill", "none")
+          .attr("stroke", "steelblue")
+          .attr("stroke-width", 2)
+          .attr("d", line);
+      }
+      // Dropdown per selezionare il paese
+      const selector = d3.select("#country-selector")
+        .on("change", function() {
+          updateChart(this.value);
+        });
   
-          selector.selectAll("option")
-            .data(data.map(d => d.country))
-            .enter()
-            .append("option")
-            .text(d => d);
+      selector.selectAll("option")
+        .data(parsedData.map(d => d.country))
+        .enter()
+        .append("option")
+        .text(d => d);
   
-          // Disegna il grafico iniziale
-          updateChart(data[0].country);
-}
-LineChart();
+      // Disegna il grafico iniziale
+      updateChart(parsedData[0].country);
+    });
+  }
+  
+  LineChart();
+  

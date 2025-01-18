@@ -6,6 +6,7 @@ const data = [
     // Aggiungi altri paesi qui...
   ];
   
+  
   const width = 800;
   const height = 500;
   const margin = { top: 20, right: 20, bottom: 50, left: 100 };
