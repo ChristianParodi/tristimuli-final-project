@@ -58,23 +58,25 @@
           <h1 class="text-4xl font-bold text-center">Covid Spread</h1>
 
           <!--Container-->
-          <div id="map-container" class="w-full h-[500px] border"></div>
+          <div class="window">
+            <div id="map-container" ></div>
 
-          <!--Switch-->
-          <div class="flex justify-between items-center mt-28">
-            <button id="reset" class="bg-blue-500 text-white px-4 py-2 rounded">Reset Zoom</button>
+            <!--Switch-->
+            <div class="flex justify-between items-center mt-28">
+                <button id="reset" class="bg-blue-500 text-white px-4 py-2 rounded">Reset Zoom</button>
 
 
-            <div id="selection-bar"></div>
+                <div id="selection-bar"></div>
 
-            <div>
-                <label for="data-selector">Select type of data:</label>
-                <select id="data-selector" class=" text-black">
-                  <option value="cases">Infetti</option>
-                  <option value="deaths">Morti</option>
-                  <option value="recovered">Guariti</option>
-                </select>
-              </div>
+                <div>
+                    <label for="data-selector">Select type of data:</label>
+                    <select id="data-selector" class=" text-black">
+                    <option value="cases">Infetti</option>
+                    <option value="deaths">Morti</option>
+                    <option value="recovered">Guariti</option>
+                    </select>
+                </div>
+                </div>
             </div>
           </div>
           <!--MAP_END-->
@@ -118,11 +120,11 @@
         <!--STACKBARCHART_END-->
 
       </div>
+      
 
-    <div id="section2" class="min-h-screen flex justify-center">
-        <!--LINECHART-->
-       
-        <!--LINECHART_END-->
+
+
+      <div id="section2" class="min-h-screen flex flex-col items-center gap-8">
 
         <!--BUBBLECHART-->
         <div class="flex flex-col gap-4 w-full max-w-4xl ">
@@ -141,7 +143,18 @@
         </div>
         <!--BUBBLECHART_END-->
 
+        <!--LINECHART-->
+        <div class="flex flex-col gap-4 w-full max-w-4xl ">
+            <h1 class="text-4xl font-bold">Economy</h1>
+            <div class="window">
+                <p>ciso</p>
+            </div>
+        </div>
+        <!--LINECHART_END-->
+
       </div>
+
+
       <div id="section3" class="min-h-screen flex items-center justify-center">
         <h2 class="text-3xl font-semibold">Section 3</h2>
         <!--DUMBBELLCHART-->
@@ -149,13 +162,16 @@
       </div>
       <div id="section4" class="min-h-screen flex items-center justify-center">
         <h2 class="text-3xl font-semibold">Section 4</h2>
+        
         <!--HISTOGRAM-->
+       
         <!--HISTOGRAM_END-->
 
         <!--MAP-->
         <!--MAP_END-->
 
         <!--HIGHLIGHTS-->
+        
         <!--HIGHLIGHTS_END-->
 
       </div>
@@ -173,6 +189,7 @@
     <script src="./../js/covidspread/stackbarchart.js"></script>
     <script src="./../js/economy/bubblechart.js"></script>
     <script src="./../js/lockdowns/bubbleEnrollments.js"></script>
+    <script src="./../js/economy/butterflychart.js"></script>
     <script src="./../js/utils.js"></script>
   </body>
 
