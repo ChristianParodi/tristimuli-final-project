@@ -83,44 +83,54 @@ function mapMercator() {
     currentMonth = maxMonth;
     currentDay = maxDay;
 
-    const selectedMetric = dataSelector.value;
+    // Dati COVID-19
     const data = covidData.map(d => ({
       country: d.country,
       code: d.code,
       year: +d.year,
       month: +d.month,
       day: +d.day,
-      value: selectedMetric === "cases" ? +d.total_cases :
-        selectedMetric === "deaths" ? +d.total_deaths :
-          selectedMetric === "vaccined" ? +d.people_vaccinated :
-            +d.hosp_patients
+      cases: +d.total_cases,
+      deaths: +d.total_deaths,
+      vaccined: +d.people_vaccinated,
+      hosp_patients: +d.hosp_patients
     }));
 
     // Colori per la scala
-    const thresholds = [0, 1000, 10000, 50000, 100000, 500000, 1000000, 5000000];
-    const colorScale = d3.scaleThreshold()
-      .domain(thresholds)
-      .range(d3.schemeReds[thresholds.length]);
+    const colorMap = new Map([
+      ["cases", d3.schemeReds[9]],
+      ["deaths", d3.schemeGreys[9]],
+      ["vaccined", d3.schemeBlues[9]],
+      ["hosp_patients", d3.schemeOranges[9]]
+    ]);
+
+
 
     // Aggiornare la mappa
     function updateMap() {
-      const getData = (d, currentCountry) => (d.code === currentCountry) && (d.year === currentYear) && (d.month === currentMonth) && (d.day === currentDay)
+      const filteredData = data.filter(d => d.year === currentYear && d.month === currentMonth && d.day === currentDay);
+
+      const colorScale = d3.scaleLinear()
+        .domain([0, d3.max(data, d => d[dataSelector.value])])
+        .range(colorMap.get(dataSelector.value));
+
+      const selectedMetric = dataSelector.value;
       mappa.selectAll("path")
         .data(world.features)
         .join("path")
         .attr("d", path)
         .attr("fill", d => {
           currentCountry = d.properties.ISO3;
-          const countryData = data.filter(d => getData(d, currentCountry))[0];
-          const value = countryData ? countryData.value : null;
+          const countryData = filteredData.find(d => d.code === currentCountry);
+          const value = countryData ? countryData[selectedMetric] : null;
           return value ? colorScale(value) : "#ccc";
         })
         .attr("stroke", "black")
         .attr("stroke-width", 0.5)
         .on("mousemove", (event, d) => {
           currentCountry = d.properties.ISO3;
-          const countryData = data.filter(d => getData(d, currentCountry))[0];
-          const value = countryData ? countryData.value : null;
+          const countryData = filteredData.find(d => d.code === currentCountry);
+          const value = countryData ? countryData[selectedMetric] : null;
 
           if (value == null)
             tooltipText = `<strong>${d.properties.NAME}</strong><br>No data available`
