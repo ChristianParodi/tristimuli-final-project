@@ -22,7 +22,6 @@ function BubbleChart() {// Set the dimensions and margins of the graph
         { country: "Germania", yearMonth: "2023-03", infectedRate: 1, gdpPercap: 400, tourism: 320000, housePrices: 305000, inflation: 2.2 }
     ];
 
-    
     // Scala del tempo (asse x)
     const x = d3.scaleTime()
         .domain([new Date(2020, 0, 1), new Date(2024, 11, 31)])
@@ -187,7 +186,6 @@ function BubbleChart() {// Set the dimensions and margins of the graph
 
     // Initial render
     updateChart();
-
 
 }
 BubbleChart()

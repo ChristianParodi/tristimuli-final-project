@@ -50,14 +50,16 @@ function mapMercator() {
   // Caricare i dati GeoJSON e il dataset
   Promise.all([
     d3.json("https://raw.githubusercontent.com/leakyMirror/map-of-europe/refs/heads/master/GeoJSON/europe.geojson"), // GeoJSON
-    d3.csv("./../../../dataset/COVID/covid.csv") // Dataset con dati COVID-19
+    d3.csv("./../../../dataset/COVID/recovered/covid_recovered.csv") // Dataset con dati COVID-19
   ]).then(([world, covidData]) => {
     // Creare una mappa per ogni dato del COVID-19
-    console.log(covidData);
-    const casesByCountry = new Map(covidData.map(d => [d.country_code, +d.cases]));
-    const deathsByCountry = new Map(covidData.map(d => [d.country_code, +d.deaths]));
-    const recoveredByCountry = new Map(covidData.map(d => [d.country_code, +d.recovered]));
+    
+    const casesByCountry = new Map(covidData.map(d => [d.Country, +d.TotalCases]));
+    const deathsByCountry = new Map(covidData.map(d => [d.Country, +d.TotalDeaths]));
+    const recoveredByCountry = new Map(covidData.map(d => [d.Country, +d.TotalRecovered]));
     const dataSelector = document.getElementById("data-selector");
+
+    console.log(recoveredByCountry);
     // Colori per la scala
     const thresholds = [0, 1000, 10000, 50000, 100000, 500000, 1000000, 5000000];
     const colorScale = d3.scaleThreshold()
