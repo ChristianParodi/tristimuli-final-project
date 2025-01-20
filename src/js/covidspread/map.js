@@ -8,6 +8,9 @@ function mapMercator() {
 
   // Select the reset button
   const resetButton = document.getElementById("reset");
+  resetButton.addEventListener("click", () => {
+    svg.call(zoom.transform, d3.zoomIdentity);
+  });
   const dataSelector = document.getElementById("map-selector");
   const yearSlider = d3.select("#year-slider");
 
