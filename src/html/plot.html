@@ -166,15 +166,23 @@
 
       <div id="section3" class="min-h-screen flex flex-col items-center justify-center">
         <h2 class="text-3xl font-semibold">Education & Jobs</h2>
-        <!--DUMBBELLCHART 1-->
-        <div>
+        <div class="flex flex-col">
           <label for="country-selector-dumbbell-enrollments">Country</label>
           <select id="country-selector-dumbbell-enrollments" class="text-black"></select>
         </div>
-        <div id="dumbbell-enrollments"></div>
+        <!--DUMBBELLCHART 1-->
+        <div class="window">
+          <div id="dumbbell-enrollments"></div>
+        </div>
         <!--DUMBBELLCHART_END 1-->
+        <div class="flex flex-col mb-6">
+          <label for="country-selector-dumbbell-unenmployments">Country</label>
+          <select id="country-selector-dumbbell-unenmployments" class="text-black"></select>
+        </div>
         <!--DUMBBELLCHART 2-->
-        <div id="dumbbell-unenmployment"></div>
+        <div class="window">
+          <div id="dumbbell-unenployments"></div>
+        </div>
         <!--DUMBBELLCHART_END 2-->
       </div>
 
@@ -212,8 +220,10 @@
     <script src="./../js/economy/butterflychart.js"></script>
 
     <!-- EDUCATION -->
-    <script src="../js/education_jobs/dumbbellEnrollments.js"></script>
-    <script src="./../js/utils.js"></script>
+    <script type="module" src="../js/education_jobs/dumbbellEnrollments.js"></script>
+    <script type="module" src="../js/education_jobs/dumbbellUnenployment.js"></script>
+
+    <script type="module" src="./../js/utils.js"></script>
   </body>
 
 </html>

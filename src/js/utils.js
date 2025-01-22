@@ -5,7 +5,7 @@
  * fetches the specified HTML file, and injects its content into the element.
  * If the file is not found, it displays "Page not found."
  */
-async function includeHTML() {
+export async function includeHTML() {
   const elements = document.querySelectorAll('[w3-include-html]');
 
   const fetchPromises = Array.from(elements).map(async (element) => {
@@ -38,3 +38,8 @@ function addLoaderListener() {
     }
   });
 }
+
+export const covidDates = {
+  start: new Date(2019, 10, 20),
+  end: new Date(2023, 2, 5)
+};
