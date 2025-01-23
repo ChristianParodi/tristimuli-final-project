@@ -1,0 +1,100 @@
+unit,cofog99,country,2016,2017,2018,2019,2020,2021,2022
+Million euro,Health,Austria,29223.0,30239.0,31770.0,32971.0,35132.0,40840.0,41735.0
+Million euro,Health,Belgium,32788.0,33787.0,35116.0,36353.0,40151.0,43435.0,44951.0
+Million euro,Health,Bulgaria,2414.0,2547.0,2786.0,2845.0,3600.0,4151.0,4767.0
+Million euro,Health,Switzerland,13414.0,13002.0,13042.0,14085.0,16800.0,19011.0,18018.0
+Million euro,Health,Cyprus,474.0,506.0,568.0,811.0,1306.0,1641.0,1720.0
+Million euro,Health,Czechia,13162.0,14339.0,15791.0,17035.0,20151.0,23419.0,25149.0
+Million euro,Health,Germany,225794.0,232702.0,241457.0,253019.0,287849.0,314180.0,330286.0
+Million euro,Health,Denmark,23883.0,24537.0,25075.0,25933.0,27956.0,31185.0,30304.0
+Million euro,Health,Euro area - 19 countries  (2015-2022),772457.0,792791.0,820358.0,851757.0,937926.0,1023113.0,1060776.0
+Million euro,Health,Euro area - 20 countries (from 2023),775599.0,796183.0,824029.0,855800.0,942337.0,1027991.0,1065990.0
+Million euro,Health,Estonia,1174.0,1250.0,1410.0,1578.0,1800.0,2040.0,2153.0
+Million euro,Health,Greece,9306.0,9685.0,10004.0,10546.0,11100.0,12105.0,12371.0
+Million euro,Health,Spain,67724.0,69312.0,72157.0,75929.0,85503.0,88562.0,93126.0
+Million euro,Health,European Union - 27 countries (from 2020),879857.0,907153.0,941144.0,979369.0,1079065.0,1181992.0,1221568.0
+Million euro,Health,Finland,15616.0,15868.0,16513.0,17114.0,18154.0,19381.0,19942.0
+Million euro,Health,France,181527.0,186344.0,189699.0,194017.0,205443.0,230827.0,240125.0
+Million euro,Health,Croatia,3141.0,3391.0,3670.0,4043.0,4410.0,4877.0,5214.0
+Million euro,Health,Hungary,5482.0,5949.0,6323.0,6641.0,8778.0,8720.0,7491.0
+Million euro,Health,Ireland,14108.0,14822.0,15823.0,16997.0,20647.0,22683.0,24838.0
+Million euro,Health,Iceland,1383.0,1655.0,1724.0,1731.0,1640.0,1950.0,2307.0
+Million euro,Health,Italy,117191.0,118388.0,120673.0,122303.0,130978.0,135648.0,138379.0
+Million euro,Health,Lithuania,1848.0,1936.0,2175.0,2473.0,2942.0,3308.0,3476.0
+Million euro,Health,Luxembourg,2679.0,2901.0,3084.0,3232.0,3735.0,3917.0,4152.0
+Million euro,Health,Latvia,935.0,947.0,1171.0,1277.0,1414.0,2105.0,1848.0
+Million euro,Health,Malta,558.0,609.0,661.0,732.0,935.0,997.0,966.0
+Million euro,Health,Netherlands,51352.0,53792.0,56857.0,59837.0,66413.0,73782.0,72073.0
+Million euro,Health,Norway,28718.0,29714.0,30304.0,31487.0,30646.0,35551.0,37799.0
+Million euro,Health,Poland,19755.0,21888.0,23921.0,26035.0,28219.0,33184.0,34611.0
+Million euro,Health,Portugal,11387.0,12240.0,13252.0,13915.0,14963.0,16437.0,17265.0
+Million euro,Health,Romania,6878.0,8118.0,9517.0,11163.0,12056.0,13203.0,13907.0
+Million euro,Health,Sweden,32680.0,33589.0,33699.0,33913.0,35965.0,40135.0,39346.0
+Million euro,Health,Slovenia,2709.0,2821.0,2994.0,3230.0,3763.0,4303.0,4344.0
+Million euro,Health,Slovakia,6058.0,4637.0,4969.0,5418.0,5694.0,6915.0,7021.0
+Million euro,Total,Austria,179059.0,182091.0,187850.0,193308.0,216367.0,227664.0,237757.0
+Million euro,Total,Belgium,228451.0,231561.0,240446.0,248477.0,270703.0,278573.0,294508.0
+Million euro,Total,Bulgaria,16952.0,18265.0,20770.0,22343.0,25573.0,29615.0,35482.0
+Million euro,Total,Switzerland,209360.0,207556.0,202659.0,214327.0,249450.0,245902.0,256438.0
+Million euro,Total,Cyprus,7089.0,7395.0,9236.0,8919.0,9767.0,10445.0,10780.0
+Million euro,Total,Czechia,70533.0,75673.0,85642.0,92623.0,101900.0,110803.0,123187.0
+Million euro,Total,Germany,1390374.0,1443273.0,1491601.0,1563438.0,1717583.0,1842603.0,1918143.0
+Million euro,Total,Denmark,148572.0,149024.0,152822.0,153734.0,166503.0,170811.0,171186.0
+Million euro,Total,Euro area - 19 countries  (2015-2022),5165341.0,5291404.0,5438795.0,5628315.0,6129822.0,6485628.0,6781895.0
+Million euro,Total,Euro area - 20 countries (from 2023),5187159.0,5313606.0,5462752.0,5654064.0,6157121.0,6514011.0,6812431.0
+Million euro,Total,Estonia,8568.0,9351.0,10183.0,10937.0,12308.0,13056.0,14323.0
+Million euro,Total,Greece,87744.0,86172.0,87779.0,88276.0,99332.0,104678.0,109252.0
+Million euro,Total,Spain,473208.0,480265.0,503364.0,526652.0,580771.0,611470.0,637831.0
+Million euro,Total,European Union - 27 countries (from 2020),5946019.0,6110016.0,6299319.0,6530802.0,7121509.0,7519074.0,7895651.0
+Million euro,Total,Finland,121044.0,121375.0,124626.0,127945.0,136128.0,139882.0,143133.0
+Million euro,Total,France,1266434.0,1298023.0,1315050.0,1349281.0,1421922.0,1477681.0,1538919.0
+Million euro,Total,Croatia,21818.0,22201.0,23956.0,25748.0,27298.0,28382.0,30535.0
+Million euro,Total,Hungary,54404.0,59343.0,62715.0,67539.0,70891.0,74508.0,82472.0
+Million euro,Total,Ireland,75894.0,77895.0,82801.0,86580.0,101970.0,105888.0,107576.0
+Million euro,Total,Iceland,8732.0,9733.0,9751.0,9605.0,9682.0,10807.0,12689.0
+Million euro,Total,Italy,832265.0,846821.0,857245.0,870864.0,946814.0,1026036.0,1091530.0
+Million euro,Total,Lithuania,13315.0,14047.0,15478.0,17057.0,21309.0,21150.0,24510.0
+Million euro,Total,Luxembourg,22509.0,24010.0,25431.0,26911.0,30301.0,31014.0,34024.0
+Million euro,Total,Latvia,9523.0,10307.0,11453.0,11733.0,12799.0,14891.0,15713.0
+Million euro,Total,Malta,3834.0,4112.0,4692.0,5099.0,6047.0,6578.0,6866.0
+Million euro,Total,Netherlands,309167.0,313410.0,327239.0,342493.0,380991.0,400161.0,416921.0
+Million euro,Total,Norway,171850.0,178344.0,180787.0,186483.0,185998.0,200314.0,216572.0
+Million euro,Total,Poland,175560.0,192918.0,206822.0,222991.0,253852.0,254137.0,287351.0
+Million euro,Total,Portugal,83615.0,88897.0,88722.0,91004.0,98743.0,102533.0,106873.0
+Million euro,Total,Romania,58618.0,62634.0,71058.0,81393.0,92135.0,96678.0,113671.0
+Million euro,Total,Sweden,234217.0,238551.0,236736.0,236113.0,253531.0,268507.0,269868.0
+Million euro,Total,Slovenia,18669.0,18955.0,19942.0,21072.0,24161.0,25861.0,26898.0
+Million euro,Total,Slovakia,34574.0,33440.0,35652.0,38263.0,41804.0,45460.0,46334.0
+Percentage of total,Health,Austria,16.0,16.0,16.0,17.0,16.0,17.0,17.0
+Percentage of total,Health,Belgium,14.0,14.0,14.0,14.0,14.0,15.0,15.0
+Percentage of total,Health,Bulgaria,14.0,13.0,13.0,12.0,14.0,14.0,13.0
+Percentage of total,Health,Switzerland,6.0,6.0,6.0,6.0,6.0,7.0,7.0
+Percentage of total,Health,Cyprus,6.0,6.0,6.0,9.0,13.0,15.0,16.0
+Percentage of total,Health,Czechia,18.0,18.0,18.0,18.0,19.0,21.0,20.0
+Percentage of total,Health,Germany,16.0,16.0,16.0,16.0,16.0,17.0,17.0
+Percentage of total,Health,Denmark,16.0,16.0,16.0,16.0,16.0,18.0,17.0
+Percentage of total,Health,Euro area - 19 countries  (2015-2022),15.0,15.0,15.0,15.0,15.0,15.0,15.0
+Percentage of total,Health,Euro area - 20 countries (from 2023),15.0,15.0,15.0,15.0,15.0,15.0,15.0
+Percentage of total,Health,Estonia,13.0,13.0,13.0,14.0,14.0,15.0,15.0
+Percentage of total,Health,Greece,10.0,11.0,11.0,11.0,11.0,11.0,11.0
+Percentage of total,Health,Spain,14.0,14.0,14.0,14.0,14.0,14.0,14.0
+Percentage of total,Health,European Union - 27 countries (from 2020),14.0,14.0,14.0,15.0,15.0,15.0,15.0
+Percentage of total,Health,Finland,12.0,13.0,13.0,13.0,13.0,13.0,13.0
+Percentage of total,Health,France,14.0,14.0,14.0,14.0,14.0,15.0,15.0
+Percentage of total,Health,Croatia,14.0,15.0,15.0,15.0,16.0,17.0,17.0
+Percentage of total,Health,Hungary,10.0,10.0,10.0,9.0,12.0,11.0,9.0
+Percentage of total,Health,Ireland,18.0,19.0,19.0,19.0,20.0,21.0,23.0
+Percentage of total,Health,Iceland,15.0,17.0,17.0,18.0,16.0,18.0,18.0
+Percentage of total,Health,Italy,14.0,14.0,14.0,14.0,13.0,13.0,12.0
+Percentage of total,Health,Lithuania,13.0,13.0,14.0,14.0,13.0,15.0,14.0
+Percentage of total,Health,Luxembourg,11.0,12.0,12.0,12.0,12.0,12.0,12.0
+Percentage of total,Health,Latvia,9.0,9.0,10.0,10.0,11.0,14.0,11.0
+Percentage of total,Health,Malta,14.0,14.0,14.0,14.0,15.0,15.0,14.0
+Percentage of total,Health,Netherlands,16.0,17.0,17.0,17.0,17.0,18.0,17.0
+Percentage of total,Health,Norway,16.0,16.0,16.0,16.0,16.0,17.0,17.0
+Percentage of total,Health,Poland,11.0,11.0,11.0,11.0,11.0,13.0,12.0
+Percentage of total,Health,Portugal,13.0,13.0,14.0,15.0,15.0,16.0,16.0
+Percentage of total,Health,Romania,11.0,13.0,13.0,13.0,13.0,13.0,12.0
+Percentage of total,Health,Sweden,14.0,14.0,14.0,14.0,14.0,14.0,14.0
+Percentage of total,Health,Slovenia,14.0,14.0,15.0,15.0,15.0,16.0,16.0
+Percentage of total,Health,Slovakia,17.0,13.0,13.0,14.0,13.0,15.0,15.0
