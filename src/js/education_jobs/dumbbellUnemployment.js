@@ -1,10 +1,10 @@
 import { covidDates, datasets } from '../utils.js'
 
-function dumbbellUnenployments() {
+function dumbbellUnemployment() {
 
-  const unenmploymentData = datasets.unenploymentData;
+  const unenmploymentData = datasets.unemploymentData;
 
-  const MAX_UNENPLOYMENT_COUNTRY = "European Union";
+  const MAX_UNEMPLOYMENT_COUNTRY = "European Union";
   const years = d3.range(2016, 2025);
   const months = d3.range(1, 13);
 
@@ -13,7 +13,7 @@ function dumbbellUnenployments() {
   let selectedAge = "Total";
   let sexIsTotal = false;
 
-  const selector = d3.select("#country-selector-dumbbell-unenmployments");
+  const selector = d3.select("#country-selector-dumbbell-unemployments");
   const allCountries = Array.from(new Set(unenmploymentData.map(d => d.country)));
 
   selector.selectAll("option")
@@ -42,7 +42,7 @@ function dumbbellUnenployments() {
   const width = 800 - margin.left - margin.right;
   const height = 600 - margin.top - margin.bottom;
 
-  const svg = d3.select("#dumbbell-unenployments")
+  const svg = d3.select("#dumbbell-unemployments")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom);
@@ -58,7 +58,7 @@ function dumbbellUnenployments() {
       return 8000;
     if (selectedCountry === "Turkey")
       return 3500;
-    if (selectedCountry !== MAX_UNENPLOYMENT_COUNTRY)
+    if (selectedCountry !== MAX_UNEMPLOYMENT_COUNTRY)
       return 2000;
 
     const maxVal = d3.max(years, year => {
@@ -115,7 +115,7 @@ function dumbbellUnenployments() {
     .text("Unemployment (thousands persons)");
 
   function updateChart(country) {
-    easeOutLinesUnenmploy(g);
+    easeOutLinesUnemploy(g);
 
     // covid lines
     g.append("line")
@@ -171,18 +171,18 @@ function dumbbellUnenployments() {
 
     femaleData.forEach((female, i) => {
       const male = maleData[i];
-      drawLinesUnenploy(g, male, female, xScale, yScale);
+      drawLinesunemploy(g, male, female, xScale, yScale);
     });
 
     const maleDots = g.selectAll(".dot.male")
       .data(maleData);
 
-    drawMalePointsUnenploy(maleDots, xScale, yScale);
+    drawMalePointsunemploy(maleDots, xScale, yScale);
 
     const femaleDots = g.selectAll(".dot.female")
       .data(femaleData);
 
-    drawFemalePointsUnenploy(femaleDots, xScale, yScale);
+    drawFemalePointsunemploy(femaleDots, xScale, yScale);
   }
 
   updateChart(selectedCountry);
@@ -193,7 +193,7 @@ function dumbbellUnenployments() {
   });
 }
 
-function easeOutLinesUnenmploy(g) {
+function easeOutLinesUnemploy(g) {
   g.selectAll("line")
     .transition()
     .duration(200)
@@ -220,7 +220,7 @@ function easeOutLinesUnenmploy(g) {
     .remove();
 }
 
-function drawLinesUnenploy(g, male, female, xScale, yScale) {
+function drawLinesunemploy(g, male, female, xScale, yScale) {
   const middleY = (yScale(male.value) + yScale(female.value)) / 2;
 
   g.insert("line", ":first-child")
@@ -240,7 +240,7 @@ function drawLinesUnenploy(g, male, female, xScale, yScale) {
     .attr("opacity", 1);
 }
 
-function drawMalePointsUnenploy(maleDots, xScale, yScale) {
+function drawMalePointsunemploy(maleDots, xScale, yScale) {
   maleDots.enter().append("circle")
     .attr("class", "dot male")
     .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
@@ -257,7 +257,7 @@ function drawMalePointsUnenploy(maleDots, xScale, yScale) {
     .attr("opacity", 1);
 }
 
-function drawFemalePointsUnenploy(femaleDots, xScale, yScale) {
+function drawFemalePointsunemploy(femaleDots, xScale, yScale) {
   femaleDots.enter().append("circle")
     .attr("class", "dot female")
     .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
@@ -274,4 +274,4 @@ function drawFemalePointsUnenploy(femaleDots, xScale, yScale) {
     .attr("opacity", 1);
 }
 
-dumbbellUnenployments();
+dumbbellUnemployment();

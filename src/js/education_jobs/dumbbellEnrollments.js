@@ -226,16 +226,16 @@ function drawMalePoints(maleDots, xScale, yScale, maleData, femaleData) {
     .append("circle")
     .attr("class", "dot male")
     .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
-    .attr("cy", d => yScale(d.enrollments))
     .attr("r", 6)
     .attr("fill", "steelblue")
     .attr("opacity", 0)
     .raise()
     .merge(maleDots)
     .on("mouseover", function (event, d) {
+      console.log(getTooltipText(d, maleData, femaleData))
       tooltip
         .style("visibility", "visible")
-        .html(`Males: ${d.enrollments}`);
+        .html(getTooltipText(d, maleData, femaleData));
     })
     .on("mousemove", function (event) {
       tooltip
@@ -249,6 +249,7 @@ function drawMalePoints(maleDots, xScale, yScale, maleData, femaleData) {
     .delay((_, i) => i * 100)
     .duration(500)
     .ease(d3.easeCubicInOut)
+    .attr("cy", d => yScale(d.enrollments))
     .attr("opacity", 1);
 }
 
@@ -257,7 +258,6 @@ function drawFemalePoints(femaleDots, xScale, yScale, maleData, femaleData) {
     .append("circle")
     .attr("class", "dot female")
     .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
-    .attr("cy", d => yScale(d.enrollments))
     .attr("r", 6)
     .attr("fill", "#FF69B4")
     .attr("opacity", 0)
@@ -266,7 +266,7 @@ function drawFemalePoints(femaleDots, xScale, yScale, maleData, femaleData) {
     .on("mouseover", function (event, d) {
       tooltip
         .style("visibility", "visible")
-        .html(`Females: ${d.enrollments}`);
+        .html(getTooltipText(d, maleData, femaleData));
     })
     .on("mousemove", function (event) {
       tooltip
@@ -280,6 +280,7 @@ function drawFemalePoints(femaleDots, xScale, yScale, maleData, femaleData) {
     .delay((_, i) => i * 100)
     .duration(500)
     .ease(d3.easeCubicInOut)
+    .attr("cy", d => yScale(d.enrollments))
     .attr("opacity", 1);
 }
 

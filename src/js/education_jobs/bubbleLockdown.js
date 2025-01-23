@@ -107,7 +107,6 @@ function bubbleEnrollments() {
   svg.selectAll('.domain, .tick line')
     .attr('stroke', 'black');
 
-  console.log(d3.extent(lockdownPopulation, d => d.population))
   svg.selectAll("circle")
     .attr("fill", d => bubbleColorScale(d.population));
   // bubbles
