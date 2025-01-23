@@ -573,7 +573,10 @@ video {
 }
 
 .window{
+  display: flex;
   width: 1000px;
+  flex-direction: column;
+  align-items: center;
   border-radius: 0.5rem;
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
@@ -617,6 +620,10 @@ video {
 
 .relative{
   position: relative;
+}
+
+.inset-0{
+  inset: 0px;
 }
 
 .inset-x-0{
@@ -680,13 +687,29 @@ video {
   z-index: 10;
 }
 
+.z-50{
+  z-index: 50;
+}
+
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
 }
 
+.mb-2{
+  margin-bottom: 0.5rem;
+}
+
+.mb-6{
+  margin-bottom: 1.5rem;
+}
+
 .ml-16{
   margin-left: 4rem;
+}
+
+.ms-2\.5{
+  margin-inline-start: 0.625rem;
 }
 
 .ms-3{
@@ -797,6 +820,10 @@ video {
   max-width: 1280px;
 }
 
+.flex-1{
+  flex: 1 1 0%;
+}
+
 .-translate-x-1\/2{
   --tw-translate-x: -50%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -813,6 +840,16 @@ video {
 
 .transform-gpu{
   transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+@keyframes spin{
+  to{
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin{
+  animation: spin 1s linear infinite;
 }
 
 .flex-col{
@@ -1087,6 +1124,11 @@ video {
   color: rgb(0 0 0 / var(--tw-text-opacity, 1));
 }
 
+.text-gray-400{
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+}
+
 .text-gray-500{
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity, 1));
@@ -1102,13 +1144,30 @@ video {
   color: rgb(17 24 39 / var(--tw-text-opacity, 1));
 }
 
+.text-indigo-600{
+  --tw-text-opacity: 1;
+  color: rgb(79 70 229 / var(--tw-text-opacity, 1));
+}
+
 .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+.accent-blue-500{
+  accent-color: #3b82f6;
+}
+
+.opacity-25{
+  opacity: 0.25;
+}
+
 .opacity-30{
   opacity: 0.3;
+}
+
+.opacity-75{
+  opacity: 0.75;
 }
 
 .shadow{
@@ -1388,6 +1447,11 @@ body {
       background-color: transparent;
     }
 
+    .md\:dark\:text-blue-500{
+      --tw-text-opacity: 1;
+      color: rgb(59 130 246 / var(--tw-text-opacity, 1));
+    }
+
     .md\:dark\:text-white{
       --tw-text-opacity: 1;
       color: rgb(255 255 255 / var(--tw-text-opacity, 1));
@@ -1395,6 +1459,11 @@ body {
 
     .md\:dark\:hover\:bg-transparent:hover{
       background-color: transparent;
+    }
+
+    .md\:dark\:hover\:text-blue-500:hover{
+      --tw-text-opacity: 1;
+      color: rgb(59 130 246 / var(--tw-text-opacity, 1));
     }
 
     .md\:dark\:hover\:text-white:hover{
