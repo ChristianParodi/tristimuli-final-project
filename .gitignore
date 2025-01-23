@@ -2,3 +2,4 @@
 .DS_Store
 dataset/COVID/original dataset/covid_original.csv
 dataset/COVID/original_dataset/covid_original.csv
+src/.DS_Store

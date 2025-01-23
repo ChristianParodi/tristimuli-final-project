@@ -573,10 +573,7 @@ video {
 }
 
 .window{
-  display: flex;
   width: 1000px;
-  flex-direction: column;
-  align-items: center;
   border-radius: 0.5rem;
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
@@ -590,12 +587,6 @@ video {
   --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-@media (min-width: 640px){
-  .window{
-    width: 1000px;
-  }
 }
 
 .sr-only{
