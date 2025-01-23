@@ -262,7 +262,7 @@ function drawFemalePointsUnenploy(femaleDots, xScale, yScale) {
     .attr("class", "dot female")
     .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
     .attr("r", 6)
-    .attr("fill", "pink")
+    .attr("fill", "#FF69B4")
     .attr("opacity", 0)
     .raise()
     .merge(femaleDots)

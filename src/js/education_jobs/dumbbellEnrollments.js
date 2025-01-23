@@ -1,15 +1,13 @@
-import { covidDates, datasets } from '../utils.js'
+import { covidDates, datasets } from '../utils.js';
 
-function dumbbellUnenployments() {
-
+// Renamed for clarity
+function dumbbellEnrollments() {
   const educationData = datasets.educationData;
-
   const MAX_ENROLLMENTS_COUNTRY = "Germany";
   const years = d3.range(2016, 2023);
   let selectedCountry = "Italy";
   let selectedLevel = "Tertiary education (levels 5-8)";
   let selectedAge = "Total";
-  let sexIsTotal = false;
 
   const selector = d3.select("#country-selector-dumbbell-enrollments");
   const allCountries = Array.from(new Set(educationData.map(d => d.country)));
@@ -40,6 +38,7 @@ function dumbbellUnenployments() {
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom);
+
   const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
   const xScale = d3.scaleBand()
@@ -48,22 +47,22 @@ function dumbbellUnenployments() {
     .padding(0.2);
 
   const getMaxEnrollments = () => {
-    const targetCountry = (selectedCountry === "Turkey" || selectedCountry === "European Union") ? selectedCountry : MAX_ENROLLMENTS_COUNTRY;
+    const targetCountry = (selectedCountry === "Turkey" || selectedCountry === "European Union")
+      ? selectedCountry
+      : MAX_ENROLLMENTS_COUNTRY;
 
-    const maxEnr = d3.max(years, year => {
-      const yearData = processedData.filter(d => d.year === year && d.country === targetCountry && d.level === selectedLevel && d.age === selectedAge);
-      if (sexIsTotal) {
-        return d3.max(yearData, d => d.enrollments);
-      } else {
-        const maleEnrollments = d3.max(yearData.filter(d => d.sex === "Males"), d => d.enrollments);
-        const femaleEnrollments = d3.max(yearData.filter(d => d.sex === "Females"), d => d.enrollments);
-        return d3.max([maleEnrollments, femaleEnrollments]);
-      }
+    return d3.max(years, year => {
+      const yearData = processedData.filter(
+        d => d.year === year && d.country === targetCountry && d.level === selectedLevel && d.age === selectedAge
+      );
+      const maleEnrollments = d3.max(yearData.filter(d => d.sex === "Males"), d => d.enrollments);
+      const femaleEnrollments = d3.max(yearData.filter(d => d.sex === "Females"), d => d.enrollments);
+      return d3.max([maleEnrollments, femaleEnrollments]);
     });
-    return maxEnr;
   };
 
   const covidStartX = xScale(covidDates.start.getFullYear()) + xScale.bandwidth() / 2;
+  // We don't really use covidEndX since 2023 data is missing
   const covidEndX = xScale(covidDates.end.getFullYear()) + xScale.bandwidth() / 2;
 
   const yScale = d3.scaleLinear()
@@ -73,9 +72,7 @@ function dumbbellUnenployments() {
   g.append("g")
     .attr("class", "xaxis")
     .attr("transform", `translate(0,${height})`)
-    .call(d3.axisBottom(xScale)
-      .tickFormat(d3.format("d"))
-      .tickValues(years))
+    .call(d3.axisBottom(xScale).tickFormat(d3.format("d")).tickValues(years))
     .selectAll("text")
     .style("font-size", "14px")
     .style("fill", "black");
@@ -87,7 +84,6 @@ function dumbbellUnenployments() {
     .style("font-size", "14px")
     .style("fill", "black");
 
-  // Y label
   g.append("text")
     .attr("transform", "rotate(-90)")
     .attr("y", 0 - margin.left)
@@ -101,7 +97,7 @@ function dumbbellUnenployments() {
   function updateChart(country) {
     easeOutLines(g);
 
-    // covid lines
+    // Mark covid start
     g.append("line")
       .attr("x1", covidStartX)
       .attr("x2", covidStartX)
@@ -111,7 +107,6 @@ function dumbbellUnenployments() {
       .attr("stroke-width", 2)
       .attr("stroke-dasharray", "4");
 
-    // label
     g.append("text")
       .attr("x", covidStartX)
       .attr("y", -10)
@@ -120,14 +115,13 @@ function dumbbellUnenployments() {
       .style("font-size", "12px")
       .text("COVID Starts");
 
-    // we do not have 2023 (no covid ends)
-
-    const filteredData = processedData.filter(d => d.level === selectedLevel && d.country === country);
-    const maleData = filteredData.filter(d => d.sex === "Males" && d.age === "Total");
-    const femaleData = filteredData.filter(d => d.sex === "Females" && d.age === "Total");
+    const filteredData = processedData.filter(d =>
+      d.level === selectedLevel && d.country === country && d.age === selectedAge
+    );
+    const maleData = filteredData.filter(d => d.sex === "Males");
+    const femaleData = filteredData.filter(d => d.sex === "Females");
 
     yScale.domain([0, getMaxEnrollments()]);
-
     g.select(".yaxis")
       .transition()
       .duration(1000)
@@ -137,24 +131,18 @@ function dumbbellUnenployments() {
       .style("font-size", "14px")
       .style("fill", "black");
 
-    // set axis line and tick color to black
-    svg.selectAll('.domain, .tick line')
-      .attr('stroke', 'black');
+    svg.selectAll('.domain, .tick line').attr('stroke', 'black');
 
     femaleData.forEach((female, i) => {
       const male = maleData[i];
-      drawLines(g, male, female, xScale, yScale);
+      if (male && female) drawLines(g, male, female, xScale, yScale);
     });
 
-    const maleDots = g.selectAll(".dot.male")
-      .data(maleData);
+    const maleDots = g.selectAll(".dot.male").data(maleData);
+    drawMalePoints(maleDots, xScale, yScale, maleData, femaleData);
 
-    drawMalePoints(maleDots, xScale, yScale);
-
-    const femaleDots = g.selectAll(".dot.female")
-      .data(femaleData);
-
-    drawFemalePoints(femaleDots, xScale, yScale);
+    const femaleDots = g.selectAll(".dot.female").data(femaleData);
+    drawFemalePoints(femaleDots, xScale, yScale, maleData, femaleData);
   }
 
   updateChart(selectedCountry);
@@ -165,6 +153,7 @@ function dumbbellUnenployments() {
   });
 }
 
+// Removes old lines nicely
 function easeOutLines(g) {
   g.selectAll("line")
     .transition()
@@ -194,7 +183,6 @@ function easeOutLines(g) {
 
 function drawLines(g, male, female, xScale, yScale) {
   const middleY = (yScale(male.enrollments) + yScale(female.enrollments)) / 2;
-
   g.insert("line", ":first-child")
     .attr("x1", xScale(male.year) + xScale.bandwidth() / 2)
     .attr("y1", middleY)
@@ -212,38 +200,88 @@ function drawLines(g, male, female, xScale, yScale) {
     .attr("opacity", 1);
 }
 
-function drawMalePoints(maleDots, xScale, yScale) {
-  maleDots.enter().append("circle")
+const tooltip = d3.select("#dumbbell-enrollments")
+  .append("div")
+  .attr("class", "tooltip-dumbbell-enrollments")
+  .style("position", "absolute")
+  .style("visibility", "hidden")
+  .style("background", "#fff")
+  .style("border", "1px solid #ccc")
+  .style("padding", "6px")
+  .style("border-radius", "4px")
+  .style("color", "black");
+
+function getTooltipText(d, maleData, femaleData) {
+  const year = d.year;
+  const male = maleData.find(m => m.year === year);
+  const female = femaleData.find(f => f.year === year);
+  return `
+    Males: ${male ? male.enrollments : "N/A"}<br />
+    Females: ${female ? female.enrollments : "N/A"}
+  `;
+}
+
+function drawMalePoints(maleDots, xScale, yScale, maleData, femaleData) {
+  maleDots.enter()
+    .append("circle")
     .attr("class", "dot male")
     .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
+    .attr("cy", d => yScale(d.enrollments))
     .attr("r", 6)
     .attr("fill", "steelblue")
     .attr("opacity", 0)
     .raise()
     .merge(maleDots)
+    .on("mouseover", function (event, d) {
+      tooltip
+        .style("visibility", "visible")
+        .html(`Males: ${d.enrollments}`);
+    })
+    .on("mousemove", function (event) {
+      tooltip
+        .style("top", (event.pageY + 10) + "px")
+        .style("left", (event.pageX + 10) + "px");
+    })
+    .on("mouseout", function () {
+      tooltip.style("visibility", "hidden");
+    })
     .transition()
     .delay((_, i) => i * 100)
     .duration(500)
     .ease(d3.easeCubicInOut)
-    .attr("cy", d => yScale(d.enrollments))
     .attr("opacity", 1);
 }
 
-function drawFemalePoints(femaleDots, xScale, yScale) {
-  femaleDots.enter().append("circle")
+function drawFemalePoints(femaleDots, xScale, yScale, maleData, femaleData) {
+  femaleDots.enter()
+    .append("circle")
     .attr("class", "dot female")
     .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
+    .attr("cy", d => yScale(d.enrollments))
     .attr("r", 6)
-    .attr("fill", "pink")
+    .attr("fill", "#FF69B4")
     .attr("opacity", 0)
     .raise()
     .merge(femaleDots)
+    .on("mouseover", function (event, d) {
+      tooltip
+        .style("visibility", "visible")
+        .html(`Females: ${d.enrollments}`);
+    })
+    .on("mousemove", function (event) {
+      tooltip
+        .style("top", (event.pageY + 10) + "px")
+        .style("left", (event.pageX + 10) + "px");
+    })
+    .on("mouseout", function () {
+      tooltip.style("visibility", "hidden");
+    })
     .transition()
-    .delay((d, i) => i * 100)
+    .delay((_, i) => i * 100)
     .duration(500)
     .ease(d3.easeCubicInOut)
-    .attr("cy", d => yScale(d.enrollments))
     .attr("opacity", 1);
 }
 
-dumbbellUnenployments();
+// Call renamed function
+dumbbellEnrollments();
