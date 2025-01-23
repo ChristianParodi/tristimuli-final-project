@@ -120,24 +120,7 @@ function dumbbellUnenployments() {
       .style("font-size", "12px")
       .text("COVID Starts");
 
-    // we do not have 2023
-    // g.append("line")
-    //   .attr("x1", covidEndX)
-    //   .attr("x2", covidEndX)
-    //   .attr("y1", 0)
-    //   .attr("y2", height)
-    //   .attr("stroke", "black")
-    //   .attr("stroke-width", 2)
-    //   .attr("stroke-dasharray", "4");
-
-    // // label
-    // g.append("text")
-    //   .attr("x", covidEndX)
-    //   .attr("y", -10)
-    //   .attr("text-anchor", "middle")
-    //   .attr("fill", "black")
-    //   .style("font-size", "12px")
-    //   .text("COVID Ends");
+    // we do not have 2023 (no covid ends)
 
     const filteredData = processedData.filter(d => d.level === selectedLevel && d.country === country);
     const maleData = filteredData.filter(d => d.sex === "Males" && d.age === "Total");
@@ -153,6 +136,10 @@ function dumbbellUnenployments() {
       .selectAll("text")
       .style("font-size", "14px")
       .style("fill", "black");
+
+    // set axis line and tick color to black
+    svg.selectAll('.domain, .tick line')
+      .attr('stroke', 'black');
 
     femaleData.forEach((female, i) => {
       const male = maleData[i];

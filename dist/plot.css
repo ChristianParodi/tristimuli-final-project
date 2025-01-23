@@ -573,7 +573,7 @@ video {
 }
 
 .window{
-  width: 80%;
+  width: 1000px;
   border-radius: 0.5rem;
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));

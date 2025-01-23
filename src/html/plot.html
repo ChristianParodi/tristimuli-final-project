@@ -163,29 +163,41 @@
 
     </div>
 
-
-    <div id="section3" class="min-h-screen flex flex-col items-center justify-center">
+    <!-- Education & Jobs -->
+    <div id="section3" class="min-h-screen flex flex-col items-center justify-center gap-6">
       <h2 class="text-3xl font-semibold">Education & Jobs</h2>
-      <div class="flex flex-col">
-        <label for="country-selector-dumbbell-enrollments">Country</label>
-        <select id="country-selector-dumbbell-enrollments" class="text-black"></select>
-      </div>
       <!--DUMBBELLCHART 1-->
       <div class="window">
+        <h3 class="plot-title">COVID-19 impact on Education</h3>
+        <div class="flex flex-col">
+          <label for="country-selector-dumbbell-enrollments" class="text-black">Country</label>
+          <select id="country-selector-dumbbell-enrollments" class="select"></select>
+
+        </div>
         <div id="dumbbell-enrollments"></div>
       </div>
       <!--DUMBBELLCHART_END 1-->
-      <div class="flex flex-col mb-6">
-        <label for="country-selector-dumbbell-unenmployments">Country</label>
-        <select id="country-selector-dumbbell-unenmployments" class="text-black"></select>
-      </div>
-      <!--DUMBBELLCHART 2-->
+      <!-- DUMBBELLCHART 2 -->
       <div class="window">
+        <h3 class="plot-title">COVID-19 impact on Unenployment</h3>
+        <div class="flex flex-col mb-6">
+          <label for="country-selector-dumbbell-unenmployments" class="text-black">Country</label>
+          <select id="country-selector-dumbbell-unenmployments" class="select"></select>
+        </div>
         <div id="dumbbell-unenployments"></div>
       </div>
-      <!--DUMBBELLCHART_END 2-->
+      <!-- DUMBBELLCHART_END 2 -->
+      <!-- BUBBLE -->
+      <div class="window gap-12">
+        <h3 class="plot-title">Lockdown Impact on Education (2019-2021)</h3>
+        <div class="flex justify-center">
+          <div id="bubble-lockdown"></div>
+          <div id="bubble-lockdown-legend"></div>
+        </div>
+      </div>
+      <!-- BUBBLE END 2 -->
     </div>
-
+    <!-- Education & Jobs END -->
 
     <div id="section4" class="min-h-screen flex items-center justify-center">
       <h2 class="text-3xl font-semibold">Section 4</h2>
@@ -267,12 +279,12 @@
   <script src="./../js/covidspread/linechart.js"></script>
   <script src="./../js/covidspread/stackbarchart.js"></script>
   <script src="./../js/economy/bubblechart.js"></script>
-  <script src="./../js/lockdowns/bubbleEnrollments.js"></script>
   <script src="./../js/economy/butterflychart.js"></script>
 
   <!-- EDUCATION -->
   <script type="module" src="../js/education_jobs/dumbbellEnrollments.js"></script>
   <script type="module" src="../js/education_jobs/dumbbellUnenployment.js"></script>
+  <script type="module" src="../js/education_jobs/bubbleLockdown.js"></script>
 
   <!-- HEALTHCARE -->
   <script src="./../js/healthcare/waffleChartHealth.js"></script>
