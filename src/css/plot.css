@@ -7,14 +7,15 @@
 @layer components {
 
   .dotss {
-     @apply w-6 h-6 bg-gray-200 rounded-full border-2 border-gray-200 hover:bg-blue-400;
+    @apply w-6 h-6 bg-gray-200 rounded-full border-2 border-gray-200 hover:bg-blue-400;
   }
 
   .backgroundwindow {
     @apply bg-mfn_green bg-opacity-80 text-white rounded-lg shadow-lg p-10 text-center flex flex-col items-center justify-center w-full h-full;
   }
+
   .window {
-    @apply w-[1000px] sm:w-[1000px] bg-gray-50 p-8  rounded-lg shadow-lg hover:shadow-2xl ;
+    @apply flex flex-col items-center w-[1000px] sm:w-[1000px] bg-gray-50 p-8 rounded-lg shadow-lg hover:shadow-2xl;
   }
 
 }
@@ -23,11 +24,13 @@
 
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
+
 body {
   font-family: 'Roboto', sans-serif;
 }
+
 .dot {
-    transition: background-color 0.3s;
+  transition: background-color 0.3s;
 }
