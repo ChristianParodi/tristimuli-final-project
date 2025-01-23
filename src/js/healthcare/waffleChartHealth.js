@@ -1,4 +1,4 @@
-import { datasets } from "../utils";
+import { datasets } from "../utils.js";
 
 function waffleChart() {
     const deaths = datasets.mentalHealthData;
