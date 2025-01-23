@@ -40,6 +40,19 @@ function addLoaderListener() {
 }
 
 export const covidDates = {
-  start: new Date(2019, 10, 20),
+  start: new Date(2020, 1, 1),
   end: new Date(2023, 2, 5)
 };
+
+export const datasets = {
+  unenploymentData: await loadUnenploymentData(),
+  educationData: await loadEducationData(),
+}
+
+async function loadUnenploymentData() {
+  return await d3.csv("../../dataset/UNENPLOYMENT/clean/estat_une_rt_m_filtered.csv");
+}
+
+async function loadEducationData() {
+  return await d3.csv("../../dataset/EDUCATION/clean/estat_educ_uoe_enrt02.csv");
+}
