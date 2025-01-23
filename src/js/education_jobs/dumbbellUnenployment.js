@@ -4,7 +4,7 @@ function dumbbellUnenployments() {
 
   const unenmploymentData = datasets.unenploymentData;
 
-  const MAX_ENROLLMENTS_COUNTRY = "European Union";
+  const MAX_UNENPLOYMENT_COUNTRY = "European Union";
   const years = d3.range(2016, 2025);
   const months = d3.range(1, 13);
 
@@ -58,7 +58,7 @@ function dumbbellUnenployments() {
       return 8000;
     if (selectedCountry === "Turkey")
       return 3500;
-    if (selectedCountry !== MAX_ENROLLMENTS_COUNTRY)
+    if (selectedCountry !== MAX_UNENPLOYMENT_COUNTRY)
       return 2000;
 
     const maxVal = d3.max(years, year => {

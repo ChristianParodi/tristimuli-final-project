@@ -47,7 +47,22 @@ export const covidDates = {
 export const datasets = {
   unenploymentData: await loadUnenploymentData(),
   educationData: await loadEducationData(),
+  lockdownData: await loadLockdown()
 }
+
+export const europeanCountries = [
+  'Albania', 'Andorra', 'Austria', 'Belarus', 'Belgium', 'Bosnia and Herzegovina',
+  'Bulgaria', 'Croatia', 'Cyprus', 'Czech Republic', 'Denmark', 'Estonia',
+  'Finland', 'France', 'Germany', 'Greece', 'Guernsey', 'Hungary', 'Iceland',
+  'Ireland', 'Italy', 'Kosovo', 'Latvia', 'Liechtenstein', 'Lithuania',
+  'Luxembourg', 'Malta', 'Moldova', 'Monaco', 'Montenegro', 'Netherlands',
+  'North Macedonia', 'Norway', 'Poland', 'Portugal', 'Romania', 'San Marino',
+  'Serbia', 'Slovakia', 'Slovenia', 'Spain', 'Sweden',
+  'Switzerland', 'Turkey', 'Ukraine', 'United Kingdom'
+];
+
+export const population = await fetch("../../dataset/population.json")
+  .then(response => response.json());
 
 async function loadUnenploymentData() {
   return await d3.csv("../../dataset/UNENPLOYMENT/clean/estat_une_rt_m_filtered.csv");
@@ -55,4 +70,8 @@ async function loadUnenploymentData() {
 
 async function loadEducationData() {
   return await d3.csv("../../dataset/EDUCATION/clean/estat_educ_uoe_enrt02.csv");
+}
+
+async function loadLockdown() {
+  return await d3.csv("../../dataset/LOCKDOWN/clean/lockdonws_2022-08-25.csv");
 }
