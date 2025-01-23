@@ -158,7 +158,7 @@ function mapMercator() {
     dataSelector.addEventListener("change", updateMap);
 
     // Aggiungere un event listener per il selettore
-    console.log("yearSlider", yearSlider.node());
+
     yearSlider.node().addEventListener("input", function () {
       const date = new Date(+this.value);
       currentYear = date.getFullYear();
