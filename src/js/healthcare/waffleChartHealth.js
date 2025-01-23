@@ -13,7 +13,6 @@ function waffleChart() {
             });
         });
 
-        console.log(deaths);
 
         const ages = [...new Set(deaths.map(d => d.age))];
 
@@ -97,7 +96,6 @@ function waffleChart() {
         function updateWaffleChart(year, chart) {
 
             let active_categories = categories_checkbox.filter(d => d.checked).map(d => d.value);
-            console.log(active_categories);
 
             const currentCountry = deaths[0].country;
 
@@ -123,12 +121,8 @@ function waffleChart() {
             const percentage = filteredYearData.find(d => d.cause === category && d.sex == sex && d.age == age)[`percentage_${year}`];
             const numSquares = Math.round((percentage / 100) * (cols * cols));
             const waffleData = Array(cols * cols).fill(0).map((d, i) => i < numSquares ? 1 : 0);
-            if (chart === chart2) console.log(waffleData);
-
 
             // svg.select(`g:nth-child(${number})`).remove();
-            const chartNode = chart.node();
-            console.log(chartNode);
             chart.selectAll("rect")
                 .data(waffleData)
                 .attr("fill", d => d === 1 ? "lightblue" : "lightgrey");
