@@ -1,4 +1,4 @@
-import { covidDates, datasets } from '../utils.js'
+import { covidDates, datasets, population } from '../utils.js'
 
 function dumbbellUnemployment() {
 
@@ -33,12 +33,12 @@ function dumbbellUnemployment() {
         age: d.age,
         unit: d.unit,
         year: year,
-        value: meanValue
+        value: selectedUnit === "Thousand persons" ? meanValue * 1000 : meanValue
       };
     })
   );
 
-  const margin = { top: 20, right: 20, bottom: 40, left: 80 };
+  const margin = { top: 20, right: 100, bottom: 40, left: 120 };
   const width = 800 - margin.left - margin.right;
   const height = 600 - margin.top - margin.bottom;
 
@@ -54,25 +54,58 @@ function dumbbellUnemployment() {
     .padding(0.2);
 
   const getMaxValue = () => {
-    if (selectedCountry === "United States")
-      return 8000;
-    if (selectedCountry === "Turkey")
-      return 3500;
-    if (selectedCountry !== MAX_UNEMPLOYMENT_COUNTRY)
-      return 2000;
+    const countryUnemployment = {};
 
-    const maxVal = d3.max(years, year => {
-      const yearData = processedData.filter(d => d.year === year && d.country === selectedCountry && d.unit === selectedUnit && d.age === selectedAge);
-      if (sexIsTotal) {
-        return d3.max(yearData, d => d.value);
-      } else {
-        const maleValues = d3.max(yearData.filter(d => d.sex === "Males"), d => d.value);
-        const femaleValues = d3.max(yearData.filter(d => d.sex === "Females"), d => d.value);
-        return d3.max([maleValues, femaleValues]);
-      }
+    // Keep the years we are interested in
+    unenmploymentData.forEach(d => {
+      if (!countryUnemployment[d.country])
+        countryUnemployment[d.country] = [];
+
+      if (d.year >= 2016 && d.year <= 2024)
+        countryUnemployment[d.country].push(d.value);
     });
-    return maxVal;
-  };
+
+    const meanUnemployment = Object.entries(countryUnemployment).map(([country, unems]) => {
+      const meanUnem = d3.mean(unems);
+      return { country, meanUnem };
+    });
+
+    const unemploymentValues = meanUnemployment.map(d => d.meanUnem);
+    const [minUnem, maxUnem] = d3.extent(unemploymentValues);
+    const interval = (maxUnem - minUnem) / 3;
+
+    const lowUnemploymentCountries = meanUnemployment
+      .filter(d => d.meanUnem <= minUnem + interval)
+      .map(d => d.country);
+
+    const mediumUnemploymentCountries = meanUnemployment
+      .filter(d => d.meanUnem > minUnem + interval && d.meanUnem <= minUnem + 2 * interval)
+      .map(d => d.country);
+
+    const highUnemploymentCountries = meanUnemployment
+      .filter(d => d.meanUnem > minUnem + 2 * interval)
+      .map(d => d.country);
+
+    if (lowUnemploymentCountries.includes(selectedCountry)) {
+      return 500;
+    } else if (mediumUnemploymentCountries.includes(selectedCountry)) {
+      return 2000;
+    } else if (highUnemploymentCountries.includes(selectedCountry)) {
+      return 6000;
+    } else {
+      const maxVal = d3.max(years, year => {
+        const yearData = processedData.filter(d => d.year === year && d.country === selectedCountry && d.unit === selectedUnit && d.age === selectedAge);
+        if (sexIsTotal) {
+          return d3.max(yearData, d => d.value);
+        } else {
+          const maleValues = d3.max(yearData.filter(d => d.sex === "Males"), d => d.value);
+          const femaleValues = d3.max(yearData.filter(d => d.sex === "Females"), d => d.value);
+          return d3.max([maleValues, femaleValues]);
+        }
+      });
+      return maxVal;
+    }
+  }
 
   const yScale = d3.scaleLinear()
     .domain([0, getMaxValue()])
@@ -112,47 +145,13 @@ function dumbbellUnemployment() {
     .style("text-anchor", "middle")
     .style("fill", "black")
     .style("font-size", "18px")
-    .text("Unemployment (thousands persons)");
+    .text("Unemployment (n° people)");
 
   function updateChart(country) {
     easeOutLinesUnemploy(g);
-
+    removeCovidLines(g)
     // covid lines
-    g.append("line")
-      .attr("x1", covidStartX)
-      .attr("x2", covidStartX)
-      .attr("y1", 0)
-      .attr("y2", height)
-      .attr("stroke", "black")
-      .attr("stroke-width", 2)
-      .attr("stroke-dasharray", "4");
-
-    // label
-    g.append("text")
-      .attr("x", covidStartX)
-      .attr("y", -10)
-      .attr("text-anchor", "middle")
-      .attr("fill", "black")
-      .style("font-size", "12px")
-      .text("COVID Starts");
-
-    g.append("line")
-      .attr("x1", covidEndX)
-      .attr("x2", covidEndX)
-      .attr("y1", 0)
-      .attr("y2", height)
-      .attr("stroke", "black")
-      .attr("stroke-width", 2)
-      .attr("stroke-dasharray", "4");
-
-    // label
-    g.append("text")
-      .attr("x", covidEndX)
-      .attr("y", -10)
-      .attr("text-anchor", "middle")
-      .attr("fill", "black")
-      .style("font-size", "12px")
-      .text("COVID Ends");
+    drawCovidLines(g, covidStartX, height, covidEndX);
 
     const filteredData = processedData.filter(d => d.country === country && d.unit === selectedUnit && d.age === selectedAge);
     const maleData = filteredData.filter(d => d.sex === "Males");
@@ -169,20 +168,21 @@ function dumbbellUnemployment() {
       .style("font-size", "14px")
       .style("fill", "black");
 
+    // vertical lines
     femaleData.forEach((female, i) => {
       const male = maleData[i];
-      drawLinesunemploy(g, male, female, xScale, yScale);
+      drawLinesUnemploy(g, male, female, xScale, yScale);
     });
 
     const maleDots = g.selectAll(".dot.male")
       .data(maleData);
 
-    drawMalePointsunemploy(maleDots, xScale, yScale);
+    drawMalePointsUnemploy(maleDots, xScale, yScale);
 
     const femaleDots = g.selectAll(".dot.female")
       .data(femaleData);
 
-    drawFemalePointsunemploy(femaleDots, xScale, yScale);
+    drawFemalePointsUnemploy(femaleDots, xScale, yScale);
   }
 
   updateChart(selectedCountry);
@@ -191,6 +191,58 @@ function dumbbellUnemployment() {
     selectedCountry = this.value;
     updateChart(this.value);
   });
+}
+
+function drawCovidLines(g, covidStartX, height, covidEndX) {
+  g.append("line")
+    .attr("x1", covidStartX)
+    .attr("x2", covidStartX)
+    .attr("y1", 0)
+    .attr("y2", height)
+    .attr("stroke", "black")
+    .attr("stroke-width", 2)
+    .attr("stroke-dasharray", "4");
+
+  // label
+  g.append("text")
+    .attr("x", covidStartX)
+    .attr("y", -10)
+    .attr("text-anchor", "middle")
+    .attr("fill", "black")
+    .style("font-size", "12px")
+    .text("COVID Starts");
+
+  g.append("line")
+    .attr("x1", covidEndX)
+    .attr("x2", covidEndX)
+    .attr("y1", 0)
+    .attr("y2", height)
+    .attr("stroke", "black")
+    .attr("stroke-width", 2)
+    .attr("stroke-dasharray", "4");
+
+  // label
+  g.append("text")
+    .attr("x", covidEndX)
+    .attr("y", -10)
+    .attr("text-anchor", "middle")
+    .attr("fill", "black")
+    .style("font-size", "12px")
+    .text("COVID Ends");
+}
+
+function removeCovidLines(g) {
+  g.selectAll("line")
+    .filter(function () {
+      return d3.select(this).attr("stroke-dasharray") === "4";
+    })
+    .remove();
+
+  g.selectAll("text")
+    .filter(function () {
+      return d3.select(this).text().includes("COVID");
+    })
+    .remove();
 }
 
 function easeOutLinesUnemploy(g) {
@@ -220,7 +272,7 @@ function easeOutLinesUnemploy(g) {
     .remove();
 }
 
-function drawLinesunemploy(g, male, female, xScale, yScale) {
+function drawLinesUnemploy(g, male, female, xScale, yScale) {
   const middleY = (yScale(male.value) + yScale(female.value)) / 2;
 
   g.insert("line", ":first-child")
@@ -240,8 +292,8 @@ function drawLinesunemploy(g, male, female, xScale, yScale) {
     .attr("opacity", 1);
 }
 
-function drawMalePointsunemploy(maleDots, xScale, yScale) {
-  maleDots.enter().append("circle")
+function drawMalePointsUnemploy(maleDots, xScale, yScale) {
+  maleDots.enter().insert("circle", ":first-child")
     .attr("class", "dot male")
     .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
     .attr("r", 6)
@@ -257,7 +309,7 @@ function drawMalePointsunemploy(maleDots, xScale, yScale) {
     .attr("opacity", 1);
 }
 
-function drawFemalePointsunemploy(femaleDots, xScale, yScale) {
+function drawFemalePointsUnemploy(femaleDots, xScale, yScale) {
   femaleDots.enter().append("circle")
     .attr("class", "dot female")
     .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)

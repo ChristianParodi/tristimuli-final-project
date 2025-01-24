@@ -30,7 +30,7 @@ function dumbbellEnrollments() {
     }))
   );
 
-  const margin = { top: 20, right: 20, bottom: 40, left: 120 };
+  const margin = { top: 25, right: 20, bottom: 40, left: 120 };
   const width = 800 - margin.left - margin.right;
   const height = 600 - margin.top - margin.bottom;
 
@@ -139,10 +139,88 @@ function dumbbellEnrollments() {
     });
 
     const maleDots = g.selectAll(".dot.male").data(maleData);
-    drawMalePoints(maleDots, xScale, yScale, maleData, femaleData);
+    // male dots
+    maleDots.enter()
+      .append("circle")
+      .attr("class", "dot male")
+      .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
+      .attr("r", 6)
+      .attr("fill", "steelblue")
+      .attr("opacity", 0)
+      .raise()
+      .merge(maleDots)
+      .on("mouseover", function (_, d) {
+        tooltip
+          .style("visibility", "visible")
+          .html(`<span style='color: steelblue;'>${d.enrollments.toLocaleString()}</span>`)
+          .style("opacity", 0)
+          .transition()
+          .duration(300)
+          .style("opacity", 1)
+      })
+      .on("mousemove", function (_, d) {
+        const svgTop = svg.node().getBoundingClientRect().top + window.scrollY;
+        const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
 
+        tooltip
+          .style('left', `${svgLeft + margin.left + xScale(d.year)}px`)
+          .style('top', `${svgTop + margin.bottom + yScale(d.enrollments)}px`)
+      })
+      .on("mouseout", function () {
+        tooltip
+          .style("visibility", "hidden")
+          .style("opacity", 1)
+          .transition()
+          .duration(300)
+          .style("opacity", 0)
+      })
+      .transition()
+      .delay((_, i) => i * 100)
+      .duration(500)
+      .ease(d3.easeCubicInOut)
+      .attr("cy", d => yScale(d.enrollments))
+      .attr("opacity", 1);
+
+    // female dots
     const femaleDots = g.selectAll(".dot.female").data(femaleData);
-    drawFemalePoints(femaleDots, xScale, yScale, maleData, femaleData);
+    femaleDots.enter()
+      .append("circle")
+      .attr("class", "dot female")
+      .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
+      .attr("r", 6)
+      .attr("fill", "#FF69B4")
+      .attr("opacity", 0)
+      .raise()
+      .merge(femaleDots)
+      .on("mouseover", function (_, d) {
+        tooltip
+          .style("visibility", "visible")
+          .style("opacity", 0)
+          .html(`<span style='color: #FF69B4;'>${d.enrollments.toLocaleString()}</span>`)
+          .transition()
+          .duration(300)
+          .style("opacity", 1)
+      })
+      .on("mousemove", function (_, d) {
+        const svgTop = svg.node().getBoundingClientRect().top + window.scrollY;
+        const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
+        tooltip
+          .style('left', `${svgLeft + margin.left + xScale(d.year)}px`)
+          .style('top', `${svgTop - margin.top + yScale(d.enrollments)}px`)
+      })
+      .on("mouseout", function () {
+        tooltip
+          .style("visibility", "hidden")
+          .transition()
+          .duration(300)
+          .style("opacity", 1)
+      })
+      .transition()
+      .delay((_, i) => i * 100)
+      .duration(500)
+      .ease(d3.easeCubicInOut)
+      .attr("cy", d => yScale(d.enrollments))
+      .attr("opacity", 1);
   }
 
   updateChart(selectedCountry);
@@ -210,79 +288,6 @@ const tooltip = d3.select("#dumbbell-enrollments")
   .style("padding", "6px")
   .style("border-radius", "4px")
   .style("color", "black");
-
-function getTooltipText(d, maleData, femaleData) {
-  const year = d.year;
-  const male = maleData.find(m => m.year === year);
-  const female = femaleData.find(f => f.year === year);
-  return `
-    Males: ${male ? male.enrollments : "N/A"}<br />
-    Females: ${female ? female.enrollments : "N/A"}
-  `;
-}
-
-function drawMalePoints(maleDots, xScale, yScale, maleData, femaleData) {
-  maleDots.enter()
-    .append("circle")
-    .attr("class", "dot male")
-    .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
-    .attr("r", 6)
-    .attr("fill", "steelblue")
-    .attr("opacity", 0)
-    .raise()
-    .merge(maleDots)
-    .on("mouseover", function (event, d) {
-      console.log(getTooltipText(d, maleData, femaleData))
-      tooltip
-        .style("visibility", "visible")
-        .html(getTooltipText(d, maleData, femaleData));
-    })
-    .on("mousemove", function (event) {
-      tooltip
-        .style("top", (event.pageY + 10) + "px")
-        .style("left", (event.pageX + 10) + "px");
-    })
-    .on("mouseout", function () {
-      tooltip.style("visibility", "hidden");
-    })
-    .transition()
-    .delay((_, i) => i * 100)
-    .duration(500)
-    .ease(d3.easeCubicInOut)
-    .attr("cy", d => yScale(d.enrollments))
-    .attr("opacity", 1);
-}
-
-function drawFemalePoints(femaleDots, xScale, yScale, maleData, femaleData) {
-  femaleDots.enter()
-    .append("circle")
-    .attr("class", "dot female")
-    .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
-    .attr("r", 6)
-    .attr("fill", "#FF69B4")
-    .attr("opacity", 0)
-    .raise()
-    .merge(femaleDots)
-    .on("mouseover", function (event, d) {
-      tooltip
-        .style("visibility", "visible")
-        .html(getTooltipText(d, maleData, femaleData));
-    })
-    .on("mousemove", function (event) {
-      tooltip
-        .style("top", (event.pageY + 10) + "px")
-        .style("left", (event.pageX + 10) + "px");
-    })
-    .on("mouseout", function () {
-      tooltip.style("visibility", "hidden");
-    })
-    .transition()
-    .delay((_, i) => i * 100)
-    .duration(500)
-    .ease(d3.easeCubicInOut)
-    .attr("cy", d => yScale(d.enrollments))
-    .attr("opacity", 1);
-}
 
 // Call renamed function
 dumbbellEnrollments();
