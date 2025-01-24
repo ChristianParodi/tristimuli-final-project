@@ -3,7 +3,6 @@ import { covidDates, datasets } from '../utils.js';
 // Renamed for clarity
 function dumbbellEnrollments() {
   const educationData = datasets.educationData;
-  const MAX_ENROLLMENTS_COUNTRY = "Germany";
   const years = d3.range(2016, 2023);
   let selectedCountry = "Italy";
   let selectedLevel = "Tertiary education (levels 5-8)";
@@ -46,27 +45,16 @@ function dumbbellEnrollments() {
     .range([0, width])
     .padding(0.2);
 
-  const getMaxEnrollments = () => {
-    const targetCountry = (selectedCountry === "Turkey" || selectedCountry === "European Union")
-      ? selectedCountry
-      : MAX_ENROLLMENTS_COUNTRY;
-
-    return d3.max(years, year => {
-      const yearData = processedData.filter(
-        d => d.year === year && d.country === targetCountry && d.level === selectedLevel && d.age === selectedAge
-      );
-      const maleEnrollments = d3.max(yearData.filter(d => d.sex === "Males"), d => d.enrollments);
-      const femaleEnrollments = d3.max(yearData.filter(d => d.sex === "Females"), d => d.enrollments);
-      return d3.max([maleEnrollments, femaleEnrollments]);
-    });
+  const getMaxEnrollments = (country) => {
+    return d3.max(processedData.filter(d => d.country === country), d => d.enrollments)
   };
 
   const covidStartX = xScale(covidDates.start.getFullYear()) + xScale.bandwidth() / 2;
   // We don't really use covidEndX since 2023 data is missing
-  const covidEndX = xScale(covidDates.end.getFullYear()) + xScale.bandwidth() / 2;
+  // const covidEndX = xScale(covidDates.end.getFullYear()) + xScale.bandwidth() / 2;
 
   const yScale = d3.scaleLinear()
-    .domain([0, getMaxEnrollments()])
+    .domain([0, getMaxEnrollments(selectedCountry)])
     .range([height, 0]);
 
   g.append("g")
@@ -96,6 +84,14 @@ function dumbbellEnrollments() {
 
   function updateChart(country) {
     easeOutLines(g);
+    // remove total
+    g.selectAll('path')
+      .filter(function () {
+        return d3.select(this).attr('stroke') === 'green';
+      })
+      .transition()
+      .duration(200)
+      .remove()
 
     // Mark covid start
     g.append("line")
@@ -120,8 +116,9 @@ function dumbbellEnrollments() {
     );
     const maleData = filteredData.filter(d => d.sex === "Males");
     const femaleData = filteredData.filter(d => d.sex === "Females");
+    const totalData = filteredData.filter(d => d.sex === "Total")
 
-    yScale.domain([0, getMaxEnrollments()]);
+    yScale.domain([0, getMaxEnrollments(country)]);
     g.select(".yaxis")
       .transition()
       .duration(1000)
@@ -220,6 +217,67 @@ function dumbbellEnrollments() {
       .duration(500)
       .ease(d3.easeCubicInOut)
       .attr("cy", d => yScale(d.enrollments))
+      .attr("opacity", 1);
+
+    // total dots
+    const totalDots = g.selectAll(".dot.total").data(totalData);
+    totalDots.enter()
+      .append("circle")
+      .attr("class", "dot total")
+      .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
+      .attr("r", 6)
+      .attr("fill", "green")
+      .attr("opacity", 0)
+      .raise()
+      .merge(totalDots)
+      .on("mouseover", function (_, d) {
+        tooltip
+          .style("visibility", "visible")
+          .html(`<span style='color: green;'>${d.enrollments.toLocaleString()}</span>`)
+          .style("opacity", 0)
+          .transition()
+          .duration(300)
+          .style("opacity", 1)
+      })
+      .on("mousemove", function (_, d) {
+        const svgTop = svg.node().getBoundingClientRect().top + window.scrollY;
+        const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
+        tooltip
+          .style('left', `${svgLeft + margin.left + xScale(d.year)}px`)
+          .style('top', `${svgTop - margin.top + yScale(d.enrollments)}px`)
+      })
+      .on("mouseout", function () {
+        tooltip
+          .style("visibility", "hidden")
+          .transition()
+          .duration(300)
+          .style("opacity", 1)
+      })
+      .transition()
+      .delay((_, i) => i * 100)
+      .duration(500)
+      .ease(d3.easeCubicInOut)
+      .attr("cy", d => yScale(d.enrollments))
+      .attr("opacity", 1);
+
+    // Connect totalData points
+    const totalLine = d3.line()
+      .x(d => xScale(d.year) + xScale.bandwidth() / 2)
+      .y(d => yScale(d.enrollments));
+
+    g.append("path")
+      .datum(totalData)
+      .attr("fill", "none")
+      .attr("stroke", "green")
+      .attr("stroke-width", 2)
+      .attr("d", totalLine)
+      .attr("stroke-dasharray", function () { return this.getTotalLength(); })
+      .attr("stroke-dashoffset", function () { return this.getTotalLength(); })
+      .attr("opacity", 0)
+      .transition()
+      .duration(1000)
+      .delay(200)
+      .attr("stroke-dashoffset", 0)
       .attr("opacity", 1);
   }
 
