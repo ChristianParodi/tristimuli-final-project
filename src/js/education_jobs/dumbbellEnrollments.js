@@ -47,7 +47,6 @@ function dumbbellEnrollments() {
 
   const getMaxEnrollments = (country) => {
     const currentCountry = enrollemntQuantiles.find(d => d.country === country);
-    console.log(currentCountry)
     switch (currentCountry.enrollment_category) {
       case 'Extremely Low':
         return 20000;
@@ -138,9 +137,7 @@ function dumbbellEnrollments() {
     const maleData = filteredData.filter(d => d.sex === "Males");
     const femaleData = filteredData.filter(d => d.sex === "Females");
     const totalData = filteredData.filter(d => d.sex === "Total")
-    console.log(totalData)
 
-    console.log("total data:", totalData.map(d => d.enrollments).reduce((a, b) => a + b, 0))
     if (totalData.map(d => d.enrollments).reduce((a, b) => a + b, 0) === 0) {
       g.append("text")
         .attr("x", width / 2)

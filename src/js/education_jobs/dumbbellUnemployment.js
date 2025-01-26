@@ -1,4 +1,4 @@
-import { covidDates, datasets, population } from '../utils.js'
+import { covidDates, datasets, population, unemploymentQuantiles } from '../utils.js'
 
 function dumbbellUnemployment() {
 
@@ -14,7 +14,7 @@ function dumbbellUnemployment() {
   let sexIsTotal = false;
 
   const selector = d3.select("#country-selector-dumbbell-unemployments");
-  const allCountries = Array.from(new Set(unenmploymentData.map(d => d.country)));
+  const allCountries = Array.from(new Set(unenmploymentData.map(d => d.country))).sort();
 
   selector.selectAll("option")
     .data(allCountries)
@@ -38,7 +38,7 @@ function dumbbellUnemployment() {
     })
   );
 
-  const margin = { top: 20, right: 100, bottom: 40, left: 120 };
+  const margin = { top: 25, right: 100, bottom: 40, left: 120 };
   const width = 800 - margin.left - margin.right;
   const height = 600 - margin.top - margin.bottom;
 
@@ -53,62 +53,32 @@ function dumbbellUnemployment() {
     .range([0, width])
     .padding(0.2);
 
-  const getMaxValue = () => {
-    const countryUnemployment = {};
-
-    // Keep the years we are interested in
-    unenmploymentData.forEach(d => {
-      if (!countryUnemployment[d.country])
-        countryUnemployment[d.country] = [];
-
-      if (d.year >= 2016 && d.year <= 2024)
-        countryUnemployment[d.country].push(d.value);
-    });
-
-    const meanUnemployment = Object.entries(countryUnemployment).map(([country, unems]) => {
-      const meanUnem = d3.mean(unems);
-      return { country, meanUnem };
-    });
-
-    const unemploymentValues = meanUnemployment.map(d => d.meanUnem);
-    const [minUnem, maxUnem] = d3.extent(unemploymentValues);
-    const interval = (maxUnem - minUnem) / 3;
-
-    const lowUnemploymentCountries = meanUnemployment
-      .filter(d => d.meanUnem <= minUnem + interval)
-      .map(d => d.country);
-
-    const mediumUnemploymentCountries = meanUnemployment
-      .filter(d => d.meanUnem > minUnem + interval && d.meanUnem <= minUnem + 2 * interval)
-      .map(d => d.country);
-
-    const highUnemploymentCountries = meanUnemployment
-      .filter(d => d.meanUnem > minUnem + 2 * interval)
-      .map(d => d.country);
-
-    if (lowUnemploymentCountries.includes(selectedCountry)) {
-      return 500;
-    } else if (mediumUnemploymentCountries.includes(selectedCountry)) {
-      return 2000;
-    } else if (highUnemploymentCountries.includes(selectedCountry)) {
-      return 6000;
-    } else {
-      const maxVal = d3.max(years, year => {
-        const yearData = processedData.filter(d => d.year === year && d.country === selectedCountry && d.unit === selectedUnit && d.age === selectedAge);
-        if (sexIsTotal) {
-          return d3.max(yearData, d => d.value);
-        } else {
-          const maleValues = d3.max(yearData.filter(d => d.sex === "Males"), d => d.value);
-          const femaleValues = d3.max(yearData.filter(d => d.sex === "Females"), d => d.value);
-          return d3.max([maleValues, femaleValues]);
-        }
-      });
-      return maxVal;
+  const getMaxValue = (country) => {
+    const currentCountry = unemploymentQuantiles.find(d => d.country === country);
+    switch (currentCountry.unemployment_category) {
+      case 'Extremely Low':
+        return 58000;
+      case 'Very Low':
+        return 130400;
+      case 'Low':
+        return 218400;
+      case 'Medium Low':
+        return 266800;
+      case 'Medium':
+        return 301000;
+      case 'Medium High':
+        return 565000;
+      case 'High':
+        return 1064800;
+      case 'Very High':
+        return 1828800;
+      default:
+        return currentCountry.unemployment;
     }
-  }
+  };
 
   const yScale = d3.scaleLinear()
-    .domain([0, getMaxValue()])
+    .domain([0, getMaxValue(selectedCountry)])
     .range([height, 0]);
 
   g.append("g")
@@ -152,12 +122,21 @@ function dumbbellUnemployment() {
     removeCovidLines(g)
     // covid lines
     drawCovidLines(g, covidStartX, height, covidEndX);
+    // remove total
+    g.selectAll('path')
+      .filter(function () {
+        return d3.select(this).attr('stroke') === 'green';
+      })
+      .transition()
+      .duration(200)
+      .remove()
 
     const filteredData = processedData.filter(d => d.country === country && d.unit === selectedUnit && d.age === selectedAge);
     const maleData = filteredData.filter(d => d.sex === "Males");
     const femaleData = filteredData.filter(d => d.sex === "Females");
+    const totalData = filteredData.filter(d => d.sex === "Total")
 
-    yScale.domain([0, getMaxValue()]);
+    yScale.domain([0, getMaxValue(country)]);
 
     g.select(".yaxis")
       .transition()
@@ -177,12 +156,148 @@ function dumbbellUnemployment() {
     const maleDots = g.selectAll(".dot.male")
       .data(maleData);
 
-    drawMalePointsUnemploy(maleDots, xScale, yScale);
+    maleDots.enter().insert("circle", ":first-child")
+      .attr("class", "dot male")
+      .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
+      .attr("r", 6)
+      .attr("fill", "steelblue")
+      .attr("opacity", 0)
+      .raise()
+      .merge(maleDots)
+      .on("mouseover", function (_, d) {
+        tooltip
+          .style("visibility", "visible")
+          .html(`<span style='color: steelblue;'>${Math.round(d.value).toLocaleString()}</span>`)
+          .style("opacity", 0)
+          .transition()
+          .duration(300)
+          .style("opacity", 1)
+      })
+      .on("mousemove", function (_, d) {
+        const svgTop = svg.node().getBoundingClientRect().top + window.scrollY;
+        const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
+
+        tooltip
+          .style('left', `${svgLeft + margin.left + xScale(d.year) - 10}px`)
+          .style('top', `${svgTop + margin.top + yScale(d.value) - 50}px`)
+      })
+      .on("mouseout", function () {
+        tooltip
+          .style("visibility", "hidden")
+          .style("opacity", 1)
+          .transition()
+          .duration(300)
+          .style("opacity", 0)
+      })
+      .transition()
+      .delay((_, i) => i * 100)
+      .duration(500)
+      .ease(d3.easeCubicInOut)
+      .attr("cy", d => yScale(d.value))
+      .attr("opacity", 1);
 
     const femaleDots = g.selectAll(".dot.female")
       .data(femaleData);
 
-    drawFemalePointsUnemploy(femaleDots, xScale, yScale);
+    femaleDots.enter().append("circle")
+      .attr("class", "dot female")
+      .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
+      .attr("r", 6)
+      .attr("fill", "#FF69B4")
+      .attr("opacity", 0)
+      .raise()
+      .merge(femaleDots)
+      .on("mouseover", function (_, d) {
+        tooltip
+          .style("visibility", "visible")
+          .style("opacity", 0)
+          .html(`<span style='color: #FF69B4;'>${Math.round(d.value).toLocaleString()}</span>`)
+          .transition()
+          .duration(300)
+          .style("opacity", 1)
+      })
+      .on("mousemove", function (_, d) {
+        const svgTop = svg.node().getBoundingClientRect().top + window.scrollY;
+        const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
+        tooltip
+          .style('left', `${svgLeft + margin.left + xScale(d.year) - 10}px`)
+          .style('top', `${svgTop + margin.top + yScale(d.value) + 20}px`)
+      })
+      .on("mouseout", function () {
+        tooltip
+          .style("visibility", "hidden")
+          .transition()
+          .duration(300)
+          .style("opacity", 1)
+      })
+      .transition()
+      .delay((d, i) => i * 100)
+      .duration(500)
+      .ease(d3.easeCubicInOut)
+      .attr("cy", d => yScale(d.value))
+      .attr("opacity", 1);
+
+    // total dots
+    const totalDots = g.selectAll(".dot.total").data(totalData);
+
+    totalDots.enter()
+      .append("circle")
+      .attr("class", "dot total")
+      .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
+      .attr("r", 6)
+      .attr("fill", "green")
+      .attr("opacity", 0)
+      .raise()
+      .merge(totalDots)
+      .on("mouseover", function (_, d) {
+        tooltip
+          .style("visibility", "visible")
+          .html(`<span style='color: green;'>${d.value.toLocaleString()}</span>`)
+          .style("opacity", 0)
+          .transition()
+          .duration(300)
+          .style("opacity", 1)
+      })
+      .on("mousemove", function (_, d) {
+        const svgTop = svg.node().getBoundingClientRect().top + window.scrollY;
+        const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
+        tooltip
+          .style('left', `${svgLeft + margin.left + xScale(d.year)}px`)
+          .style('top', `${svgTop - margin.top + yScale(d.value)}px`)
+      })
+      .on("mouseout", function () {
+        tooltip
+          .style("visibility", "hidden")
+          .transition()
+          .duration(300)
+          .style("opacity", 1)
+      })
+      .transition()
+      .delay((_, i) => i * 100)
+      .duration(500)
+      .ease(d3.easeCubicInOut)
+      .attr("cy", d => yScale(d.value))
+      .attr("opacity", 1);
+
+    // Connect totalData points
+    const totalLine = d3.line()
+      .x(d => xScale(d.year) + xScale.bandwidth() / 2)
+      .y(d => yScale(d.value));
+
+    g.append("path")
+      .datum(totalData)
+      .attr("fill", "none")
+      .attr("stroke", "green")
+      .attr("stroke-width", 2)
+      .attr("d", totalLine)
+      .attr("stroke-dasharray", function () { return this.getTotalLength(); })
+      .attr("stroke-dashoffset", function () { return this.getTotalLength(); })
+      .attr("opacity", 0)
+      .transition()
+      .duration(1000)
+      .delay(200)
+      .attr("stroke-dashoffset", 0)
+      .attr("opacity", 1);
   }
 
   updateChart(selectedCountry);
@@ -292,38 +407,15 @@ function drawLinesUnemploy(g, male, female, xScale, yScale) {
     .attr("opacity", 1);
 }
 
-function drawMalePointsUnemploy(maleDots, xScale, yScale) {
-  maleDots.enter().insert("circle", ":first-child")
-    .attr("class", "dot male")
-    .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
-    .attr("r", 6)
-    .attr("fill", "steelblue")
-    .attr("opacity", 0)
-    .raise()
-    .merge(maleDots)
-    .transition()
-    .delay((_, i) => i * 100)
-    .duration(500)
-    .ease(d3.easeCubicInOut)
-    .attr("cy", d => yScale(d.value))
-    .attr("opacity", 1);
-}
-
-function drawFemalePointsUnemploy(femaleDots, xScale, yScale) {
-  femaleDots.enter().append("circle")
-    .attr("class", "dot female")
-    .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
-    .attr("r", 6)
-    .attr("fill", "#FF69B4")
-    .attr("opacity", 0)
-    .raise()
-    .merge(femaleDots)
-    .transition()
-    .delay((d, i) => i * 100)
-    .duration(500)
-    .ease(d3.easeCubicInOut)
-    .attr("cy", d => yScale(d.value))
-    .attr("opacity", 1);
-}
+const tooltip = d3.select("#dumbbell-unemployments")
+  .append("div")
+  .attr("class", "tooltip-dumbbell-unemployments")
+  .style("position", "absolute")
+  .style("visibility", "hidden")
+  .style("background", "#fff")
+  .style("border", "1px solid #ccc")
+  .style("padding", "6px")
+  .style("border-radius", "4px")
+  .style("color", "black");
 
 dumbbellUnemployment();

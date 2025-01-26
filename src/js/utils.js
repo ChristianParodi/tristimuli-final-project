@@ -68,6 +68,9 @@ export const population = await fetch("../../dataset/population.json")
 export const enrollemntQuantiles = await fetch("../../dataset/EDUCATION/clean/enrollmentQuantiles.json")
   .then(response => response.json());
 
+export const unemploymentQuantiles = await fetch("../../dataset/UNEMPLOYMENT/clean/unemploymentQuantiles.json")
+  .then(response => response.json());
+
 async function loadunemploymentData() {
   return await d3.csv("../../dataset/UNEMPLOYMENT/clean/estat_une_rt_m_filtered.csv");
 }
