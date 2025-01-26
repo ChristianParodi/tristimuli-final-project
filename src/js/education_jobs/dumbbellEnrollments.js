@@ -1,4 +1,4 @@
-import { covidDates, datasets } from '../utils.js';
+import { covidDates, datasets, enrollemntQuantiles } from '../utils.js';
 
 // Renamed for clarity
 function dumbbellEnrollments() {
@@ -46,7 +46,35 @@ function dumbbellEnrollments() {
     .padding(0.2);
 
   const getMaxEnrollments = (country) => {
-    return d3.max(processedData.filter(d => d.country === country), d => d.enrollments)
+    const currentCountry = enrollemntQuantiles.find(d => d.country === country);
+    switch (currentCountry.enrollment_category) {
+      case 'Extremely Low':
+        // Handle Extremely Low
+        return 20000;
+      case 'Very Low':
+        // Handle Very Low
+        return 50000;
+      case 'Low':
+        // Handle Low
+        return 100000;
+      case 'Medium Low':
+        // Handle Medium Low
+        return 300000;
+      case 'Medium':
+        // Handle Medium
+        return 500000;
+      case 'Medium High':
+        // Handle Medium High
+        return 1000000;
+      case 'High':
+        // Handle High
+        return 3000000;
+      case 'Very High':
+        // Handle Very High
+        return 8000000;
+      default:
+        return currentCountry.enrollments;
+    }
   };
 
   const covidStartX = xScale(covidDates.start.getFullYear()) + xScale.bandwidth() / 2;

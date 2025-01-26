@@ -65,6 +65,9 @@ export const europeanCountries = [
 export const population = await fetch("../../dataset/population.json")
   .then(response => response.json());
 
+export const enrollemntQuantiles = await fetch("../../dataset/EDUCATION/clean/enrollmentQuantiles.json")
+  .then(response => response.json());
+
 async function loadunemploymentData() {
   return await d3.csv("../../dataset/UNEMPLOYMENT/clean/estat_une_rt_m_filtered.csv");
 }

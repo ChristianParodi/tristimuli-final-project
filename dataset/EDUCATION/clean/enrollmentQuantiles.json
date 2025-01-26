@@ -1,0 +1,197 @@
+[
+  {
+    "country": "European Union",
+    "enrollments": 17803433.0,
+    "enrollment_category": "Extremely High"
+  },
+  {
+    "country": "Turkey",
+    "enrollments": 8296959.0,
+    "enrollment_category": "Extremely High"
+  },
+  {
+    "country": "Germany",
+    "enrollments": 3362739.0,
+    "enrollment_category": "Very High"
+  },
+  {
+    "country": "France",
+    "enrollments": 2883412.0,
+    "enrollment_category": "High"
+  },
+  {
+    "country": "Spain",
+    "enrollments": 2309272.0,
+    "enrollment_category": "High"
+  },
+  {
+    "country": "Italy",
+    "enrollments": 2145733.0,
+    "enrollment_category": "High"
+  },
+  {
+    "country": "Poland",
+    "enrollments": 1365740.0,
+    "enrollment_category": "High"
+  },
+  {
+    "country": "Greece",
+    "enrollments": 872828.0,
+    "enrollment_category": "Medium High"
+  },
+  {
+    "country": "Romania",
+    "enrollments": 554007.0,
+    "enrollment_category": "Medium High"
+  },
+  {
+    "country": "Belgium",
+    "enrollments": 549399.0,
+    "enrollment_category": "Medium High"
+  },
+  {
+    "country": "Sweden",
+    "enrollments": 484150.0,
+    "enrollment_category": "Medium"
+  },
+  {
+    "country": "Austria",
+    "enrollments": 439477.0,
+    "enrollment_category": "Medium"
+  },
+  {
+    "country": "Portugal",
+    "enrollments": 417215.0,
+    "enrollment_category": "Medium"
+  },
+  {
+    "country": "Switzerland",
+    "enrollments": 339009.0,
+    "enrollment_category": "Medium"
+  },
+  {
+    "country": "Czechia",
+    "enrollments": 337952.0,
+    "enrollment_category": "Medium"
+  },
+  {
+    "country": "Norway",
+    "enrollments": 320418.0,
+    "enrollment_category": "Medium"
+  },
+  {
+    "country": "Finland",
+    "enrollments": 315604.0,
+    "enrollment_category": "Medium"
+  },
+  {
+    "country": "Denmark",
+    "enrollments": 309576.0,
+    "enrollment_category": "Medium"
+  },
+  {
+    "country": "Hungary",
+    "enrollments": 293566.0,
+    "enrollment_category": "Medium Low"
+  },
+  {
+    "country": "Ireland",
+    "enrollments": 247231.0,
+    "enrollment_category": "Medium Low"
+  },
+  {
+    "country": "Serbia",
+    "enrollments": 243952.0,
+    "enrollment_category": "Medium Low"
+  },
+  {
+    "country": "Bulgaria",
+    "enrollments": 226981.0,
+    "enrollment_category": "Medium Low"
+  },
+  {
+    "country": "Croatia",
+    "enrollments": 161086.0,
+    "enrollment_category": "Medium Low"
+  },
+  {
+    "country": "Slovakia",
+    "enrollments": 140236.0,
+    "enrollment_category": "Medium Low"
+  },
+  {
+    "country": "Albania",
+    "enrollments": 123880.0,
+    "enrollment_category": "Medium Low"
+  },
+  {
+    "country": "Lithuania",
+    "enrollments": 104052.0,
+    "enrollment_category": "Medium Low"
+  },
+  {
+    "country": "Slovenia",
+    "enrollments": 81715.0,
+    "enrollment_category": "Low"
+  },
+  {
+    "country": "Bosnia and Herzegovina",
+    "enrollments": 79148.0,
+    "enrollment_category": "Low"
+  },
+  {
+    "country": "Latvia",
+    "enrollments": 77376.0,
+    "enrollment_category": "Low"
+  },
+  {
+    "country": "North Macedonia",
+    "enrollments": 56102.0,
+    "enrollment_category": "Low"
+  },
+  {
+    "country": "Cyprus",
+    "enrollments": 52996.0,
+    "enrollment_category": "Low"
+  },
+  {
+    "country": "Estonia",
+    "enrollments": 44319.0,
+    "enrollment_category": "Very Low"
+  },
+  {
+    "country": "Iceland",
+    "enrollments": 21882.0,
+    "enrollment_category": "Very Low"
+  },
+  {
+    "country": "Malta",
+    "enrollments": 19035.0,
+    "enrollment_category": "Extremely Low"
+  },
+  {
+    "country": "Luxembourg",
+    "enrollments": 7736.0,
+    "enrollment_category": "Extremely Low"
+  },
+  {
+    "country": "Liechtenstein",
+    "enrollments": 968.0,
+    "enrollment_category": "Extremely Low"
+  },
+  {
+    "country": "Netherlands",
+    "enrollments": 0.0,
+    "enrollment_category": "Extremely Low"
+  },
+  {
+    "country": "Montenegro",
+    "enrollments": 0.0,
+    "enrollment_category": "Extremely Low"
+  },
+  {
+    "country": "United Kingdom",
+    "enrollments": 0.0,
+    "enrollment_category": "Extremely Low"
+  }
+]
