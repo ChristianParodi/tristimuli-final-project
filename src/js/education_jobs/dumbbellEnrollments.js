@@ -9,7 +9,7 @@ function dumbbellEnrollments() {
   let selectedAge = "Total";
 
   const selector = d3.select("#country-selector-dumbbell-enrollments");
-  const allCountries = Array.from(new Set(educationData.map(d => d.country)));
+  const allCountries = Array.from(new Set(educationData.map(d => d.country))).sort();
 
   selector.selectAll("option")
     .data(allCountries)
@@ -47,30 +47,23 @@ function dumbbellEnrollments() {
 
   const getMaxEnrollments = (country) => {
     const currentCountry = enrollemntQuantiles.find(d => d.country === country);
+    console.log(currentCountry)
     switch (currentCountry.enrollment_category) {
       case 'Extremely Low':
-        // Handle Extremely Low
         return 20000;
       case 'Very Low':
-        // Handle Very Low
         return 50000;
       case 'Low':
-        // Handle Low
         return 100000;
       case 'Medium Low':
-        // Handle Medium Low
         return 300000;
       case 'Medium':
-        // Handle Medium
         return 500000;
       case 'Medium High':
-        // Handle Medium High
         return 1000000;
       case 'High':
-        // Handle High
         return 3000000;
       case 'Very High':
-        // Handle Very High
         return 8000000;
       default:
         return currentCountry.enrollments;
@@ -145,6 +138,19 @@ function dumbbellEnrollments() {
     const maleData = filteredData.filter(d => d.sex === "Males");
     const femaleData = filteredData.filter(d => d.sex === "Females");
     const totalData = filteredData.filter(d => d.sex === "Total")
+    console.log(totalData)
+
+    console.log("total data:", totalData.map(d => d.enrollments).reduce((a, b) => a + b, 0))
+    if (totalData.map(d => d.enrollments).reduce((a, b) => a + b, 0) === 0) {
+      g.append("text")
+        .attr("x", width / 2)
+        .attr("y", height / 2)
+        .attr("text-anchor", "middle")
+        .attr("fill", "red")
+        .style("font-size", "16px")
+        .text("No data available");
+      return;
+    }
 
     yScale.domain([0, getMaxEnrollments(country)]);
     g.select(".yaxis")
