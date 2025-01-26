@@ -45,6 +45,7 @@ function bubbleEnrollments() {
     };
   }).filter(d => !isNaN(d.lockdownDays));
 
+  console.log(data.map(d => d.country))
   // tooltip
   const tooltip = d3.select('#section3').append('div')
     .attr('class', 'tooltip-bubble-lockdown')
@@ -110,20 +111,14 @@ function bubbleEnrollments() {
   svg.selectAll("circle")
     .attr("fill", d => bubbleColorScale(d.population));
   // bubbles
-  svg.selectAll('circle')
+  const bubbleGroups = svg.selectAll('.bubble-group')
     .data(data)
-    .enter().append('circle')
-    .attr('cx', d => x(d.lockdownDays))
-    .attr('cy', d => y(d.enrollmentChange))
-    .attr('r', d => r(d.population))
-    .attr('fill', "steelblue")
-    .attr('stroke', 'black')
-    .attr('stroke-width', 1)
-    .attr('opacity', 0.8)
+    .enter().append('g')
+    .attr('class', 'bubble-group')
+    .attr('transform', d => `translate(${x(d.lockdownDays)}, ${y(d.enrollmentChange)})`)
     .on('mouseover', (_, d) => {
       const svgTop = svg.node().getBoundingClientRect().top + window.scrollY;
       const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
-
       tooltip.transition().duration(200).style('opacity', 0.9);
       const populationTooltip =
         d.population >= 1e9
@@ -145,6 +140,36 @@ function bubbleEnrollments() {
     .on('mouseout', () => {
       tooltip.transition().duration(500).style('opacity', 0);
     });
+
+  // flags
+  const defs = svg.append("defs");
+
+  // Create a clipPath for each country
+  defs.selectAll("clipPath")
+    .data(data)
+    .enter()
+    .append("clipPath")
+    .attr("id", d => `clip-${d.country.replace(/\s+/g, '-').toLowerCase()}`) // Unique ID
+    .append("circle")
+    .attr("r", d => r(d.population)) // Radius based on population or any other scaling
+    .attr("cx", 0)
+    .attr("cy", 0);
+
+  bubbleGroups.append('image')
+    .attr('xlink:href', d => `../html/components/flags/${d.country.toLowerCase()}.svg`)
+    .attr('width', d => r(d.population) * 3)
+    .attr('height', d => r(d.population) * 3)
+    .attr('x', d => -r(d.population) * 1.5)
+    .attr('y', d => -r(d.population) * 1.5)
+    .attr('clip-path', d => `url(#clip-${d.country.replace(/\s+/g, '-').toLowerCase()})`)
+    .attr('preserveAspectRatio', 'xMidYMid slice');
+
+  // Add border
+  bubbleGroups.append('circle')
+    .attr('r', d => r(d.population))
+    .attr('fill', 'none')
+    .attr('stroke', 'black')
+    .attr('stroke-width', 1);
 
   // X label
   svg.append('text')

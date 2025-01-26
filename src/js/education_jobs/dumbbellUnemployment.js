@@ -252,7 +252,7 @@ function dumbbellUnemployment() {
       .on("mouseover", function (_, d) {
         tooltip
           .style("visibility", "visible")
-          .html(`<span style='color: green;'>${d.value.toLocaleString()}</span>`)
+          .html(`<span style='color: green;'>${Math.round(d.value).toLocaleString()}</span>`)
           .style("opacity", 0)
           .transition()
           .duration(300)
