@@ -81,8 +81,8 @@ async function loadMentalHealth() {
 
 async function loadCovidData() {
   return {
-    cases: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_cases.csv"),
-    deaths: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_deaths.csv"),
-    vaccines: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_vaccines.csv"),
+    cases: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_cases_avg_year.csv"),
+    deaths: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_deaths_avg_year.csv"),
+    vaccines: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_vaccines_avg_year.csv"),
   }
 }
