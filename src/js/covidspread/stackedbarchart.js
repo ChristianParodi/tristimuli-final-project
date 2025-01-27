@@ -82,7 +82,7 @@ function groupedBarChart() {
         .filter(d => d.key === "cases")
         .transition()
         .duration(500)
-        .delay((d, i) => i * 20)
+        .delay((_, i) => i * 20)
         .attr("width", 0)
         .remove();
 
@@ -99,7 +99,7 @@ function groupedBarChart() {
 
       dataGroupEnter.merge(dataGroup)
         .selectAll("rect")
-        .data(d => subgroups.map(key => ({ key, value: d[key] })))
+        .data(d => subgroups.map(key => ({ country: d.country, key, value: d[key] })))
         .join(
           enter => enter.append("rect")
             .attr("y", d => subGroupScale(d.key))
@@ -115,7 +115,35 @@ function groupedBarChart() {
             .duration(500)
             .attr("width", d => xScale(d.value) - xScale(0)),
           exit => exit.remove()
-        );
+        ).on("mouseover", function (_, d) {
+          tooltip
+            .style("visibility", "visible")
+            .html(`
+          <strong>${d.country}</strong><br/>
+          Cases: ${Math.round(d.value).toLocaleString()}
+        `)
+            .style("opacity", 0)
+            .transition()
+            .duration(300)
+            .style("opacity", 1)
+        })
+        .on("mousemove", function (event, d) {
+          const svgTop = svg.node().getBoundingClientRect().top + window.scrollY;
+          const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
+
+          const offset = d.key === "cases" ? -25 : 0;
+          tooltip
+            .style('left', `${svgLeft + xScale(d.value) + 10}px`)
+            .style('top', `${svgTop + yScale(d.country) + offset}px`)
+        })
+        .on("mouseout", function () {
+          tooltip
+            .style("visibility", "hidden")
+            .style("opacity", 1)
+            .transition()
+            .duration(300)
+            .style("opacity", 0)
+        });
 
       // redraw x axis with synchronized delay
       svg.select("g")
@@ -135,7 +163,7 @@ function groupedBarChart() {
         .transition()
         .duration(500)
         .attr("width", d => xScale(d.value) - xScale(0));
-    } else {
+    } else { // we are on deaths
       xScale.domain([0, xMaxDeaths + 200000]);
       // Draw grouped bars with synchronized animation
       const dataGroup = svg.selectAll("g.data-group")
@@ -148,7 +176,7 @@ function groupedBarChart() {
 
       dataGroupEnter.merge(dataGroup)
         .selectAll("rect")
-        .data(d => subgroups.map(key => ({ key, value: d[key] })))
+        .data(d => subgroups.map(key => ({ country: d.country, key, value: d[key] })))
         .join(
           enter => enter.append("rect")
             .attr("y", d => subGroupScale(d.key))
@@ -163,7 +191,34 @@ function groupedBarChart() {
             .duration(500)
             .attr("width", d => xScale(d.key === "deaths" ? d.value : 0) - xScale(0)),
           exit => exit.remove()
-        );
+        ).on("mouseover", function (_, d) {
+          tooltip
+            .style("visibility", "visible")
+            .html(`
+          <strong>${d.country}</strong><br/>
+          Deaths: ${Math.round(d.value).toLocaleString()}
+        `)
+            .style("opacity", 0)
+            .transition()
+            .duration(300)
+            .style("opacity", 1)
+        })
+        .on("mousemove", function (event, d) {
+          const svgTop = svg.node().getBoundingClientRect().top + window.scrollY;
+          const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
+
+          tooltip
+            .style('left', `${svgLeft + xScale(d.value) + 10}px`)
+            .style('top', `${svgTop + yScale(d.country)}px`)
+        })
+        .on("mouseout", function () {
+          tooltip
+            .style("visibility", "hidden")
+            .style("opacity", 1)
+            .transition()
+            .duration(300)
+            .style("opacity", 0)
+        });
 
       // redraw x axis with synchronized delay
       svg.select("g")
@@ -191,26 +246,7 @@ function groupedBarChart() {
     .domain(subgroups)
     .range(["#ff514b", "#3f3f3f"]);
 
-  // first visualization
-  svg.append("g")
-    .selectAll("g")
-    .data(top10)
-    .enter()
-    .append("g")
-    .attr("transform", d => `translate(0, ${yScale(d.country)})`)
-    .selectAll("rect")
-    .data(d => subgroups.map(key => ({ key, value: d[key] })))
-    .enter()
-    .append("rect")
-    .attr("y", d => subGroupScale(d.key))
-    .attr("x", xScale(0))
-    .attr("height", subGroupScale.bandwidth())
-    .attr("width", 0)
-    .attr("fill", d => color(d.key))
-    .transition()
-    .duration(500)
-    .delay((d, i) => i * 20)
-    .attr("width", d => xScale(d.key === "deaths" ? d.value : 0) - xScale(0));
+  updateChart(false)
 
   d3.select("#barchart-covid-button").on("click", (event) => {
     const newText = isConfirmedCases ? "Confirmed cases" : "Confirmed deaths";
@@ -219,5 +255,17 @@ function groupedBarChart() {
     updateChart(isConfirmedCases)
   })
 }
+
+const tooltip = d3.select("#section1")
+  .append("div")
+  .attr("class", "tooltip-stacked-barchart")
+  .style("position", "absolute")
+  .style("background", "#fff")
+  .style("border", "1px solid #ccc")
+  .style("padding", "8px")
+  .style("border-radius", "4px")
+  .style("pointer-events", "none")
+  .style("opacity", 0)
+  .style("color", "black");
 
 groupedBarChart();
