@@ -223,35 +223,25 @@
       <!-- BUBBLECHART_END -->
       <!--WAFFLE CHART-->
       <div class="window">
-        <div id="waffle-options" class="flex justify-between">
+        <div id="waffle-options" class="options flex justify-between">
           <div id="waffle-categories" class="flex flex-col gap-1">
             <p class="text-black">Select the causes of deaths to show:</p>
             <div id="waffle-categories-options" class="flex gap-4">
               <div>
-                <label for="waffle-covid" class="text-black cursor-not-allowed">Covid</label>
+                <label for="waffle-covid" class="text-black cursor-pointer">Covid</label>
                 <input type="checkbox" id="waffle-covid" name="waffle-metric" value="COVID-19" checked
-                  class="cursor-not-allowed">
+                  class="cursor-pointer">
               </div>
               <div>
                 <label for="waffle-mental-disturb" class="text-black cursor-pointer">Mental and behavioural
                   disorders</label>
                 <input type="checkbox" id="waffle-mental-disturb" name="waffle-metric"
-                  value="Mental and behavioural disorders" class="cursor-pointer">
+                  value="Mental and behavioural disorders" class="cursor-pointer" checked>
               </div>
               <div>
-                <label for="waffle-self-harm" class="text-black cursor-pointer">Intentional self-Harm</label>
+                <label for="waffle-self-harm" class="text-black cursor-pointer">Intentional self-harm</label>
                 <input type="checkbox" id="waffle-self-harm" name="waffle-metric" value="Intentional self-harm"
-                  class="cursor-pointer">
-              </div>
-              <div>
-                <label for="waffle-drugs" class="text-black cursor-pointer">Drug dependence</label>
-                <input type="checkbox" id="waffle-drugs" name="waffle-metric" value="Drug dependence"
-                  class="cursor-pointer">
-              </div>
-              <div>
-                <label for="waffle-alcohol" class="text-black cursor-pointer">Use of alcohol</label>
-                <input type="checkbox" id="waffle-alcohol" name="waffle-metric" value="Use of alcohol"
-                  class="cursor-pointer">
+                  class="cursor-pointer" checked>
               </div>
             </div>
           </div>
@@ -263,7 +253,7 @@
             <p class="text-black">Filter by:</p>
           </div>
         </div>
-        <div id="waffle-years" class="flex gap-4">
+        <div id="waffle-years" class="w-full flex justify-around margin-top-4">
           <div>
             <label for="waffle-year-1" class="text-black">Year 1:</label>
             <select id="waffle-year-1" class="text-black"></select>
@@ -281,17 +271,17 @@
   </div>
   </div>
 
-  <script src="./../js/home.js"></script>
-  <script src="./../js/covidspread/map.js"></script>
-  <script src="./../js/covidspread/linechart.js"></script>
-  <script src="./../js/covidspread/stackbarchart.js"></script>
-  <script src="./../js/economy/bubblechart.js"></script>
-  <script src="./../js/economy/butterflychart.js"></script>
+  <!-- <script src="./../js/home.js"></script>
+    <script src="./../js/covidspread/map.js"></script>
+    <script src="./../js/covidspread/linechart.js"></script>
+    <script src="./../js/covidspread/stackbarchart.js"></script>
+    <script src="./../js/economy/bubblechart.js"></script>
+    <script src="./../js/economy/butterflychart.js"></script> -->
 
   <!-- EDUCATION -->
-  <script type="module" src="../js/education_jobs/dumbbellEnrollments.js"></script>
-  <script type="module" src="../js/education_jobs/dumbbellUnemployment.js"></script>
-  <script type="module" src="../js/education_jobs/bubbleLockdown.js"></script>
+  <!-- <script type="module" src="../js/education_jobs/dumbbellEnrollments.js"></script>
+    <script type="module" src="../js/education_jobs/dumbbellUnemployment.js"></script>
+    <script type="module" src="../js/education_jobs/bubbleLockdown.js"></script> -->
 
   <!-- HEALTHCARE -->
   <script type="module" src="./../js/healthcare/waffleChartHealth.js"></script>

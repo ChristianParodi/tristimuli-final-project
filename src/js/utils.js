@@ -78,5 +78,6 @@ async function loadLockdown() {
 }
 
 async function loadMentalHealth() {
-  return await d3.csv("./../../../dataset/MENTAL_HEALTH/clean/perc_estat_hlth_cd_aro.csv");
+  // return await d3.csv("./../../../dataset/MENTAL_HEALTH/clean/perc_estat_hlth_cd_aro.csv");
+  return await d3.csv("./../../../dataset/MENTAL_HEALTH/clean/melted_estat_hlth_cd_aro.csv");
 }
