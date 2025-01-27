@@ -2,20 +2,20 @@ import { datasets, population } from "../utils.js";
 
 function groupedBarChart() {
   let isConfirmedCases = false;
-  const covidCases = datasets.covidData.cases.filter(d => d.year == 2024);
-  const covidDeaths = datasets.covidData.deaths.filter(d => d.year == 2024);
+  const covidCases = datasets.covidData.cases.filter(d => +d.year === 2024);
+  const covidDeaths = datasets.covidData.deaths.filter(d => +d.year === 2024);
 
   const data = covidCases.map(caseItem => {
     const deathItem = covidDeaths.find(death => death.country === caseItem.country);
     return {
       country: caseItem.country,
-      cases: caseItem.cases,
-      deaths: deathItem ? deathItem.deaths : 0
+      cases: +caseItem.cases,
+      deaths: deathItem ? +deathItem.deaths : 0
     };
   });
 
   // top 10 countries by infected
-  const top10 = data.sort((a, b) => b.cases - a.cases).slice(0, 10); // Adjust slice if needed
+  const top10 = data.sort((a, b) => b.deaths - a.deaths).slice(0, 10); // Adjust slice if needed
 
   const width = 800;
   const height = 600; // Increased height for more bins
@@ -35,11 +35,11 @@ function groupedBarChart() {
   const subgroups = ["cases", "deaths"];
 
   // X scale 
-  const xMaxDeaths = d3.max(top10, d => d.deaths);
-  const xMaxCases = d3.max(top10, d => d.cases);
+  const xMaxDeaths = d3.max(top10, d => d.deaths) + 200000;
+  const xMaxCases = d3.max(top10, d => d.cases) + 200000;
 
   const xScale = d3.scaleLinear()
-    .domain([0, xMaxDeaths + 200000])
+    .domain([0, xMaxDeaths])
     .range([margin.left, width - margin.right]);
 
   // subGroup scale
@@ -51,7 +51,9 @@ function groupedBarChart() {
   // X axis
   svg.append("g")
     .attr("transform", `translate(0, ${height - margin.bottom})`)
-    .call(d3.axisBottom(xScale).ticks(10))
+    .call(d3.axisBottom(xScale)
+      .ticks(10)
+      .tickFormat(d3.format(".2s")))
     .style("color", "black")
     .selectAll("text")
     .style("fill", "black")
@@ -85,7 +87,7 @@ function groupedBarChart() {
         .remove();
 
     if (isConfirmedCases) {
-      xScale.domain([0, xMaxCases + 200000]);
+      xScale.domain([0, xMaxCases]);
       // Draw grouped bars with synchronized animation
       const dataGroup = svg.selectAll("g.data-group")
         .data(top10);
@@ -120,8 +122,10 @@ function groupedBarChart() {
         .transition()
         .duration(500)
         .delay(0)
-        .call(d3.axisBottom(xScale).ticks(10))
-        .style("color", "#ccc")
+        .call(d3.axisBottom(xScale)
+          .ticks(10)
+          .tickFormat(d3.format(".2s")))
+        .style("color", "black")
         .selectAll("text")
         .style("fill", "black")
         .style("font-size", "14px");
@@ -166,7 +170,9 @@ function groupedBarChart() {
         .transition()
         .duration(500)
         .delay(0)
-        .call(d3.axisBottom(xScale).ticks(10))
+        .call(d3.axisBottom(xScale)
+          .ticks(10)
+          .tickFormat(d3.format(".2s")))
         .style("color", "black")
         .selectAll("text")
         .style("fill", "black")
