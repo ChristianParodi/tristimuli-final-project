@@ -45,7 +45,6 @@ function bubbleEnrollments() {
     };
   }).filter(d => !isNaN(d.lockdownDays));
 
-  console.log(data.map(d => d.country))
   // tooltip
   const tooltip = d3.select('#section3').append('div')
     .attr('class', 'tooltip-bubble-lockdown')
@@ -59,9 +58,9 @@ function bubbleEnrollments() {
     .style('color', 'black');
 
   // dimensions
-  const width = 800;
-  const height = 600;
   const margin = { top: 30, right: 30, bottom: 50, left: 60 };
+  const width = 800 - margin.left - margin.right;
+  const height = 600 - margin.top - margin.bottom;
 
   // Create SVG
   const svg = d3.select('#bubble-lockdown')
@@ -128,10 +127,15 @@ function bubbleEnrollments() {
             : d.population >= 1e5
               ? (d.population / 1e3).toFixed(0) + 'k'
               : d.population.toLocaleString();
+      const enrollmentChangeTooltip =
+        d.enrollmentChange.toFixed(2).startsWith("-") ?
+          `<span style='color: red;'>${d.enrollmentChange.toFixed(2)}%</span>` :
+          `<span style='color: green;'>+${d.enrollmentChange.toFixed(2)}%</span>`;
+
       tooltip.html(`
         <strong>${d.country}</strong><br/>
         Population: ${populationTooltip}<br/>
-        Enrollment Change: ${d.enrollmentChange.toFixed(2)}%<br/>
+        Enrollment Change: ${enrollmentChangeTooltip}<br/>
         Lockdown days: ${d.lockdownDays}
       `)
         .style('left', `${svgLeft + x(d.lockdownDays) + r(d.population) + 10}px`)
