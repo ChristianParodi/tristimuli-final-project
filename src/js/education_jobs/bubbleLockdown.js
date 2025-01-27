@@ -58,9 +58,9 @@ function bubbleEnrollments() {
     .style('color', 'black');
 
   // dimensions
-  const width = 800;
-  const height = 600;
   const margin = { top: 30, right: 30, bottom: 50, left: 60 };
+  const width = 800 - margin.left - margin.right;
+  const height = 600 - margin.top - margin.bottom;
 
   // Create SVG
   const svg = d3.select('#bubble-lockdown')
@@ -110,20 +110,14 @@ function bubbleEnrollments() {
   svg.selectAll("circle")
     .attr("fill", d => bubbleColorScale(d.population));
   // bubbles
-  svg.selectAll('circle')
+  const bubbleGroups = svg.selectAll('.bubble-group')
     .data(data)
-    .enter().append('circle')
-    .attr('cx', d => x(d.lockdownDays))
-    .attr('cy', d => y(d.enrollmentChange))
-    .attr('r', d => r(d.population))
-    .attr('fill', "steelblue")
-    .attr('stroke', 'black')
-    .attr('stroke-width', 1)
-    .attr('opacity', 0.8)
+    .enter().append('g')
+    .attr('class', 'bubble-group')
+    .attr('transform', d => `translate(${x(d.lockdownDays)}, ${y(d.enrollmentChange)})`)
     .on('mouseover', (_, d) => {
       const svgTop = svg.node().getBoundingClientRect().top + window.scrollY;
       const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
-
       tooltip.transition().duration(200).style('opacity', 0.9);
       const populationTooltip =
         d.population >= 1e9
@@ -133,10 +127,15 @@ function bubbleEnrollments() {
             : d.population >= 1e5
               ? (d.population / 1e3).toFixed(0) + 'k'
               : d.population.toLocaleString();
+      const enrollmentChangeTooltip =
+        d.enrollmentChange.toFixed(2).startsWith("-") ?
+          `<span style='color: red;'>${d.enrollmentChange.toFixed(2)}%</span>` :
+          `<span style='color: green;'>+${d.enrollmentChange.toFixed(2)}%</span>`;
+
       tooltip.html(`
         <strong>${d.country}</strong><br/>
         Population: ${populationTooltip}<br/>
-        Enrollment Change: ${d.enrollmentChange.toFixed(2)}%<br/>
+        Enrollment Change: ${enrollmentChangeTooltip}<br/>
         Lockdown days: ${d.lockdownDays}
       `)
         .style('left', `${svgLeft + x(d.lockdownDays) + r(d.population) + 10}px`)
@@ -145,6 +144,36 @@ function bubbleEnrollments() {
     .on('mouseout', () => {
       tooltip.transition().duration(500).style('opacity', 0);
     });
+
+  // flags
+  const defs = svg.append("defs");
+
+  // Create a clipPath for each country
+  defs.selectAll("clipPath")
+    .data(data)
+    .enter()
+    .append("clipPath")
+    .attr("id", d => `clip-${d.country.replace(/\s+/g, '-').toLowerCase()}`) // Unique ID
+    .append("circle")
+    .attr("r", d => r(d.population)) // Radius based on population or any other scaling
+    .attr("cx", 0)
+    .attr("cy", 0);
+
+  bubbleGroups.append('image')
+    .attr('xlink:href', d => `../html/components/flags/${d.country.toLowerCase()}.svg`)
+    .attr('width', d => r(d.population) * 3)
+    .attr('height', d => r(d.population) * 3)
+    .attr('x', d => -r(d.population) * 1.5)
+    .attr('y', d => -r(d.population) * 1.5)
+    .attr('clip-path', d => `url(#clip-${d.country.replace(/\s+/g, '-').toLowerCase()})`)
+    .attr('preserveAspectRatio', 'xMidYMid slice');
+
+  // Add border
+  bubbleGroups.append('circle')
+    .attr('r', d => r(d.population))
+    .attr('fill', 'none')
+    .attr('stroke', 'black')
+    .attr('stroke-width', 1);
 
   // X label
   svg.append('text')

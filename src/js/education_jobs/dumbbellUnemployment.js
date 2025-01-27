@@ -1,4 +1,4 @@
-import { covidDates, datasets } from '../utils.js'
+import { covidDates, datasets, population, unemploymentQuantiles } from '../utils.js'
 
 function dumbbellUnemployment() {
 
@@ -14,7 +14,7 @@ function dumbbellUnemployment() {
   let sexIsTotal = false;
 
   const selector = d3.select("#country-selector-dumbbell-unemployments");
-  const allCountries = Array.from(new Set(unenmploymentData.map(d => d.country)));
+  const allCountries = Array.from(new Set(unenmploymentData.map(d => d.country))).sort();
 
   selector.selectAll("option")
     .data(allCountries)
@@ -33,12 +33,12 @@ function dumbbellUnemployment() {
         age: d.age,
         unit: d.unit,
         year: year,
-        value: meanValue
+        value: selectedUnit === "Thousand persons" ? meanValue * 1000 : meanValue
       };
     })
   );
 
-  const margin = { top: 20, right: 20, bottom: 40, left: 80 };
+  const margin = { top: 25, right: 100, bottom: 40, left: 120 };
   const width = 800 - margin.left - margin.right;
   const height = 600 - margin.top - margin.bottom;
 
@@ -53,29 +53,32 @@ function dumbbellUnemployment() {
     .range([0, width])
     .padding(0.2);
 
-  const getMaxValue = () => {
-    if (selectedCountry === "United States")
-      return 8000;
-    if (selectedCountry === "Turkey")
-      return 3500;
-    if (selectedCountry !== MAX_UNEMPLOYMENT_COUNTRY)
-      return 2000;
-
-    const maxVal = d3.max(years, year => {
-      const yearData = processedData.filter(d => d.year === year && d.country === selectedCountry && d.unit === selectedUnit && d.age === selectedAge);
-      if (sexIsTotal) {
-        return d3.max(yearData, d => d.value);
-      } else {
-        const maleValues = d3.max(yearData.filter(d => d.sex === "Males"), d => d.value);
-        const femaleValues = d3.max(yearData.filter(d => d.sex === "Females"), d => d.value);
-        return d3.max([maleValues, femaleValues]);
-      }
-    });
-    return maxVal;
+  const getMaxValue = (country) => {
+    const currentCountry = unemploymentQuantiles.find(d => d.country === country);
+    switch (currentCountry.unemployment_category) {
+      case 'Extremely Low':
+        return 58000;
+      case 'Very Low':
+        return 130400;
+      case 'Low':
+        return 218400;
+      case 'Medium Low':
+        return 266800;
+      case 'Medium':
+        return 301000;
+      case 'Medium High':
+        return 565000;
+      case 'High':
+        return 1064800;
+      case 'Very High':
+        return 1828800;
+      default:
+        return currentCountry.unemployment;
+    }
   };
 
   const yScale = d3.scaleLinear()
-    .domain([0, getMaxValue()])
+    .domain([0, getMaxValue(selectedCountry)])
     .range([height, 0]);
 
   g.append("g")
@@ -112,53 +115,28 @@ function dumbbellUnemployment() {
     .style("text-anchor", "middle")
     .style("fill", "black")
     .style("font-size", "18px")
-    .text("Unemployment (thousands persons)");
+    .text("Unemployment (n° people)");
 
   function updateChart(country) {
     easeOutLinesUnemploy(g);
-
+    removeCovidLines(g)
     // covid lines
-    g.append("line")
-      .attr("x1", covidStartX)
-      .attr("x2", covidStartX)
-      .attr("y1", 0)
-      .attr("y2", height)
-      .attr("stroke", "black")
-      .attr("stroke-width", 2)
-      .attr("stroke-dasharray", "4");
-
-    // label
-    g.append("text")
-      .attr("x", covidStartX)
-      .attr("y", -10)
-      .attr("text-anchor", "middle")
-      .attr("fill", "black")
-      .style("font-size", "12px")
-      .text("COVID Starts");
-
-    g.append("line")
-      .attr("x1", covidEndX)
-      .attr("x2", covidEndX)
-      .attr("y1", 0)
-      .attr("y2", height)
-      .attr("stroke", "black")
-      .attr("stroke-width", 2)
-      .attr("stroke-dasharray", "4");
-
-    // label
-    g.append("text")
-      .attr("x", covidEndX)
-      .attr("y", -10)
-      .attr("text-anchor", "middle")
-      .attr("fill", "black")
-      .style("font-size", "12px")
-      .text("COVID Ends");
+    drawCovidLines(g, covidStartX, height, covidEndX);
+    // remove total
+    g.selectAll('path')
+      .filter(function () {
+        return d3.select(this).attr('stroke') === 'green';
+      })
+      .transition()
+      .duration(200)
+      .remove()
 
     const filteredData = processedData.filter(d => d.country === country && d.unit === selectedUnit && d.age === selectedAge);
     const maleData = filteredData.filter(d => d.sex === "Males");
     const femaleData = filteredData.filter(d => d.sex === "Females");
+    const totalData = filteredData.filter(d => d.sex === "Total")
 
-    yScale.domain([0, getMaxValue()]);
+    yScale.domain([0, getMaxValue(country)]);
 
     g.select(".yaxis")
       .transition()
@@ -169,20 +147,157 @@ function dumbbellUnemployment() {
       .style("font-size", "14px")
       .style("fill", "black");
 
+    // vertical lines
     femaleData.forEach((female, i) => {
       const male = maleData[i];
-      drawLinesunemploy(g, male, female, xScale, yScale);
+      drawLinesUnemploy(g, male, female, xScale, yScale);
     });
 
     const maleDots = g.selectAll(".dot.male")
       .data(maleData);
 
-    drawMalePointsunemploy(maleDots, xScale, yScale);
+    maleDots.enter().insert("circle", ":first-child")
+      .attr("class", "dot male")
+      .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
+      .attr("r", 6)
+      .attr("fill", "steelblue")
+      .attr("opacity", 0)
+      .raise()
+      .merge(maleDots)
+      .on("mouseover", function (_, d) {
+        tooltip
+          .style("visibility", "visible")
+          .html(`<span style='color: steelblue;'>${Math.round(d.value).toLocaleString()}</span>`)
+          .style("opacity", 0)
+          .transition()
+          .duration(300)
+          .style("opacity", 1)
+      })
+      .on("mousemove", function (_, d) {
+        const svgTop = svg.node().getBoundingClientRect().top + window.scrollY;
+        const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
+
+        tooltip
+          .style('left', `${svgLeft + margin.left + xScale(d.year) - 10}px`)
+          .style('top', `${svgTop + margin.top + yScale(d.value) - 50}px`)
+      })
+      .on("mouseout", function () {
+        tooltip
+          .style("visibility", "hidden")
+          .style("opacity", 1)
+          .transition()
+          .duration(300)
+          .style("opacity", 0)
+      })
+      .transition()
+      .delay((_, i) => i * 100)
+      .duration(500)
+      .ease(d3.easeCubicInOut)
+      .attr("cy", d => yScale(d.value))
+      .attr("opacity", 1);
 
     const femaleDots = g.selectAll(".dot.female")
       .data(femaleData);
 
-    drawFemalePointsunemploy(femaleDots, xScale, yScale);
+    femaleDots.enter().append("circle")
+      .attr("class", "dot female")
+      .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
+      .attr("r", 6)
+      .attr("fill", "#FF69B4")
+      .attr("opacity", 0)
+      .raise()
+      .merge(femaleDots)
+      .on("mouseover", function (_, d) {
+        tooltip
+          .style("visibility", "visible")
+          .style("opacity", 0)
+          .html(`<span style='color: #FF69B4;'>${Math.round(d.value).toLocaleString()}</span>`)
+          .transition()
+          .duration(300)
+          .style("opacity", 1)
+      })
+      .on("mousemove", function (_, d) {
+        const svgTop = svg.node().getBoundingClientRect().top + window.scrollY;
+        const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
+        tooltip
+          .style('left', `${svgLeft + margin.left + xScale(d.year) - 10}px`)
+          .style('top', `${svgTop + margin.top + yScale(d.value) + 20}px`)
+      })
+      .on("mouseout", function () {
+        tooltip
+          .style("visibility", "hidden")
+          .transition()
+          .duration(300)
+          .style("opacity", 1)
+      })
+      .transition()
+      .delay((d, i) => i * 100)
+      .duration(500)
+      .ease(d3.easeCubicInOut)
+      .attr("cy", d => yScale(d.value))
+      .attr("opacity", 1);
+
+    // total dots
+    const totalDots = g.selectAll(".dot.total").data(totalData);
+
+    totalDots.enter()
+      .append("circle")
+      .attr("class", "dot total")
+      .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
+      .attr("r", 6)
+      .attr("fill", "green")
+      .attr("opacity", 0)
+      .raise()
+      .merge(totalDots)
+      .on("mouseover", function (_, d) {
+        tooltip
+          .style("visibility", "visible")
+          .html(`<span style='color: green;'>${Math.round(d.value).toLocaleString()}</span>`)
+          .style("opacity", 0)
+          .transition()
+          .duration(300)
+          .style("opacity", 1)
+      })
+      .on("mousemove", function (_, d) {
+        const svgTop = svg.node().getBoundingClientRect().top + window.scrollY;
+        const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
+        tooltip
+          .style('left', `${svgLeft + margin.left + xScale(d.year)}px`)
+          .style('top', `${svgTop - margin.top + yScale(d.value)}px`)
+      })
+      .on("mouseout", function () {
+        tooltip
+          .style("visibility", "hidden")
+          .transition()
+          .duration(300)
+          .style("opacity", 1)
+      })
+      .transition()
+      .delay((_, i) => i * 100)
+      .duration(500)
+      .ease(d3.easeCubicInOut)
+      .attr("cy", d => yScale(d.value))
+      .attr("opacity", 1);
+
+    // Connect totalData points
+    const totalLine = d3.line()
+      .x(d => xScale(d.year) + xScale.bandwidth() / 2)
+      .y(d => yScale(d.value));
+
+    g.append("path")
+      .datum(totalData)
+      .attr("fill", "none")
+      .attr("stroke", "green")
+      .attr("stroke-width", 2)
+      .attr("d", totalLine)
+      .attr("stroke-dasharray", function () { return this.getTotalLength(); })
+      .attr("stroke-dashoffset", function () { return this.getTotalLength(); })
+      .attr("opacity", 0)
+      .transition()
+      .duration(1000)
+      .delay(200)
+      .attr("stroke-dashoffset", 0)
+      .attr("opacity", 1);
   }
 
   updateChart(selectedCountry);
@@ -191,6 +306,58 @@ function dumbbellUnemployment() {
     selectedCountry = this.value;
     updateChart(this.value);
   });
+}
+
+function drawCovidLines(g, covidStartX, height, covidEndX) {
+  g.append("line")
+    .attr("x1", covidStartX)
+    .attr("x2", covidStartX)
+    .attr("y1", 0)
+    .attr("y2", height)
+    .attr("stroke", "black")
+    .attr("stroke-width", 2)
+    .attr("stroke-dasharray", "4");
+
+  // label
+  g.append("text")
+    .attr("x", covidStartX)
+    .attr("y", -10)
+    .attr("text-anchor", "middle")
+    .attr("fill", "black")
+    .style("font-size", "12px")
+    .text("COVID Starts");
+
+  g.append("line")
+    .attr("x1", covidEndX)
+    .attr("x2", covidEndX)
+    .attr("y1", 0)
+    .attr("y2", height)
+    .attr("stroke", "black")
+    .attr("stroke-width", 2)
+    .attr("stroke-dasharray", "4");
+
+  // label
+  g.append("text")
+    .attr("x", covidEndX)
+    .attr("y", -10)
+    .attr("text-anchor", "middle")
+    .attr("fill", "black")
+    .style("font-size", "12px")
+    .text("COVID Ends");
+}
+
+function removeCovidLines(g) {
+  g.selectAll("line")
+    .filter(function () {
+      return d3.select(this).attr("stroke-dasharray") === "4";
+    })
+    .remove();
+
+  g.selectAll("text")
+    .filter(function () {
+      return d3.select(this).text().includes("COVID");
+    })
+    .remove();
 }
 
 function easeOutLinesUnemploy(g) {
@@ -220,7 +387,7 @@ function easeOutLinesUnemploy(g) {
     .remove();
 }
 
-function drawLinesunemploy(g, male, female, xScale, yScale) {
+function drawLinesUnemploy(g, male, female, xScale, yScale) {
   const middleY = (yScale(male.value) + yScale(female.value)) / 2;
 
   g.insert("line", ":first-child")
@@ -240,38 +407,15 @@ function drawLinesunemploy(g, male, female, xScale, yScale) {
     .attr("opacity", 1);
 }
 
-function drawMalePointsunemploy(maleDots, xScale, yScale) {
-  maleDots.enter().append("circle")
-    .attr("class", "dot male")
-    .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
-    .attr("r", 6)
-    .attr("fill", "steelblue")
-    .attr("opacity", 0)
-    .raise()
-    .merge(maleDots)
-    .transition()
-    .delay((_, i) => i * 100)
-    .duration(500)
-    .ease(d3.easeCubicInOut)
-    .attr("cy", d => yScale(d.value))
-    .attr("opacity", 1);
-}
-
-function drawFemalePointsunemploy(femaleDots, xScale, yScale) {
-  femaleDots.enter().append("circle")
-    .attr("class", "dot female")
-    .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
-    .attr("r", 6)
-    .attr("fill", "#FF69B4")
-    .attr("opacity", 0)
-    .raise()
-    .merge(femaleDots)
-    .transition()
-    .delay((d, i) => i * 100)
-    .duration(500)
-    .ease(d3.easeCubicInOut)
-    .attr("cy", d => yScale(d.value))
-    .attr("opacity", 1);
-}
+const tooltip = d3.select("#dumbbell-unemployments")
+  .append("div")
+  .attr("class", "tooltip-dumbbell-unemployments")
+  .style("position", "absolute")
+  .style("visibility", "hidden")
+  .style("background", "#fff")
+  .style("border", "1px solid #ccc")
+  .style("padding", "6px")
+  .style("border-radius", "4px")
+  .style("color", "black");
 
 dumbbellUnemployment();
