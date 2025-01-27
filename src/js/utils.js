@@ -29,16 +29,6 @@ export async function includeHTML() {
   await Promise.all(fetchPromises);
 }
 
-function addLoaderListener() {
-  window.addEventListener('load', () => {
-    const loader = document.getElementById('loader');
-    console.log(loader)
-    if (loader) {
-      loader.style.display = 'none';
-    }
-  });
-}
-
 export const covidDates = {
   start: new Date(2020, 1, 1),
   end: new Date(2023, 2, 5)
@@ -48,7 +38,8 @@ export const datasets = {
   unemploymentData: await loadunemploymentData(),
   educationData: await loadEducationData(),
   lockdownData: await loadLockdown(),
-  mentalHealthData: await loadMentalHealth()
+  mentalHealthData: await loadMentalHealth(),
+  covidData: await loadCovidData()
 }
 
 export const europeanCountries = [
@@ -85,4 +76,12 @@ async function loadLockdown() {
 
 async function loadMentalHealth() {
   return await d3.csv("./../../../dataset/MENTAL_HEALTH/clean/perc_estat_hlth_cd_aro.csv");
+}
+
+async function loadCovidData() {
+  return {
+    cases: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_cases.csv"),
+    deaths: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_deaths.csv"),
+    vaccines: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_vaccines.csv"),
+  }
 }

@@ -50,7 +50,7 @@
     <!-- Content -->
     <div class="ml-16 w-full">
 
-      <div id="section1" class="min-h-screen flex flex-col items-center gap-8">
+      <div id="section1" class="min-h-screen flex flex-col items-center justify-center gap-6">
 
         <div class="flex flex-col gap-4 w-full max-w-4xl">
 
@@ -103,35 +103,26 @@
         </div>
         <!--LINECHART_END-->
 
-        <!--STACKBARCHART-->
-        <div class="flex flex-col gap-4 w-full max-w-4xl ">
-          <h1 class="text-4xl font-bold">Infection Trends by Top</h1>
-          <div class="window">
-            <div>
-              <label for="group" class=" text-black">Groups for:</label>
-              <select id="group" class=" text-black">
-                <option value="sesso">Sex</option>
-                <option value="età">Age</option>
-              </select>
-            </div>
-            <div>
-              <label for="metric" class=" text-black">Select type of data:</label>
-              <select id="metric" class=" text-black">
-                <option value="guarite">Guariti</option>
-                <option value="morte">Morte</option>
-                <option value="infette">Infetti</option>
-              </select>
-            </div>
-            <div id="stackbarchart_container"></div>
+        <!-- STACKEDBARCHART -->
+        <div class="window">
+          <h1 class="plot-title">Infection Trends by Top</h1>
+          <label for="group" class=" text-black">Groups for:</label>
+          <select id="group" class=" text-black">
+            <option value="sesso">Sex</option>
+            <option value="età">Age</option>
+          </select>
+          <div>
+            <label for="metric" class=" text-black">Select type of data:</label>
+            <select id="metric" class=" text-black">
+              <option value="guarite">Guariti</option>
+              <option value="morte">Morte</option>
+              <option value="infette">Infetti</option>
+            </select>
           </div>
+          <div id="barchart-covid-container"></div>
         </div>
-
-        <!--STACKBARCHART_END-->
-
+        <!-- STACKEDBARCHART END -->
       </div>
-
-
-
 
       <div id="section2" class="min-h-screen flex flex-col items-center gap-8">
 
@@ -282,9 +273,13 @@
     </div>
 
     <script src="./../js/home.js"></script>
+
+    <!-- COVID -->
     <script src="./../js/covidspread/map.js"></script>
     <script src="./../js/covidspread/linechart.js"></script>
-    <script src="./../js/covidspread/stackbarchart.js"></script>
+    <script type="module" src="./../js/covidspread/stackedbarchart.js"></script>
+
+    <!-- ECONOMY -->
     <script src="./../js/economy/bubblechart.js"></script>
     <script src="./../js/economy/butterflychart.js"></script>
 
