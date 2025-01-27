@@ -43,6 +43,10 @@ text {
   .plot-title {
     @apply text-black text-2xl font-bold;
   }
+
+  .options {
+    @apply flex justify-between items-center w-full border border-gray-300 p-5 rounded-2xl bg-[#EAF4FC];
+  }
 }
 
 
