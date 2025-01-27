@@ -80,7 +80,7 @@ function groupedBarChart() {
         .filter(d => d.key === "cases")
         .transition()
         .duration(500)
-        .delay(0)
+        .delay((d, i) => i * 20)
         .attr("width", 0)
         .remove();
 
@@ -130,7 +130,6 @@ function groupedBarChart() {
         .filter(d => d.key === "deaths")
         .transition()
         .duration(500)
-        .delay(0)
         .attr("width", d => xScale(d.value) - xScale(0));
     } else {
       xScale.domain([0, xMaxDeaths + 200000]);
