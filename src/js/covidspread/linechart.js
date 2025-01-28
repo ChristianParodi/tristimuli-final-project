@@ -1,8 +1,8 @@
-import { covidDates, datasets } from "../utils.js";
+import { covidDates, omicronRelease, datasets } from "../utils.js";
 
 function LineChart() {
+    // Actual plot
     const covidData = datasets.covidData.daily.cases;
-
     const groupedData = d3.group(covidData, d => d.country);
     const parsedData = Array.from(groupedData, ([country, values]) => {
         const monthlyGroups = d3.group(values, d => `${d.year}-${d.month}`);
@@ -14,7 +14,21 @@ function LineChart() {
         return { country, values: lastValues };
     });
 
-    const margin = { top: 20, right: 30, bottom: 50, left: 60 };
+    // Month slider setup
+    const monthSlider = d3.select("#linechart-covid-year-slider")
+        .attr("min", d3.min(covidData, d => new Date(d.year, d.month - 1)).getTime())
+        .attr("max", d3.max(covidData, d => new Date(d.year, d.month - 1)).getTime())
+        .attr("step", 1000 * 60 * 60 * 24 * 30) // Approximate step for one month
+        .on("input", function () {
+            const selectedDate = new Date(+this.value);
+            const filteredData = covidData.filter(d =>
+                new Date(d.year, d.month - 1).getTime() <= selectedDate.getTime()
+            );
+            console.log(selectedDate)
+            updateChart(filteredData);
+        });
+
+    const margin = { top: 80, right: 30, bottom: 50, left: 60 };
     const width = 800 - margin.left - margin.right;
     const height = 600 - margin.top - margin.bottom;
 
@@ -25,7 +39,6 @@ function LineChart() {
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    // X axis
     const x = d3.scaleTime()
         .domain(d3.extent(covidData, d => new Date(d.year, d.month - 1)))
         .range([0, width]);
@@ -33,22 +46,24 @@ function LineChart() {
         .ticks(d3.timeMonth.every(3))
         .tickFormat(d3.timeFormat("%b %Y"));
 
-    // draw X axis
+    // Y scale (domain will be set in updateChart)
+    const y = d3.scaleLinear().range([height, 0]);
+
+    // Grid group
+    const horizontalGrid = svg.append("g").attr("class", "grid-horizontal");
+
+    // Draw X axis
     svg.append("g")
         .attr("transform", `translate(0,${height})`)
+        .attr("class", "x-axis")
         .call(xAxis)
-        .selectAll(".domain, .tick line")
-        .style("stroke", "black")
+        .style("color", "black")
         .selectAll("text")
         .attr("transform", "rotate(-45)")
         .style("text-anchor", "end")
         .style("fill", "black");
 
-    // Y axis
-    const y = d3.scaleLinear()
-        .range([height, 0]);
-    const yAxisGroup = svg.append("g").attr("class", "y-axis");
-    const horizontalGrid = svg.append("g").attr("class", "grid-horizontal");
+    svg.selectAll(".x-axis path, .x-axis line").style("stroke", "black");
 
     const line = d3.line()
         .x(d => x(d.date))
@@ -65,7 +80,7 @@ function LineChart() {
         .style("display", "none")
         .style("font-size", "12px");
 
-    // covid starts
+    // COVID lines
     svg.append("line")
         .attr("x1", x(covidDates.start))
         .attr("y1", 0)
@@ -74,7 +89,13 @@ function LineChart() {
         .attr("stroke", "black")
         .attr("stroke-dasharray", "4");
 
-    // covid ends
+    svg.append("text")
+        .attr("x", x(covidDates.start))
+        .attr("y", -10)
+        .attr("text-anchor", "middle")
+        .style("fill", "black")
+        .text("COVID Starts");
+
     svg.append("line")
         .attr("x1", x(covidDates.end))
         .attr("y1", 0)
@@ -83,52 +104,100 @@ function LineChart() {
         .attr("stroke", "black")
         .attr("stroke-dasharray", "4");
 
+    svg.append("text")
+        .attr("x", x(covidDates.end))
+        .attr("y", -10)
+        .attr("text-anchor", "middle")
+        .style("fill", "black")
+        .text("COVID Ends");
+
+    // Omicron Release line
+    svg.append("line")
+        .attr("x1", x(omicronRelease))
+        .attr("y1", 0)
+        .attr("x2", x(omicronRelease))
+        .attr("y2", height)
+        .attr("stroke", "steelblue")
+        .attr("stroke-dasharray", "4");
+
+    svg.append("text")
+        .attr("x", x(omicronRelease))
+        .attr("y", -10)
+        .attr("text-anchor", "middle")
+        .style("fill", "steelblue")
+        .text("Omicron Variant");
+
     function updateChart(country) {
         const countryData = parsedData.find(d => d.country === country);
         const maxTotalCases = d3.max(countryData.values, d => d.total_cases);
         y.domain([0, maxTotalCases]).nice();
 
-        yAxisGroup.selectAll(".domain, .tick line").style("stroke", "black");
-        yAxisGroup.call(d3.axisLeft(y))
+        // Update Y axis instantly
+        const yAxis = svg.selectAll(".y-axis").data([null]);
+        yAxis.enter()
+            .append("g")
+            .attr("class", "y-axis")
+            .merge(yAxis)
+            .call(d3.axisLeft(y))
             .selectAll("text")
             .style("fill", "black");
 
-        horizontalGrid
-            .call(
-                d3.axisLeft(y)
-                    .tickSize(-width)
-                    .tickFormat("")
-            )
-            .selectAll("line")
-            .style("stroke", "#ccc")
-            .style("stroke-opacity", 0.7);
-        console.log(maxTotalCases)
+        svg.selectAll(".y-axis path, .y-axis line").style("stroke", "black");
+
+        // Remove old path/points
         svg.selectAll(".line").remove();
         svg.selectAll(".point").remove();
 
-        svg.append("path")
+        // Transition for horizontal grid
+        horizontalGrid
+            .transition()
+            .duration(500)
+            .call(d3.axisLeft(y).tickSize(-width).tickFormat(""))
+            .selectAll("line")
+            .style("stroke", "#ccc");
+
+        // Draw line with left-to-right animation
+        const path = svg.append("path")
             .datum(countryData.values)
             .attr("class", "line")
+            .attr("d", line)
             .attr("fill", "none")
-            .attr("stroke", "steelblue")
-            .attr("stroke-width", 2)
-            .attr("d", line);
+            .attr("stroke", "red")
+            .attr("stroke-width", 2);
 
+        const totalLength = path.node().getTotalLength();
+
+        path
+            .attr("stroke-dasharray", `${totalLength} ${totalLength}`)
+            .attr("stroke-dashoffset", totalLength)
+            .transition()
+            .duration(2000)
+            .ease(d3.easeLinear)
+            .attr("stroke-dashoffset", 0);
+
+        // Draw points in sync
         svg.selectAll(".point")
             .data(countryData.values)
             .enter()
             .append("circle")
             .attr("class", "point")
+            .attr("r", 4)
+            .attr("fill", "red")
             .attr("cx", d => x(d.date))
             .attr("cy", d => y(d.total_cases))
-            .attr("r", 4)
-            .attr("fill", "steelblue")
+            .attr("opacity", 0)
+            .transition()
+            .delay(d => (x(d.date) / width) * 2000)
+            .attr("opacity", 1);
+
+        // Tooltip events
+        svg.selectAll(".point")
             .on("mouseover", function (event, d) {
                 tooltip
                     .style("display", "block")
                     .style("color", "black")
                     .html(`Date: ${d.date.toLocaleDateString()}<br>Total Cases: ${d.total_cases}`);
-                d3.select(this).attr("r", 6).attr("fill", "orange");
+                d3.select(this).transition().attr("r", 6).attr("fill", "orange");
             })
             .on("mousemove", function (event) {
                 tooltip
@@ -136,16 +205,14 @@ function LineChart() {
                     .style("top", `${event.pageY - 20}px`);
             })
             .on("mouseout", function () {
-                tooltip
-                    .style("display", "none");
-                d3.select(this).attr("r", 4).attr("fill", "steelblue");
+                tooltip.style("display", "none");
+                d3.select(this).transition().attr("r", 4).attr("fill", "red");
             });
     }
 
-    const selector = d3.select("#country-selector")
-        .on("change", function () {
-            updateChart(this.value);
-        });
+    const selector = d3.select("#country-selector").on("change", function () {
+        updateChart(this.value);
+    });
 
     selector.selectAll("option")
         .data(parsedData.map(d => d.country))
