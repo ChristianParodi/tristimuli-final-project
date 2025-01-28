@@ -18,11 +18,11 @@
       shape-rendering: crispEdges;
     }
 
-      .grid path {
-        stroke-width: 0;
-      }
-    </style>
-  </head>
+    .grid path {
+      stroke-width: 0;
+    }
+  </style>
+</head>
 
 <body class="bg-blue-900 text-white min-h-screen flex">
 
@@ -87,27 +87,27 @@
       </div>
       <!--MAP_END-->
 
-        <!--LINECHART-->
-        <div class="window">
-          <h1 class="plot-title">Infection Trends by Country</h1>
-          <div>
-            <label for="country-selector" class=" text-black">Select country:</label>
-            <select id="country-selector" class=" text-black"></select>
-          </div>
-          <div id="linechart-covid"></div>
+      <!--LINECHART-->
+      <div class="window">
+        <h1 class="plot-title">Infection Trends by Country</h1>
+        <div>
+          <label for="country-selector" class=" text-black">Select country:</label>
+          <select id="country-selector" class=" text-black"></select>
         </div>
+        <div id="linechart-covid"></div>
+      </div>
 
-        <!--LINECHART_END-->
+      <!--LINECHART_END-->
 
-        <!-- STACKEDBARCHART -->
-        <div class="window">
-          <h1 class="plot-title">Infection Trends by Top</h1>
-          <!-- <label for="group" class=" text-black">Groups for:</label>
+      <!-- STACKEDBARCHART -->
+      <div class="window">
+        <h1 class="plot-title">Infection Trends by Top</h1>
+        <!-- <label for="group" class=" text-black">Groups for:</label>
           <select id="group" class=" text-black">
             <option value="sesso">Sex</option>
             <option value="età">Age</option>
           </select> -->
-          <!-- <div>
+        <!-- <div>
             <label for="metric" class=" text-black">Select type of data:</label>
             <select id="metric" class=" text-black">
               <option value="guarite">Guariti</option>
@@ -115,14 +115,14 @@
               <option value="infette">Infetti</option>
             </select>
           </div> -->
-          <button id="barchart-covid-button"
-            class="select p-2 hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
-            Confirmed cases
-          </button>
-          <div id="barchart-covid-container"></div>
-        </div>
-        <!-- STACKEDBARCHART END -->
+        <button id="barchart-covid-button"
+          class="select p-2 hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+          Confirmed cases
+        </button>
+        <div id="barchart-covid-container"></div>
       </div>
+      <!-- STACKEDBARCHART END -->
+    </div>
 
     <div id="section2" class="min-h-screen flex flex-col items-center gap-8">
 
@@ -262,7 +262,9 @@
       <div class="window">
         <h3 class="plot-title">Beeswarm title</h3>
         <div id="beeswarm-container">
-
+          <div>
+            <input type="range" id="beeswarm-slider" class="year-slider">
+          </div>
         </div>
       </div>
       <!-- BEESWARM END -->
@@ -272,14 +274,14 @@
 
 
 
-    <!-- COVID -->
-    <script src="./../js/covidspread/map.js"></script>
+  <!-- COVID -->
+  <!-- <script src="./../js/covidspread/map.js"></script>
     <script type="module" src="./../js/covidspread/linechart.js"></script>
-    <script type="module" src="./../js/covidspread/stackedbarchart.js"></script>
+    <script type="module" src="./../js/covidspread/stackedbarchart.js"></script> -->
 
-    <!-- ECONOMY -->
-    <script src="./../js/economy/bubblechart.js"></script>
-    <script src="./../js/economy/butterflychart.js"></script>
+  <!-- ECONOMY -->
+  <!-- <script src="./../js/economy/bubblechart.js"></script>
+    <script src="./../js/economy/butterflychart.js"></script> -->
 
   <!-- EDUCATION -->
   <!-- <script type="module" src="../js/education_jobs/dumbbellEnrollments.js"></script>
