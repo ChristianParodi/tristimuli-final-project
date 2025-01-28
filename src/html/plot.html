@@ -106,17 +106,17 @@
           <div id="linechart-covid"></div>
         </div>
 
-        <!--LINECHART_END-->
+      <!--LINECHART_END-->
 
-        <!-- STACKEDBARCHART -->
-        <div class="window">
-          <h1 class="plot-title">Infection Trends by Top</h1>
-          <!-- <label for="group" class=" text-black">Groups for:</label>
+      <!-- STACKEDBARCHART -->
+      <div class="window">
+        <h1 class="plot-title">Infection Trends by Top</h1>
+        <!-- <label for="group" class=" text-black">Groups for:</label>
           <select id="group" class=" text-black">
             <option value="sesso">Sex</option>
             <option value="età">Age</option>
           </select> -->
-          <!-- <div>
+        <!-- <div>
             <label for="metric" class=" text-black">Select type of data:</label>
             <select id="metric" class=" text-black">
               <option value="guarite">Guariti</option>
@@ -124,14 +124,14 @@
               <option value="infette">Infetti</option>
             </select>
           </div> -->
-          <button id="barchart-covid-button"
-            class="select p-2 hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
-            Confirmed cases
-          </button>
-          <div id="barchart-covid-container"></div>
-        </div>
-        <!-- STACKEDBARCHART END -->
+        <button id="barchart-covid-button"
+          class="select p-2 hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+          Confirmed cases
+        </button>
+        <div id="barchart-covid-container"></div>
       </div>
+      <!-- STACKEDBARCHART END -->
+    </div>
 
       <div id="section2" class="min-h-screen flex flex-col items-center gap-8">
 
@@ -215,80 +215,82 @@
 
         <!--HIGHLIGHTS_END-->
 
-      </div>
-      <div id="section5" class="min-h-screen flex flex-col items-center justify-center gap-6">
-        <h2 class="text-3xl font-semibold">Section 5</h2>
-        <!--BUBBLECHART-->
-        <div id="bubble-enrollments-container"></div>
-        <!-- BUBBLECHART_END -->
-        <!--WAFFLE CHART-->
-        <div class="window">
-          <h3 class="plot-title">Did COVID-19 affect the number of deaths for mental disorders?</h3>
-          <div id="waffle-options" class="options flex justify-between">
-            <div id="waffle-categories" class="flex flex-col gap-1">
-              <p class="text-black">Select the causes of deaths to show:</p>
-              <div id="waffle-categories-options" class="flex gap-4">
-                <div>
-                  <label for="waffle-covid" class="text-black cursor-pointer">Covid</label>
-                  <input type="checkbox" id="waffle-covid" name="waffle-metric" value="COVID-19" checked
-                    class="cursor-pointer">
-                </div>
-                <div>
-                  <label for="waffle-mental-disturb" class="text-black cursor-pointer">Mental and behavioural
-                    disorders</label>
-                  <input type="checkbox" id="waffle-mental-disturb" name="waffle-metric"
-                    value="Mental and behavioural disorders" class="cursor-pointer" checked>
-                </div>
-                <div>
-                  <label for="waffle-self-harm" class="text-black cursor-pointer">Intentional self-harm</label>
-                  <input type="checkbox" id="waffle-self-harm" name="waffle-metric" value="Intentional self-harm"
-                    class="cursor-pointer" checked>
-                </div>
+    </div>
+    <div id="section5" class="min-h-screen flex flex-col items-center justify-center gap-6">
+      <h2 class="text-3xl font-semibold">Section 5</h2>
+      <!--BUBBLECHART-->
+      <div id="bubble-enrollments-container"></div>
+      <!-- BUBBLECHART_END -->
+      <!--WAFFLE CHART-->
+      <div class="window">
+        <h3 class="plot-title">Did COVID-19 affect the number of deaths for mental disorders?</h3>
+        <div id="waffle-options" class="options flex justify-between">
+          <div id="waffle-categories" class="flex flex-col gap-1">
+            <p class="text-black">Select the causes of deaths to show:</p>
+            <div id="waffle-categories-options" class="flex gap-4">
+              <div>
+                <label for="waffle-covid" class="text-black cursor-pointer">Covid</label>
+                <input type="checkbox" id="waffle-covid" name="waffle-metric" value="COVID-19" checked
+                  class="cursor-pointer">
+              </div>
+              <div>
+                <label for="waffle-mental-disturb" class="text-black cursor-pointer">Mental and behavioural
+                  disorders</label>
+                <input type="checkbox" id="waffle-mental-disturb" name="waffle-metric"
+                  value="Mental and behavioural disorders" class="cursor-pointer" checked>
+              </div>
+              <div>
+                <label for="waffle-self-harm" class="text-black cursor-pointer">Intentional self-harm</label>
+                <input type="checkbox" id="waffle-self-harm" name="waffle-metric" value="Intentional self-harm"
+                  class="cursor-pointer" checked>
               </div>
             </div>
-            <div id="waffle-country">
-              <label class="text-black">Select country:</p>
-                <select id="waffle-country-selector" class="text-black"></select>
-            </div>
-            <div id="waffle-filter">
-              <p class="text-black">Filter by:</p>
-            </div>
           </div>
-          <div id="waffle-years" class="w-full flex justify-around margin-top-4">
-            <div>
-              <label for="waffle-year-1" class="text-black">Year 1:</label>
-              <select id="waffle-year-1" class="text-black"></select>
-            </div>
-            <div>
-              <label for="waffle-year-2" class="text-black">Year 2:</label>
-              <select id="waffle-year-2" class="text-black"></select>
-            </div>
+          <div id="waffle-country">
+            <label class="text-black">Select country:</p>
+              <select id="waffle-country-selector" class="text-black"></select>
           </div>
-          <div id="waffle-chart-container" class="flex justify-center"></div>
-        </div>
-        <!--WAFFLE CHART_END-->
-        <!-- BEESWARM START -->
-        <div class="window">
-          <h3 class="plot-title">Beeswarm title</h3>
-          <div id="beeswarm-container">
-
+          <div id="waffle-filter">
+            <p class="text-black">Filter by:</p>
           </div>
         </div>
-        <!-- BEESWARM END -->
+        <div id="waffle-years" class="w-full flex justify-around margin-top-4">
+          <div>
+            <label for="waffle-year-1" class="text-black">Year 1:</label>
+            <select id="waffle-year-1" class="text-black"></select>
+          </div>
+          <div>
+            <label for="waffle-year-2" class="text-black">Year 2:</label>
+            <select id="waffle-year-2" class="text-black"></select>
+          </div>
+        </div>
+        <div id="waffle-chart-container" class="flex justify-center"></div>
       </div>
+      <!--WAFFLE CHART_END-->
+      <!-- BEESWARM START -->
+      <div class="window">
+        <h3 class="plot-title">Beeswarm title</h3>
+        <div id="beeswarm-container">
+          <div>
+            <input type="range" id="beeswarm-slider" class="year-slider">
+          </div>
+        </div>
+      </div>
+      <!-- BEESWARM END -->
     </div>
-    </div>
+  </div>
+  </div>
 
 
 
-    <!-- COVID -->
-    <script src="./../js/covidspread/map.js"></script>
+  <!-- COVID -->
+  <!-- <script src="./../js/covidspread/map.js"></script>
     <script type="module" src="./../js/covidspread/linechart.js"></script>
-    <script type="module" src="./../js/covidspread/stackedbarchart.js"></script>
+    <script type="module" src="./../js/covidspread/stackedbarchart.js"></script> -->
 
-    <!-- ECONOMY -->
-    <script src="./../js/economy/bubblechart.js"></script>
-    <script src="./../js/economy/butterflychart.js"></script>
+  <!-- ECONOMY -->
+  <!-- <script src="./../js/economy/bubblechart.js"></script>
+    <script src="./../js/economy/butterflychart.js"></script> -->
 
     <!-- EDUCATION -->
     <script type="module" src="../js/education_jobs/dumbbellEnrollments.js"></script>
