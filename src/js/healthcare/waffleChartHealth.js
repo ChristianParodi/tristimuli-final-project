@@ -13,7 +13,7 @@ function waffleChart() {
     // Dimensions and SVG setup
     const parentContainer = d3.select("#waffle-chart-container").node().parentNode;
     const width = parentContainer.getBoundingClientRect().width * 0.9;
-    const height = 1600;
+    const height = 400;
     const margin = { top: 0, right: 40, bottom: 40, left: 40 };
     const svg = d3.select("#waffle-chart-container")
         .append("svg")
@@ -24,7 +24,7 @@ function waffleChart() {
     const gridSize = 15;
     const gap = 2;
     const cols = Math.min(Math.floor(width / (gridSize + gap)), 25);
-    const maxRows = Math.floor((height * 0.3) / (gridSize + gap)); // max number of rows (maximum 30% of the height)
+    const maxRows = Math.floor((height - 10) / (gridSize + gap)); // max number of rows
     const xOffset1 = (width / 4) - (cols * (gridSize + gap)) / 2; // Center the first waffle in the left half
     const xOffset2 = (3 * width / 4) - (cols * (gridSize + gap)) / 2; // Center the second waffle in the right half
 
@@ -85,7 +85,7 @@ function waffleChart() {
     }
 
     // tooltip
-    const tooltip = d3.select('#section5').append('div')
+    const tooltip = d3.select('#waffle-chart-container').append('div')
         .attr('class', 'tooltip-waffle-health flex flex-col items-center')
         .style('position', 'absolute')
         .style('background', '#fff')
