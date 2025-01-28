@@ -34,6 +34,8 @@ export const covidDates = {
   end: new Date(2023, 2, 5)
 };
 
+export const omicronRelease = new Date(2021, 11, 24)
+
 export const datasets = {
   unemploymentData: await loadunemploymentData(),
   educationData: await loadEducationData(),

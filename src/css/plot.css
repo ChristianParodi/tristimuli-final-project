@@ -47,6 +47,10 @@ text {
   .options {
     @apply flex justify-between items-center w-full border border-gray-300 p-5 rounded-2xl bg-[#EAF4FC];
   }
+
+  .year-slider {
+    @apply w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer;
+  }
 }
 
 
