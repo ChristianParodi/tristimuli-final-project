@@ -38,7 +38,7 @@ function dumbbellUnemployment() {
     })
   );
 
-  const margin = { top: 25, right: 100, bottom: 40, left: 120 };
+  const margin = { top: 25, right: 100, bottom: 40, left: 80 };
   const width = 800 - margin.left - margin.right;
   const height = 600 - margin.top - margin.bottom;
 
@@ -114,8 +114,8 @@ function dumbbellUnemployment() {
     .attr("dy", "1em")
     .style("text-anchor", "middle")
     .style("fill", "black")
-    .style("font-size", "18px")
-    .text("Unemployment (n° people)");
+    .style("font-size", "16px")
+    .text("Unemployment [#people]");
 
   function updateChart(country) {
     easeOutLinesUnemploy(g);
@@ -142,7 +142,7 @@ function dumbbellUnemployment() {
       .transition()
       .duration(1000)
       .ease(d3.easeCubicInOut)
-      .call(d3.axisLeft(yScale))
+      .call(d3.axisLeft(yScale).tickFormat(d3.format(".2s")))
       .selectAll("text")
       .style("font-size", "14px")
       .style("fill", "black");
