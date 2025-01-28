@@ -90,6 +90,9 @@ async function loadCovidData() {
       cases: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_cases.csv"),
       deaths: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_deaths.csv"),
       vaccines: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_vaccines.csv"),
+    },
+    year_new: {
+      cases: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_new_cases_year.csv"),
     }
   }
 }
