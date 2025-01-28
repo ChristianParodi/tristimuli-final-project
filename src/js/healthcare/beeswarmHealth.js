@@ -2,7 +2,7 @@ import { datasets } from "../utils.js";
 
 function beeswarm() {
     const mentalDeaths = datasets.mentalHealthData
-        .filter(d => d.cause === "Mental and behavioural disorders" && d.age == "Total" && d.sex == "Total" && d.deaths != null)
+        .filter(d => d.cause === "Mental and behavioural disorders" && d.age == "Total" && d.sex == "Total" && d.deaths != null && !d.country.includes("Union"))
         .map(d => ({
             country: d.country,
             year: +d.year,
@@ -29,12 +29,13 @@ function beeswarm() {
         }
     });
 
+
     const width = 1000;
     const height = 600;
     const margin = { top: 50, right: 50, bottom: 50, left: 50 };
 
     const svg = d3.select("#beeswarm-container")
-        .append("svg")
+        .insert("svg", ":first-child")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
@@ -67,7 +68,22 @@ function beeswarm() {
     svg.selectAll(" .tick").style("color", "black");
 
     const years = Array.from(new Set(data.map(d => +d.year)));
-    let year = d3.min(years);
+    let currentYear = d3.min(years);
+
+    // Slider
+    const yearSlider = d3.select("#beeswarm-slider")
+        .attr("min", d3.min(years))
+        .attr("max", d3.max(years))
+        .attr("step", 1)
+        .attr("value", currentYear);
+
+    d3.select("#slider-ticks")
+        .selectAll("p")
+        .data(years)
+        .enter()
+        .append("p")
+        .attr("class", "text-black")
+        .text(d => d);
 
     const simulation = d3.forceSimulation()
         .force("x", d3.forceX(d => xScale(d.percDeaths)).strength(1))
@@ -75,8 +91,8 @@ function beeswarm() {
         .force("collide", d3.forceCollide(d => radiusScale(+d.healthExp) + 1))
         .stop();
 
-    const tooltip = d3.select('#waffle-chart-container').append('div')
-        .attr('class', 'tooltip-waffle-health flex flex-col items-center')
+    const tooltip = d3.select('#beeswarm-container').append('div')
+        .attr('class', 'tooltip-beeswarm')
         .style('position', 'absolute')
         .style('background', '#fff')
         .style('padding', '8px')
@@ -86,10 +102,10 @@ function beeswarm() {
         .style('opacity', 0)
         .style('color', 'black');
 
-    function updateChart(year) {
-        const filteredData = data.filter(d => +d.year === +year);
+    function updateChart() {
+        const filteredData = data.filter(d => +d.year === +currentYear);
+        simulation.alpha(1).nodes(filteredData);
 
-        simulation.nodes(filteredData);
         for (let i = 0; i < filteredData.length; i++) simulation.tick();
 
         const circles = svg.selectAll("circle").data(filteredData);
@@ -97,9 +113,11 @@ function beeswarm() {
         circles.enter()
             .append("circle")
             .merge(circles)
+            .transition()
+            .duration(750)
             .attr("cx", d => d.x)
             .attr("cy", d => d.y)
-            .attr("r", d => radiusScale(+d.healthExp))
+            .attr("r", d => d.percDeaths === 0 ? 0 : radiusScale(+d.healthExp))
             .style("fill", "steelblue")
             .style("opacity", 0.8)
             .style("stroke", "#333");
@@ -107,37 +125,55 @@ function beeswarm() {
         circles.exit().remove();
 
         svg.selectAll("circle")
-            .on("mouseover", (event, d) => {
-                tooltip.style("display", "block")
+            .on("mouseover", (_, d) => {
+                tooltip.style("opacity", "0.9")
                     .html(`
-                        <strong>Country:</strong> ${d.country}<br>
-                        <strong>Deaths (%):</strong> ${d.percDeaths}<br>
-                        <strong>Health expenditure:</strong> ${d3.format(",")(+d.healthExp)}`)
+                                    <strong>Country:</strong> ${d.country}<br>
+                                    <strong>Deaths (%):</strong> ${d.percDeaths}<br>
+                                    <strong>Health expenditure:</strong> ${d3.format(",")(+d.healthExp)}`)
                     .style("color", "black");
             })
             .on("mousemove", (event) => {
                 tooltip.style("top", `${event.pageY + 10}px`)
                     .style("left", `${event.pageX + 10}px`);
             })
-            .on("mouseout", () => tooltip.style("display", "none"));
+            .on("mouseout", () => tooltip.style("opacity", "0"));
     }
 
     // Initial rendering
-    updateChart(year);
+    updateChart();
 
-    // Slider
-    // const slider = d3.select("body")
-    //     .append("input")
-    //     .attr("type", "range")
-    //     .attr("min", d3.min(years))
-    //     .attr("max", d3.max(years))
-    //     .attr("step", 1)
-    //     .attr("value", year);
+    const playButton = document.getElementById('play-button');
 
-    // slider.on("input", function () {
-    //     year = +this.value;
-    //     updateChart(year);
-    // });
+    let playing = false;
+    let goBack = false;
+    let intervalId;
+
+    playButton.addEventListener('click', () => {
+        playing = !playing;
+        playButton.textContent = playing ? 'Pause' : 'Play';
+        if (playing) {
+            intervalId = setInterval(() => {
+                yearSlider.node().stepUp();
+                if (goBack) {
+                    yearSlider.node().value = yearSlider.node().min;
+                    goBack = false;
+                }
+                if (yearSlider.node().value === yearSlider.node().max)
+                    goBack = true;
+
+                currentYear = +yearSlider.node().value;
+                updateChart();
+            }, 800);
+        } else {
+            clearInterval(intervalId);
+        }
+    });
+
+    yearSlider.on("input", function () {
+        currentYear = +this.value;
+        updateChart();
+    });
 }
 
 beeswarm();
