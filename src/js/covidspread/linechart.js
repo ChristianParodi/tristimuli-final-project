@@ -134,8 +134,8 @@ function LineChart() {
 
     function updateChart(country) {
         const countryData = parsedData.find(d => d.country === country);
-        const maxTotalVaccines = d3.max(countryData.values, d => d.total_vaccines);
-        y.domain([0, maxTotalVaccines]).nice();
+        const yMax = Math.max(d3.max(countryData.values, d => d.total_vaccines), d3.max(countryData.values, d => d.total_cases));
+        y.domain([0, yMax]).nice();
 
         // Update Y axis instantly
         const yAxis = svg.selectAll(".y-axis").data([null]);
@@ -256,18 +256,19 @@ function LineChart() {
 
         // Add label for Vaccines
         const lastVaccine = countryData.values.filter(d => d.total_vaccines > 0).slice(-1)[0];
-        svg.append("text")
-            .attr("x", x(lastVaccine.date) + 10)
-            .attr("y", y(lastVaccine.total_vaccines))
-            .attr("class", "label-vaccines")
-            .attr("dy", "0.35em")
-            .attr("fill", "green")
-            .attr("font-size", "16px")
-            .text("Vaccines")
-            .attr("opacity", 0)
-            .transition()
-            .delay(d => (x(lastVaccine.date) / width) * 2000)
-            .attr("opacity", 1);
+        if (lastVaccine)
+            svg.append("text")
+                .attr("x", x(lastVaccine.date) + 10)
+                .attr("y", y(lastVaccine.total_vaccines))
+                .attr("class", "label-vaccines")
+                .attr("dy", "0.35em")
+                .attr("fill", "green")
+                .attr("font-size", "16px")
+                .text("Vaccines")
+                .attr("opacity", 0)
+                .transition()
+                .delay(d => (x(lastVaccine.date) / width) * 2000)
+                .attr("opacity", 1);
 
         // Tooltip behavior for all circles
         svg.selectAll("circle")
