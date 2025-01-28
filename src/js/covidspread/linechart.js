@@ -14,21 +14,7 @@ function LineChart() {
         return { country, values: lastValues };
     });
 
-    // Month slider setup
-    const monthSlider = d3.select("#linechart-covid-year-slider")
-        .attr("min", d3.min(covidData, d => new Date(d.year, d.month - 1)).getTime())
-        .attr("max", d3.max(covidData, d => new Date(d.year, d.month - 1)).getTime())
-        .attr("step", 1000 * 60 * 60 * 24 * 30) // Approximate step for one month
-        .on("input", function () {
-            const selectedDate = new Date(+this.value);
-            const filteredData = covidData.filter(d =>
-                new Date(d.year, d.month - 1).getTime() <= selectedDate.getTime()
-            );
-            console.log(selectedDate)
-            updateChart(filteredData);
-        });
-
-    const margin = { top: 80, right: 30, bottom: 50, left: 60 };
+    const margin = { top: 80, right: 30, bottom: 80, left: 120 };
     const width = 800 - margin.left - margin.right;
     const height = 600 - margin.top - margin.bottom;
 
@@ -61,7 +47,8 @@ function LineChart() {
         .selectAll("text")
         .attr("transform", "rotate(-45)")
         .style("text-anchor", "end")
-        .style("fill", "black");
+        .style("fill", "black")
+        .style("font-size", "14px");
 
     svg.selectAll(".x-axis path, .x-axis line").style("stroke", "black");
 
@@ -91,9 +78,10 @@ function LineChart() {
 
     svg.append("text")
         .attr("x", x(covidDates.start))
-        .attr("y", -10)
+        .attr("y", -20)
         .attr("text-anchor", "middle")
         .style("fill", "black")
+        .style("font-weight", "bold")
         .text("COVID Starts");
 
     svg.append("line")
@@ -106,9 +94,10 @@ function LineChart() {
 
     svg.append("text")
         .attr("x", x(covidDates.end))
-        .attr("y", -10)
+        .attr("y", -20)
         .attr("text-anchor", "middle")
         .style("fill", "black")
+        .style("font-weight", "bold")
         .text("COVID Ends");
 
     // Omicron Release line
@@ -118,14 +107,16 @@ function LineChart() {
         .attr("x2", x(omicronRelease))
         .attr("y2", height)
         .attr("stroke", "steelblue")
+        .attr("stroke-width", 2)
         .attr("stroke-dasharray", "4");
 
     svg.append("text")
         .attr("x", x(omicronRelease))
-        .attr("y", -10)
+        .attr("y", -20)
         .attr("text-anchor", "middle")
         .style("fill", "steelblue")
-        .text("Omicron Variant");
+        .style("font-weight", "bold")
+        .text("Omicron Variant")
 
     function updateChart(country) {
         const countryData = parsedData.find(d => d.country === country);
@@ -138,9 +129,12 @@ function LineChart() {
             .append("g")
             .attr("class", "y-axis")
             .merge(yAxis)
-            .call(d3.axisLeft(y))
+            .transition()
+            .duration(500)
+            .call(d3.axisLeft(y).tickFormat(d3.format(".2s")))
             .selectAll("text")
-            .style("fill", "black");
+            .style("fill", "black")
+            .style("font-size", "14px");;
 
         svg.selectAll(".y-axis path, .y-axis line").style("stroke", "black");
 
