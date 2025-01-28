@@ -39,7 +39,8 @@ export const datasets = {
   educationData: await loadEducationData(),
   lockdownData: await loadLockdown(),
   mentalHealthData: await loadMentalHealth(),
-  covidData: await loadCovidData()
+  covidData: await loadCovidData(),
+  expendituresData: await loadExpenditures()
 }
 
 export const europeanCountries = [
@@ -72,6 +73,10 @@ async function loadEducationData() {
 
 async function loadLockdown() {
   return await d3.csv("../../dataset/LOCKDOWN/clean/lockdonws_2022-08-25.csv");
+}
+
+async function loadExpenditures() {
+  return await d3.csv("../../dataset/EXPENDITURE/clean/estat_gov_10a_exp_from_2016.csv");
 }
 
 async function loadMentalHealth() {
