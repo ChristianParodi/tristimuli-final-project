@@ -29,7 +29,7 @@ function dumbbellEnrollments() {
     }))
   );
 
-  const margin = { top: 25, right: 20, bottom: 40, left: 120 };
+  const margin = { top: 25, right: 20, bottom: 40, left: 80 };
   const width = 800 - margin.left - margin.right;
   const height = 600 - margin.top - margin.bottom;
 
@@ -87,7 +87,7 @@ function dumbbellEnrollments() {
 
   g.append("g")
     .attr("class", "yaxis")
-    .call(d3.axisLeft(yScale))
+    .call(d3.axisLeft(yScale).tickFormat(d3.format(".2s")))
     .selectAll("text")
     .style("font-size", "14px")
     .style("fill", "black");
@@ -154,7 +154,7 @@ function dumbbellEnrollments() {
       .transition()
       .duration(1000)
       .ease(d3.easeCubicInOut)
-      .call(d3.axisLeft(yScale))
+      .call(d3.axisLeft(yScale).tickFormat(d3.format(".2s")))
       .selectAll("text")
       .style("font-size", "14px")
       .style("fill", "black");

@@ -169,7 +169,7 @@ function LineChart() {
             .ease(d3.easeLinear)
             .attr("stroke-dashoffset", 0);
 
-        // Draw points in sync
+        // Draw points every 3 months in sync
         svg.selectAll(".point")
             .data(countryData.values)
             .enter()
