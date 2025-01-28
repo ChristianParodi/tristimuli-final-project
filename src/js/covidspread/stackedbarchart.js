@@ -86,7 +86,7 @@ function groupedBarChart() {
         .attr("width", 0)
         .remove();
 
-    if (isConfirmedCases) {
+    if (isConfirmedCases) { // Cases
       xScale.domain([0, xMaxCases]);
       // Draw grouped bars with synchronized animation
       const dataGroup = svg.selectAll("g.data-group")
@@ -116,12 +116,13 @@ function groupedBarChart() {
             .attr("width", d => xScale(d.value) - xScale(0)),
           exit => exit.remove()
         ).on("mouseover", function (_, d) {
+          const textUnit = d.key.charAt(0).toUpperCase() + d.key.slice(1)
           tooltip
             .style("visibility", "visible")
             .html(`
-          <strong>${d.country}</strong><br/>
-          Cases: ${Math.round(d.value).toLocaleString()}
-        `)
+            <strong>${d.country}</strong><br/>
+            ${textUnit}: ${Math.round(d.value).toLocaleString()}
+          `)
             .style("opacity", 0)
             .transition()
             .duration(300)
