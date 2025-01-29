@@ -81,6 +81,17 @@ function LineChart() {
         .style("display", "none")
         .style("font-size", "12px");
 
+    // Add a group and line for the hover effect
+    const highlightGroup = svg.append("g")
+        .attr("class", "highlight-group")
+        .style("display", "none");
+
+    const highlightLine = highlightGroup.append("line")
+        .attr("stroke", "gray")
+        .attr("stroke-width", 1)
+        .attr("stroke-dasharray", "3,3");
+
+
     // COVID lines
     svg.append("line")
         .attr("x1", x(covidDates.start))
@@ -150,7 +161,6 @@ function LineChart() {
             .style("fill", "black")
             .style("font-size", "14px");
 
-
         svg.selectAll(".y-axis path, .y-axis line").style("stroke", "black");
 
         // Remove old path/points
@@ -189,7 +199,6 @@ function LineChart() {
             .duration(2000)
             .ease(d3.easeLinear)
             .attr("stroke-dashoffset", 0);
-
 
         // Draw line for Vaccines
         const pathVaccines = svg.append("path")
@@ -281,19 +290,108 @@ function LineChart() {
                         Cases: ${d.total_cases}<br>
                         Vaccines: ${d.total_vaccines}
                     `);
-                d3.select(this).transition().attr("r", 6).attr("fill", "orange");
+
+                // Gray out everything and highlight the hovered circle
+                d3.selectAll("[class^='line-'], [class^='point-'], [class^='label-']")
+                    .transition()
+                    .duration(200)
+                    .style("opacity", 0.2);
+
+                d3.select(this)
+                    .transition()
+                    .duration(200)
+                    .style("opacity", 1)
+                    .attr("r", 6)
+                    .attr("fill", "orange");
+
+                const isCases = d3.select(this).classed("point-cases");
+                const partnerClass = isCases ? "point-vaccines" : "point-cases";
+
+                // Highlight partner circle
+                const partnerData = svg.selectAll(`.${partnerClass}`)
+                    .filter(pd => +pd.date === +d.date);
+
+                partnerData
+                    .transition()
+                    .duration(200)
+                    .style("opacity", 1)
+                    .attr("r", 6)
+                    .attr("fill", "orange");
+
+                // Add a vertical line
+                const partnerDatum = partnerData.data()[0];
+                if (partnerDatum) {
+                    highlightGroup.selectAll(".vertical-connection-line").remove();
+                    highlightGroup.append("line")
+                        .attr("class", "vertical-connection-line")
+                        .attr("stroke", "orange")
+                        .attr("stroke-width", 2)
+                        .attr("x1", x(d.date))
+                        .attr("x2", x(d.date))
+                        .attr("y1", y(isCases ? d.total_cases : d.total_vaccines))
+                        .attr("y2", y(isCases ? partnerDatum.total_vaccines : partnerDatum.total_cases));
+                }
+
+                // Show vertical line and connect if vaccines/cases match
+                highlightGroup.style("display", "block");
+                highlightLine
+                    .attr("x1", x(d.date))
+                    .attr("x2", x(d.date))
+                    .attr("y1", 0)
+                    .attr("y2", height);
+
+                // If there's a matching vaccines/cases for that date, connect them
+                const partnerValue = d.total_vaccines > 0
+                    ? d.total_cases
+                    : (countryData.values.find(v => +v.date === +d.date && v.total_vaccines > 0)?.total_vaccines || d.total_cases);
+
+                let yMin = y(Math.min(d.total_cases, partnerValue));
+                let yMax = y(Math.max(d.total_cases, partnerValue));
+                highlightLine.attr("y1", yMax).attr("y2", yMin);
             })
             .on("mousemove", function (event) {
                 tooltip
                     .style("left", `${event.pageX + 10}px`)
                     .style("top", `${event.pageY - 20}px`);
             })
-            .on("mouseout", function () {
+            .on("mouseout", function (event, d) {
                 tooltip.style("display", "none");
-                const fillColor = d3.select(this).classed("point-cases")
-                    ? "red" : d3.select(this).classed("point-deaths")
-                        ? "blue" : "green";
-                d3.select(this).transition().attr("r", 4).attr("fill", fillColor);
+                // Restore styles
+                d3.selectAll("[class^='line-'], [class^='point-'], [class^='label-']")
+                    .transition()
+                    .duration(200)
+                    .style("opacity", 1);
+
+                d3.select(this)
+                    .transition()
+                    .duration(200)
+                    .attr("r", 4)
+                    .attr("fill", d3.select(this).classed("point-cases") ? "red" : "green");
+
+                if (d3.select(this).classed("point-cases")) {
+                    svg.selectAll(".point-vaccines")
+                        .filter(pd => +pd.date === +d.date)
+                        .transition()
+                        .duration(200)
+                        .attr("r", 4)
+                        .attr("fill", "green");
+                } else {
+                    svg.selectAll(".point-cases")
+                        .filter(pd => +pd.date === +d.date)
+                        .transition()
+                        .duration(200)
+                        .attr("r", 4)
+                        .attr("fill", "red");
+                }
+
+                // Reset partner points' fill
+                // d3.selectAll(".point-cases, .point-vaccines")
+                //     .transition()
+                //     .duration(200)
+                //     .attr("fill", function () {
+                //         return d3.select(this).classed("point-cases") ? "red" : "green";
+                //     });
+                highlightGroup.style("display", "none");
             });
     }
 
