@@ -6,7 +6,17 @@ const data = [
     // Aggiungi altri paesi qui...
   ];
   
-  
+  d3.csv("./../../../dataset/COVID/covid.csv", d => ({
+    country: d.country,
+    year: +d.year,
+    month: +d.month,
+    day: +d.day,
+    cases: +d.total_cases,
+    deaths: +d.total_deaths,
+    vaccined: +d.people_vaccinated,
+    hosp_patients: +d.hosp_patients
+  })).then(covidData => {
+
   const width = 800;
   const height = 500;
   const margin = { top: 20, right: 20, bottom: 50, left: 100 };
@@ -96,6 +106,6 @@ const data = [
   
   d3.selectAll("#metric, #group").on("change", updateChart);
   
-
+  });
 }
 StackbarChart();

@@ -55,7 +55,7 @@ function mapMercator() {
   // Caricare i dati GeoJSON e il dataset
   Promise.all([
     d3.json("https://raw.githubusercontent.com/leakyMirror/map-of-europe/refs/heads/master/GeoJSON/europe.geojson"), // GeoJSON
-    d3.csv("./../../../dataset/COVID/covid.csv") // Dataset con dati COVID-19
+    d3.csv("./../../../dataset/COVID/covid_test.csv") // Dataset con dati COVID-19
   ]).then(([world, covidData]) => {
 
     const minDate = d3.min(covidData, d => new Date(d.year, d.month - 1, d.day));
