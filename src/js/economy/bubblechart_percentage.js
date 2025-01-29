@@ -40,7 +40,8 @@ function BubbleChart() {
             covidData,
             group => ({
                 positive_rate_trimestrale: d3.mean(group, d => d.positive_rate_trimestrale),
-                total_cases_percentage: d3.mean(group, d => d.total_cases_percentage)
+                total_cases_percentage: group.find(d => d.quarter === "Q4")?.total_cases_percentage
+                
             }),
             d => d.country,
             d => d.year
@@ -51,7 +52,7 @@ function BubbleChart() {
                 ...values
             }))
         ).flat();
-
+        console.log("Topperiamissile",aggregatedData)
         // Combina dati aggregati di COVID e turismo
         const combinedData = aggregatedData.map(d => {
             const covidMatch = tourismData.find(t => 
