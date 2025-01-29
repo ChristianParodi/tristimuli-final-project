@@ -109,6 +109,7 @@ function bubbleEnrollments() {
 
   svg.selectAll("circle")
     .attr("fill", d => bubbleColorScale(d.population));
+    
   // bubbles
   const bubbleGroups = svg.selectAll('.bubble-group')
     .data(data)

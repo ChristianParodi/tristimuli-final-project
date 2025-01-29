@@ -108,29 +108,83 @@ function beeswarm() {
 
         for (let i = 0; i < filteredData.length; i++) simulation.tick();
 
-        const circles = svg.selectAll("circle").data(filteredData);
+        // Flags
+        const flags = svg.selectAll(".flag-group").data(filteredData);
 
-        circles.enter()
+        // Define a group for each flag and circle
+        const flagGroups = flags.enter()
+            .append("g")
+            .attr("class", "flag-group")
+            .merge(flags);
+
+        // Update positions of flag groups
+        flagGroups.transition()
+            .duration(750)
+            .attr("transform", d => `translate(${d.x},${d.y})`);
+
+        // Define clip paths
+        flagGroups.selectAll("clipPath").remove();
+        flagGroups.append("clipPath")
+            .attr("id", d => `clip-${d.country}-${d.year}`)
             .append("circle")
-            .merge(circles)
+            .style("stroke", "black")
+            .style("stroke-width", "2px")
+            .attr("r", d => d.percDeaths === 0 ? 0 : radiusScale(+d.healthExp));
+
+        // Append flag images
+        flagGroups.selectAll("image").remove();
+        flagGroups.selectAll("image")
+            .data(d => [d])
+            .enter()
+            .append("image")
+            .attr("class", "flag-icon")
+            .attr("xlink:href", d => `../html/components/flags/${d.country.toLowerCase()}.svg`)
+            .attr("width", d => radiusScale(+d.healthExp) * 2)
+            .attr("height", d => radiusScale(+d.healthExp) * 2)
+            .attr("x", d => - (radiusScale(+d.healthExp)))
+            .attr("y", d => - (radiusScale(+d.healthExp)))
+            .attr("clip-path", d => `url(#clip-${d.country}-${d.year})`);
+
+        // Circles with clipPath
+        const circles = svg.selectAll(".circle-group").data(filteredData);
+
+        const circlesEnter = circles.enter()
+            .append("g")
+            .attr("class", "circle-group");
+
+        circlesEnter.append("clipPath")
+            .attr("id", d => `circle-clip-${d.country}-${d.year}`)
+            .append("circle")
+            .style("stroke", "black")
+            .style("stroke-width", "2px")
+            .attr("r", d => d.percDeaths === 0 ? 0 : radiusScale(+d.healthExp));
+
+        circlesEnter.append("circle")
+            .attr("class", "circle")
+            .attr("clip-path", d => `url(#circle-clip-${d.country}-${d.year})`)
+            .style("fill", "black")
+            .style("opacity", 0.8)
+            .style("stroke", "black")
+            .style("stroke-width", "2px");
+
+        circles.merge(circlesEnter)
             .transition()
             .duration(750)
-            .attr("cx", d => d.x)
-            .attr("cy", d => d.y)
-            .attr("r", d => d.percDeaths === 0 ? 0 : radiusScale(+d.healthExp))
-            .style("fill", "steelblue")
-            .style("opacity", 0.8)
-            .style("stroke", "#333");
+            .attr("transform", d => `translate(${d.x},${d.y})`)
+            .select("circle")
+            .style("stroke", "black")
+            .style("stroke-width", "2px")
+            .attr("r", d => d.percDeaths === 0 ? 0 : radiusScale(+d.healthExp));
 
         circles.exit().remove();
 
-        svg.selectAll("circle")
+        svg.selectAll(".flag-icon")
             .on("mouseover", (_, d) => {
                 tooltip.style("opacity", "0.9")
                     .html(`
-                                    <strong>Country:</strong> ${d.country}<br>
-                                    <strong>Deaths (%):</strong> ${d.percDeaths}<br>
-                                    <strong>Health expenditure:</strong> ${d3.format(",")(+d.healthExp)}`)
+                        <strong>Country:</strong> ${d.country}<br>
+                        <strong>Deaths (%):</strong> ${d.percDeaths}<br>
+                        <strong>Health expenditure:</strong> ${d3.format(",")(+d.healthExp)}`)
                     .style("color", "black");
             })
             .on("mousemove", (event) => {
