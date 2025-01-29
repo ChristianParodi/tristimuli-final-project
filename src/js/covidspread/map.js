@@ -79,9 +79,9 @@ function mapMercator() {
     d3.select("#min-year-text").text(`${minDay}/${minMonth}/${minYear}`);
     d3.select("#max-year-text").text(`${maxDay}/${maxMonth}/${maxYear}`);
 
-    currentYear = maxYear;
-    currentMonth = maxMonth;
-    currentDay = maxDay;
+    let currentYear = maxYear;
+    let currentMonth = maxMonth;
+    let currentDay = maxDay;
 
     // Dati COVID-19
     const data = covidData.map(d => ({

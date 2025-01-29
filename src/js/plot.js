@@ -1,6 +1,7 @@
    // Highlight the active dot
    const dots = document.querySelectorAll('.dot');
    const sections = document.querySelectorAll('[id^="section"]');
+   
 
    window.addEventListener('scroll', () => {
        let current = '';
