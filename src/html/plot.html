@@ -19,125 +19,122 @@
         shape-rendering: crispEdges;
       }
 
-      .grid path {
-        stroke-width: 0;
-      }
+    .grid path {
+      stroke-width: 0;
+    }
 
+    /* path,
+      line {
+        stroke: black;
+      } */
 
-      
-    </style>
+    .tick {
+      color: black;
+    }
+  </style>
+</head>
 
+<body class="bg-blue-900 text-white min-h-screen flex">
 
+  <!-- Sidebar -->
+  <div class="fixed left-0 top-0 h-full flex flex-col items-center justify-center">
 
-  </head>
-
-  <body class="bg-blue-900 text-white min-h-screen flex">
-
-    <!-- Sidebar -->
-    <div class="fixed left-0 top-0 h-full flex flex-col items-center justify-center">
-
-      <div class="relative flex flex-col items-center h-full">
-        <!-- Vertical Line -->
-        <div class="absolute w-1 bg-gray-200 top-0 bottom-0 left-10 transform -translate-x-1/2 z-0"></div>
-        <!-- Dots -->
-        <div class="absolute flex flex-col items-center space-y-20 z-10 top-[20%] left-7">
-          <a href="#section1" class="dotss"></a>
-          <a href="#section2" class="dotss"></a>
-          <a href="#section3" class="dotss"></a>
-          <a href="#section4" class="dotss"></a>
-          <a href="#section5" class="dotss"></a>
-        </div>
+    <div class="relative flex flex-col items-center h-full">
+      <!-- Vertical Line -->
+      <div class="absolute w-1 bg-gray-200 top-0 bottom-0 left-10 transform -translate-x-1/2 z-0"></div>
+      <!-- Dots -->
+      <div class="absolute flex flex-col items-center space-y-20 z-10 top-[20%] left-7">
+        <a href="#section1" class="dotss"></a>
+        <a href="#section2" class="dotss"></a>
+        <a href="#section3" class="dotss"></a>
+        <a href="#section4" class="dotss"></a>
+        <a href="#section5" class="dotss"></a>
       </div>
-
     </div>
 
-    <!-- Content -->
-    <div class="ml-16 w-full">
+  </div>
 
-      <div id="section1" class="min-h-screen flex flex-col items-center gap-8">
+  <!-- Content -->
+  <div class="ml-16 w-full">
 
-        <div class="flex flex-col gap-4 w-full max-w-4xl">
+    <div id="section1" class="min-h-screen flex flex-col items-center justify-center gap-6">
 
-          <h1 class="text-4xl font-bold text-center">Covid Spread</h1>
+      <div class="flex flex-col gap-4 w-full max-w-4xl">
 
-          <!--Container-->
-          <div class="window">
-            <div id="map-container"></div>
+        <h1 class="text-4xl font-bold text-center">Covid Spread</h1>
 
-            <!--Switch-->
-            <div class="flex justify-between items-center mt-28">
-              <button id="reset" class="bg-blue-500 text-white px-4 py-2 rounded">Reset Zoom</button>
+        <!--Container-->
+        <div class="window">
+          <div id="map-container"></div>
 
-              <div class="flex-1">
-                <label for="year-slider" class="block text-sm text-black font-medium mb-2">
-                  Select Year
-                </label>
-                <input type="range" id="year-slider" name="year-slider" class="w-full accent-blue-500">
-                <div class="flex justify-between text-sm text-gray-400">
-                  <span id="min-year-text"></span>
-                  <span id="max-year-text"></span>
-                </div>
-              </div>
-              <div id="selection-bar"></div>
+          <!--Switch-->
+          <div class="flex justify-between items-center mt-28">
+            <button id="reset" class="bg-blue-500 text-white px-4 py-2 rounded">Reset Zoom</button>
 
-              <div>
-                <label for="map-selector">Select type of data:</label>
-                <select id="map-selector" class=" text-black">
-                  <option value="cases">Infetti</option>
-                  <option value="deaths">Morti</option>
-                  <option value="vaccined">Vaccinati</option>
-                  <option value="hospitalized">Ricoverati</option>
-                </select>
+            <div class="flex-1">
+              <label for="year-slider" class="block text-sm text-black font-medium mb-2">
+                Select Year
+              </label>
+              <input type="range" id="year-slider" name="year-slider" class="w-full accent-blue-500">
+              <div class="flex justify-between text-sm text-gray-400">
+                <span id="min-year-text"></span>
+                <span id="max-year-text"></span>
               </div>
             </div>
-          </div>
-        </div>
-        <!--MAP_END-->
+            <div id="selection-bar"></div>
 
-        <!--LINECHART-->
-        <div class="flex flex-col gap-4 w-full max-w-4xl ">
-          <h1 class="text-4xl font-bold">Infection Trends by Country</h1>
-          <div class="window">
             <div>
-              <label for="country-selector" class=" text-black">Select country:</label>
-              <select id="country-selector" class=" text-black"></select>
-            </div>
-            <div id="chart-container"></div>
-          </div>
-        </div>
-        <!--LINECHART_END-->
-
-        <!--STACKBARCHART-->
-        <div class="flex flex-col gap-4 w-full max-w-4xl ">
-          <h1 class="text-4xl font-bold">Infection Trends by Top</h1>
-          <div class="window">
-            <div>
-              <label for="group" class=" text-black">Groups for:</label>
-              <select id="group" class=" text-black">
-                <option value="sesso">Sex</option>
-                <option value="età">Age</option>
+              <label for="map-selector">Select type of data:</label>
+              <select id="map-selector" class=" text-black">
+                <option value="cases">Infetti</option>
+                <option value="deaths">Morti</option>
+                <option value="vaccined">Vaccinati</option>
+                <option value="hospitalized">Ricoverati</option>
               </select>
             </div>
-            <div>
-              <label for="metric" class=" text-black">Select type of data:</label>
-              <select id="metric" class=" text-black">
-                <option value="guarite">Guariti</option>
-                <option value="morte">Morte</option>
-                <option value="infette">Infetti</option>
-              </select>
-            </div>
-            <div id="stackbarchart_container"></div>
           </div>
         </div>
+      </div>
+      <!--MAP_END-->
 
-        <!--STACKBARCHART_END-->
-
+      <!--LINECHART-->
+      <div class="window">
+        <h1 class="plot-title">Infection Trends by Country</h1>
+        <div class="flex flex-col">
+          <label for="country-selector" class=" text-black">Country</label>
+          <select id="country-selector" class=" select"></select>
+        </div>
+        <div id="linechart-covid"></div>
       </div>
 
+        <!--LINECHART_END-->
 
+        <!-- STACKEDBARCHART -->
+        <div class="window">
+          <h1 class="plot-title">Infection Trends by Top</h1>
+          <!-- <label for="group" class=" text-black">Groups for:</label>
+          <select id="group" class=" text-black">
+            <option value="sesso">Sex</option>
+            <option value="età">Age</option>
+          </select> -->
+          <!-- <div>
+            <label for="metric" class=" text-black">Select type of data:</label>
+            <select id="metric" class=" text-black">
+              <option value="guarite">Guariti</option>
+              <option value="morte">Morte</option>
+              <option value="infette">Infetti</option>
+            </select>
+          </div> -->
+          <button id="barchart-covid-button"
+            class="select p-2 hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+            Confirmed cases
+          </button>
+          <div id="barchart-covid-container"></div>
+        </div>
+        <!-- STACKEDBARCHART END -->
+      </div>
 
-
-      <div id="section2" class="min-h-screen flex flex-col items-center gap-8">
+    <div id="section2" class="min-h-screen flex flex-col items-center gap-8">
 
         <!--BUBBLECHART-->
         <div class="flex flex-col gap-4 w-full max-w-4xl ">
@@ -260,52 +257,154 @@
         </div>
         <!--butterflychart_END-->
 
-      </div>
-
-
-      <div id="section3" class="min-h-screen flex items-center justify-center">
-        <h2 class="text-3xl font-semibold">Section 3</h2>
-        <!--DUMBBELLCHART-->
-        <!--DUMBBELLCHART_END-->
-      </div>
-
-
-      <div id="section4" class="min-h-screen flex items-center justify-center">
-        <h2 class="text-3xl font-semibold">Section 4</h2>
-
-        <!--HISTOGRAM-->
-
-
-        <!--HISTOGRAM_END-->
-
-        <!--MAP-->
-        <!--MAP_END-->
-
-        <!--HIGHLIGHTS-->
-
-        <!--HIGHLIGHTS_END-->
-
-      </div>
-      <div id="section5" class="min-h-screen flex flex-col items-center justify-center">
-        <h2 class="text-3xl font-semibold">Section 5</h2>
-        <!--BUBBLECHART-->
-        <div id="bubble-enrollments-container"></div>
-        <!-- BUBBLECHART_END -->
-      </div>
     </div>
 
-    <script src="./../js/home.js"></script>
+    <!-- Education & Jobs -->
+    <div id="section3" class="min-h-screen flex flex-col items-center justify-center gap-6">
+      <h2 class="text-3xl font-semibold">Education & Jobs</h2>
+      <!--DUMBBELLCHART 1-->
+      <div class="window">
+        <h3 class="plot-title">COVID-19 impact on Education (<span class="text-[steelblue]">Males</span>, <span
+            class="text-[#FF69B4]">Females</span> and <span class="text-[green]">Total</span>)</h3>
+        <div class="flex flex-col">
+          <label for="country-selector-dumbbell-enrollments" class="text-black">Country</label>
+          <select id="country-selector-dumbbell-enrollments" class="select"></select>
+        </div>
+        <div id="dumbbell-enrollments"></div>
+      </div>
+      <!--DUMBBELLCHART_END 1-->
+      <!-- DUMBBELLCHART 2 -->
+      <div class="window">
+        <h3 class="plot-title">COVID-19 impact on Unemployment (<span class="text-[steelblue]">Males</span>, <span
+            class="text-[#FF69B4]">Females</span> and <span class="text-[green]">Total</span>)</h3>
+        <div class="flex flex-col mb-6">
+          <label for="country-selector-dumbbell-unemployments" class="text-black">Country</label>
+          <select id="country-selector-dumbbell-unemployments" class="select"></select>
+        </div>
+        <div id="dumbbell-unemployments"></div>
+      </div>
+      <!-- DUMBBELLCHART_END 2 -->
+      <!-- BUBBLE -->
+      <div class="window gap-12">
+        <h3 class="plot-title">Lockdown Impact on Education (2019-2021)</h3>
+        <div class="flex justify-center">
+          <div id="bubble-lockdown"></div>
+          <div id="bubble-lockdown-legend"></div>
+        </div>
+      </div>
+      <!-- BUBBLE END 2 -->
+    </div>
+    <!-- Education & Jobs END -->
+
+    <div id="section4" class="min-h-screen flex items-center justify-center">
+      <h2 class="text-3xl font-semibold">Section 4</h2>
+
+      <!--HISTOGRAM-->
+
+
+      <!--HISTOGRAM_END-->
+
+      <!--MAP-->
+      <!--MAP_END-->
+
+      <!--HIGHLIGHTS-->
+
+      <!--HIGHLIGHTS_END-->
+
+    </div>
+    <div id="section5" class="min-h-screen flex flex-col items-center justify-center gap-6">
+      <h2 class="text-3xl font-semibold">Section 5</h2>
+      <!--BUBBLECHART-->
+      <div id="bubble-enrollments-container"></div>
+      <!-- BUBBLECHART_END -->
+      <!--WAFFLE CHART-->
+      <div class="window">
+        <h3 class="plot-title">Did COVID-19 affect the number of deaths for mental disorders?</h3>
+        <div id="waffle-options" class="options flex justify-between">
+          <div id="waffle-categories" class="flex flex-col gap-1">
+            <p class="text-black">Select the causes of deaths to show:</p>
+            <div id="waffle-categories-options" class="flex gap-4">
+              <div>
+                <label for="waffle-covid" class="text-black cursor-pointer">Covid</label>
+                <input type="checkbox" id="waffle-covid" name="waffle-metric" value="COVID-19" checked
+                  class="cursor-pointer">
+              </div>
+              <div>
+                <label for="waffle-mental-disturb" class="text-black cursor-pointer">Mental and behavioural
+                  disorders</label>
+                <input type="checkbox" id="waffle-mental-disturb" name="waffle-metric"
+                  value="Mental and behavioural disorders" class="cursor-pointer" checked>
+              </div>
+              <div>
+                <label for="waffle-self-harm" class="text-black cursor-pointer">Intentional self-harm</label>
+                <input type="checkbox" id="waffle-self-harm" name="waffle-metric" value="Intentional self-harm"
+                  class="cursor-pointer" checked>
+              </div>
+            </div>
+          </div>
+          <div id="waffle-country">
+            <label class="text-black">Select country:</p>
+              <select id="waffle-country-selector" class="text-black"></select>
+          </div>
+          <div id="waffle-filter">
+            <p class="text-black">Filter by:</p>
+          </div>
+        </div>
+        <div id="waffle-years" class="w-full flex justify-around margin-top-4">
+          <div>
+            <label for="waffle-year-1" class="text-black">Year 1:</label>
+            <select id="waffle-year-1" class="text-black"></select>
+          </div>
+          <div>
+            <label for="waffle-year-2" class="text-black">Year 2:</label>
+            <select id="waffle-year-2" class="text-black"></select>
+          </div>
+        </div>
+        <div id="waffle-chart-container" class="flex justify-center"></div>
+      </div>
+      <!--WAFFLE CHART_END-->
+      <!-- BEESWARM START -->
+      <div class="window">
+        <h3 class="plot-title">Beeswarm title</h3>
+        <div id="beeswarm-container">
+          <div class="flex justify-center">
+            <button id="play-button" class="bg-blue-500 text-white px-4 py-2 rounded">Play</button>
+            <div id="beeswarm-slider-container" class="year-slider">
+              <input type="range" id="beeswarm-slider" class="w-full">
+              <div id="slider-ticks" class="flex justify-between">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- BEESWARM END -->
+    </div>
+  </div>
+  </div>
+
+
+
+    <!-- COVID -->
     <script src="./../js/covidspread/map.js"></script>
-    <script src="./../js/covidspread/linechart.js"></script>
-    <script src="./../js/covidspread/stackbarchart.js"></script>
+    <script type="module" src="./../js/covidspread/linechart.js"></script>
+    <script type="module" src="./../js/covidspread/stackedbarchart.js"></script>
+
+    <!-- ECONOMY -->
     <script src="./../js/economy/bubblechart.js"></script>
     <script src="./../js/economy/bubblechart_percentage.js"></script>
     <script src="./../js/lockdowns/bubbleEnrollments.js"></script>
     <script src="./../js/economy/butterflychart.js"></script>
-    <script src="./../js/utils.js"></script>
 
-  
-    
-  </body>
+    <!-- EDUCATION -->
+    <script type="module" src="../js/education_jobs/dumbbellEnrollments.js"></script>
+    <script type="module" src="../js/education_jobs/dumbbellUnemployment.js"></script>
+    <script type="module" src="../js/education_jobs/bubbleLockdown.js"></script>
+
+  <!-- HEALTHCARE -->
+  <script type="module" src="./../js/healthcare/waffleChartHealth.js"></script>
+  <script type="module" src="./../js/healthcare/beeswarmHealth.js"></script>
+
+  <script type="module" src="./../js/utils.js"></script>
+</body>
 
 </html>
