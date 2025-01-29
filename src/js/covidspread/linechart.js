@@ -293,13 +293,9 @@ function LineChart() {
 
                 // Gray out everything and highlight the hovered circle
                 d3.selectAll("[class^='line-'], [class^='point-'], [class^='label-']")
-                    .transition()
-                    .duration(200)
                     .style("opacity", 0.2);
 
                 d3.select(this)
-                    .transition()
-                    .duration(200)
                     .style("opacity", 1)
                     .attr("r", 6)
                     .attr("fill", "orange");
@@ -358,28 +354,20 @@ function LineChart() {
                 tooltip.style("display", "none");
                 // Restore styles
                 d3.selectAll("[class^='line-'], [class^='point-'], [class^='label-']")
-                    .transition()
-                    .duration(200)
                     .style("opacity", 1);
 
                 d3.select(this)
-                    .transition()
-                    .duration(200)
                     .attr("r", 4)
                     .attr("fill", d3.select(this).classed("point-cases") ? "red" : "green");
 
                 if (d3.select(this).classed("point-cases")) {
                     svg.selectAll(".point-vaccines")
                         .filter(pd => +pd.date === +d.date)
-                        .transition()
-                        .duration(200)
                         .attr("r", 4)
                         .attr("fill", "green");
                 } else {
                     svg.selectAll(".point-cases")
                         .filter(pd => +pd.date === +d.date)
-                        .transition()
-                        .duration(200)
                         .attr("r", 4)
                         .attr("fill", "red");
                 }
