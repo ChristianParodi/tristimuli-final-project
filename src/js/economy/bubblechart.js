@@ -70,7 +70,7 @@ function BubbleChart() {
         };
 
         // Dimensioni e margini del grafico
-        const margin = { top: 60, right: 20, bottom: 40, left: 75 };
+        const margin = { top: 60, right: 40, bottom: 40, left: 75 };
         const width = 700;
         const height = 420;
 
@@ -187,7 +187,7 @@ const sliderRange = d3
         .sliderBottom()
         .min(0)  // Minimo, non ha più bisogno di numeri specifici
         .max(sortedTickValues.length - 1)  // Massimo basato sull'indice dell'array ordinato
-        .width(800)
+        .width(600)
         .tickValues(sortedTickValues.map((tick, index) => index))  // Usa gli indici per i valori delle tacche
         .tickFormat((d) => sortedTickValues[d])  // Usa l'indice per mappare la stringa "QX-YYYY"
         .default([0, 3])  // Impostazioni di default
@@ -197,10 +197,9 @@ const sliderRange = d3
 const gRange = d3
 .select('#slider-range')
     .append('svg')
-    .attr('width', '100%') // Ensure SVG takes full width of container
-    .attr('height', 100)
+    .attr('width', 1200) // Ensure SVG takes full width of container
     .append('g')
-    .attr('transform', 'translate(100,50)');
+    .attr('transform', 'translate(270,50)');
 
 gRange.call(sliderRange);
 
@@ -279,7 +278,7 @@ gRange.call(sliderRange);
 
         
             // Scala Y (aggiornata in base alla metrica selezionata)
-            const yDomain = [d3.min(combinedData, d => d.value), d3.max(combinedData, d => d.value)];
+            const yDomain = [d3.min(combinedData, d => d.value -2), d3.max(combinedData, d => d.value)];
             y.domain(yDomain);
         
             svg.select(".y.axis")
