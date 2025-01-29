@@ -6,7 +6,7 @@ function ButterflyChart() {
     coicop: d.coicop,
     value: +d.value
   })).then(inflation => {
-    const margin = { top: 40, right: 40, bottom: 40, left: 70 };
+    const margin = { top: 40, right: 40, bottom: 40, left: 90 };
     const width = 400;
     const height = 800;
 
@@ -117,7 +117,7 @@ function ButterflyChart() {
           .range([margin.left, width - margin.right]);
 
         svg.select(".y-axis")
-          .attr("transform", `translate(${margin.left +20}, 0)`)
+          .attr("transform", `translate(${margin.left }, 0)`)
           .call(d3.axisLeft(yScale))
           .selectAll("path, line")  // Rimuovi la barra vuota
           .remove()
