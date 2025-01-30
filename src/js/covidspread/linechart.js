@@ -79,7 +79,7 @@ function LineChart() {
         .style("border-radius", "5px")
         .style("pointer-events", "none")
         .style("display", "none")
-        .style("font-size", "12px");
+        .style("font-size", "16px");
 
     // Add a group and line for the hover effect
     const highlightGroup = svg.append("g")
@@ -286,9 +286,10 @@ function LineChart() {
                     .style("display", "block")
                     .style("color", "black")
                     .html(`
-                        Date: ${d.date.toLocaleDateString()}<br>
-                        Cases: ${d.total_cases}<br>
-                        Vaccines: ${d.total_vaccines}
+                        <strong>${d.date.toLocaleDateString()}</strong><br />
+                        <hr style="border-top: 1px solid gray;" />
+                        Cases: ${d.total_cases.toLocaleString()}<br />
+                        Vaccines: ${d.total_vaccines.toLocaleString()}
                     `);
 
                 // Gray out everything and highlight the hovered circle
@@ -308,8 +309,6 @@ function LineChart() {
                     .filter(pd => +pd.date === +d.date);
 
                 partnerData
-                    .transition()
-                    .duration(200)
                     .style("opacity", 1)
                     .attr("r", 6)
                     .attr("fill", "orange");
@@ -336,14 +335,15 @@ function LineChart() {
                     .attr("y1", 0)
                     .attr("y2", height);
 
-                // If there's a matching vaccines/cases for that date, connect them
-                const partnerValue = d.total_vaccines > 0
-                    ? d.total_cases
-                    : (countryData.values.find(v => +v.date === +d.date && v.total_vaccines > 0)?.total_vaccines || d.total_cases);
+                if (d.total_vaccines > 0) {
+                    // If there's a matching vaccines/cases for that date, connect them
+                    const partnerValue = d.total_cases;
 
-                let yMin = y(Math.min(d.total_cases, partnerValue));
-                let yMax = y(Math.max(d.total_cases, partnerValue));
-                highlightLine.attr("y1", yMax).attr("y2", yMin);
+                    let yMin = y(Math.min(d.total_cases, partnerValue));
+                    let yMax = y(Math.max(d.total_cases, partnerValue));
+                    highlightLine.attr("y1", yMax).attr("y2", yMin);
+                } else
+                    highlightGroup.style("display", "none");
             })
             .on("mousemove", function (event) {
                 tooltip
@@ -372,13 +372,6 @@ function LineChart() {
                         .attr("fill", "red");
                 }
 
-                // Reset partner points' fill
-                // d3.selectAll(".point-cases, .point-vaccines")
-                //     .transition()
-                //     .duration(200)
-                //     .attr("fill", function () {
-                //         return d3.select(this).classed("point-cases") ? "red" : "green";
-                //     });
                 highlightGroup.style("display", "none");
             });
     }
