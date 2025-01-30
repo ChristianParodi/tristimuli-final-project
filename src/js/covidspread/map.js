@@ -1,171 +1,147 @@
-function mapMercator() {
-  const width = 900;
-  const height = 600;
-  let zoomed = false;
-  let clicked = false;
-  let currentZoomLevel = d3.zoomIdentity.k;
-  let previousZoomLevel = currentZoomLevel;
+import { datasets, europeGeoJson } from "../utils.js"
 
-  // Select the reset button
-  const resetButton = document.getElementById("reset");
-  resetButton.addEventListener("click", () => {
-    svg.call(zoom.transform, d3.zoomIdentity);
-  });
+function mapMercator() {
+  const width = 1000;
+  const height = 800;
+
   const dataSelector = document.getElementById("map-selector");
   const yearSlider = d3.select("#year-slider");
 
-  // Tooltip per mostrare informazioni
-  const tooltip = d3.select("body").append("div")
-    .attr("class", "tooltip")
+  const tooltip = d3.select("body")
+    .append("div")
     .style("position", "absolute")
-    .style("padding", "6px")
-    .style("background", "rgba(0, 0, 0, 0.7)")
-    .style("color", "#fff")
-    .style("border-radius", "4px")
+    .style("background-color", "white")
+    .style("padding", "5px")
+    .style("border", "1px solid #ccc")
+    .style("border-radius", "5px")
     .style("pointer-events", "none")
-    .style("opacity", 0);
+    .style("font-size", "16px");
 
-  // Creare la proiezione e il path
-  const projection = d3.geoMercator().scale(500).translate([width / 2, height * 1.5]);
+  const projection = d3.geoMercator()
+    .scale(600)
+    .translate([width / 2.3, height * 1.5]);
   const path = d3.geoPath().projection(projection);
 
-  // Zoom e panoramica
-  const zoom = d3.zoom()
-    .scaleExtent([1, 8])
-    .on("zoom", (event) => {
-      zoomed = event.transform.k > 4 || clicked;
-      previousZoomLevel = currentZoomLevel;
-      currentZoomLevel = event.transform.k;
-
-      if (previousZoomLevel > currentZoomLevel)
-        clicked = false;
-
-      svg.selectAll("mappa").attr("transform", event.transform);
-    });
-
-  // Aggiungere SVG con sfondo
   const svg = d3.select("#map-container")
     .append("svg")
     .attr("width", width)
     .attr("height", height)
-    .call(zoom);
 
-  const mappa = svg.append("g");
+  const europeMap = svg.append("g");
 
-  // Caricare i dati GeoJSON e il dataset
-  Promise.all([
-    d3.json("https://raw.githubusercontent.com/leakyMirror/map-of-europe/refs/heads/master/GeoJSON/europe.geojson"), // GeoJSON
-    d3.csv("./../../../dataset/COVID/covid_test.csv") // Dataset con dati COVID-19
-  ]).then(([world, covidData]) => {
-
-    const minDate = d3.min(covidData, d => new Date(d.year, d.month - 1, d.day));
-    const maxDate = d3.max(covidData, d => new Date(d.year, d.month - 1, d.day));
-
-    const minYear = minDate.getFullYear();
-    const minMonth = minDate.getMonth() + 1;
-    const minDay = minDate.getDate();
-
-    const maxYear = maxDate.getFullYear();
-    const maxMonth = maxDate.getMonth() + 1;
-    const maxDay = maxDate.getDate();
-
-    yearSlider
-      .attr("min", minDate.getTime())
-      .attr("max", maxDate.getTime())
-      .attr("value", maxDate.getTime())
-      .property("value", maxDate.getTime());
-
-    // correct the two values of the slider text
-    d3.select("#min-year-text").text(`${minDay}/${minMonth}/${minYear}`);
-    d3.select("#max-year-text").text(`${maxDay}/${maxMonth}/${maxYear}`);
-
-    let currentYear = maxYear;
-    let currentMonth = maxMonth;
-    let currentDay = maxDay;
-
-    // Dati COVID-19
-    const data = covidData.map(d => ({
-      country: d.country,
-      code: d.code,
-      year: +d.year,
-      month: +d.month,
-      day: +d.day,
-      cases: +d.total_cases,
-      deaths: +d.total_deaths,
-      vaccined: +d.people_vaccinated,
-      hosp_patients: +d.hosp_patients
-    }));
-
-    // Colori per la scala
-    const colorMap = new Map([
-      ["cases", d3.schemeReds[9]],
-      ["deaths", d3.schemeGreys[9]],
-      ["vaccined", d3.schemeBlues[9]],
-      ["hosp_patients", d3.schemeOranges[9]]
-    ]);
-
-
-
-    // Aggiornare la mappa
-    function updateMap() {
-      const filteredData = data.filter(d => d.year === currentYear && d.month === currentMonth && d.day === currentDay);
-
-      const colorScale = d3.scaleLinear()
-        .domain([0, d3.max(data, d => d[dataSelector.value])])
-        .range(colorMap.get(dataSelector.value));
-
-      const selectedMetric = dataSelector.value;
-      mappa.selectAll("path")
-        .data(world.features)
-        .join("path")
-        .attr("d", path)
-        .attr("fill", d => {
-          currentCountry = d.properties.ISO3;
-          const countryData = filteredData.find(d => d.code === currentCountry);
-          const value = countryData ? countryData[selectedMetric] : null;
-          return value ? colorScale(value) : "#ccc";
-        })
-        .attr("stroke", "black")
-        .attr("stroke-width", 0.5)
-        .on("mousemove", (event, d) => {
-          currentCountry = d.properties.ISO3;
-          const countryData = filteredData.find(d => d.code === currentCountry);
-          const value = countryData ? countryData[selectedMetric] : null;
-
-          if (value == null)
-            tooltipText = `<strong>${d.properties.NAME}</strong><br>No data available`
-          else
-            tooltipText = `<strong>${countryData.country}</strong><br>${selectedMetric == "cases" ? "Total infected" :
-              selectedMetric == "deaths" ? "Total deaths" :
-                selectedMetric == "vaccined" ? "People vaccinated" :
-                  "Hospitalized patients"
-              }: ${value}`
-
-
-          tooltip.style("opacity", 1)
-            .html(tooltipText)
-            .style("left", `${event.pageX + 10}px`)
-            .style("top", `${event.pageY + 10}px`);
-        })
-        .on("mouseout", () => {
-          tooltip.style("opacity", 0);
-        });
-    }
-
-    updateMap();
-
-    // Aggiungere un event listener per il selettore
-    dataSelector.addEventListener("change", updateMap);
-
-    // Aggiungere un event listener per il selettore
-
-    yearSlider.node().addEventListener("input", function () {
-      const date = new Date(+this.value);
-      currentYear = date.getFullYear();
-      currentMonth = date.getMonth() + 1;
-      currentDay = date.getDate();
-      updateMap();
+  const getLastDayData = (data, metric) => {
+    const map = new Map();
+    data.forEach(d => {
+      const key = `${d.ISO3}-${d.year}-${d.month}`;
+      map.set(key, {
+        ISO3: d.ISO3,
+        country: d.country,
+        year: +d.year,
+        month: +d.month,
+        [metric]: +d[metric]
+      });
     });
+    return Array.from(map.values());
+  };
+
+  const processedData = {
+    cases: getLastDayData(datasets.covidData.daily.cases, "cases"),
+    deaths: getLastDayData(datasets.covidData.daily.deaths, "deaths"),
+    vaccines: getLastDayData(datasets.covidData.daily.vaccines, "vaccines")
+  };
+
+  const minDate = d3.min(processedData.cases, d => new Date(d.year, d.month, 0));
+  const maxDate = d3.max(processedData.cases, d => new Date(d.year, d.month, 0));
+
+  let currentYear = maxDate.getFullYear();
+  let currentMonth = maxDate.getMonth() + 1;
+
+  yearSlider
+    .attr("min", minDate.getTime())
+    .attr("max", maxDate.getTime())
+    .attr("value", maxDate.getTime())
+    .property("value", maxDate.getTime());
+
+  d3.select("#min-year-text").text(`${minDate.getMonth() + 1}/${minDate.getFullYear()}`);
+  d3.select("#max-year-text").text(`${maxDate.getMonth() + 1}/${maxDate.getFullYear()}`);
+
+  const colorMap = new Map([
+    ["cases", ["#fee0d2", "#de2d26"]],
+    ["deaths", ["#deebf7", "#3182bd"]],
+    ["vaccines", ["#c7e9c0", "#238b45"]],
+  ]);
+
+  function updateMap() {
+    const selectedMetric = dataSelector.value // cases, deaths, vaccines
+    const selectedData = processedData[selectedMetric]
+    const filteredData = selectedData.filter(d => +d.year === currentYear && +d.month === currentMonth);
+
+    const colorScale = d3.scaleLinear()
+      .domain([0, d3.max(selectedData, d => d[selectedMetric])])
+      .range(colorMap.get(selectedMetric));
+
+    europeMap.selectAll("path")
+      .data(europeGeoJson.features)
+      .join("path")
+      .attr("d", path)
+      .attr("fill", d => {
+        const currentCountry = d.properties.wb_a3;
+        const countryData = filteredData.find(d => d.ISO3 === currentCountry);
+        const value = countryData ? countryData[selectedMetric] : null;
+        return value ? colorScale(value) : "#ccc";
+      })
+      .attr("stroke", "black")
+      .attr("stroke-width", 0.5)
+      .on("mouseover", (event, d) => {
+        const currentCountry = d.properties.wb_a3;
+        const countryData = filteredData.find(d => d.ISO3 === currentCountry);
+        const value = countryData ? countryData[selectedMetric] : null;
+
+        if (value != null)
+          // gray out the other countries
+          europeMap.selectAll("path")
+            .transition()
+            .duration(200)
+            .attr("fill", otherD => otherD === d ? colorScale(value) : "#ccc");
+
+        let tooltipText;
+        if (value == null)
+          tooltipText = `<strong>${d.properties.name}</strong><br>No data available`;
+        else
+          tooltipText = `
+        <strong>${countryData.country}</strong><br>
+        ${value.toLocaleString()} ${selectedMetric} to ${currentYear}/${currentMonth}
+        `;
+
+        tooltip
+          .style("opacity", 1)
+          .html(tooltipText)
+          .style("left", `${event.pageX + 50}px`)
+          .style("top", `${event.pageY}px`);
+      })
+      .on("mouseout", () => {
+        europeMap.selectAll("path")
+          .transition()
+          .duration(200)
+          .attr("fill", d => {
+            const currentCountry = d.properties.wb_a3;
+            const countryData = filteredData.find(data => data.ISO3 === currentCountry);
+            const value = countryData ? countryData[selectedMetric] : null;
+            return value ? colorScale(value) : "#ccc";
+          });
+        tooltip.style("opacity", 0);
+      });
+  }
+
+  updateMap();
+
+  dataSelector.addEventListener("change", updateMap);
+
+  yearSlider.node().addEventListener("input", function () {
+    const date = new Date(+this.value);
+    currentYear = date.getFullYear();
+    currentMonth = date.getMonth() + 1;
+    updateMap();
   });
 }
 

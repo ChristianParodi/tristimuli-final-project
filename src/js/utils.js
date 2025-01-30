@@ -65,6 +65,9 @@ export const enrollemntQuantiles = await fetch("../../dataset/EDUCATION/clean/en
 export const unemploymentQuantiles = await fetch("../../dataset/UNEMPLOYMENT/clean/unemploymentQuantiles.json")
   .then(response => response.json());
 
+export const europeGeoJson = await fetch("../../dataset/europe.geo.json")
+  .then(response => response.json());
+
 async function loadunemploymentData() {
   return await d3.csv("../../dataset/UNEMPLOYMENT/clean/estat_une_rt_m_filtered.csv");
 }
@@ -88,10 +91,10 @@ async function loadMentalHealth() {
 
 async function loadCovidData() {
   return {
-    year_avg: {
-      cases: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_cases_avg_year.csv"),
-      deaths: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_deaths_avg_year.csv"),
-      vaccines: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_vaccines_avg_year.csv"),
+    year_max: {
+      cases: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_cases_max_year.csv"),
+      deaths: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_deaths_max_year.csv"),
+      vaccines: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_vaccines_max_year.csv"),
     },
     daily: {
       cases: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_cases.csv"),
