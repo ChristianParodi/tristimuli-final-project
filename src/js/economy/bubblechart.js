@@ -42,13 +42,13 @@ function BubbleChart() {
             country: d.country,
             year: +d.year,
             quarter: d.quarter,
-            value: +d.value
+            value: +parseFloat(d.value.replace(/[^\d.-]/g, '')) 
         })),
         d3.csv("./../../../dataset/HOUSE_PRICE/clean/house_price_final.csv", d => ({
             country: d.country,
             year: +d.year,
             quarter: d.quarter,
-            value: +d.value
+            value: +parseFloat(d.value.replace(/[^\d.-]/g, '')) 
         })),
         d3.csv("./../../../dataset/COVID/bubblechart/covid_bubble.csv", d => ({
             country: d.country,
@@ -70,9 +70,9 @@ function BubbleChart() {
         };
 
         // Dimensioni e margini del grafico
-        const margin = { top: 60, right: 40, bottom: 40, left: 75 };
+        const margin = { top: 60, right: 40, bottom: 80, left: 75 };
         const width = 700;
-        const height = 420;
+        const height = 450;
 
         // Crea l'elemento SVG
         const svg = d3.select("#bubblechart_container")
@@ -181,27 +181,50 @@ svg.append("g")
 .style("text-anchor", "end")
 .style("fill", "black");
 
+//Label
+svg.append('text')
+.attr('x', width / 2)
+.attr('y', height + 70)
+.attr('text-anchor', 'middle')
+.attr('fill', 'black')
+.text('Trimester-Year')
+.style("font-size", "16px");
+
+
+svg.append('text')
+.attr('class', 'y-axis-label') 
+  .attr('transform', 'rotate(-90)')
+  .attr('x', -height / 2)
+  .attr('y', -40)
+  .attr('text-anchor', 'middle')
+  .attr('fill', 'black')
+  .text("GDP Value (%)")
+  .style("font-size", "16px");
+
 
 // Slider
 const sliderRange = d3
         .sliderBottom()
         .min(0)  // Minimo, non ha più bisogno di numeri specifici
         .max(sortedTickValues.length - 1)  // Massimo basato sull'indice dell'array ordinato
-        .width(600)
+        .width(800)
         .tickValues(sortedTickValues.map((tick, index) => index))  // Usa gli indici per i valori delle tacche
         .tickFormat((d) => sortedTickValues[d])  // Usa l'indice per mappare la stringa "QX-YYYY"
         .default([0, 3])  // Impostazioni di default
         .fill('#85bb65');
 
     // Aggiungi lo slider al DOM
-const gRange = d3
-.select('#slider-range')
+    const gRange = d3
+    .select('#slider-range')
     .append('svg')
-    .attr('width', 1200) // Ensure SVG takes full width of container
-    .append('g')
-    .attr('transform', 'translate(270,50)');
+    .attr('width', 1400) // Imposta una larghezza maggiore per l'area dello slider
+    .append('g') // Posiziona lo slider
+    .attr('transform', `translate(${(width) / 2}, 50)`);
 
-gRange.call(sliderRange);
+gRange.call(sliderRange)
+// Modifica la dimensione del testo delle etichette
+.selectAll('.tick text')  // Seleziona tutte le etichette
+    .style('font-size', '12px');
 
         //sliderend
 
@@ -209,11 +232,14 @@ gRange.call(sliderRange);
         // Funzione per aggiornare il selettore delle nazioni
         function updateCountrySelector(selectedMetric) {
             const currentData = dataMap[selectedMetric];
+            console.log(currentData)
             const countries = [...new Set(currentData.map(d => d.country))];
-
+            console.log('country: ',countries)
             const countrySelector = d3.select("#contry_selector_bubble");
+        
+            // Aggiorna l'elenco delle nazioni nel selettore
             countrySelector.selectAll("option").remove();
-
+        
             countrySelector
                 .selectAll("option")
                 .data(countries)
@@ -221,13 +247,24 @@ gRange.call(sliderRange);
                 .append("option")
                 .text(d => d)
                 .attr("value", d => d);
+        
+            // Ottieni il paese selezionato attualmente
+            const selectedCountry = d3.select("#contry_selector_bubble").property("value");
+        
+            // Se il paese selezionato non è valido per la metrica, seleziona il primo paese disponibile
+            if (!countries.includes(currentData)) {
+                // Se il paese selezionato non è disponibile, seleziona il primo paese valido
+                d3.select("#contry_selector_bubble").property("value", countries[0]);
+            }
         }
+        
+
 
         // Funzione per aggiornare il grafico
         function updateChart() {
             const selectedMetric = d3.select("#metric_selector_bubble").property("value");
             const selectedCountry = d3.select("#contry_selector_bubble").property("value");
-        
+   
             // Filtra i dati per la metrica selezionata e il paese selezionato
             const currentData = dataMap[selectedMetric].filter(d => d.country === selectedCountry);
             const covidCountryData = filteredCovidData.filter(d => d.country === selectedCountry);
@@ -247,17 +284,16 @@ gRange.call(sliderRange);
                     return {
                         ...d,
                         new_cases: covidMatch ? covidMatch.new_cases : 0, // Aggiungi i nuovi casi
-                        value: d.value || 0,
+                        value: d.value ,
                     };
                 });
         
             // Aggiorna il grafico
-            updateGraph(combinedData, filterData, selectedCountry);
+            updateGraph(combinedData, filterData, selectedCountry, selectedMetric);
         }
         
         // Funzione per aggiornare il grafico (scales e bubbles)
-        function updateGraph(combinedData, filterData, selectedCountry) {
-            // Scala X (in base ai dati filtrati)
+        function updateGraph(combinedData, filterData, selectedCountry, selectedMetric) {
             // Scala X (in base ai dati filtrati)
     x 
         .domain(filterData)  // Limita la scala X ai valori selezionati dallo slider
@@ -273,7 +309,8 @@ gRange.call(sliderRange);
                 .selectAll("text")
                 .attr("transform", "rotate(-45)")
                 .style("text-anchor", "end")
-                .style("fill", "black");
+                .style("fill", "black")
+                .style("font-size", "14px");
 
 
         
@@ -281,12 +318,24 @@ gRange.call(sliderRange);
             const yDomain = [d3.min(combinedData, d => d.value -2), d3.max(combinedData, d => d.value)];
             y.domain(yDomain);
         
+            let textValue;
+            if (selectedMetric === "gdpPercap") {
+                textValue = "GDP Value (%)";
+            } else {
+                textValue = "House Price (%)";
+            }
+            
             svg.select(".y.axis")
                 .transition()
                 .duration(300)
                 .style("color", "black")
-                .call(d3.axisLeft(y));
+                .call(d3.axisLeft(y))
+                .style("font-size", "14px");
         
+            svg.select(".y-axis-label")
+            .transition()
+            .duration(300)
+            .text(textValue);
             // Scala per il raggio delle bolle
             const z = d3.scaleSqrt()
                 .domain([0, d3.max(combinedData, d => d.new_cases)])
