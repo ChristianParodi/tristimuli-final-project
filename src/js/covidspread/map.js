@@ -53,8 +53,8 @@ function mapMercator() {
   const minDate = d3.min(processedData.cases, d => new Date(d.year, d.month, 0));
   const maxDate = d3.max(processedData.cases, d => new Date(d.year, d.month, 0));
 
-  let currentYear = maxDate.getFullYear();
-  let currentMonth = maxDate.getMonth() + 1;
+  let currentYear = minDate.getFullYear();
+  let currentMonth = minDate.getMonth() + 1;
 
   const sliderStep = 2592000000; // 30 days in milliseconds
 
