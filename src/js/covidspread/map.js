@@ -66,9 +66,9 @@ function mapMercator() {
   d3.select("#max-year-text").text(`${maxDate.getMonth() + 1}/${maxDate.getFullYear()}`);
 
   const colorMap = new Map([
-    ["cases", ["#fee0d2", "#de2d26"]],
-    ["deaths", ["#deebf7", "#3182bd"]],
-    ["vaccines", ["#c7e9c0", "#238b45"]],
+    ["cases", ["#fdd0d0", "#a50f15"]],
+    ["deaths", ["#c6dbef", "#08306b"]],
+    ["vaccines", ["#bae4b3", "#005a32"]],
   ]);
 
   function updateMap() {
@@ -130,7 +130,7 @@ function mapMercator() {
             return value ? colorScale(value) : "#ccc";
           });
         tooltip.style("opacity", 0);
-      });
+      })
   }
 
   updateMap();
