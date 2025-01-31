@@ -2,8 +2,8 @@ import { datasets, population } from "../utils.js";
 
 function groupedBarChart() {
   let isConfirmedCases = false;
-  const covidCases = datasets.covidData.year_avg.cases.filter(d => +d.year === 2024);
-  const covidDeaths = datasets.covidData.year_avg.deaths.filter(d => +d.year === 2024);
+  const covidCases = datasets.covidData.year_max.cases.filter(d => +d.year === 2024);
+  const covidDeaths = datasets.covidData.year_max.deaths.filter(d => +d.year === 2024);
 
   const data = covidCases.map(caseItem => {
     const deathItem = covidDeaths.find(death => death.country === caseItem.country);
