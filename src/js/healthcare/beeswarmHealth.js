@@ -4,6 +4,7 @@ function beeswarm() {
     const mentalDeaths = datasets.mentalHealthData
         .filter(d => d.cause === "Mental and behavioural disorders" && d.age == "Total" && d.sex == "Total" && d.deaths != null && !d.country.includes("Union"))
         .map(d => ({
+            ISO2: d.ISO2,
             country: d.country,
             year: +d.year,
             deaths: +d.deaths,
@@ -18,6 +19,7 @@ function beeswarm() {
         const entry = expendituresData.find(ed => ed.country === md.country && +ed.year === +md.year);
         if (entry) {
             data.push({
+                ISO2: md.ISO2,
                 country: md.country,
                 year: +md.year,
                 deaths: +md.deaths,
@@ -138,7 +140,7 @@ function beeswarm() {
             .enter()
             .append("image")
             .attr("class", "flag-icon")
-            .attr("xlink:href", d => `../html/components/flags/${d.country.toLowerCase()}.svg`)
+            .attr("xlink:href", d => `https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/flags/1x1/${d.ISO2.toLowerCase()}.svg`)
             .attr("width", d => radiusScale(+d.healthExp) * 2)
             .attr("height", d => radiusScale(+d.healthExp) * 2)
             .attr("x", d => - (radiusScale(+d.healthExp)))

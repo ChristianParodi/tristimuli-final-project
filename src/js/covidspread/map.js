@@ -5,7 +5,7 @@ function mapMercator() {
   const height = 800;
 
   const dataSelector = document.getElementById("map-selector");
-  const yearSlider = d3.select("#year-slider-map");
+  const yearSlider = d3.select("#covid-map-year-slider");
 
   const tooltip = d3.select("body")
     .append("div")
@@ -22,7 +22,7 @@ function mapMercator() {
     .translate([width / 2.3, height * 1.5]);
   const path = d3.geoPath().projection(projection);
 
-  const svg = d3.select("#map-container")
+  const svg = d3.select("#map-covid-container")
     .append("svg")
     .attr("width", width)
     .attr("height", height)
@@ -91,7 +91,9 @@ function mapMercator() {
         const currentCountry = d.properties.wb_a3;
         const countryData = filteredData.find(d => d.ISO3 === currentCountry);
         const value = countryData ? countryData[selectedMetric] : null;
-        return value ? colorScale(value) : "#ccc";
+        if (value === null) return "#ccc";
+        if (value === 0) return "#f1f1f1";
+        return colorScale(value);
       })
       .attr("stroke", "black")
       .attr("stroke-width", 0.5)
@@ -112,9 +114,9 @@ function mapMercator() {
           tooltipText = `<strong>${d.properties.name}</strong><br>No data available`;
         else
           tooltipText = `
-            <strong>${countryData.country}</strong><br>
-            ${value.toLocaleString()} ${selectedMetric} to ${currentYear}/${currentMonth}
-          `;
+        <strong>${countryData.country}</strong><br>
+        ${value.toLocaleString()} ${selectedMetric} to ${currentYear}/${currentMonth}
+        `;
 
         tooltip
           .style("opacity", 1)
@@ -130,7 +132,9 @@ function mapMercator() {
             const currentCountry = d.properties.wb_a3;
             const countryData = filteredData.find(data => data.ISO3 === currentCountry);
             const value = countryData ? countryData[selectedMetric] : null;
-            return value ? colorScale(value) : "#ccc";
+            if (value === null) return "#ccc";
+            if (value === 0) return "#f1f1f1";
+            return colorScale(value);
           });
         tooltip.style("opacity", 0);
         europeMap.selectAll("path")

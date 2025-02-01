@@ -68,6 +68,9 @@ export const unemploymentQuantiles = await fetch("../../dataset/UNEMPLOYMENT/cle
 export const europeGeoJson = await fetch("../../dataset/europe.geo.json")
   .then(response => response.json());
 
+export const ISOCountries = await fetch("../../dataset/countries_ISO2_ISO3.json")
+  .then(response => response.json());
+
 async function loadunemploymentData() {
   return await d3.csv("../../dataset/UNEMPLOYMENT/clean/estat_une_rt_m_filtered.csv");
 }
@@ -86,7 +89,7 @@ async function loadExpenditures() {
 
 async function loadMentalHealth() {
   // return await d3.csv("./../../../dataset/MENTAL_HEALTH/clean/perc_estat_hlth_cd_aro.csv");
-  return await d3.csv("./../../../dataset/MENTAL_HEALTH/clean/melted_estat_hlth_cd_aro.csv");
+  return await d3.csv("./../../../dataset/MENTAL_HEALTH/clean/melted_estat_hlth_cd_aro_ISO2.csv");
 }
 
 async function loadCovidData() {

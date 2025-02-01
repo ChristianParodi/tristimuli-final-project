@@ -6,7 +6,7 @@ function bubbleEnrollments() {
     .filter(d => d.measure == "StayHomeOrder")
     .reduce((acc, d) => {
       if (!acc[d.country]) {
-        acc[d.country] = { country: d.country, lockdownDays: 0 };
+        acc[d.country] = { ISO2: d.ISO2, country: d.country, lockdownDays: 0 };
       }
       acc[d.country].lockdownDays += (new Date(d.date_end) - new Date(d.date_start)) / (1000 * 60 * 60 * 24);
       return acc;
@@ -18,7 +18,7 @@ function bubbleEnrollments() {
   // put NaN when there's no data available
   europeanCountries.forEach(country => {
     if (!lockdownData[country]) {
-      lockdownData[country] = { country: country, lockdownDays: NaN };
+      lockdownData[country] = { ISO2: null, country: country, lockdownDays: NaN };
     }
   });
 
@@ -38,6 +38,7 @@ function bubbleEnrollments() {
     const enrollment = enrollmentChange.find(d => d.country === country);
     const pop = lockdownPopulation.find(d => d.country === country && d.year === 2021);
     return {
+      ISO2: lockdown?.ISO2 || null,
       country: country,
       lockdownDays: lockdown?.lockdownDays || NaN,
       enrollmentChange: enrollment?.enrollmentChange || NaN,
@@ -109,7 +110,7 @@ function bubbleEnrollments() {
 
   svg.selectAll("circle")
     .attr("fill", d => bubbleColorScale(d.population));
-    
+
   // bubbles
   const bubbleGroups = svg.selectAll('.bubble-group')
     .data(data)
@@ -161,7 +162,7 @@ function bubbleEnrollments() {
     .attr("cy", 0);
 
   bubbleGroups.append('image')
-    .attr('xlink:href', d => `../html/components/flags/${d.country.toLowerCase()}.svg`)
+    .attr('xlink:href', d => `https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/flags/1x1/${d.ISO2.toLowerCase()}.svg`)
     .attr('width', d => r(d.population) * 3)
     .attr('height', d => r(d.population) * 3)
     .attr('x', d => -r(d.population) * 1.5)
