@@ -8,7 +8,7 @@ function ButterflyChart() {
   })).then(inflation => {
     const margin = { top: 40, right: 40, bottom: 40, left: 90 };
     const width = 400;
-    const height = 800;
+    const height = 500;
 
     const container = d3.select("#butterflychart_container")
       .style("display", "flex")
@@ -66,7 +66,8 @@ function ButterflyChart() {
       svg.append("g")
         .attr("class", "x-axis")
         .attr("transform", `translate(0, ${height - margin.bottom})`)
-        .style("color", "grey");
+        .style("color", "black")
+        .style("font-size", "14px");
 
       return svg;
     }

@@ -178,5 +178,29 @@
   {
     "ISO3": "GBR",
     "country": "United Kingdom"
+  },
+  {
+    "ISO3": "CZE",
+    "country": "Czechia"
+  },
+  {
+    "ISO3": "XKX",
+    "country": "Kosovo"
+  },
+  {
+    "ISO3": "MDA",
+    "country": "Moldova"
+  },
+  {
+    "ISO3": "MKD",
+    "country": "North Macedonia"
+  },
+  {
+    "ISO3": "RUS",
+    "country": "Russia"
+  },
+  {
+    "ISO3": "VAT",
+    "country": "Vatican"
   }
 ]

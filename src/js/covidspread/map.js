@@ -5,7 +5,7 @@ function mapMercator() {
   const height = 800;
 
   const dataSelector = document.getElementById("map-selector");
-  const yearSlider = d3.select("#year-slider");
+  const yearSlider = d3.select("#year-slider-map");
 
   const tooltip = d3.select("body")
     .append("div")
@@ -53,22 +53,25 @@ function mapMercator() {
   const minDate = d3.min(processedData.cases, d => new Date(d.year, d.month, 0));
   const maxDate = d3.max(processedData.cases, d => new Date(d.year, d.month, 0));
 
-  let currentYear = maxDate.getFullYear();
-  let currentMonth = maxDate.getMonth() + 1;
+  let currentYear = minDate.getFullYear();
+  let currentMonth = minDate.getMonth() + 1;
+
+  const sliderStep = 2592000000; // 30 days in milliseconds
 
   yearSlider
     .attr("min", minDate.getTime())
     .attr("max", maxDate.getTime())
-    .attr("value", maxDate.getTime())
-    .property("value", maxDate.getTime());
+    .attr("value", minDate.getTime())
+    .property("value", minDate.getTime())
+    .attr("step", sliderStep);
 
   d3.select("#min-year-text").text(`${minDate.getMonth() + 1}/${minDate.getFullYear()}`);
   d3.select("#max-year-text").text(`${maxDate.getMonth() + 1}/${maxDate.getFullYear()}`);
 
   const colorMap = new Map([
-    ["cases", ["#fee0d2", "#de2d26"]],
-    ["deaths", ["#deebf7", "#3182bd"]],
-    ["vaccines", ["#c7e9c0", "#238b45"]],
+    ["cases", ["#fdd0d0", "#a50f15"]],
+    ["deaths", ["#c6dbef", "#08306b"]],
+    ["vaccines", ["#bae4b3", "#005a32"]],
   ]);
 
   function updateMap() {
@@ -102,16 +105,16 @@ function mapMercator() {
           europeMap.selectAll("path")
             .transition()
             .duration(200)
-            .attr("fill", otherD => otherD === d ? colorScale(value) : "#ccc");
+            .attr("opacity", feature => feature.properties.wb_a3 === currentCountry ? 1 : 0.3);
 
         let tooltipText;
         if (value == null)
           tooltipText = `<strong>${d.properties.name}</strong><br>No data available`;
         else
           tooltipText = `
-        <strong>${countryData.country}</strong><br>
-        ${value.toLocaleString()} ${selectedMetric} to ${currentYear}/${currentMonth}
-        `;
+            <strong>${countryData.country}</strong><br>
+            ${value.toLocaleString()} ${selectedMetric} to ${currentYear}/${currentMonth}
+          `;
 
         tooltip
           .style("opacity", 1)
@@ -130,10 +133,22 @@ function mapMercator() {
             return value ? colorScale(value) : "#ccc";
           });
         tooltip.style("opacity", 0);
-      });
+        europeMap.selectAll("path")
+          .transition()
+          .duration(200)
+          .attr("opacity", 1);
+      })
   }
 
   updateMap();
+
+  const mapLabel = d3.select("#map-label")
+    .style("padding", "10px")
+    .style("color", "#333")
+    .style("font-size", "24px")
+    .style("border", "1px solid #000")
+    .style("border-radius", "5px")
+    .text(`Date: ${minDate.getMonth() + 1 < 10 ? `0${minDate.getMonth() + 1}` : minDate.getMonth() + 1}/${minDate.getFullYear()}`);
 
   dataSelector.addEventListener("change", updateMap);
 
@@ -141,7 +156,38 @@ function mapMercator() {
     const date = new Date(+this.value);
     currentYear = date.getFullYear();
     currentMonth = date.getMonth() + 1;
+    mapLabel.text(`Date: ${currentMonth < 10 ? `0${currentMonth}` : currentMonth}/${currentYear}`);
     updateMap();
+  });
+
+  const playButton = document.getElementById('play-button-covid-map');
+
+  let playing = false;
+  let goBack = false;
+  let intervalId;
+
+  playButton.addEventListener('click', () => {
+    playing = !playing;
+    playButton.textContent = playing ? 'Pause' : 'Play';
+    if (playing) {
+      intervalId = setInterval(() => {
+        if (goBack) {
+          yearSlider.node().value = yearSlider.node().min;
+          goBack = false;
+        }
+        else yearSlider.node().stepUp();
+        if ((yearSlider.node().value + sliderStep) >= yearSlider.node().max)
+          goBack = true;
+
+        const date = new Date(+yearSlider.node().value);
+        currentYear = date.getFullYear();
+        currentMonth = date.getMonth() + 1;
+        mapLabel.text(`Date: ${currentMonth < 10 ? `0${currentMonth}` : currentMonth}/${currentYear}`);
+        updateMap();
+      }, 100);
+    } else {
+      clearInterval(intervalId);
+    }
   });
 }
 
