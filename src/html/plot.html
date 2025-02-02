@@ -452,20 +452,20 @@
                 <p class="text-black">Select the causes of deaths to show:</p>
                 <div id="waffle-categories-options" class="flex gap-4">
                   <div>
-                    <label for="waffle-covid" class="text-black cursor-pointer">Covid</label>
                     <input type="checkbox" id="waffle-covid" name="waffle-metric" value="COVID-19" checked
                       class="cursor-pointer">
+                    <label for="waffle-covid" class="text-black cursor-pointer">Covid</label>
                   </div>
                   <div>
-                    <label for="waffle-mental-disturb" class="text-black cursor-pointer">Mental and behavioural
-                      disorders</label>
                     <input type="checkbox" id="waffle-mental-disturb" name="waffle-metric"
                       value="Mental and behavioural disorders" class="cursor-pointer" checked>
+                    <label for="waffle-mental-disturb" class="text-black cursor-pointer">Mental and behavioural
+                      disorders</label>
                   </div>
                   <div>
-                    <label for="waffle-self-harm" class="text-black cursor-pointer">Intentional self-harm</label>
                     <input type="checkbox" id="waffle-self-harm" name="waffle-metric" value="Intentional self-harm"
                       class="cursor-pointer" checked>
+                    <label for="waffle-self-harm" class="text-black cursor-pointer">Intentional self-harm</label>
                   </div>
                 </div>
               </div>
@@ -473,20 +473,18 @@
                 <label class="text-black">Select country:</p>
                   <select id="waffle-country-selector" class="text-black"></select>
               </div>
-              <div id="waffle-filter">
-                <p class="text-black">Filter by:</p>
-              </div>
             </div>
             <div id="waffle-years" class="w-full flex justify-around margin-top-4">
-              <div>
-                <label for="waffle-year-1" class="text-black">Year 1:</label>
+              <div class="flex flex-col">
+                <label for="waffle-year-1" class="text-black">Select the first year:</label>
                 <select id="waffle-year-1" class="text-black"></select>
               </div>
-              <div>
-                <label for="waffle-year-2" class="text-black">Year 2:</label>
+              <div class="flex flex-col">
+                <label for="waffle-year-2" class="text-black">Select the second year:</label>
                 <select id="waffle-year-2" class="text-black"></select>
               </div>
             </div>
+            <div id="waffle-deaths-per-dot" class="w-full flex justify-center items-center gap-1"></div>
             <div id="waffle-chart-container" class="flex justify-center"></div>
           </div>
           <!--WAFFLE CHART_END-->
