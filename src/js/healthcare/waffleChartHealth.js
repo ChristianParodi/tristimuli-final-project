@@ -30,10 +30,6 @@ function waffleChart() {
 
     // Causes checkboxes
     const categories_checkbox = Array.from(document.querySelectorAll('input[name="waffle-metric"]'));
-    categories_checkbox.forEach((checkbox, index) => {
-        const color = d3.schemeCategory10[index % 10];
-        checkbox.style.accentColor = color;
-    });
 
     // Country selector
     const countrySelect = document.getElementById('waffle-country-selector');
@@ -84,6 +80,10 @@ function waffleChart() {
         return colorMap.get(d).color;
     }
 
+    categories_checkbox.forEach((checkbox, index) => {
+        checkbox.style.accentColor = fillColor(index);
+    });
+
     // tooltip
     const tooltip = d3.select('#waffle-chart-container').append('div')
         .attr('class', 'tooltip-waffle-health flex flex-col items-center')
@@ -94,7 +94,8 @@ function waffleChart() {
         .style('border-radius', '4px')
         .style('pointer-events', 'none')
         .style('opacity', 0)
-        .style('color', 'black');
+        .style('color', 'black')
+        .style('box-shadow', '0px 4px 15px rgba(0, 0, 0, 0.2)');
 
 
     // Initial draw
@@ -104,6 +105,20 @@ function waffleChart() {
     let currentCountry, currentYear1, currentYear2, yearData1, yearData2, countryData, deathsPerDot;
     const currentAge = "Total";
     const currentSex = "Total";
+
+    // Add a little dot inside the DOM element waffle-deaths-per-dot
+    const deathsPerDotContainer = d3.select("#waffle-deaths-per-dot");
+    deathsPerDotContainer.insert("svg", ":first-child")
+        .attr("width", gridSize)
+        .attr("height", gridSize)
+        .append("rect")
+        .attr("class", "num-deaths")
+        .attr("width", gridSize)
+        .attr("height", gridSize)
+        .attr("fill", "lightgrey")
+        .attr("rx", 5)
+        .attr("ry", 5);
+
 
     function updateWaffles(year1, year2) {
         deathsPerDot = 10;
@@ -118,8 +133,22 @@ function waffleChart() {
         do {
             let maxDots = Math.ceil(maxDeaths / deathsPerDot);
             if (maxDots / cols <= maxRows) break;
-            deathsPerDot += 100;
+            deathsPerDot += 10;
         } while (true);
+
+        deathsPerDotContainer.select("span").remove();
+        deathsPerDotContainer.append("span")
+            .text(`= ${deathsPerDot} deaths`)
+            .style("color", "black")
+            .style("font-size", "16px")
+            .transition()
+            .duration(500)
+            .style("color", "red")
+            .style("font-size", "20px")
+            .transition()
+            .duration(500)
+            .style("color", "black")
+            .style("font-size", "16px");
 
 
         updateWaffleChart(chart1);
@@ -155,7 +184,7 @@ function waffleChart() {
                 .map(d => d.value)
                 .forEach(category => {
                     const categoryDeaths = yearData.find(d => d.cause === category).deaths;
-                    const categoryDots = Math.floor(categoryDeaths / deathsPerDot);
+                    const categoryDots = Math.ceil(categoryDeaths / deathsPerDot);
 
                     let filled = 0;
                     for (let i = 0; i < totalDots && filled < categoryDots; i++) {
@@ -206,40 +235,19 @@ function waffleChart() {
                         .duration(500)
                         .style("opacity", 0)
                         .remove()
-                )
-            // .on("mouseover", function (event, d) {
-            //     const cause = colorMap.get(d).cause;
-            //     const deaths = yearData.find(data => data.cause === cause).deaths;
-            //     const perc = yearData.find(data => data.cause === cause).percentage;
-            //     tooltip.html(`
-            //             <div class="flex items-center">
-            //                 <h2 class="font-bold" style="margin-right: 10px; font-size: 24px;">${deaths}</h2>
-            //             </div>
-            //             <div>
-            //                 <p class="w-full">People dead in ${currentCountry} in ${chart === chart1 ? currentYear1 : currentYear2} due to <i>${cause}</i>.</p>
-            //                 <p class="w-full">They represent the <strong>${perc.toFixed(2)}%</strong> of all deaths in ${currentCountry} that year.</p>
-            //             </div>
-            //     `)
-            //         .style("left", (event.pageX - 30) + "px")
-            //         .style("top", (event.pageY + 20) + "px")
-            //         .style("opacity", .9);
-            // })
-            // .on("mouseout", function () {
-            //     tooltip.transition()
-            //         .duration(500)
-            //         .style("opacity", 0);
-            // });
+                );
 
             chart.selectAll("rect")
                 .on("mouseover", function (event, d) {
                     const cause = colorMap.get(d).cause;
-                    const deaths1 = yearData1.find(data => data.cause === cause)?.deaths ?? "---";
-                    const perc1 = yearData1.find(data => data.cause === cause)?.percentage ?? "---";
-                    const deaths2 = yearData2.find(data => data.cause === cause)?.deaths ?? "---";
-                    const perc2 = yearData2.find(data => data.cause === cause)?.percentage ?? "---";
-                    tooltip.html(`
-                                    <h2 class="text-lg">People dead in ${currentCountry} due to</h2>
-                                    <span class="font-bold text-xl">${cause}</span>
+                    let tooltipText;
+                    if (cause !== "Empty") {
+                        const deaths1 = yearData1.find(data => data.cause === cause)?.deaths ?? "---";
+                        const perc1 = yearData1.find(data => data.cause === cause)?.percentage ?? "---";
+                        const deaths2 = yearData2.find(data => data.cause === cause)?.deaths ?? "---";
+                        const perc2 = yearData2.find(data => data.cause === cause)?.percentage ?? "---";
+                        tooltipText = `<h2 class="text-lg">Deaths in ${currentCountry} due to</h2>
+                                    <span class="font-bold text-xl" style="color: ${fillColor(d)};">${cause}</span>
                                     <div class="mh-5 mt-1 w-full">
                                         <div class="flex items-center justify-between">
                                             <h2 class="text-xl text-center w-[20%]">${currentYear1}</h2>
@@ -250,7 +258,7 @@ function waffleChart() {
 
                                         <div class="flex items-center justify-between">
                                             <p class="font-bold text-center w-[20%]">${deaths1}</p>
-                                            <p class="font-bold text-center w-[60%]">Number of deaths</p>
+                                            <p class="text-center w-[60%]">Number of deaths</p>
                                             <p class="font-bold text-center w-[20%]">${deaths2}</p>
                                         </div>
 
@@ -258,26 +266,61 @@ function waffleChart() {
                                         
                                         <div class="flex items-center justify-between">
                                             <p class="font-bold text-center w-[20%]">${perc1.toFixed(2)}%</p>
-                                            <p class="font-bold text-center w-[60%]">% over total deaths</p>
+                                            <p class="text-center w-[60%]">% over total deaths</p>
                                             <p class="font-bold text-center w-[20%]">${perc2.toFixed(2)}%</p>
                                         </div>
-                                    </div>
+                                    </div>`;
+                    }
+                    else {
+                        tooltipText = `<h2 class="text-lg">Deaths in ${currentCountry}</h2>
+                                        <div class="mh-5 mt-1 w-full">
+                                            <div class="flex items-center justify-between">
+                                                <h2 class="text-xl text-center w-[20%]">${currentYear1}</h2>
+                                                <h2 class="text-xl text-center w-[20%]">${currentYear2}</h2>
+                                            </div>`
 
-                        `)
-                        .style("left", (event.pageX - 30) + "px")
-                        .style("top", (event.pageY + 20) + "px")
-                        .style("opacity", .9);
+                        let total1 = yearData1.find(data => data.cause === "Total")?.deaths ?? 0;
+                        let total2 = yearData2.find(data => data.cause === "Total")?.deaths ?? 0;;
+                        colorMap.forEach((value, key) => {
+                            if (value.cause !== "Empty") {
+                                const currentDeaths1 = yearData1.find(data => data.cause === value.cause)?.deaths ?? 0;
+                                total1 -= currentDeaths1;
+                                const currentDeaths2 = yearData2.find(data => data.cause === value.cause)?.deaths ?? 0;
+                                total2 -= currentDeaths2;
+                                tooltipText += `<hr class="border-t border-gray-300 my-1">
+                                                <div class="flex items-center justify-between">
+                                                    <p class="font-bold text-center w-[20%]">${currentDeaths1}</p>
+                                                    <p class="font-bold text-center w-[60%]" style="color: ${fillColor(key)}">${value.cause}</p>
+                                                    <p class="font-bold text-center w-[20%]">${currentDeaths2}</p>
+                                                </div>`;
+                            }
+                        });
+                        tooltipText += `<hr class="border-t border-gray-300 my-1">
+                                        <div class="flex items-center justify-between">
+                                            <p class="font-bold text-center w-[20%]">${total1}</p>
+                                            <p class="font-bold text-center w-[60%]">Total</p>
+                                            <p class="font-bold text-center w-[20%]">${total2}</p>
+                                        </div>`;
+                    }
 
-                    d3.selectAll("rect")
-                        .filter(rect => rect !== d)
-                        .transition()
-                        .duration(200)
-                        .style("opacity", 0.3);
+                    tooltip.html(tooltipText)
+                        .style("left", (svg.node().getBoundingClientRect().left + width / 2 - tooltip.node().offsetWidth / 2) + "px")
+                        .style("top", (svg.node().getBoundingClientRect().top + height / 2 + window.scrollY - tooltip.node().offsetHeight / 2) + "px")
+                        .style("opacity", 0.9);
+
+
+                    if (colorMap.get(d).cause !== "Empty") {
+                        d3.selectAll("rect")
+                            .filter(function () {
+                                return !this.classList.contains('num-deaths') && d3.select(this).datum() !== d;
+                            })
+                            .transition()
+                            .duration(200)
+                            .style("opacity", 0.3);
+                    }
                 })
                 .on("mouseout", function () {
-                    tooltip.transition()
-                        .duration(500)
-                        .style("opacity", 0);
+                    tooltip.style("opacity", 0);
 
                     d3.selectAll("rect")
                         .transition()
@@ -299,10 +342,11 @@ function waffleChart() {
             if (checkedCheckboxes.length === 0) {
                 checkbox.checked = true;
                 checkbox.style.cursor = 'not-allowed';
+                checkbox.nextElementSibling.style.cursor = 'not-allowed';
             } else {
                 if (checkedCheckboxes.length === 1) {
                     checkedCheckboxes[0].style.cursor = 'not-allowed';
-                    checkedCheckboxes[0].previousElementSibling.style.cursor = 'not-allowed';
+                    checkedCheckboxes[0].nextElementSibling.style.cursor = 'not-allowed';
                 }
                 else
                     categories_checkbox.forEach(d => {
@@ -341,8 +385,6 @@ function waffleChart() {
     countrySelect.addEventListener('change', () => {
         currentCountry = countrySelect.value;
         countryData = data.filter(d => d.country === currentCountry && d.sex === currentSex && d.age === currentAge);
-
-
         updateWaffles(currentYear1, currentYear2);
     });
 }
