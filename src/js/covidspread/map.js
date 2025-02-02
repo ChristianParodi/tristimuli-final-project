@@ -53,6 +53,22 @@ function mapMercator() {
   const minDate = d3.min(processedData.cases, d => new Date(d.year, d.month, 0));
   const maxDate = d3.max(processedData.cases, d => new Date(d.year, d.month, 0));
 
+  // set the intermediate years and months
+  const dateRange = maxDate.getTime() - minDate.getTime();
+  const dateStep = dateRange / 5;
+
+  const dateTicks = Array.from({ length: 6 }, (_, i) => new Date(minDate.getTime() + (dateStep * i)));
+
+  const dateTickLabels = dateTicks.map(date =>
+    `${date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}/${date.getFullYear()}`
+  );
+
+  d3.select("#min-year-text").text(dateTickLabels[0]);
+  d3.select("#year-1-text").text(dateTickLabels[1]);
+  d3.select("#year-2-text").text(dateTickLabels[2]);
+  d3.select("#year-3-text").text(dateTickLabels[3]);
+  d3.select("#max-year-text").text(dateTickLabels[4]);
+
   let currentYear = minDate.getFullYear();
   let currentMonth = minDate.getMonth() + 1;
 
@@ -65,8 +81,6 @@ function mapMercator() {
     .property("value", minDate.getTime())
     .attr("step", sliderStep);
 
-  d3.select("#min-year-text").text(`${minDate.getMonth() + 1}/${minDate.getFullYear()}`);
-  d3.select("#max-year-text").text(`${maxDate.getMonth() + 1}/${maxDate.getFullYear()}`);
 
   const colorMap = new Map([
     ["cases", ["#fdd0d0", "#a50f15"]],
@@ -154,7 +168,17 @@ function mapMercator() {
     .style("border-radius", "5px")
     .text(`Date: ${minDate.getMonth() + 1 < 10 ? `0${minDate.getMonth() + 1}` : minDate.getMonth() + 1}/${minDate.getFullYear()}`);
 
-  dataSelector.addEventListener("change", updateMap);
+  dataSelector.addEventListener("change", () => {
+    const colorMap = {
+      'cases': 'rgb(192, 75, 79)',
+      'deaths': 'rgb(104, 135, 174)',
+      'vaccines': 'rgb(80, 149, 105)'
+    }
+
+    d3.select("#play-button-covid-map").style("background-color", colorMap[dataSelector.value]);
+    d3.select("#covid-map-year-slider").style("accent-color", colorMap[dataSelector.value]);
+    updateMap()
+  });
 
   yearSlider.node().addEventListener("input", function () {
     const date = new Date(+this.value);
@@ -172,7 +196,7 @@ function mapMercator() {
 
   playButton.addEventListener('click', () => {
     playing = !playing;
-    playButton.textContent = playing ? 'Pause' : 'Play';
+    playButton.textContent = playing ? '⏸︎' : '⏵︎';
     if (playing) {
       intervalId = setInterval(() => {
         if (goBack) {

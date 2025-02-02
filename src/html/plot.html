@@ -125,20 +125,38 @@
     <div id="page-background" class="bg-slate-700 text-white min-h-screen flex">
 
       <!-- Sidebar -->
-      <!-- Sidebar -->
       <div class="fixed left-0 top-0 h-full flex flex-col items-center justify-center sidebar">
         <div class="relative flex flex-col items-center h-full">
           <!-- Vertical Line -->
           <div class="absolute w-1 bg-gray-200 top-0 bottom-0 left-10 transform -translate-x-1/2 z-0"></div>
           <!-- Dots -->
           <div class="absolute flex flex-col items-center space-y-20 z-10 top-[20%] left-7">
-            <a href="#home" class="dotss"></a>
-            <a href="#section1" class="dotss"></a>
-            <a href="#section2" class="dotss"></a>
-            <a href="#section3" class="dotss"></a>
-            <a href="#section4" class="dotss"></a>
-            <a href="#section5" class="dotss"></a>
+            <div class="flex items-center gap-4 w-32">
+              <a href="#home" class="dotss"></a>
+              <span class="px-2 py-1 rounded">Home</span>
+            </div>
+            <div class="flex items-center gap-4 w-32">
+              <a href="#section1" class="dotss"></a>
+              <span class="px-2 py-1 rounded">Covid</span>
+            </div>
+            <div class="flex items-center gap-4 w-32">
+              <a href="#section2" class="dotss"></a>
+              <span class="px-2 py-1 rounded">Economy</span>
+            </div>
+            <div class="flex items-center gap-4 w-32">
+              <a href="#section3" class="dotss w-12"></a>
+              <span class="px-2 py-1 rounded">Education & Jobs</span>
+            </div>
+            <div class="flex items-center w-32">
+              <a href="#section4" class="dotss mr-2"></a>
+              <span class="px-2 py-1 rounded">Healthcare</span>
+            </div>
+            <div class="flex items-center gap-4 w-32">
+              <a href="#section5" class="dotss"></a>
+              <span class="px-2 py-1 rounded">Outcomes</span>
+            </div>
           </div>
+          <script src="../js/sideMenu.js"></script>
         </div>
       </div>
 
@@ -152,35 +170,42 @@
 
           <!--Container-->
           <div class="window">
-            <div id="map-covid-container"></div>
-            <span id="map-label" class="text-black">asd</span>
+            <!-- select metric  -->
+            <div class="flex flex-col">
+              <label for="map-selector" class="text-black">Select type of data:</label>
+              <select id="map-selector" class=" text-black select">
+                <option value="cases">Confirmed cases</option>
+                <option value="deaths">Confirmed deaths</option>
+                <option value="vaccines">Vaccines</option>
+              </select>
+            </div>
+            <!-- end select metric  -->
+            <div id="map-covid-container" class="self-center"></div>
+            <span id="map-label" class="text-black w-fit"></span>
             <!--Switch-->
-            <div class="flex justify-between items-center mt-10 gap-14">
-              <!-- year selector -->
-              <div class="flex-1">
-                <label for="covid-map-year-slider" class="block text-sm text-black font-medium mb-2">
-                  Select Year
-                </label>
-                <input type="range" id="covid-map-year-slider" name="covid-map-year-slider"
-                  class="w-full accent-blue-500">
-                <div class="flex justify-between text-sm text-gray-400">
-                  <span id="min-year-text"></span>
-                  <span id="max-year-text"></span>
+            <div class="flex-1 w-full">
+              <div class="flex items-center gap-4">
+                <!-- Play button -->
+                <button id="play-button-covid-map" class="play-button">⏵︎</button>
+                <!-- year selector -->
+                <div class="w-full">
+                  <label for="covid-map-year-slider" class="block text-sm text-black font-medium mb-2">
+                    Select Year
+                  </label>
+                  <input type="range" id="covid-map-year-slider" name="covid-map-year-slider" class="year-slider">
+                  <div class="flex justify-between text-sm text-gray-400">
+                    <span id="min-year-text"></span>
+                    <span id="year-1-text"></span>
+                    <span id="year-2-text"></span>
+                    <span id="year-3-text"></span>
+                    <span id="max-year-text"></span>
+                  </div>
                 </div>
+                <!-- end year selector -->
               </div>
-              <!-- end year selector -->
+            </div>
+            <div class="flex justify-between items-center mt-10 gap-14">
               <!-- <div id="selection-bar"></div> -->
-
-              <button id="play-button-covid-map" class="bg-blue-500 text-white px-4 py-2 rounded">Play</button>
-
-              <div class="flex flex-col">
-                <label for="map-selector" class="text-black">Select type of data:</label>
-                <select id="map-selector" class=" text-black select">
-                  <option value="cases">Confirmed cases</option>
-                  <option value="deaths">Confirmed deaths</option>
-                  <option value="vaccines">Vaccines</option>
-                </select>
-              </div>
             </div>
           </div>
 
