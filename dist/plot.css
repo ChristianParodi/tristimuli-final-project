@@ -673,8 +673,6 @@ video {
   width: 100%;
   cursor: pointer;
   border-radius: 0.5rem;
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1));
   accent-color: #C04B4F;
 }
 
@@ -1059,8 +1057,8 @@ video {
   gap: 3rem;
 }
 
-.gap-14{
-  gap: 3.5rem;
+.gap-2{
+  gap: 0.5rem;
 }
 
 .gap-4{
@@ -1441,6 +1439,10 @@ video {
 .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.accent-blue-500{
+  accent-color: #3b82f6;
 }
 
 .accent-green-600{

@@ -53,7 +53,7 @@ text {
   }
 
   .year-slider {
-    @apply w-full h-2 bg-gray-200 rounded-lg cursor-pointer accent-[#C04B4F];
+    @apply w-full h-2 rounded-lg cursor-pointer accent-[#C04B4F];
   }
 
   .play-button {
