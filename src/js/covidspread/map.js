@@ -55,7 +55,7 @@ function mapMercator() {
 
   // set the intermediate years and months
   const dateRange = maxDate.getTime() - minDate.getTime();
-  const dateStep = dateRange / 5;
+  const dateStep = dateRange / 4;
 
   const dateTicks = Array.from({ length: 6 }, (_, i) => new Date(minDate.getTime() + (dateStep * i)));
 
