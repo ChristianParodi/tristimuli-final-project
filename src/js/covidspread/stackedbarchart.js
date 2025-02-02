@@ -164,6 +164,34 @@ function groupedBarChart() {
         .transition()
         .duration(500)
         .attr("width", d => xScale(d.value) - xScale(0));
+
+      // cases label
+      const casesLabels = svg.selectAll(".label-text-cases")
+        .data(isConfirmedCases ? [top10[0]] : [], d => d.country);
+
+      casesLabels.enter()
+        .append("text")
+        .attr("class", "label-text-cases")
+        .attr("fill", "#ff514b")
+        .style("font-size", "18px")
+        .attr("text-anchor", "start")
+        // Start at the beginning of the bin
+        .attr("x", xScale(0))
+        .attr("y", d => yScale(d.country) + subGroupScale("cases") + subGroupScale.bandwidth() / 2)
+        .attr("dy", "0.35em")
+        .merge(casesLabels)
+        .transition()
+        .duration(500)
+        // Update x to follow the end of its bin as its width expands
+        .attr("x", d => xScale(d.cases))
+        .attr("y", d => yScale(d.country) + subGroupScale("cases") + subGroupScale.bandwidth() / 2)
+        .style("opacity", isConfirmedCases ? 1 : 0)
+        .text("cases");
+
+      casesLabels.exit()
+        .transition()
+        .duration(500)
+        .remove();
     } else { // we are on deaths
       xScale.domain([0, xMaxDeaths + 200000]);
       // Draw grouped bars with synchronized animation
@@ -196,9 +224,9 @@ function groupedBarChart() {
           tooltip
             .style("visibility", "visible")
             .html(`
-          <strong>${d.country}</strong><br/>
-          Deaths: ${Math.round(d.value).toLocaleString()}
-        `)
+            <strong>${d.country}</strong><br/>
+            Deaths: ${Math.round(d.value).toLocaleString()}
+            `)
             .style("opacity", 0)
             .transition()
             .duration(300)
@@ -239,7 +267,45 @@ function groupedBarChart() {
         .transition()
         .duration(500)
         .attr("width", d => xScale(d.key === "deaths" ? d.value : 0) - xScale(0));
+
+      // deaths label
+      const deathsLabels = svg.selectAll(".label-text-deaths")
+        .data([top10[0]], d => d.country);
+
+      const deathsLabelsUpdate = deathsLabels.enter()
+        .append("text")
+        .attr("class", "label-text-deaths")
+        .attr("fill", "black")
+        .style("font-size", "18px")
+        // Start from the left edge so it can transition with the bin’s width
+        .attr("x", xScale(0))
+        .attr("y", d => yScale(d.country) + subGroupScale("deaths") + subGroupScale.bandwidth() / 2)
+        .attr("dy", "0.35em")
+        .merge(deathsLabels);
+
+      deathsLabelsUpdate
+        .transition()
+        .duration(500)
+        .style("opacity", 1)
+        // Update x to follow the end of its bin as its width expands or shrinks
+        .attr("x", d => xScale(d.deaths))
+        .attr("y", d => yScale(d.country) + subGroupScale("deaths") + subGroupScale.bandwidth() / 2)
+        .text("deaths");
+
+      deathsLabels.exit()
+        .remove();
     }
+    // update deaths label
+    d3.selectAll('.label-text-deaths')
+      .transition()
+      .duration(500)
+      .attr('x', d => xScale(d.deaths) + 10);
+
+    // update cases label
+    d3.selectAll('.label-text-cases')
+      .transition()
+      .duration(500)
+      .attr('x', d => xScale(d.cases) + 10);
   }
 
   // Color scale
@@ -253,6 +319,7 @@ function groupedBarChart() {
     const newText = isConfirmedCases ? "Confirmed cases" : "Confirmed deaths";
     d3.select(event.target).text(newText);
     isConfirmedCases = !isConfirmedCases;
+    console.log(isConfirmedCases)
     updateChart(isConfirmedCases)
   })
 }
