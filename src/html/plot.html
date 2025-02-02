@@ -423,23 +423,23 @@
         </div>
         <!-- Education & Jobs END -->
 
-        <div id="section4" class="min-h-screen flex items-center justify-center">
+        <!-- <div id="section4" class="min-h-screen flex items-center justify-center">
           <h2 class="text-3xl font-semibold">Section 4</h2>
 
           <!--HISTOGRAM-->
 
 
-          <!--HISTOGRAM_END-->
+        <!--HISTOGRAM_END-->
 
-          <!--MAP-->
-          <!--MAP_END-->
+        <!--MAP-->
+        <!--MAP_END-->
 
-          <!--HIGHLIGHTS-->
+        <!--HIGHLIGHTS-->
 
-          <!--HIGHLIGHTS_END-->
+        <!--HIGHLIGHTS_END
 
-        </div>
-        <div id="section5" class="min-h-screen flex flex-col items-center justify-center gap-6">
+        </div> -->
+        <div id="section4" class="min-h-screen flex flex-col items-center justify-center gap-6">
           <h2 class="text-3xl font-semibold">Section 5</h2>
           <!--WAFFLE CHART-->
           <div class="window">
@@ -520,6 +520,75 @@
           </div>
           <!-- BEESWARM END -->
         </div>
+
+
+        <div id="section5" class="min-h-screen flex flex-col items-center">
+          <h2 class="text-3xl font-semibold my-10">Outcomes</h2>
+          <!-- Grid -->
+          <div class="grid grid-cols-3 gap-4">
+            <!-- Economy outcomes: Every one is poorer -->
+            <div class="p-4 flex flex-col items-center">
+              <h3 class="plot-title text-white mb-4">Everybody is poorer</h3>
+              <div class="flex flex-col items-center border-2 border-gray-200 w-fit rounded-md p-4">
+                <div class="flex flex-col items-center gap-4">
+                  <span class="text-gray-300 text-2xl">GDP change (2019-2023)</span>
+                  <span id="gdp-change-value" class="text-6xl"></span>
+                </div>
+              </div>
+            </div>
+            <!-- Economy: Inflation is increased -->
+            <div class="p-4 flex flex-col items-center">
+              <h3 class="plot-title text-white mb-4">Everything costs more</h3>
+              <div class="flex flex-col items-center border-2 border-gray-200 w-fit rounded-md p-4">
+                <div class="flex flex-col items-center gap-4">
+                  <span class="text-gray-300 text-2xl">General inflation change (2019-2023)</span>
+                  <span id="inflation-change-value" class="text-6xl"></span>
+                </div>
+              </div>
+            </div>
+            <!-- Education & Jobs: unemployment decreased after it -->
+            <div class="p-4 flex flex-col items-center">
+              <h3 class="plot-title text-white mb-4">Unemployment increased</h3>
+              <div class="flex flex-col items-center border-2 border-gray-200 w-fit rounded-md p-4">
+                <div class="flex flex-col items-center gap-4">
+                  <span class="text-gray-300 text-2xl">Unemployment change (2019-2023)</span>
+                  <span id="unemployment-change-value" class="text-6xl"></span>
+                </div>
+              </div>
+            </div>
+            <!-- Education & Jobs: enroll increase during covid, decrease after it -->
+            <div class="p-4 flex flex-col items-center">
+              <h3 class="plot-title text-white mb-4">Universities were not impacted that much</h3>
+              <div class="flex flex-col items-center border-2 border-gray-200 w-fit rounded-md p-4">
+                <div class="flex flex-col items-center gap-4">
+                  <span class="text-gray-300 text-2xl">Tertiary enrollment change (2019-2023)</span>
+                  <span id="enrollment-change-value" class="text-6xl"></span>
+                </div>
+              </div>
+            </div>
+            <!-- Healthcare: generam mental disorders deaths decreased -->
+            <div class="p-4 flex flex-col items-center">
+              <h3 class="plot-title text-white mb-4">Mental disorders deaths continue to decrease (including drugs,
+                alchool and Intentional self-harm)</h3>
+              <div class="flex flex-col items-center border-2 border-gray-200 w-fit rounded-md p-4">
+                <div class="flex flex-col items-center gap-4">
+                  <span class="text-gray-300 text-2xl">Deaths change (2019-2021)</span>
+                  <span id="mental-deaths-change-value" class="text-6xl"></span>
+                </div>
+              </div>
+            </div>
+            <!-- Healthcare: mental disorders deaths increased -->
+            <div class="p-4 flex flex-col items-center">
+              <h3 class="plot-title text-white mb-4">Mental disorders deaths have slightly incresed</h3>
+              <div class="flex flex-col items-center border-2 border-gray-200 w-fit rounded-md p-4">
+                <div class="flex flex-col items-center gap-4">
+                  <span class="text-gray-300 text-2xl">Mental disorders deaths change (2019-2021)</span>
+                  <span id="mental-disorders-deaths-change-value" class="text-6xl"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -545,6 +614,14 @@
     <script type="module" src="./../js/healthcare/waffleChartHealth.js"></script>
     <script type="module" src="./../js/healthcare/barChartHealth.js"></script>
     <script type="module" src="./../js/healthcare/beeswarmHealth.js"></script>
+
+    <!-- OUTCOMES -->
+    <script type="module" src="../js/outcomes/gdpChange.js"></script>
+    <script type="module" src="../js/outcomes/inflationChange.js"></script>
+    <script type="module" src="../js/outcomes/enrollmentChange.js"></script>
+    <script type="module" src="../js/outcomes/unemploymentChange.js"></script>
+    <script type="module" src="../js/outcomes/mentalDeathsChange.js"></script>
+    <script type="module" src="../js/outcomes/mentalDisordersDeathsChange.js"></script>
 
     <script type="module" src="./../js/utils.js"></script>
 

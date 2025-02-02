@@ -37,6 +37,8 @@ export const covidDates = {
 export const omicronRelease = new Date(2021, 11, 24)
 
 export const datasets = {
+  GDPData: await loadGDP(),
+  inflationData: await loadInflation(),
   unemploymentData: await loadunemploymentData(),
   educationData: await loadEducationData(),
   lockdownData: await loadLockdown(),
@@ -81,6 +83,14 @@ async function loadEducationData() {
 
 async function loadLockdown() {
   return await d3.csv("../../dataset/LOCKDOWN/clean/lockdonws_2022-08-25.csv");
+}
+
+async function loadGDP() {
+  return await d3.csv("../../dataset/GDP/clean/estat_namq_10_gdp_filtered.csv");
+}
+
+async function loadInflation() {
+  return await d3.csv("../../dataset/INFLATION/clean/inflation_finale.csv");
 }
 
 async function loadExpenditures() {
