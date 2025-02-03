@@ -37,6 +37,8 @@ export const covidDates = {
 export const omicronRelease = new Date(2021, 11, 24)
 
 export const datasets = {
+  GDPData: await loadGDP(),
+  inflationData: await loadInflation(),
   unemploymentData: await loadunemploymentData(),
   educationData: await loadEducationData(),
   lockdownData: await loadLockdown(),
@@ -68,6 +70,9 @@ export const unemploymentQuantiles = await fetch("../../dataset/UNEMPLOYMENT/cle
 export const europeGeoJson = await fetch("../../dataset/europe.geo.json")
   .then(response => response.json());
 
+export const ISOCountries = await fetch("../../dataset/countries_ISO2_ISO3.json")
+  .then(response => response.json());
+
 async function loadunemploymentData() {
   return await d3.csv("../../dataset/UNEMPLOYMENT/clean/estat_une_rt_m_filtered.csv");
 }
@@ -80,13 +85,21 @@ async function loadLockdown() {
   return await d3.csv("../../dataset/LOCKDOWN/clean/lockdonws_2022-08-25.csv");
 }
 
+async function loadGDP() {
+  return await d3.csv("../../dataset/GDP/clean/estat_namq_10_gdp_filtered.csv");
+}
+
+async function loadInflation() {
+  return await d3.csv("../../dataset/INFLATION/clean/inflation_finale.csv");
+}
+
 async function loadExpenditures() {
   return await d3.csv("../../dataset/EXPENDITURE/clean/estat_gov_10a_exp_from_2016.csv");
 }
 
 async function loadMentalHealth() {
   // return await d3.csv("./../../../dataset/MENTAL_HEALTH/clean/perc_estat_hlth_cd_aro.csv");
-  return await d3.csv("./../../../dataset/MENTAL_HEALTH/clean/melted_estat_hlth_cd_aro.csv");
+  return await d3.csv("./../../../dataset/MENTAL_HEALTH/clean/melted_estat_hlth_cd_aro_ISO2.csv");
 }
 
 async function loadCovidData() {

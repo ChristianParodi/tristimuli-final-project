@@ -5,7 +5,7 @@ function mapMercator() {
   const height = 800;
 
   const dataSelector = document.getElementById("map-selector");
-  const yearSlider = d3.select("#year-slider");
+  const yearSlider = d3.select("#covid-map-year-slider");
 
   const tooltip = d3.select("body")
     .append("div")
@@ -22,7 +22,7 @@ function mapMercator() {
     .translate([width / 2.3, height * 1.5]);
   const path = d3.geoPath().projection(projection);
 
-  const svg = d3.select("#map-container")
+  const svg = d3.select("#map-covid-container")
     .append("svg")
     .attr("width", width)
     .attr("height", height)
@@ -53,17 +53,34 @@ function mapMercator() {
   const minDate = d3.min(processedData.cases, d => new Date(d.year, d.month, 0));
   const maxDate = d3.max(processedData.cases, d => new Date(d.year, d.month, 0));
 
-  let currentYear = maxDate.getFullYear();
-  let currentMonth = maxDate.getMonth() + 1;
+  // set the intermediate years and months
+  const dateRange = maxDate.getTime() - minDate.getTime();
+  const dateStep = dateRange / 4;
+
+  const dateTicks = Array.from({ length: 6 }, (_, i) => new Date(minDate.getTime() + (dateStep * i)));
+
+  const dateTickLabels = dateTicks.map(date =>
+    `${date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}/${date.getFullYear()}`
+  );
+
+  d3.select("#min-year-text").text(dateTickLabels[0]);
+  d3.select("#year-1-text").text(dateTickLabels[1]);
+  d3.select("#year-2-text").text(dateTickLabels[2]);
+  d3.select("#year-3-text").text(dateTickLabels[3]);
+  d3.select("#max-year-text").text(dateTickLabels[4]);
+
+  let currentYear = minDate.getFullYear();
+  let currentMonth = minDate.getMonth() + 1;
+
+  const sliderStep = 2592000000; // 30 days in milliseconds
 
   yearSlider
     .attr("min", minDate.getTime())
     .attr("max", maxDate.getTime())
-    .attr("value", maxDate.getTime())
-    .property("value", maxDate.getTime());
+    .attr("value", minDate.getTime())
+    .property("value", minDate.getTime())
+    .attr("step", sliderStep);
 
-  d3.select("#min-year-text").text(`${minDate.getMonth() + 1}/${minDate.getFullYear()}`);
-  d3.select("#max-year-text").text(`${maxDate.getMonth() + 1}/${maxDate.getFullYear()}`);
 
   const colorMap = new Map([
     ["cases", ["#fdd0d0", "#a50f15"]],
@@ -88,7 +105,9 @@ function mapMercator() {
         const currentCountry = d.properties.wb_a3;
         const countryData = filteredData.find(d => d.ISO3 === currentCountry);
         const value = countryData ? countryData[selectedMetric] : null;
-        return value ? colorScale(value) : "#ccc";
+        if (value === null) return "#ccc";
+        if (value === 0) return "#f1f1f1";
+        return colorScale(value);
       })
       .attr("stroke", "black")
       .attr("stroke-width", 0.5)
@@ -102,7 +121,7 @@ function mapMercator() {
           europeMap.selectAll("path")
             .transition()
             .duration(200)
-            .attr("fill", otherD => otherD === d ? colorScale(value) : "#ccc");
+            .attr("opacity", feature => feature.properties.wb_a3 === currentCountry ? 1 : 0.3);
 
         let tooltipText;
         if (value == null)
@@ -127,21 +146,76 @@ function mapMercator() {
             const currentCountry = d.properties.wb_a3;
             const countryData = filteredData.find(data => data.ISO3 === currentCountry);
             const value = countryData ? countryData[selectedMetric] : null;
-            return value ? colorScale(value) : "#ccc";
+            if (value === null) return "#ccc";
+            if (value === 0) return "#f1f1f1";
+            return colorScale(value);
           });
         tooltip.style("opacity", 0);
+        europeMap.selectAll("path")
+          .transition()
+          .duration(200)
+          .attr("opacity", 1);
       })
   }
 
   updateMap();
 
-  dataSelector.addEventListener("change", updateMap);
+  const mapLabel = d3.select("#map-label")
+    .style("padding", "10px")
+    .style("color", "#333")
+    .style("font-size", "24px")
+    .style("border", "1px solid #000")
+    .style("border-radius", "5px")
+    .text(`Date: ${minDate.getMonth() + 1 < 10 ? `0${minDate.getMonth() + 1}` : minDate.getMonth() + 1}/${minDate.getFullYear()}`);
+
+  dataSelector.addEventListener("change", () => {
+    const colorMap = {
+      'cases': 'rgb(192, 75, 79)',
+      'deaths': 'rgb(104, 135, 174)',
+      'vaccines': 'rgb(80, 149, 105)'
+    }
+
+    d3.select("#play-button-covid-map").style("background-color", colorMap[dataSelector.value]);
+    d3.select("#covid-map-year-slider").style("accent-color", colorMap[dataSelector.value]);
+    updateMap()
+  });
 
   yearSlider.node().addEventListener("input", function () {
     const date = new Date(+this.value);
     currentYear = date.getFullYear();
     currentMonth = date.getMonth() + 1;
+    mapLabel.text(`Date: ${currentMonth < 10 ? `0${currentMonth}` : currentMonth}/${currentYear}`);
     updateMap();
+  });
+
+  const playButton = document.getElementById('play-button-covid-map');
+
+  let playing = false;
+  let goBack = false;
+  let intervalId;
+
+  playButton.addEventListener('click', () => {
+    playing = !playing;
+    playButton.textContent = playing ? '⏸︎' : '⏵︎';
+    if (playing) {
+      intervalId = setInterval(() => {
+        if (goBack) {
+          yearSlider.node().value = yearSlider.node().min;
+          goBack = false;
+        }
+        else yearSlider.node().stepUp();
+        if ((yearSlider.node().value + sliderStep) >= yearSlider.node().max)
+          goBack = true;
+
+        const date = new Date(+yearSlider.node().value);
+        currentYear = date.getFullYear();
+        currentMonth = date.getMonth() + 1;
+        mapLabel.text(`Date: ${currentMonth < 10 ? `0${currentMonth}` : currentMonth}/${currentYear}`);
+        updateMap();
+      }, 100);
+    } else {
+      clearInterval(intervalId);
+    }
   });
 }
 

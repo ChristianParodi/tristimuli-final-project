@@ -1,0 +1,257 @@
+[
+  {
+    "ISO2": "AL",
+    "ISO3": "ALB",
+    "country": "Albania"
+  },
+  {
+    "ISO2": "AD",
+    "ISO3": "AND",
+    "country": "Andorra"
+  },
+  {
+    "ISO2": "AT",
+    "ISO3": "AUT",
+    "country": "Austria"
+  },
+  {
+    "ISO2": "BY",
+    "ISO3": "BLR",
+    "country": "Belarus"
+  },
+  {
+    "ISO2": "BE",
+    "ISO3": "BEL",
+    "country": "Belgium"
+  },
+  {
+    "ISO2": "BA",
+    "ISO3": "BIH",
+    "country": "Bosnia and Herzegovina"
+  },
+  {
+    "ISO2": "BG",
+    "ISO3": "BGR",
+    "country": "Bulgaria"
+  },
+  {
+    "ISO2": "HR",
+    "ISO3": "HRV",
+    "country": "Croatia"
+  },
+  {
+    "ISO2": "CY",
+    "ISO3": "CYP",
+    "country": "Cyprus"
+  },
+  {
+    "ISO2": "DK",
+    "ISO3": "DNK",
+    "country": "Denmark"
+  },
+  {
+    "ISO2": "EE",
+    "ISO3": "EST",
+    "country": "Estonia"
+  },
+  {
+    "ISO2": "FO",
+    "ISO3": "FRO",
+    "country": "Faroe Islands"
+  },
+  {
+    "ISO2": "FI",
+    "ISO3": "FIN",
+    "country": "Finland"
+  },
+  {
+    "ISO2": "FR",
+    "ISO3": "FRA",
+    "country": "France"
+  },
+  {
+    "ISO2": "DE",
+    "ISO3": "DEU",
+    "country": "Germany"
+  },
+  {
+    "ISO2": "GI",
+    "ISO3": "GIB",
+    "country": "Gibraltar"
+  },
+  {
+    "ISO2": "GR",
+    "ISO3": "GRC",
+    "country": "Greece"
+  },
+  {
+    "ISO2": "GG",
+    "ISO3": "GGY",
+    "country": "Guernsey"
+  },
+  {
+    "ISO2": "HU",
+    "ISO3": "HUN",
+    "country": "Hungary"
+  },
+  {
+    "ISO2": "IS",
+    "ISO3": "ISL",
+    "country": "Iceland"
+  },
+  {
+    "ISO2": "IE",
+    "ISO3": "IRL",
+    "country": "Ireland"
+  },
+  {
+    "ISO2": "IM",
+    "ISO3": "IMN",
+    "country": "Isle of Man"
+  },
+  {
+    "ISO2": "IT",
+    "ISO3": "ITA",
+    "country": "Italy"
+  },
+  {
+    "ISO2": "JE",
+    "ISO3": "JEY",
+    "country": "Jersey"
+  },
+  {
+    "ISO2": "LV",
+    "ISO3": "LVA",
+    "country": "Latvia"
+  },
+  {
+    "ISO2": "LI",
+    "ISO3": "LIE",
+    "country": "Liechtenstein"
+  },
+  {
+    "ISO2": "LT",
+    "ISO3": "LTU",
+    "country": "Lithuania"
+  },
+  {
+    "ISO2": "LU",
+    "ISO3": "LUX",
+    "country": "Luxembourg"
+  },
+  {
+    "ISO2": "MT",
+    "ISO3": "MLT",
+    "country": "Malta"
+  },
+  {
+    "ISO2": "MC",
+    "ISO3": "MCO",
+    "country": "Monaco"
+  },
+  {
+    "ISO2": "ME",
+    "ISO3": "MNE",
+    "country": "Montenegro"
+  },
+  {
+    "ISO2": "NL",
+    "ISO3": "NLD",
+    "country": "Netherlands"
+  },
+  {
+    "ISO2": "NO",
+    "ISO3": "NOR",
+    "country": "Norway"
+  },
+  {
+    "ISO2": "PL",
+    "ISO3": "POL",
+    "country": "Poland"
+  },
+  {
+    "ISO2": "PT",
+    "ISO3": "PRT",
+    "country": "Portugal"
+  },
+  {
+    "ISO2": "RO",
+    "ISO3": "ROU",
+    "country": "Romania"
+  },
+  {
+    "ISO2": "SM",
+    "ISO3": "SMR",
+    "country": "San Marino"
+  },
+  {
+    "ISO2": "RS",
+    "ISO3": "SRB",
+    "country": "Serbia"
+  },
+  {
+    "ISO2": "SK",
+    "ISO3": "SVK",
+    "country": "Slovakia"
+  },
+  {
+    "ISO2": "SI",
+    "ISO3": "SVN",
+    "country": "Slovenia"
+  },
+  {
+    "ISO2": "ES",
+    "ISO3": "ESP",
+    "country": "Spain"
+  },
+  {
+    "ISO2": "SE",
+    "ISO3": "SWE",
+    "country": "Sweden"
+  },
+  {
+    "ISO2": "CH",
+    "ISO3": "CHE",
+    "country": "Switzerland"
+  },
+  {
+    "ISO2": "UA",
+    "ISO3": "UKR",
+    "country": "Ukraine"
+  },
+  {
+    "ISO2": "GB",
+    "ISO3": "GBR",
+    "country": "United Kingdom"
+  },
+  {
+    "ISO2": "CZ",
+    "ISO3": "CZE",
+    "country": "Czechia"
+  },
+  {
+    "ISO2": "XK",
+    "ISO3": "XKX",
+    "country": "Kosovo"
+  },
+  {
+    "ISO2": "MD",
+    "ISO3": "MDA",
+    "country": "Moldova"
+  },
+  {
+    "ISO2": "MK",
+    "ISO3": "MKD",
+    "country": "North Macedonia"
+  },
+  {
+    "ISO2": "RU",
+    "ISO3": "RUS",
+    "country": "Russia"
+  },
+  {
+    "ISO2": "VA",
+    "ISO3": "VAT",
+    "country": "Vatican"
+  }
+]

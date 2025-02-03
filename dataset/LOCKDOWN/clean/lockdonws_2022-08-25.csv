@@ -1,474 +1,474 @@
-country,measure,description,date_start,date_end
-Austria,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-05-04
-Austria,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-09-30
-Austria,ClosPrim,Closure of educational institutions: primary schools.,2020-11-17,2020-12-07
-Austria,ClosPrim,Closure of educational institutions: primary schools.,2020-12-26,2021-02-07
-Austria,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-16,2020-04-13
-Austria,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-05-02,2020-05-14
-Austria,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-11-16,2020-12-06
-Austria,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-12-28,2021-02-06
-Austria,ClosSec,Closure of educational institutions: secondary schools.,2020-11-03,2021-02-07
-Austria,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-09-14,2021-06-09
-Austria,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-11,2020-07-31
-Austria,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-11-03,2021-05-18
-Austria,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-10,2022-05-15
-Austria,SocialCircle,Social circle/bubble to limit social contacts e.g. to limited number of households,2020-11-17,2021-05-18
-Austria,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-10,2020-03-15
-Austria,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-16,2020-04-30
-Austria,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-11-17,2020-12-06
-Austria,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-12-26,2021-02-07
-Austria,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2021-11-15,2021-12-26
-Austria,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2022-01-01,2022-01-31
-Austria,Teleworking,Teleworking recommendation,2020-03-10,2022-03-05
-Belgium,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-05-18,2020-06-02
-Belgium,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-11-12,2020-11-15
-Belgium,ClosHigh,Closure of educational institutions: higher education.,2020-03-13,2020-08-19
-Belgium,ClosHigh,Closure of educational institutions: higher education.,2020-11-12,2020-11-15
-Belgium,ClosPrim,Closure of educational institutions: primary schools.,2020-03-13,2020-06-07
-Belgium,ClosPrim,Closure of educational institutions: primary schools.,2020-11-12,2020-11-16
-Belgium,ClosPrim,Closure of educational institutions: primary schools.,2021-03-29,2021-04-18
-Belgium,ClosPrim,Closure of educational institutions: primary schools.,2021-12-20,2021-12-24
-Belgium,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-13,2020-04-02
-Belgium,ClosSec,Closure of educational institutions: secondary schools.,2020-03-13,2020-08-19
-Belgium,ClosSec,Closure of educational institutions: secondary schools.,2020-11-12,2020-11-15
-Belgium,ClosSec,Closure of educational institutions: secondary schools.,2021-03-29,2021-04-18
-Belgium,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-10,2020-03-17
-Belgium,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-07-01,2021-06-08
-Belgium,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-10-28,2021-11-28
-Belgium,SocialCircle,Social circle/bubble to limit social contacts e.g. to limited number of households,2020-03-18,2021-06-08
-Belgium,SocialCircle,Social circle/bubble to limit social contacts e.g. to limited number of households,2021-12-26,2022-01-01
-Belgium,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-05-10,2020-10-18
-Belgium,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-18,2020-05-09
-Belgium,Teleworking,Teleworking recommendation,2020-03-10,
-Bulgaria,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-13,2020-05-21
-Bulgaria,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-11-27,2021-01-03
-Bulgaria,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-03-22,2021-03-31
-Bulgaria,ClosHigh,Closure of educational institutions: higher education.,2020-03-13,2020-05-31
-Bulgaria,ClosPrim,Closure of educational institutions: primary schools.,2020-03-13,2020-09-14
-Bulgaria,ClosPrim,Closure of educational institutions: primary schools.,2020-11-27,2021-01-03
-Bulgaria,ClosPrim,Closure of educational institutions: primary schools.,2021-03-22,2021-03-31
-Bulgaria,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-13,2020-05-17
-Bulgaria,ClosSec,Closure of educational institutions: secondary schools.,2020-03-13,2020-09-14
-Bulgaria,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-04-12,2020-04-30
-Bulgaria,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-08,2020-03-12
-Bulgaria,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-17,2020-07-27
-Bulgaria,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-08-01,2020-11-30
-Bulgaria,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-02-24,2020-03-11
-Bulgaria,Teleworking,Teleworking recommendation,2020-03-13,2020-03-29
-Bulgaria,Teleworking,Teleworking recommendation,2022-07-22,
-Croatia,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-05-10
-Croatia,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-06-17
-Croatia,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-05-10
-Croatia,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-06-17
-Croatia,ClosureOfPublicTransport,Closure of public transport,2020-03-22,2020-04-27
-Croatia,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-10-25,2021-07-02
-Croatia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-19,2021-05-27
-Croatia,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-23,2020-05-10
-Croatia,Teleworking,Teleworking recommendation,2020-03-19,2020-05-27
-Cyprus,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-10,2020-06-09
-Cyprus,ClosHigh,Closure of educational institutions: higher education.,2020-03-10,2020-05-11
-Cyprus,ClosHigh,Closure of educational institutions: higher education.,2020-12-14,2021-05-09
-Cyprus,ClosPrim,Closure of educational institutions: primary schools.,2020-03-10,2020-05-21
-Cyprus,ClosPrim,Closure of educational institutions: primary schools.,2021-01-10,2021-02-07
-Cyprus,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-11,2020-05-03
-Cyprus,ClosSec,Closure of educational institutions: secondary schools.,2020-03-10,2020-05-10
-Cyprus,ClosSec,Closure of educational institutions: secondary schools.,2020-12-14,2021-02-07
-Cyprus,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-11-05,2022-04-10
-Cyprus,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-10,2020-11-04
-Cyprus,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-06-30,2021-05-09
-Cyprus,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-24,2020-05-03
-Cyprus,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2021-01-10,2021-05-09
-Cyprus,WorkplaceClosures,Closures of workplaces,2020-03-16,2020-04-14
-Czechia,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-11,2020-05-11
-Czechia,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-03-01,2021-04-11
-Czechia,ClosHigh,Closure of educational institutions: higher education.,2020-03-11,2020-05-10
-Czechia,ClosHigh,Closure of educational institutions: higher education.,2020-10-14,2021-05-23
-Czechia,ClosPrim,Closure of educational institutions: primary schools.,2020-03-11,2020-05-10
-Czechia,ClosPrim,Closure of educational institutions: primary schools.,2020-10-14,2020-11-17
-Czechia,ClosPrim,Closure of educational institutions: primary schools.,2020-12-21,2021-04-11
-Czechia,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-16,2020-04-23
-Czechia,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-10-14,2020-11-17
-Czechia,ClosSec,Closure of educational institutions: secondary schools.,2020-03-11,2020-06-07
-Czechia,ClosSec,Closure of educational institutions: secondary schools.,2020-10-12,2020-12-06
-Czechia,ClosSec,Closure of educational institutions: secondary schools.,2020-12-21,2021-05-23
-Czechia,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-03-19,2020-07-03
-Czechia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-10,2022-03-01
-Czechia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-13,2020-06-30
-Czechia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2021-07-01,2022-04-08
-Czechia,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-16,2020-04-24
-Czechia,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-10-22,2020-11-03
-Czechia,Teleworking,Teleworking recommendation,2020-10-22,
-Denmark,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-04-15
-Denmark,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-07-31
-Denmark,ClosHigh,Closure of educational institutions: higher education.,2020-12-16,2021-02-28
-Denmark,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-04-15
-Denmark,ClosPrim,Closure of educational institutions: primary schools.,2020-12-21,2021-02-07
-Denmark,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-11,2020-05-17
-Denmark,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-12-16,2021-04-12
-Denmark,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2021-12-17,2021-12-18
-Denmark,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-05-18
-Denmark,ClosSec,Closure of educational institutions: secondary schools.,2020-12-16,2021-02-28
-Denmark,ClosSec,Closure of educational institutions: secondary schools.,2021-12-17,2022-01-05
-Denmark,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-18,2020-06-14
-Denmark,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-06-11,2021-07-31
-Denmark,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-18,2020-03-30
-Denmark,Teleworking,Teleworking recommendation,2020-03-13,2020-06-14
-Denmark,Teleworking,Teleworking recommendation,2020-12-16,2021-05-20
-Denmark,Teleworking,Teleworking recommendation,2021-12-19,2022-01-31
-Denmark,WorkplaceClosures,Closures of workplaces,2020-03-13,2020-05-10
-Estonia,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-05-17
-Estonia,ClosHigh,Closure of educational institutions: higher education.,2020-12-14,2020-12-31
-Estonia,ClosHigh,Closure of educational institutions: higher education.,2021-03-01,2021-05-16
-Estonia,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-05-14
-Estonia,ClosPrim,Closure of educational institutions: primary schools.,2020-12-14,2021-01-10
-Estonia,ClosPrim,Closure of educational institutions: primary schools.,2021-03-11,2021-05-02
-Estonia,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-12,2020-05-16
-Estonia,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-05-14
-Estonia,ClosSec,Closure of educational institutions: secondary schools.,2020-12-14,2021-01-10
-Estonia,ClosSec,Closure of educational institutions: secondary schools.,2021-03-01,2021-05-02
-Estonia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-05-18,2020-05-31
-Estonia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-07-15,2021-03-02
-Estonia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-01-28,2020-05-31
-Estonia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-07-31,2021-01-31
-Estonia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2022-01-10,2022-06-30
-Estonia,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-12,2020-05-17
-Finland,ClosHigh,Closure of educational institutions: higher education.,2020-03-18,2020-08-03
-Finland,ClosPrim,Closure of educational institutions: primary schools.,2020-03-18,2020-05-13
-Finland,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-18,2020-05-31
-Finland,ClosSec,Closure of educational institutions: secondary schools.,2020-03-18,2020-05-13
-Finland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-12,2020-06-30
-Finland,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-18,2020-06-14
-Finland,Teleworking,Teleworking recommendation,2020-03-18,2020-07-31
-France,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-06-01
-France,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-04-06,2021-04-26
-France,ClosHigh,Closure of educational institutions: higher education.,2020-10-27,2021-01-24
-France,ClosPrim,Closure of educational institutions: primary schools.,2021-04-06,2021-04-26
-France,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-16,2020-06-01
-France,ClosSec,Closure of educational institutions: secondary schools.,2021-04-06,2021-05-02
-France,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-10-29,2021-06-16
-France,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-02-29,2020-09-17
-France,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-10-16,2021-06-29
-France,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-13,2020-03-15
-France,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-17,2020-05-11
-France,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-10-29,2020-12-14
-France,Teleworking,Teleworking recommendation,2020-03-17,2020-05-10
-France,Teleworking,Teleworking recommendation,2020-10-29,2021-06-08
-France,WorkplaceClosures,Closures of workplaces,2020-03-17,2020-05-11
-Germany,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-13,2020-05-14
-Germany,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-16,2020-03-22
-Germany,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-10,2020-05-10
-Germany,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-06-08,2020-06-28
-Germany,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-11-02,2021-03-28
-Germany,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-02-14,2020-06-15
-Germany,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-11-08,2021-05-11
-Germany,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-09,2020-05-05
-Germany,Teleworking,Teleworking recommendation,2021-01-19,2021-06-30
-Greece,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-11,2020-06-01
-Greece,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-11-16,2021-01-10
-Greece,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-03-20,2021-05-09
-Greece,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-05-24
-Greece,ClosPrim,Closure of educational institutions: primary schools.,2020-03-11,2020-06-01
-Greece,ClosPrim,Closure of educational institutions: primary schools.,2020-11-16,2021-01-10
-Greece,ClosPrim,Closure of educational institutions: primary schools.,2021-03-20,2021-05-09
-Greece,ClosSec,Closure of educational institutions: secondary schools.,2020-03-11,2020-05-18
-Greece,ClosSec,Closure of educational institutions: secondary schools.,2020-11-07,2021-02-05
-Greece,ClosSec,Closure of educational institutions: secondary schools.,2021-03-20,2021-04-11
-Greece,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-07-17,2021-06-27
-Greece,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2021-12-24,2022-03-04
-Greece,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-11-07,2021-05-20
-Greece,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-19,2020-06-30
-Greece,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-12-18,2021-04-18
-Greece,SocialCircle,Social circle/bubble to limit social contacts e.g. to limited number of households,2021-01-01,2021-01-02
-Greece,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-02-27,2020-03-22
-Greece,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-23,2020-05-04
-Greece,Teleworking,Teleworking recommendation,2020-03-19,2020-11-02
-Hungary,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-25,2020-06-02
-Hungary,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-03-09,2021-04-18
-Hungary,ClosHigh,Closure of educational institutions: higher education.,2020-03-25,2020-05-18
-Hungary,ClosHigh,Closure of educational institutions: higher education.,2020-11-11,2021-07-07
-Hungary,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-06-01
-Hungary,ClosPrim,Closure of educational institutions: primary schools.,2021-03-08,2021-04-18
-Hungary,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-16,2020-03-27
-Hungary,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2021-03-08,2021-04-06
-Hungary,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-06-01
-Hungary,ClosSec,Closure of educational institutions: secondary schools.,2020-11-11,2021-05-09
-Hungary,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-11-11,2021-05-21
-Hungary,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-11,2020-03-15
-Hungary,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-09-01,2022-03-07
-Hungary,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-16,2020-03-26
-Hungary,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-06-16,2020-11-03
-Hungary,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-27,2020-05-18
-Iceland,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-05-04
-Iceland,ClosHigh,Closure of educational institutions: higher education.,2021-03-25,2021-04-01
-Iceland,ClosPrim,Closure of educational institutions: primary schools.,2021-03-25,2021-04-01
-Iceland,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-16,2020-05-03
-Iceland,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-05-04
-Iceland,ClosSec,Closure of educational institutions: secondary schools.,2021-03-25,2021-04-01
-Iceland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-16,2020-05-24
-Iceland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-10-04,2021-03-23
-Iceland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-05-10,2021-06-25
-Iceland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-07-25,2022-02-25
-Iceland,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-01-28,2021-01-24
-Ireland,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-12,2020-06-29
-Ireland,ClosHigh,Closure of educational institutions: higher education.,2020-03-12,2020-09-20
-Ireland,ClosPrim,Closure of educational institutions: primary schools.,2020-03-12,2020-08-09
-Ireland,ClosPrim,Closure of educational institutions: primary schools.,2021-01-11,2021-03-14
-Ireland,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-12,2020-03-26
-Ireland,ClosSec,Closure of educational institutions: secondary schools.,2020-03-12,2020-08-09
-Ireland,ClosSec,Closure of educational institutions: secondary schools.,2021-01-11,2021-02-28
-Ireland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-12,2020-03-23
-Ireland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-06-29,2020-11-30
-Ireland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-01-11,2021-05-09
-Ireland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-06-07,2021-10-28
-Ireland,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-01-27,2020-03-13
-Ireland,SocialCircle,Social circle/bubble to limit social contacts e.g. to limited number of households,2020-10-21,2021-07-18
-Ireland,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-12,2020-03-26
-Ireland,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-05-18,2020-06-26
-Ireland,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-27,2020-05-17
-Ireland,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-10-21,2020-11-30
-Ireland,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-12-31,2021-04-11
-Ireland,Teleworking,Teleworking recommendation,2020-03-12,2021-11-03
-Ireland,Teleworking,Teleworking recommendation,2022-01-14,2022-01-30
-Italy,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-10,2020-06-10
-Italy,ClosHigh,Closure of educational institutions: higher education.,2020-03-10,2020-06-10
-Italy,ClosHigh,Closure of educational institutions: higher education.,2020-12-04,2021-01-15
-Italy,ClosPrim,Closure of educational institutions: primary schools.,2020-03-05,2020-09-06
-Italy,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-12-24,2021-01-06
-Italy,ClosSec,Closure of educational institutions: secondary schools.,2020-03-04,2020-06-16
-Italy,ClosSec,Closure of educational institutions: secondary schools.,2020-07-05,2020-09-14
-Italy,ClosSec,Closure of educational institutions: secondary schools.,2020-11-06,2021-01-06
-Italy,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-04-26,2020-07-14
-Italy,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-10-08,2021-06-27
-Italy,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2021-12-25,2022-02-10
-Italy,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-09,2020-06-11
-Italy,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-11-06,2022-04-30
-Italy,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-04,2020-03-10
-Italy,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-06-12,2021-04-30
-Italy,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-10-26,2020-11-04
-Italy,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-10,2020-05-04
-Italy,Teleworking,Teleworking recommendation,2020-03-12,2020-06-10
-Italy,Teleworking,Teleworking recommendation,2020-10-16,
-Latvia,ClosHigh,Closure of educational institutions: higher education.,2020-03-17,2020-08-31
-Latvia,ClosHigh,Closure of educational institutions: higher education.,2021-10-21,2021-11-14
-Latvia,ClosPrim,Closure of educational institutions: primary schools.,2020-03-17,2020-08-31
-Latvia,ClosPrim,Closure of educational institutions: primary schools.,2021-10-21,2021-10-29
-Latvia,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-17,2020-05-11
-Latvia,ClosSec,Closure of educational institutions: secondary schools.,2020-10-26,2021-04-06
-Latvia,ClosSec,Closure of educational institutions: secondary schools.,2021-10-21,2021-10-29
-Latvia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-08-01,2020-11-08
-Latvia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-10-21,2021-11-14
-Latvia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-12,2020-05-11
-Liechtenstein,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-05-11
-Liechtenstein,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-06-08
-Liechtenstein,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-06-08
-Liechtenstein,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-10-24,2020-11-29
-Liechtenstein,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-12-20,2021-02-28
-Liechtenstein,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-06-08
-Liechtenstein,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-12-20,2021-07-04
-Liechtenstein,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-02-28,2020-07-02
-Liechtenstein,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-12-20,2021-05-23
-Liechtenstein,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-06-14,2021-08-15
-Liechtenstein,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-07-06,2022-02-17
-Liechtenstein,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-21,2020-05-18
-Lithuania,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-04-26
-Lithuania,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-05-24
-Lithuania,ClosHigh,Closure of educational institutions: higher education.,2020-11-07,2021-05-23
-Lithuania,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-05-24
-Lithuania,ClosPrim,Closure of educational institutions: primary schools.,2021-01-04,2021-05-31
-Lithuania,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-05-29
-Lithuania,ClosSec,Closure of educational institutions: secondary schools.,2020-11-07,2021-05-02
-Lithuania,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-04-10,2020-04-29
-Lithuania,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-11-07,2021-02-24
-Lithuania,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-12,2020-08-31
-Lithuania,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-10-30,2021-04-18
-Lithuania,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-06-02,2021-06-30
-Lithuania,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-17,2021-06-13
-Lithuania,SocialCircle,Social circle/bubble to limit social contacts e.g. to limited number of households,2020-12-16,2021-04-30
-Lithuania,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-16,2020-06-16
-Lithuania,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-11-07,2020-12-15
-Lithuania,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-12-16,2021-03-31
-Lithuania,Teleworking,Teleworking recommendation,2020-03-10,2020-11-06
-Lithuania,Teleworking,Teleworking recommendation,2021-07-01,2022-04-30
-Luxembourg,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-05-24
-Luxembourg,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-12-28,2021-01-10
-Luxembourg,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-05-24
-Luxembourg,ClosHigh,Closure of educational institutions: higher education.,2020-12-28,2021-01-10
-Luxembourg,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-05-24
-Luxembourg,ClosPrim,Closure of educational institutions: primary schools.,2021-01-04,2021-01-08
-Luxembourg,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-15,2020-03-15
-Luxembourg,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-05-10
-Luxembourg,ClosSec,Closure of educational institutions: secondary schools.,2021-01-04,2021-01-08
-Luxembourg,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-09,2020-03-16
-Luxembourg,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-09-22,2021-06-12
-Luxembourg,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2022-01-05,2022-02-11
-Luxembourg,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2021-05-06,2021-05-15
-Luxembourg,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2021-11-27,2022-01-14
-Luxembourg,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-18,2020-04-19
-Luxembourg,Teleworking,Teleworking recommendation,2020-03-14,2022-06-29
-Malta,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-13,2020-06-30
-Malta,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-03-15,2021-04-11
-Malta,ClosHigh,Closure of educational institutions: higher education.,2020-03-13,2020-06-30
-Malta,ClosHigh,Closure of educational institutions: higher education.,2020-09-01,2022-02-10
-Malta,ClosPrim,Closure of educational institutions: primary schools.,2020-03-13,2020-06-30
-Malta,ClosPrim,Closure of educational institutions: primary schools.,2021-03-15,2021-04-11
-Malta,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-18,2020-05-21
-Malta,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2021-03-11,2021-04-25
-Malta,ClosSec,Closure of educational institutions: secondary schools.,2020-03-13,2020-06-30
-Malta,ClosSec,Closure of educational institutions: secondary schools.,2021-03-15,2021-04-11
-Malta,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-05-22,2021-06-30
-Malta,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2021-12-11,2022-05-08
-Malta,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-13,2021-04-25
-Malta,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-07-05,2021-10-31
-Malta,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-13,2021-07-26
-Malta,Teleworking,Teleworking recommendation,2020-05-08,
-Netherlands,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-05-10
-Netherlands,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-12-16,2021-02-07
-Netherlands,ClosHigh,Closure of educational institutions: higher education.,2020-03-12,2020-06-14
-Netherlands,ClosHigh,Closure of educational institutions: higher education.,2020-12-16,2021-04-25
-Netherlands,ClosHigh,Closure of educational institutions: higher education.,2021-12-20,2022-01-14
-Netherlands,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-05-10
-Netherlands,ClosPrim,Closure of educational institutions: primary schools.,2020-12-16,2021-02-07
-Netherlands,ClosPrim,Closure of educational institutions: primary schools.,2021-12-20,2022-01-09
-Netherlands,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-06-01
-Netherlands,ClosSec,Closure of educational institutions: secondary schools.,2020-12-16,2021-02-28
-Netherlands,ClosSec,Closure of educational institutions: secondary schools.,2021-12-20,2022-01-09
-Netherlands,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2021-11-28,2022-01-25
-Netherlands,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-12,2020-06-30
-Netherlands,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-09-29,2020-10-13
-Netherlands,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-11-04,2021-06-04
-Netherlands,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-12-19,2022-03-15
-Netherlands,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-14,2021-09-21
-Netherlands,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2022-02-25,2022-03-22
-Netherlands,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-18,2020-05-10
-Netherlands,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-12-15,2021-01-22
-Netherlands,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2021-04-29,2021-06-04
-Netherlands,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2021-11-28,2022-01-25
-Netherlands,Teleworking,Teleworking recommendation,2020-03-12,2020-05-31
-Netherlands,Teleworking,Teleworking recommendation,2020-08-18,2021-06-25
-Netherlands,Teleworking,Teleworking recommendation,2021-07-19,
-Netherlands,WorkplaceClosures,Closures of workplaces,2020-03-23,2020-05-10
-Netherlands,WorkplaceClosures,Closures of workplaces,2020-12-15,2021-03-02
-Norway,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-12,2020-04-20
-Norway,ClosHigh,Closure of educational institutions: higher education.,2020-03-12,2020-06-14
-Norway,ClosHigh,Closure of educational institutions: higher education.,2021-01-04,2021-02-18
-Norway,ClosPrim,Closure of educational institutions: primary schools.,2020-03-12,2020-04-26
-Norway,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-12,2020-05-31
-Norway,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2022-01-15,2022-02-01
-Norway,ClosSec,Closure of educational institutions: secondary schools.,2020-03-12,2020-05-11
-Norway,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-12,2020-06-14
-Norway,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-10-12,2021-05-26
-Norway,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-07-15,2021-03-05
-Norway,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2021-03-29,2021-06-11
-Norway,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-11-05,2021-01-03
-Norway,Teleworking,Teleworking recommendation,2020-03-10,2021-06-17
-Poland,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-12,2020-05-06
-Poland,ClosHigh,Closure of educational institutions: higher education.,2020-03-12,2020-05-24
-Poland,ClosPrim,Closure of educational institutions: primary schools.,2020-03-12,2020-05-24
-Poland,ClosPrim,Closure of educational institutions: primary schools.,2020-11-10,2021-01-17
-Poland,ClosPrim,Closure of educational institutions: primary schools.,2021-12-20,2022-01-09
-Poland,ClosSec,Closure of educational institutions: secondary schools.,2020-03-12,2020-05-24
-Poland,ClosSec,Closure of educational institutions: secondary schools.,2020-10-24,2021-05-14
-Poland,ClosSec,Closure of educational institutions: secondary schools.,2021-12-20,2022-01-09
-Poland,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-04-16,2020-05-29
-Poland,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-10-10,2021-05-14
-Poland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-10,2020-06-18
-Poland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-07-17,2020-08-05
-Poland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-10-23,2021-05-07
-Poland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-05-28,2021-06-05
-Poland,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-15,2022-03-27
-Poland,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-04-20,2020-05-04
-Poland,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-24,2020-04-19
-Poland,Teleworking,Teleworking recommendation,2020-03-08,2022-02-28
-Portugal,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-05-17
-Portugal,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-01-22,2021-03-14
-Portugal,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-05-17
-Portugal,ClosHigh,Closure of educational institutions: higher education.,2021-01-22,2021-04-15
-Portugal,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-09-14
-Portugal,ClosPrim,Closure of educational institutions: primary schools.,2021-01-22,2021-03-14
-Portugal,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-13,2020-03-15
-Portugal,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-09-14
-Portugal,ClosSec,Closure of educational institutions: secondary schools.,2021-01-22,2021-04-04
-Portugal,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-10-28,2021-09-30
-Portugal,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-15,2021-05-02
-Portugal,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-02-27,2020-03-17
-Portugal,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2021-01-31,2021-06-28
-Portugal,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2021-05-01,2021-06-28
-Portugal,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-19,2020-05-02
-Portugal,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2021-01-15,2021-04-30
-Portugal,Teleworking,Teleworking recommendation,2020-03-19,2020-05-31
-Portugal,Teleworking,Teleworking recommendation,2021-01-15,2021-04-30
-Portugal,Teleworking,Teleworking recommendation,2021-12-25,2022-01-14
-Romania,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-06-14
-Romania,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-11-09,2020-12-23
-Romania,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-01-11,2021-02-07
-Romania,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-10-25,2021-11-05
-Romania,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-06-14
-Romania,ClosHigh,Closure of educational institutions: higher education.,2021-10-25,2021-11-05
-Romania,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-06-14
-Romania,ClosPrim,Closure of educational institutions: primary schools.,2020-11-09,2020-12-23
-Romania,ClosPrim,Closure of educational institutions: primary schools.,2021-01-11,2021-02-07
-Romania,ClosPrim,Closure of educational institutions: primary schools.,2021-10-25,2021-11-05
-Romania,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-18,2020-05-13
-Romania,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-06-01
-Romania,ClosSec,Closure of educational institutions: secondary schools.,2020-11-09,2020-12-23
-Romania,ClosSec,Closure of educational institutions: secondary schools.,2021-01-11,2021-02-07
-Romania,ClosSec,Closure of educational institutions: secondary schools.,2021-10-25,2021-11-05
-Romania,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-08-01,2021-05-14
-Romania,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2021-10-25,2022-03-08
-Romania,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-18,2021-05-31
-Romania,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-25,2020-08-16
-Romania,Teleworking,Teleworking recommendation,2020-03-16,2021-10-24
-Slovakia,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-05-31
-Slovakia,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-06-09
-Slovakia,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-05-31
-Slovakia,ClosPrim,Closure of educational institutions: primary schools.,2020-10-26,2020-11-15
-Slovakia,ClosPrim,Closure of educational institutions: primary schools.,2021-01-11,2021-02-07
-Slovakia,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-05-31
-Slovakia,ClosSec,Closure of educational institutions: secondary schools.,2020-10-26,2020-11-15
-Slovakia,ClosSec,Closure of educational institutions: secondary schools.,2021-01-11,2021-02-07
-Slovakia,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-03-25,2020-06-09
-Slovakia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-10,2020-09-30
-Slovakia,Teleworking,Teleworking recommendation,2020-04-04,2021-04-17
-Slovenia,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-12,2020-05-17
-Slovenia,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-10-26,2021-02-02
-Slovenia,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-04-01,2021-04-11
-Slovenia,ClosHigh,Closure of educational institutions: higher education.,2020-03-12,2020-10-14
-Slovenia,ClosHigh,Closure of educational institutions: higher education.,2020-10-24,2021-01-25
-Slovenia,ClosHigh,Closure of educational institutions: higher education.,2021-04-01,2021-04-25
-Slovenia,ClosPrim,Closure of educational institutions: primary schools.,2020-03-12,2020-05-17
-Slovenia,ClosPrim,Closure of educational institutions: primary schools.,2020-10-26,2021-02-14
-Slovenia,ClosPrim,Closure of educational institutions: primary schools.,2021-04-01,2021-04-11
-Slovenia,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-14,2020-04-28
-Slovenia,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2021-02-15,2021-03-19
-Slovenia,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2021-04-01,2021-04-11
-Slovenia,ClosSec,Closure of educational institutions: secondary schools.,2020-03-12,2020-05-17
-Slovenia,ClosSec,Closure of educational institutions: secondary schools.,2020-06-01,2020-06-22
-Slovenia,ClosSec,Closure of educational institutions: secondary schools.,2020-10-19,2021-02-14
-Slovenia,ClosSec,Closure of educational institutions: secondary schools.,2021-04-01,2021-04-11
-Slovenia,ClosureOfPublicTransport,Closure of public transport,2020-03-14,2020-04-30
-Slovenia,ClosureOfPublicTransport,Closure of public transport,2020-11-16,2020-12-15
-Slovenia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-07,2020-06-14
-Slovenia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-10-17,
-Slovenia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-04-04,2022-02-18
-Slovenia,Teleworking,Teleworking recommendation,2020-03-04,2022-05-14
-Slovenia,WorkplaceClosures,Closures of workplaces,2020-03-15,2020-05-04
-Spain,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-12,2020-08-27
-Spain,ClosHigh,Closure of educational institutions: higher education.,2020-03-14,2020-08-27
-Spain,ClosPrim,Closure of educational institutions: primary schools.,2020-03-12,2020-08-27
-Spain,ClosSec,Closure of educational institutions: secondary schools.,2020-03-12,2020-08-27
-Spain,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2021-03-30,2021-06-25
-Spain,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2021-12-24,2022-02-08
-Spain,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-14,2020-05-17
-Spain,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-12-23,2021-01-05
-Spain,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-03-17,2021-03-21
-Spain,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-03-26,2021-04-09
-Spain,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-05-15,2021-12-26
-Spain,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-12,2020-03-13
-Spain,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-14,2020-04-23
-Sweden,ClosHigh,Closure of educational institutions: higher education.,2020-03-17,2021-05-31
-Sweden,ClosSec,Closure of educational institutions: secondary schools.,2020-03-18,2020-06-15
-Sweden,ClosSec,Closure of educational institutions: secondary schools.,2020-12-07,2021-01-06
-Sweden,ClosSec,Closure of educational institutions: secondary schools.,2021-01-11,2021-04-01
-Sweden,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-12,2021-09-29
-Sweden,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2021-01-22,2022-03-31
-Sweden,Teleworking,Teleworking recommendation,2020-03-16,2022-03-31
+ISO2,ISO3,country,measure,description,date_start,date_end
+AT,AUT,Austria,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-05-04
+AT,AUT,Austria,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-09-30
+AT,AUT,Austria,ClosPrim,Closure of educational institutions: primary schools.,2020-11-17,2020-12-07
+AT,AUT,Austria,ClosPrim,Closure of educational institutions: primary schools.,2020-12-26,2021-02-07
+AT,AUT,Austria,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-16,2020-04-13
+AT,AUT,Austria,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-05-02,2020-05-14
+AT,AUT,Austria,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-11-16,2020-12-06
+AT,AUT,Austria,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-12-28,2021-02-06
+AT,AUT,Austria,ClosSec,Closure of educational institutions: secondary schools.,2020-11-03,2021-02-07
+AT,AUT,Austria,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-09-14,2021-06-09
+AT,AUT,Austria,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-11,2020-07-31
+AT,AUT,Austria,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-11-03,2021-05-18
+AT,AUT,Austria,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-10,2022-05-15
+AT,AUT,Austria,SocialCircle,Social circle/bubble to limit social contacts e.g. to limited number of households,2020-11-17,2021-05-18
+AT,AUT,Austria,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-10,2020-03-15
+AT,AUT,Austria,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-16,2020-04-30
+AT,AUT,Austria,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-11-17,2020-12-06
+AT,AUT,Austria,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-12-26,2021-02-07
+AT,AUT,Austria,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2021-11-15,2021-12-26
+AT,AUT,Austria,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2022-01-01,2022-01-31
+AT,AUT,Austria,Teleworking,Teleworking recommendation,2020-03-10,2022-03-05
+BE,BEL,Belgium,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-05-18,2020-06-02
+BE,BEL,Belgium,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-11-12,2020-11-15
+BE,BEL,Belgium,ClosHigh,Closure of educational institutions: higher education.,2020-03-13,2020-08-19
+BE,BEL,Belgium,ClosHigh,Closure of educational institutions: higher education.,2020-11-12,2020-11-15
+BE,BEL,Belgium,ClosPrim,Closure of educational institutions: primary schools.,2020-03-13,2020-06-07
+BE,BEL,Belgium,ClosPrim,Closure of educational institutions: primary schools.,2020-11-12,2020-11-16
+BE,BEL,Belgium,ClosPrim,Closure of educational institutions: primary schools.,2021-03-29,2021-04-18
+BE,BEL,Belgium,ClosPrim,Closure of educational institutions: primary schools.,2021-12-20,2021-12-24
+BE,BEL,Belgium,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-13,2020-04-02
+BE,BEL,Belgium,ClosSec,Closure of educational institutions: secondary schools.,2020-03-13,2020-08-19
+BE,BEL,Belgium,ClosSec,Closure of educational institutions: secondary schools.,2020-11-12,2020-11-15
+BE,BEL,Belgium,ClosSec,Closure of educational institutions: secondary schools.,2021-03-29,2021-04-18
+BE,BEL,Belgium,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-10,2020-03-17
+BE,BEL,Belgium,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-07-01,2021-06-08
+BE,BEL,Belgium,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-10-28,2021-11-28
+BE,BEL,Belgium,SocialCircle,Social circle/bubble to limit social contacts e.g. to limited number of households,2020-03-18,2021-06-08
+BE,BEL,Belgium,SocialCircle,Social circle/bubble to limit social contacts e.g. to limited number of households,2021-12-26,2022-01-01
+BE,BEL,Belgium,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-05-10,2020-10-18
+BE,BEL,Belgium,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-18,2020-05-09
+BE,BEL,Belgium,Teleworking,Teleworking recommendation,2020-03-10,
+BG,BGR,Bulgaria,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-13,2020-05-21
+BG,BGR,Bulgaria,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-11-27,2021-01-03
+BG,BGR,Bulgaria,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-03-22,2021-03-31
+BG,BGR,Bulgaria,ClosHigh,Closure of educational institutions: higher education.,2020-03-13,2020-05-31
+BG,BGR,Bulgaria,ClosPrim,Closure of educational institutions: primary schools.,2020-03-13,2020-09-14
+BG,BGR,Bulgaria,ClosPrim,Closure of educational institutions: primary schools.,2020-11-27,2021-01-03
+BG,BGR,Bulgaria,ClosPrim,Closure of educational institutions: primary schools.,2021-03-22,2021-03-31
+BG,BGR,Bulgaria,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-13,2020-05-17
+BG,BGR,Bulgaria,ClosSec,Closure of educational institutions: secondary schools.,2020-03-13,2020-09-14
+BG,BGR,Bulgaria,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-04-12,2020-04-30
+BG,BGR,Bulgaria,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-08,2020-03-12
+BG,BGR,Bulgaria,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-17,2020-07-27
+BG,BGR,Bulgaria,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-08-01,2020-11-30
+BG,BGR,Bulgaria,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-02-24,2020-03-11
+BG,BGR,Bulgaria,Teleworking,Teleworking recommendation,2020-03-13,2020-03-29
+BG,BGR,Bulgaria,Teleworking,Teleworking recommendation,2022-07-22,
+HR,HRV,Croatia,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-05-10
+HR,HRV,Croatia,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-06-17
+HR,HRV,Croatia,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-05-10
+HR,HRV,Croatia,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-06-17
+HR,HRV,Croatia,ClosureOfPublicTransport,Closure of public transport,2020-03-22,2020-04-27
+HR,HRV,Croatia,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-10-25,2021-07-02
+HR,HRV,Croatia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-19,2021-05-27
+HR,HRV,Croatia,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-23,2020-05-10
+HR,HRV,Croatia,Teleworking,Teleworking recommendation,2020-03-19,2020-05-27
+CY,CYP,Cyprus,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-10,2020-06-09
+CY,CYP,Cyprus,ClosHigh,Closure of educational institutions: higher education.,2020-03-10,2020-05-11
+CY,CYP,Cyprus,ClosHigh,Closure of educational institutions: higher education.,2020-12-14,2021-05-09
+CY,CYP,Cyprus,ClosPrim,Closure of educational institutions: primary schools.,2020-03-10,2020-05-21
+CY,CYP,Cyprus,ClosPrim,Closure of educational institutions: primary schools.,2021-01-10,2021-02-07
+CY,CYP,Cyprus,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-11,2020-05-03
+CY,CYP,Cyprus,ClosSec,Closure of educational institutions: secondary schools.,2020-03-10,2020-05-10
+CY,CYP,Cyprus,ClosSec,Closure of educational institutions: secondary schools.,2020-12-14,2021-02-07
+CY,CYP,Cyprus,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-11-05,2022-04-10
+CY,CYP,Cyprus,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-10,2020-11-04
+CY,CYP,Cyprus,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-06-30,2021-05-09
+CY,CYP,Cyprus,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-24,2020-05-03
+CY,CYP,Cyprus,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2021-01-10,2021-05-09
+CY,CYP,Cyprus,WorkplaceClosures,Closures of workplaces,2020-03-16,2020-04-14
+DK,DNK,Denmark,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-04-15
+DK,DNK,Denmark,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-07-31
+DK,DNK,Denmark,ClosHigh,Closure of educational institutions: higher education.,2020-12-16,2021-02-28
+DK,DNK,Denmark,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-04-15
+DK,DNK,Denmark,ClosPrim,Closure of educational institutions: primary schools.,2020-12-21,2021-02-07
+DK,DNK,Denmark,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-11,2020-05-17
+DK,DNK,Denmark,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-12-16,2021-04-12
+DK,DNK,Denmark,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2021-12-17,2021-12-18
+DK,DNK,Denmark,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-05-18
+DK,DNK,Denmark,ClosSec,Closure of educational institutions: secondary schools.,2020-12-16,2021-02-28
+DK,DNK,Denmark,ClosSec,Closure of educational institutions: secondary schools.,2021-12-17,2022-01-05
+DK,DNK,Denmark,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-18,2020-06-14
+DK,DNK,Denmark,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-06-11,2021-07-31
+DK,DNK,Denmark,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-18,2020-03-30
+DK,DNK,Denmark,Teleworking,Teleworking recommendation,2020-03-13,2020-06-14
+DK,DNK,Denmark,Teleworking,Teleworking recommendation,2020-12-16,2021-05-20
+DK,DNK,Denmark,Teleworking,Teleworking recommendation,2021-12-19,2022-01-31
+DK,DNK,Denmark,WorkplaceClosures,Closures of workplaces,2020-03-13,2020-05-10
+EE,EST,Estonia,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-05-17
+EE,EST,Estonia,ClosHigh,Closure of educational institutions: higher education.,2020-12-14,2020-12-31
+EE,EST,Estonia,ClosHigh,Closure of educational institutions: higher education.,2021-03-01,2021-05-16
+EE,EST,Estonia,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-05-14
+EE,EST,Estonia,ClosPrim,Closure of educational institutions: primary schools.,2020-12-14,2021-01-10
+EE,EST,Estonia,ClosPrim,Closure of educational institutions: primary schools.,2021-03-11,2021-05-02
+EE,EST,Estonia,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-12,2020-05-16
+EE,EST,Estonia,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-05-14
+EE,EST,Estonia,ClosSec,Closure of educational institutions: secondary schools.,2020-12-14,2021-01-10
+EE,EST,Estonia,ClosSec,Closure of educational institutions: secondary schools.,2021-03-01,2021-05-02
+EE,EST,Estonia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-05-18,2020-05-31
+EE,EST,Estonia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-07-15,2021-03-02
+EE,EST,Estonia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-01-28,2020-05-31
+EE,EST,Estonia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-07-31,2021-01-31
+EE,EST,Estonia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2022-01-10,2022-06-30
+EE,EST,Estonia,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-12,2020-05-17
+FI,FIN,Finland,ClosHigh,Closure of educational institutions: higher education.,2020-03-18,2020-08-03
+FI,FIN,Finland,ClosPrim,Closure of educational institutions: primary schools.,2020-03-18,2020-05-13
+FI,FIN,Finland,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-18,2020-05-31
+FI,FIN,Finland,ClosSec,Closure of educational institutions: secondary schools.,2020-03-18,2020-05-13
+FI,FIN,Finland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-12,2020-06-30
+FI,FIN,Finland,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-18,2020-06-14
+FI,FIN,Finland,Teleworking,Teleworking recommendation,2020-03-18,2020-07-31
+FR,FRA,France,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-06-01
+FR,FRA,France,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-04-06,2021-04-26
+FR,FRA,France,ClosHigh,Closure of educational institutions: higher education.,2020-10-27,2021-01-24
+FR,FRA,France,ClosPrim,Closure of educational institutions: primary schools.,2021-04-06,2021-04-26
+FR,FRA,France,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-16,2020-06-01
+FR,FRA,France,ClosSec,Closure of educational institutions: secondary schools.,2021-04-06,2021-05-02
+FR,FRA,France,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-10-29,2021-06-16
+FR,FRA,France,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-02-29,2020-09-17
+FR,FRA,France,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-10-16,2021-06-29
+FR,FRA,France,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-13,2020-03-15
+FR,FRA,France,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-17,2020-05-11
+FR,FRA,France,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-10-29,2020-12-14
+FR,FRA,France,Teleworking,Teleworking recommendation,2020-03-17,2020-05-10
+FR,FRA,France,Teleworking,Teleworking recommendation,2020-10-29,2021-06-08
+FR,FRA,France,WorkplaceClosures,Closures of workplaces,2020-03-17,2020-05-11
+DE,DEU,Germany,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-13,2020-05-14
+DE,DEU,Germany,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-16,2020-03-22
+DE,DEU,Germany,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-10,2020-05-10
+DE,DEU,Germany,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-06-08,2020-06-28
+DE,DEU,Germany,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-11-02,2021-03-28
+DE,DEU,Germany,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-02-14,2020-06-15
+DE,DEU,Germany,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-11-08,2021-05-11
+DE,DEU,Germany,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-09,2020-05-05
+DE,DEU,Germany,Teleworking,Teleworking recommendation,2021-01-19,2021-06-30
+GR,GRC,Greece,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-11,2020-06-01
+GR,GRC,Greece,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-11-16,2021-01-10
+GR,GRC,Greece,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-03-20,2021-05-09
+GR,GRC,Greece,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-05-24
+GR,GRC,Greece,ClosPrim,Closure of educational institutions: primary schools.,2020-03-11,2020-06-01
+GR,GRC,Greece,ClosPrim,Closure of educational institutions: primary schools.,2020-11-16,2021-01-10
+GR,GRC,Greece,ClosPrim,Closure of educational institutions: primary schools.,2021-03-20,2021-05-09
+GR,GRC,Greece,ClosSec,Closure of educational institutions: secondary schools.,2020-03-11,2020-05-18
+GR,GRC,Greece,ClosSec,Closure of educational institutions: secondary schools.,2020-11-07,2021-02-05
+GR,GRC,Greece,ClosSec,Closure of educational institutions: secondary schools.,2021-03-20,2021-04-11
+GR,GRC,Greece,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-07-17,2021-06-27
+GR,GRC,Greece,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2021-12-24,2022-03-04
+GR,GRC,Greece,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-11-07,2021-05-20
+GR,GRC,Greece,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-19,2020-06-30
+GR,GRC,Greece,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-12-18,2021-04-18
+GR,GRC,Greece,SocialCircle,Social circle/bubble to limit social contacts e.g. to limited number of households,2021-01-01,2021-01-02
+GR,GRC,Greece,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-02-27,2020-03-22
+GR,GRC,Greece,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-23,2020-05-04
+GR,GRC,Greece,Teleworking,Teleworking recommendation,2020-03-19,2020-11-02
+HU,HUN,Hungary,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-25,2020-06-02
+HU,HUN,Hungary,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-03-09,2021-04-18
+HU,HUN,Hungary,ClosHigh,Closure of educational institutions: higher education.,2020-03-25,2020-05-18
+HU,HUN,Hungary,ClosHigh,Closure of educational institutions: higher education.,2020-11-11,2021-07-07
+HU,HUN,Hungary,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-06-01
+HU,HUN,Hungary,ClosPrim,Closure of educational institutions: primary schools.,2021-03-08,2021-04-18
+HU,HUN,Hungary,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-16,2020-03-27
+HU,HUN,Hungary,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2021-03-08,2021-04-06
+HU,HUN,Hungary,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-06-01
+HU,HUN,Hungary,ClosSec,Closure of educational institutions: secondary schools.,2020-11-11,2021-05-09
+HU,HUN,Hungary,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-11-11,2021-05-21
+HU,HUN,Hungary,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-11,2020-03-15
+HU,HUN,Hungary,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-09-01,2022-03-07
+HU,HUN,Hungary,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-16,2020-03-26
+HU,HUN,Hungary,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-06-16,2020-11-03
+HU,HUN,Hungary,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-27,2020-05-18
+IS,ISL,Iceland,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-05-04
+IS,ISL,Iceland,ClosHigh,Closure of educational institutions: higher education.,2021-03-25,2021-04-01
+IS,ISL,Iceland,ClosPrim,Closure of educational institutions: primary schools.,2021-03-25,2021-04-01
+IS,ISL,Iceland,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-16,2020-05-03
+IS,ISL,Iceland,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-05-04
+IS,ISL,Iceland,ClosSec,Closure of educational institutions: secondary schools.,2021-03-25,2021-04-01
+IS,ISL,Iceland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-16,2020-05-24
+IS,ISL,Iceland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-10-04,2021-03-23
+IS,ISL,Iceland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-05-10,2021-06-25
+IS,ISL,Iceland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-07-25,2022-02-25
+IS,ISL,Iceland,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-01-28,2021-01-24
+IE,IRL,Ireland,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-12,2020-06-29
+IE,IRL,Ireland,ClosHigh,Closure of educational institutions: higher education.,2020-03-12,2020-09-20
+IE,IRL,Ireland,ClosPrim,Closure of educational institutions: primary schools.,2020-03-12,2020-08-09
+IE,IRL,Ireland,ClosPrim,Closure of educational institutions: primary schools.,2021-01-11,2021-03-14
+IE,IRL,Ireland,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-12,2020-03-26
+IE,IRL,Ireland,ClosSec,Closure of educational institutions: secondary schools.,2020-03-12,2020-08-09
+IE,IRL,Ireland,ClosSec,Closure of educational institutions: secondary schools.,2021-01-11,2021-02-28
+IE,IRL,Ireland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-12,2020-03-23
+IE,IRL,Ireland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-06-29,2020-11-30
+IE,IRL,Ireland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-01-11,2021-05-09
+IE,IRL,Ireland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-06-07,2021-10-28
+IE,IRL,Ireland,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-01-27,2020-03-13
+IE,IRL,Ireland,SocialCircle,Social circle/bubble to limit social contacts e.g. to limited number of households,2020-10-21,2021-07-18
+IE,IRL,Ireland,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-12,2020-03-26
+IE,IRL,Ireland,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-05-18,2020-06-26
+IE,IRL,Ireland,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-27,2020-05-17
+IE,IRL,Ireland,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-10-21,2020-11-30
+IE,IRL,Ireland,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-12-31,2021-04-11
+IE,IRL,Ireland,Teleworking,Teleworking recommendation,2020-03-12,2021-11-03
+IE,IRL,Ireland,Teleworking,Teleworking recommendation,2022-01-14,2022-01-30
+IT,ITA,Italy,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-10,2020-06-10
+IT,ITA,Italy,ClosHigh,Closure of educational institutions: higher education.,2020-03-10,2020-06-10
+IT,ITA,Italy,ClosHigh,Closure of educational institutions: higher education.,2020-12-04,2021-01-15
+IT,ITA,Italy,ClosPrim,Closure of educational institutions: primary schools.,2020-03-05,2020-09-06
+IT,ITA,Italy,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-12-24,2021-01-06
+IT,ITA,Italy,ClosSec,Closure of educational institutions: secondary schools.,2020-03-04,2020-06-16
+IT,ITA,Italy,ClosSec,Closure of educational institutions: secondary schools.,2020-07-05,2020-09-14
+IT,ITA,Italy,ClosSec,Closure of educational institutions: secondary schools.,2020-11-06,2021-01-06
+IT,ITA,Italy,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-04-26,2020-07-14
+IT,ITA,Italy,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-10-08,2021-06-27
+IT,ITA,Italy,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2021-12-25,2022-02-10
+IT,ITA,Italy,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-09,2020-06-11
+IT,ITA,Italy,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-11-06,2022-04-30
+IT,ITA,Italy,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-04,2020-03-10
+IT,ITA,Italy,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-06-12,2021-04-30
+IT,ITA,Italy,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-10-26,2020-11-04
+IT,ITA,Italy,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-10,2020-05-04
+IT,ITA,Italy,Teleworking,Teleworking recommendation,2020-03-12,2020-06-10
+IT,ITA,Italy,Teleworking,Teleworking recommendation,2020-10-16,
+LV,LVA,Latvia,ClosHigh,Closure of educational institutions: higher education.,2020-03-17,2020-08-31
+LV,LVA,Latvia,ClosHigh,Closure of educational institutions: higher education.,2021-10-21,2021-11-14
+LV,LVA,Latvia,ClosPrim,Closure of educational institutions: primary schools.,2020-03-17,2020-08-31
+LV,LVA,Latvia,ClosPrim,Closure of educational institutions: primary schools.,2021-10-21,2021-10-29
+LV,LVA,Latvia,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-17,2020-05-11
+LV,LVA,Latvia,ClosSec,Closure of educational institutions: secondary schools.,2020-10-26,2021-04-06
+LV,LVA,Latvia,ClosSec,Closure of educational institutions: secondary schools.,2021-10-21,2021-10-29
+LV,LVA,Latvia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-08-01,2020-11-08
+LV,LVA,Latvia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-10-21,2021-11-14
+LV,LVA,Latvia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-12,2020-05-11
+LI,LIE,Liechtenstein,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-05-11
+LI,LIE,Liechtenstein,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-06-08
+LI,LIE,Liechtenstein,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-06-08
+LI,LIE,Liechtenstein,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-10-24,2020-11-29
+LI,LIE,Liechtenstein,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-12-20,2021-02-28
+LI,LIE,Liechtenstein,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-06-08
+LI,LIE,Liechtenstein,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-12-20,2021-07-04
+LI,LIE,Liechtenstein,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-02-28,2020-07-02
+LI,LIE,Liechtenstein,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-12-20,2021-05-23
+LI,LIE,Liechtenstein,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-06-14,2021-08-15
+LI,LIE,Liechtenstein,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-07-06,2022-02-17
+LI,LIE,Liechtenstein,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-21,2020-05-18
+LT,LTU,Lithuania,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-04-26
+LT,LTU,Lithuania,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-05-24
+LT,LTU,Lithuania,ClosHigh,Closure of educational institutions: higher education.,2020-11-07,2021-05-23
+LT,LTU,Lithuania,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-05-24
+LT,LTU,Lithuania,ClosPrim,Closure of educational institutions: primary schools.,2021-01-04,2021-05-31
+LT,LTU,Lithuania,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-05-29
+LT,LTU,Lithuania,ClosSec,Closure of educational institutions: secondary schools.,2020-11-07,2021-05-02
+LT,LTU,Lithuania,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-04-10,2020-04-29
+LT,LTU,Lithuania,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-11-07,2021-02-24
+LT,LTU,Lithuania,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-12,2020-08-31
+LT,LTU,Lithuania,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-10-30,2021-04-18
+LT,LTU,Lithuania,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-06-02,2021-06-30
+LT,LTU,Lithuania,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-17,2021-06-13
+LT,LTU,Lithuania,SocialCircle,Social circle/bubble to limit social contacts e.g. to limited number of households,2020-12-16,2021-04-30
+LT,LTU,Lithuania,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-16,2020-06-16
+LT,LTU,Lithuania,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-11-07,2020-12-15
+LT,LTU,Lithuania,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-12-16,2021-03-31
+LT,LTU,Lithuania,Teleworking,Teleworking recommendation,2020-03-10,2020-11-06
+LT,LTU,Lithuania,Teleworking,Teleworking recommendation,2021-07-01,2022-04-30
+LU,LUX,Luxembourg,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-05-24
+LU,LUX,Luxembourg,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-12-28,2021-01-10
+LU,LUX,Luxembourg,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-05-24
+LU,LUX,Luxembourg,ClosHigh,Closure of educational institutions: higher education.,2020-12-28,2021-01-10
+LU,LUX,Luxembourg,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-05-24
+LU,LUX,Luxembourg,ClosPrim,Closure of educational institutions: primary schools.,2021-01-04,2021-01-08
+LU,LUX,Luxembourg,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-15,2020-03-15
+LU,LUX,Luxembourg,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-05-10
+LU,LUX,Luxembourg,ClosSec,Closure of educational institutions: secondary schools.,2021-01-04,2021-01-08
+LU,LUX,Luxembourg,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-09,2020-03-16
+LU,LUX,Luxembourg,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-09-22,2021-06-12
+LU,LUX,Luxembourg,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2022-01-05,2022-02-11
+LU,LUX,Luxembourg,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2021-05-06,2021-05-15
+LU,LUX,Luxembourg,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2021-11-27,2022-01-14
+LU,LUX,Luxembourg,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-18,2020-04-19
+LU,LUX,Luxembourg,Teleworking,Teleworking recommendation,2020-03-14,2022-06-29
+MT,MLT,Malta,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-13,2020-06-30
+MT,MLT,Malta,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-03-15,2021-04-11
+MT,MLT,Malta,ClosHigh,Closure of educational institutions: higher education.,2020-03-13,2020-06-30
+MT,MLT,Malta,ClosHigh,Closure of educational institutions: higher education.,2020-09-01,2022-02-10
+MT,MLT,Malta,ClosPrim,Closure of educational institutions: primary schools.,2020-03-13,2020-06-30
+MT,MLT,Malta,ClosPrim,Closure of educational institutions: primary schools.,2021-03-15,2021-04-11
+MT,MLT,Malta,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-18,2020-05-21
+MT,MLT,Malta,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2021-03-11,2021-04-25
+MT,MLT,Malta,ClosSec,Closure of educational institutions: secondary schools.,2020-03-13,2020-06-30
+MT,MLT,Malta,ClosSec,Closure of educational institutions: secondary schools.,2021-03-15,2021-04-11
+MT,MLT,Malta,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-05-22,2021-06-30
+MT,MLT,Malta,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2021-12-11,2022-05-08
+MT,MLT,Malta,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-13,2021-04-25
+MT,MLT,Malta,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-07-05,2021-10-31
+MT,MLT,Malta,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-13,2021-07-26
+MT,MLT,Malta,Teleworking,Teleworking recommendation,2020-05-08,
+NL,NLD,Netherlands,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-05-10
+NL,NLD,Netherlands,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-12-16,2021-02-07
+NL,NLD,Netherlands,ClosHigh,Closure of educational institutions: higher education.,2020-03-12,2020-06-14
+NL,NLD,Netherlands,ClosHigh,Closure of educational institutions: higher education.,2020-12-16,2021-04-25
+NL,NLD,Netherlands,ClosHigh,Closure of educational institutions: higher education.,2021-12-20,2022-01-14
+NL,NLD,Netherlands,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-05-10
+NL,NLD,Netherlands,ClosPrim,Closure of educational institutions: primary schools.,2020-12-16,2021-02-07
+NL,NLD,Netherlands,ClosPrim,Closure of educational institutions: primary schools.,2021-12-20,2022-01-09
+NL,NLD,Netherlands,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-06-01
+NL,NLD,Netherlands,ClosSec,Closure of educational institutions: secondary schools.,2020-12-16,2021-02-28
+NL,NLD,Netherlands,ClosSec,Closure of educational institutions: secondary schools.,2021-12-20,2022-01-09
+NL,NLD,Netherlands,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2021-11-28,2022-01-25
+NL,NLD,Netherlands,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-12,2020-06-30
+NL,NLD,Netherlands,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-09-29,2020-10-13
+NL,NLD,Netherlands,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-11-04,2021-06-04
+NL,NLD,Netherlands,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-12-19,2022-03-15
+NL,NLD,Netherlands,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-14,2021-09-21
+NL,NLD,Netherlands,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2022-02-25,2022-03-22
+NL,NLD,Netherlands,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-18,2020-05-10
+NL,NLD,Netherlands,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-12-15,2021-01-22
+NL,NLD,Netherlands,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2021-04-29,2021-06-04
+NL,NLD,Netherlands,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2021-11-28,2022-01-25
+NL,NLD,Netherlands,Teleworking,Teleworking recommendation,2020-03-12,2020-05-31
+NL,NLD,Netherlands,Teleworking,Teleworking recommendation,2020-08-18,2021-06-25
+NL,NLD,Netherlands,Teleworking,Teleworking recommendation,2021-07-19,
+NL,NLD,Netherlands,WorkplaceClosures,Closures of workplaces,2020-03-23,2020-05-10
+NL,NLD,Netherlands,WorkplaceClosures,Closures of workplaces,2020-12-15,2021-03-02
+NO,NOR,Norway,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-12,2020-04-20
+NO,NOR,Norway,ClosHigh,Closure of educational institutions: higher education.,2020-03-12,2020-06-14
+NO,NOR,Norway,ClosHigh,Closure of educational institutions: higher education.,2021-01-04,2021-02-18
+NO,NOR,Norway,ClosPrim,Closure of educational institutions: primary schools.,2020-03-12,2020-04-26
+NO,NOR,Norway,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-12,2020-05-31
+NO,NOR,Norway,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2022-01-15,2022-02-01
+NO,NOR,Norway,ClosSec,Closure of educational institutions: secondary schools.,2020-03-12,2020-05-11
+NO,NOR,Norway,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-12,2020-06-14
+NO,NOR,Norway,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-10-12,2021-05-26
+NO,NOR,Norway,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-07-15,2021-03-05
+NO,NOR,Norway,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2021-03-29,2021-06-11
+NO,NOR,Norway,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-11-05,2021-01-03
+NO,NOR,Norway,Teleworking,Teleworking recommendation,2020-03-10,2021-06-17
+PL,POL,Poland,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-12,2020-05-06
+PL,POL,Poland,ClosHigh,Closure of educational institutions: higher education.,2020-03-12,2020-05-24
+PL,POL,Poland,ClosPrim,Closure of educational institutions: primary schools.,2020-03-12,2020-05-24
+PL,POL,Poland,ClosPrim,Closure of educational institutions: primary schools.,2020-11-10,2021-01-17
+PL,POL,Poland,ClosPrim,Closure of educational institutions: primary schools.,2021-12-20,2022-01-09
+PL,POL,Poland,ClosSec,Closure of educational institutions: secondary schools.,2020-03-12,2020-05-24
+PL,POL,Poland,ClosSec,Closure of educational institutions: secondary schools.,2020-10-24,2021-05-14
+PL,POL,Poland,ClosSec,Closure of educational institutions: secondary schools.,2021-12-20,2022-01-09
+PL,POL,Poland,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-04-16,2020-05-29
+PL,POL,Poland,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-10-10,2021-05-14
+PL,POL,Poland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-10,2020-06-18
+PL,POL,Poland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-07-17,2020-08-05
+PL,POL,Poland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-10-23,2021-05-07
+PL,POL,Poland,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-05-28,2021-06-05
+PL,POL,Poland,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-15,2022-03-27
+PL,POL,Poland,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-04-20,2020-05-04
+PL,POL,Poland,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-24,2020-04-19
+PL,POL,Poland,Teleworking,Teleworking recommendation,2020-03-08,2022-02-28
+PT,PRT,Portugal,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-05-17
+PT,PRT,Portugal,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-01-22,2021-03-14
+PT,PRT,Portugal,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-05-17
+PT,PRT,Portugal,ClosHigh,Closure of educational institutions: higher education.,2021-01-22,2021-04-15
+PT,PRT,Portugal,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-09-14
+PT,PRT,Portugal,ClosPrim,Closure of educational institutions: primary schools.,2021-01-22,2021-03-14
+PT,PRT,Portugal,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-13,2020-03-15
+PT,PRT,Portugal,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-09-14
+PT,PRT,Portugal,ClosSec,Closure of educational institutions: secondary schools.,2021-01-22,2021-04-04
+PT,PRT,Portugal,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-10-28,2021-09-30
+PT,PRT,Portugal,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-15,2021-05-02
+PT,PRT,Portugal,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-02-27,2020-03-17
+PT,PRT,Portugal,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2021-01-31,2021-06-28
+PT,PRT,Portugal,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2021-05-01,2021-06-28
+PT,PRT,Portugal,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-19,2020-05-02
+PT,PRT,Portugal,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2021-01-15,2021-04-30
+PT,PRT,Portugal,Teleworking,Teleworking recommendation,2020-03-19,2020-05-31
+PT,PRT,Portugal,Teleworking,Teleworking recommendation,2021-01-15,2021-04-30
+PT,PRT,Portugal,Teleworking,Teleworking recommendation,2021-12-25,2022-01-14
+RO,ROU,Romania,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-06-14
+RO,ROU,Romania,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-11-09,2020-12-23
+RO,ROU,Romania,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-01-11,2021-02-07
+RO,ROU,Romania,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-10-25,2021-11-05
+RO,ROU,Romania,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-06-14
+RO,ROU,Romania,ClosHigh,Closure of educational institutions: higher education.,2021-10-25,2021-11-05
+RO,ROU,Romania,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-06-14
+RO,ROU,Romania,ClosPrim,Closure of educational institutions: primary schools.,2020-11-09,2020-12-23
+RO,ROU,Romania,ClosPrim,Closure of educational institutions: primary schools.,2021-01-11,2021-02-07
+RO,ROU,Romania,ClosPrim,Closure of educational institutions: primary schools.,2021-10-25,2021-11-05
+RO,ROU,Romania,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-18,2020-05-13
+RO,ROU,Romania,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-06-01
+RO,ROU,Romania,ClosSec,Closure of educational institutions: secondary schools.,2020-11-09,2020-12-23
+RO,ROU,Romania,ClosSec,Closure of educational institutions: secondary schools.,2021-01-11,2021-02-07
+RO,ROU,Romania,ClosSec,Closure of educational institutions: secondary schools.,2021-10-25,2021-11-05
+RO,ROU,Romania,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-08-01,2021-05-14
+RO,ROU,Romania,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2021-10-25,2022-03-08
+RO,ROU,Romania,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-18,2021-05-31
+RO,ROU,Romania,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-25,2020-08-16
+RO,ROU,Romania,Teleworking,Teleworking recommendation,2020-03-16,2021-10-24
+SK,SVK,Slovakia,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-16,2020-05-31
+SK,SVK,Slovakia,ClosHigh,Closure of educational institutions: higher education.,2020-03-16,2020-06-09
+SK,SVK,Slovakia,ClosPrim,Closure of educational institutions: primary schools.,2020-03-16,2020-05-31
+SK,SVK,Slovakia,ClosPrim,Closure of educational institutions: primary schools.,2020-10-26,2020-11-15
+SK,SVK,Slovakia,ClosPrim,Closure of educational institutions: primary schools.,2021-01-11,2021-02-07
+SK,SVK,Slovakia,ClosSec,Closure of educational institutions: secondary schools.,2020-03-16,2020-05-31
+SK,SVK,Slovakia,ClosSec,Closure of educational institutions: secondary schools.,2020-10-26,2020-11-15
+SK,SVK,Slovakia,ClosSec,Closure of educational institutions: secondary schools.,2021-01-11,2021-02-07
+SK,SVK,Slovakia,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-03-25,2020-06-09
+SK,SVK,Slovakia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-10,2020-09-30
+SK,SVK,Slovakia,Teleworking,Teleworking recommendation,2020-04-04,2021-04-17
+SI,SVN,Slovenia,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-12,2020-05-17
+SI,SVN,Slovenia,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-10-26,2021-02-02
+SI,SVN,Slovenia,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-04-01,2021-04-11
+SI,SVN,Slovenia,ClosHigh,Closure of educational institutions: higher education.,2020-03-12,2020-10-14
+SI,SVN,Slovenia,ClosHigh,Closure of educational institutions: higher education.,2020-10-24,2021-01-25
+SI,SVN,Slovenia,ClosHigh,Closure of educational institutions: higher education.,2021-04-01,2021-04-25
+SI,SVN,Slovenia,ClosPrim,Closure of educational institutions: primary schools.,2020-03-12,2020-05-17
+SI,SVN,Slovenia,ClosPrim,Closure of educational institutions: primary schools.,2020-10-26,2021-02-14
+SI,SVN,Slovenia,ClosPrim,Closure of educational institutions: primary schools.,2021-04-01,2021-04-11
+SI,SVN,Slovenia,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-14,2020-04-28
+SI,SVN,Slovenia,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2021-02-15,2021-03-19
+SI,SVN,Slovenia,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2021-04-01,2021-04-11
+SI,SVN,Slovenia,ClosSec,Closure of educational institutions: secondary schools.,2020-03-12,2020-05-17
+SI,SVN,Slovenia,ClosSec,Closure of educational institutions: secondary schools.,2020-06-01,2020-06-22
+SI,SVN,Slovenia,ClosSec,Closure of educational institutions: secondary schools.,2020-10-19,2021-02-14
+SI,SVN,Slovenia,ClosSec,Closure of educational institutions: secondary schools.,2021-04-01,2021-04-11
+SI,SVN,Slovenia,ClosureOfPublicTransport,Closure of public transport,2020-03-14,2020-04-30
+SI,SVN,Slovenia,ClosureOfPublicTransport,Closure of public transport,2020-11-16,2020-12-15
+SI,SVN,Slovenia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-07,2020-06-14
+SI,SVN,Slovenia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-10-17,
+SI,SVN,Slovenia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-04-04,2022-02-18
+SI,SVN,Slovenia,Teleworking,Teleworking recommendation,2020-03-04,2022-05-14
+SI,SVN,Slovenia,WorkplaceClosures,Closures of workplaces,2020-03-15,2020-05-04
+ES,ESP,Spain,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-12,2020-08-27
+ES,ESP,Spain,ClosHigh,Closure of educational institutions: higher education.,2020-03-14,2020-08-27
+ES,ESP,Spain,ClosPrim,Closure of educational institutions: primary schools.,2020-03-12,2020-08-27
+ES,ESP,Spain,ClosSec,Closure of educational institutions: secondary schools.,2020-03-12,2020-08-27
+ES,ESP,Spain,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2021-03-30,2021-06-25
+ES,ESP,Spain,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2021-12-24,2022-02-08
+ES,ESP,Spain,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-14,2020-05-17
+ES,ESP,Spain,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-12-23,2021-01-05
+ES,ESP,Spain,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-03-17,2021-03-21
+ES,ESP,Spain,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2021-03-26,2021-04-09
+ES,ESP,Spain,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-05-15,2021-12-26
+ES,ESP,Spain,StayHomeGen,Stay-at-home recommendations for the general population (which are voluntary or not enforced),2020-03-12,2020-03-13
+ES,ESP,Spain,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-14,2020-04-23
+SE,SWE,Sweden,ClosHigh,Closure of educational institutions: higher education.,2020-03-17,2021-05-31
+SE,SWE,Sweden,ClosSec,Closure of educational institutions: secondary schools.,2020-03-18,2020-06-15
+SE,SWE,Sweden,ClosSec,Closure of educational institutions: secondary schools.,2020-12-07,2021-01-06
+SE,SWE,Sweden,ClosSec,Closure of educational institutions: secondary schools.,2021-01-11,2021-04-01
+SE,SWE,Sweden,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-12,2021-09-29
+SE,SWE,Sweden,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2021-01-22,2022-03-31
+SE,SWE,Sweden,Teleworking,Teleworking recommendation,2020-03-16,2022-03-31
+CZ,CZE,Czechia,ClosDaycare,Closure of educational institutions: daycare or nursery.,2020-03-11,2020-05-11
+CZ,CZE,Czechia,ClosDaycare,Closure of educational institutions: daycare or nursery.,2021-03-01,2021-04-11
+CZ,CZE,Czechia,ClosHigh,Closure of educational institutions: higher education.,2020-03-11,2020-05-10
+CZ,CZE,Czechia,ClosHigh,Closure of educational institutions: higher education.,2020-10-14,2021-05-23
+CZ,CZE,Czechia,ClosPrim,Closure of educational institutions: primary schools.,2020-03-11,2020-05-10
+CZ,CZE,Czechia,ClosPrim,Closure of educational institutions: primary schools.,2020-10-14,2020-11-17
+CZ,CZE,Czechia,ClosPrim,Closure of educational institutions: primary schools.,2020-12-21,2021-04-11
+CZ,CZE,Czechia,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-03-16,2020-04-23
+CZ,CZE,Czechia,ClosPubAny,"Closure of public spaces of any kind (including restaurants, entertainment venues, non-essential shops, partial or full closure of public transport, gyms and sport centers, etc).",2020-10-14,2020-11-17
+CZ,CZE,Czechia,ClosSec,Closure of educational institutions: secondary schools.,2020-03-11,2020-06-07
+CZ,CZE,Czechia,ClosSec,Closure of educational institutions: secondary schools.,2020-10-12,2020-12-06
+CZ,CZE,Czechia,ClosSec,Closure of educational institutions: secondary schools.,2020-12-21,2021-05-23
+CZ,CZE,Czechia,MasksMandatoryAllSpaces,Protective mask use in all public spaces on mandatory basis (enforced by law),2020-03-19,2020-07-03
+CZ,CZE,Czechia,MassGatherAll,Interventions are in place to limit mass/public gatherings (any interventions on mass gatherings up to 1000 participants included),2020-03-10,2022-03-01
+CZ,CZE,Czechia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2020-03-13,2020-06-30
+CZ,CZE,Czechia,QuarantineForInternationalTravellers,Quarantine for individuals arriving from abroad,2021-07-01,2022-04-08
+CZ,CZE,Czechia,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-03-16,2020-04-24
+CZ,CZE,Czechia,StayHomeOrder,Stay-at-home orders for the general population (these are enforced and also referred to as 'lockdown'),2020-10-22,2020-11-03
+CZ,CZE,Czechia,Teleworking,Teleworking recommendation,2020-10-22,

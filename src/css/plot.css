@@ -3,7 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
+html {
+  height: 100%;
+  margin: 0;
+}
 
 h1,
 h2,
@@ -25,7 +28,7 @@ text {
 @layer components {
 
   .dotss {
-    @apply w-6 h-6 bg-gray-200 rounded-full border-2 border-gray-200 hover:bg-blue-400;
+    @apply w-6 h-6 bg-gray-200 rounded-full border-2 border-gray-200 hover:bg-blue-400 active:bg-blue-400 focus:bg-blue-400 focus:outline-none;
   }
 
   .backgroundwindow {
@@ -33,7 +36,7 @@ text {
   }
 
   .window {
-    @apply flex flex-col items-center gap-6 w-[80%] bg-gray-50 p-8 rounded-lg shadow-lg hover:shadow-2xl;
+    @apply flex flex-col items-center max-w-[90%] justify-end lg:justify-center mr-12 lg:mr-0 self-end lg:self-center gap-6 w-[80%] bg-gray-50 p-8 rounded-lg shadow-lg hover:shadow-2xl;
   }
 
   .select {
@@ -50,7 +53,11 @@ text {
   }
 
   .year-slider {
-    @apply w-[60%] h-2 rounded-lg appearance-none cursor-pointer;
+    @apply w-full h-2 rounded-lg cursor-pointer accent-[#C04B4F];
+  }
+
+  .play-button {
+    @apply w-12 h-12 flex items-center justify-center bg-[#C04B4F] text-white text-4xl px-4 py-2 rounded;
   }
 }
 
