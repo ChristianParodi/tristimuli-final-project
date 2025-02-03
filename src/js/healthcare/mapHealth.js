@@ -8,19 +8,19 @@ function mapBubble() {
   const yearSlider = d3.select("#year-slider-2");
 
   const tooltip = d3.select("body")
-  .append("div")
-  .style("position", "absolute")
-  .style("background-color", "white")
-  .style("border", "2px solid #ccc")
-  .style("border-radius", "10px")
-  .style("padding", "10px")
-  .style("font-size", "16px")
-  .style("font-weight", "bold")
-  .style("text-align", "center")
-  .style("box-shadow", "2px 2px 10px rgba(0, 0, 0, 0.2)")
-  .style("pointer-events", "none")
-  .style("opacity", 0)
-  .style("transition", "opacity 0.3s ease-in-out");
+    .append("div")
+    .style("position", "absolute")
+    .style("background-color", "white")
+    .style("border", "2px solid #ccc")
+    .style("border-radius", "10px")
+    .style("padding", "10px")
+    .style("font-size", "16px")
+    .style("font-weight", "bold")
+    .style("text-align", "center")
+    .style("box-shadow", "2px 2px 10px rgba(0, 0, 0, 0.2)")
+    .style("pointer-events", "none")
+    .style("opacity", 0)
+    .style("transition", "opacity 0.3s ease-in-out");
 
   const projection = d3.geoMercator()
     .scale(600)
@@ -35,7 +35,6 @@ function mapBubble() {
   const europeMap = svg.append("g");
   const bubbleLayer = svg.append("g");
 
- 
 
   const getLastDayData = (data, metric) => {
     const map = new Map();
@@ -53,18 +52,18 @@ function mapBubble() {
   };
 
   // Creiamo un Set con i paesi presenti nei dati giornalieri
-const validCountries = new Set(datasets.covidData.daily.cases.map(d => d.country));
-const excludedCountries = new Set(["Russia", "Vatican"]);
+  const validCountries = new Set(datasets.covidData.daily.cases.map(d => d.country));
+  const excludedCountries = new Set(["Russia", "Vatican"]);
 
-// Filtriamo expendituresData per includere solo i paesi presenti nei dati di getLastDayData
-const expendituresData = datasets.expendituresData
+  // Filtriamo expendituresData per includere solo i paesi presenti nei dati di getLastDayData
+  const expendituresData = datasets.expendituresData
     .filter(d => validCountries.has(d.country) && !excludedCountries.has(d.country))
     .map(d => ({
-        country: d.country,
-        year: +d.year,
-        total: +d.total,
-        health: +d.health,
-        percentage: +d.percentage
+      country: d.country,
+      year: +d.year,
+      total: +d.total,
+      health: +d.health,
+      percentage: +d.percentage
     }));
 
   const processedData = {
@@ -77,30 +76,30 @@ const expendituresData = datasets.expendituresData
   const maxDate = d3.max(processedData.cases, d => new Date(d.year, d.month, 0));
 
   // Definiamo la scala dei colori per la spesa sanitaria
-const healthValues = expendituresData.map(d => d.health);
-const minHealth = d3.min(healthValues);
-const maxHealth = d3.max(healthValues);
+  const healthValues = expendituresData.map(d => d.health);
+  const minHealth = d3.min(healthValues);
+  const maxHealth = d3.max(healthValues);
 
-// Creiamo una scala di colori per la leggenda
-const colorScale = d3.scaleLinear()
-  .domain([minHealth, maxHealth])
-  .range(["#f6e7e5", "#8B0000"]);
+  // Creiamo una scala di colori per la leggenda
+  const colorScale = d3.scaleLinear()
+    .domain([minHealth, maxHealth])
+    .range(["#f6e7e5", "#8B0000"]);
 
 
-// Definiamo i range per la legenda in base ai dati effettivi
-const legendRanges = [
+  // Definiamo i range per la legenda in base ai dati effettivi
+  const legendRanges = [
     { label: `Not Available`, color: "white" },
     { label: `${minHealth.toFixed(0)} - ${(minHealth + (maxHealth - minHealth) * 0.25).toFixed(0)}`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.125) },
     { label: `${(minHealth + (maxHealth - minHealth) * 0.25).toFixed(0)} - ${(minHealth + (maxHealth - minHealth) * 0.5).toFixed(0)}`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.375) },
     { label: `${(minHealth + (maxHealth - minHealth) * 0.5).toFixed(0)} - ${(minHealth + (maxHealth - minHealth) * 0.75).toFixed(0)}`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.625) },
     { label: `${(minHealth + (maxHealth - minHealth) * 0.75).toFixed(0)} - ${maxHealth.toFixed(0)}`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.875) }
   ];
-  
+
   // Creiamo il gruppo della legenda
   const legend = svg.append("g")
     .attr("id", "legend")
     .attr("transform", `translate(${width - 900}, ${height - 180})`);  // Aggiustato il margine a seconda della posizione
-  
+
   // Aggiungiamo il titolo della legenda
   legend.append("text")
     .attr("x", 0)
@@ -109,7 +108,7 @@ const legendRanges = [
     .text("Health Spending")
     .style("font-size", "16px")
     .style("font-weight", "bold");
-  
+
   // Aggiungiamo i rettangoli colorati per la legenda
   legend.selectAll("rect")
     .data(legendRanges)
@@ -122,7 +121,7 @@ const legendRanges = [
     .attr("fill", d => d.color)
     .attr("stroke", "#000")  // Colore del bordo (nero)
     .attr("stroke-width", 0.5);  // Larghezza del bordo (1px);
-  
+
   // Aggiungiamo il testo accanto ai rettangoli
   legend.selectAll("text.legend-label")
     .data(legendRanges)
@@ -134,7 +133,7 @@ const legendRanges = [
     .text(d => d.label)
     .style("font-size", "14px")
     .attr("fill", "#333");
-  
+
 
 
   let currentYear = maxDate.getFullYear();
@@ -152,8 +151,8 @@ const legendRanges = [
   function updateMap() {
     const selectedMetric = dataSelector.value; // cases, deaths, vaccines
     const selectedData = processedData[selectedMetric];
-    const filteredData = selectedData.filter(d => +d.year === currentYear && +d.month === currentMonth  && d.country !== "Russia"  && d.country !== "Bosnia and Herzegovina"  && d.country !== "Cyprus" && d.country !== "Faroe Islands");
-  
+    const filteredData = selectedData.filter(d => +d.year === currentYear && +d.month === currentMonth && d.country !== "Russia" && d.country !== "Bosnia and Herzegovina" && d.country !== "Cyprus" && d.country !== "Faroe Islands");
+
     europeMap.selectAll("path")
       .data(europeGeoJson.features.filter(d => !excludedCountries.has(d.properties.name)))
       .join("path")
@@ -161,28 +160,28 @@ const legendRanges = [
       .attr("fill", "#eee")
       .attr("stroke", "black")
       .attr("stroke-width", 0.5);
-  
+
     // Creiamo una scala di colori per la spesa sanitaria
     const healthByCountry = new Map(expendituresData.map(d => [d.country, d.health]));
     const maxHealth = d3.max(expendituresData, d => d.health);
     const colorScale = d3.scaleLinear().domain([0, maxHealth]).range(["#f6e7e5", "#8B0000"]);
-  
+
     const maxValue = d3.max(selectedData, d => d[selectedMetric]);
     const radiusScale = d3.scaleSqrt().domain([0, maxValue]).range([4, 30]);
 
 
-    
+
     bubbleLayer.selectAll("circle")
       .data(filteredData, d => d.country)
       .join("circle")
       .attr("cx", d => {
         const country1 = europeGeoJson.features.find(c => c.properties.name === d.country);
-        let x= projection(d3.geoCentroid(country1))[0] ;
+        let x = projection(d3.geoCentroid(country1))[0];
         return d.country === "France" ? x + 100 : x;
       })
       .attr("cy", d => {
         const country2 = europeGeoJson.features.find(c => c.properties.name === d.country);
-        let y= projection(d3.geoCentroid(country2))[1]
+        let y = projection(d3.geoCentroid(country2))[1]
         return d.country === "France" ? y - 50 : y;
       })
       .attr("r", d => radiusScale(d[selectedMetric]))
@@ -193,9 +192,9 @@ const legendRanges = [
       .attr("stroke", "black")
       .attr("stroke-width", 1)
       .on("mouseover", (event, d) => {
-    tooltip
-      .style("opacity", 1)
-      .html(`
+        tooltip
+          .style("opacity", 1)
+          .html(`
       <div style="font-size: 14px; "> MM/YYYY: ${d.month}/${d.year} </div>
         <div style="font-size: 18px; font-weight: bold;">${d.country}  </div>
 
@@ -226,13 +225,13 @@ const legendRanges = [
       </div>
     </div>
       `)
-      .style("left", `${event.pageX + 10}px`)
-      .style("top", `${event.pageY}px`);
-      //.html(`<strong>${d.country}</strong><br>${d[selectedMetric].toLocaleString()} ${selectedMetric}<br>Health Spending: ${healthByCountry.get(d.country) || "Not Available"}`)
-  })
-  .on("mouseout", () => tooltip.style("opacity", 0));
+          .style("left", `${event.pageX + 10}px`)
+          .style("top", `${event.pageY}px`);
+        //.html(`<strong>${d.country}</strong><br>${d[selectedMetric].toLocaleString()} ${selectedMetric}<br>Health Spending: ${healthByCountry.get(d.country) || "Not Available"}`)
+      })
+      .on("mouseout", () => tooltip.style("opacity", 0));
   }
-  
+
 
   updateMap();
 

@@ -249,18 +249,18 @@
           <!-- STACKEDBARCHART END -->
         </div>
 
-      <div id="section2" class="min-h-screen flex flex-col items-center gap-8 ">
-        
-        <h1 class="text-4xl font-bold mt-20">Economy</h1>
-        <p>The COVID-19 pandemic and lockdown had a profound economic 
-          impact on Europe, causing changes in various sectors such as 
-          the housing market, GDP, and tourism. In this section, we will
-           explore the impact of the pandemic, analyzing whether it slowed 
-           down the market in different aspects or, on the contrary, fueled new dynamics.</p>
-        <!--BUBBLECHART-->   
-        <div class="window">
-          <h3 class="plot-title">Flow of GDP and House Price during Covid years</h3>
-          <div class="flex justify-between items-center w-full">
+        <div id="section2" class="min-h-screen flex flex-col items-center gap-8 ">
+
+          <h1 class="text-4xl font-bold mt-20">Economy</h1>
+          <p>The COVID-19 pandemic and lockdown had a profound economic
+            impact on Europe, causing changes in various sectors such as
+            the housing market, GDP, and tourism. In this section, we will
+            explore the impact of the pandemic, analyzing whether it slowed
+            down the market in different aspects or, on the contrary, fueled new dynamics.</p>
+          <!--BUBBLECHART-->
+          <div class="window">
+            <h3 class="plot-title">Flow of GDP and House Price during Covid years</h3>
+            <div class="flex justify-between items-center w-full">
 
               <div class="flex flex-col w-1/3 ">
                 <label for="contry_selector_bubble" class=" text-gray-800 font-bold">Select country:</label>
@@ -319,51 +319,51 @@
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
 
             <p class="text-black justify-normal items-center">
-              The graph shows the trend of house prices and the Gross Domestic Product (GDP) 
-              in the various quarters from 2020 to 2023, maintaining the relationship with 
-              the number of new cases in the analyzed country. The GDP indicates the percentage 
+              The graph shows the trend of house prices and the Gross Domestic Product (GDP)
+              in the various quarters from 2020 to 2023, maintaining the relationship with
+              the number of new cases in the analyzed country. The GDP indicates the percentage
               growth rate of real GDP, adjusted for seasonal fluctuations and calendar
               irregularities. It tells you whether the economy is growing or contracting
-               compared to the previous quarter, by comparing consecutive periods without 
-               distortions due to seasonality or calendar variations, as the data has been 
-               adjusted for both seasonal effects (variations due to holidays, seasonal cycles) 
-               and calendar differences (e.g., leap years). If the value is positive, 
-               it means the economy has grown compared to the previous period,
-                while if it is negative, it means there has been an economic contraction. 
-                Meanwhile, the house price provides an overall overview of the real estate 
-                price trends, showing the percentage change in house prices compared to the 
-                previous quarter.
+              compared to the previous quarter, by comparing consecutive periods without
+              distortions due to seasonality or calendar variations, as the data has been
+              adjusted for both seasonal effects (variations due to holidays, seasonal cycles)
+              and calendar differences (e.g., leap years). If the value is positive,
+              it means the economy has grown compared to the previous period,
+              while if it is negative, it means there has been an economic contraction.
+              Meanwhile, the house price provides an overall overview of the real estate
+              price trends, showing the percentage change in house prices compared to the
+              previous quarter.
             </p>
 
           </div>
           <!--BUBBLECHART_2_END-->
 
 
-        <!--butterflychart-->
-        <div class="window">
-          <h3 class="plot-title">COVID-19 impact on HICP - monthly data (annual rate of change)</h3>
-          <div class="flex justify-between items-center w-full">
-            <!--selector-->
-            <div class="flex flex-col w-1/3 ">
-              <label for="data-selector-butt " class="text-gray-800  font-bold"> Type of inflaction:</label>
-              <select id="data-selector-butt" class="text-gray-800  select w-70">
-                <option value="All-items HICP">General Inflation</option>
-                <option value="Food and non-alcoholic beverages">Food and non-alcoholic beverages</option>
-                <option value="Transport">Transport</option>
-                <option value="Fuels and lubricants for personal transport equipment">Fuels and lubricants for
-                  personal transport equipment</option>
-                <option value="Health"> Health</option>
-                <option value="Medical products, appliances and equipment">Medical products</option>
-                <option value="Restaurants and hotels">Restaurants and hotels</option>
-                <option value="Accommodation services">Accommodation services</option>
-                <option value="Education">Education</option>
-                <option value="Communications">Communications</option>
-                <option value="Alcoholic beverages, tobacco and narcotics">Alcoholic beverages, tobacco and narcotics
-                </option>
-                <option value="Alcoholic beverages">Alcoholic beverages</option>
-              </select>
-            </div>
-            <!--end_selector-->
+          <!--butterflychart-->
+          <div class="window">
+            <h3 class="plot-title">COVID-19 impact on HICP - monthly data (annual rate of change)</h3>
+            <div class="flex justify-between items-center w-full">
+              <!--selector-->
+              <div class="flex flex-col w-1/3 ">
+                <label for="data-selector-butt " class="text-gray-800  font-bold"> Type of inflaction:</label>
+                <select id="data-selector-butt" class="text-gray-800  select w-70">
+                  <option value="All-items HICP">General Inflation</option>
+                  <option value="Food and non-alcoholic beverages">Food and non-alcoholic beverages</option>
+                  <option value="Transport">Transport</option>
+                  <option value="Fuels and lubricants for personal transport equipment">Fuels and lubricants for
+                    personal transport equipment</option>
+                  <option value="Health"> Health</option>
+                  <option value="Medical products, appliances and equipment">Medical products</option>
+                  <option value="Restaurants and hotels">Restaurants and hotels</option>
+                  <option value="Accommodation services">Accommodation services</option>
+                  <option value="Education">Education</option>
+                  <option value="Communications">Communications</option>
+                  <option value="Alcoholic beverages, tobacco and narcotics">Alcoholic beverages, tobacco and narcotics
+                  </option>
+                  <option value="Alcoholic beverages">Alcoholic beverages</option>
+                </select>
+              </div>
+              <!--end_selector-->
 
               <!--slider-->
               <div class="flex flex-col w-1/2 ">
@@ -410,23 +410,28 @@
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
 
             <p class="text-black justify-normal items-center">
-              The graph presents the Harmonized Index of Consumer Prices (HICP) 
+              The graph presents the Harmonized Index of Consumer Prices (HICP)
               in European countries and indicates the percentage change in
-               inflation compared to the same month of the previous year.
+              inflation compared to the same month of the previous year.
 
-              From the values ​​observed it is possible to note a general stability 
-              between the years of <span class="font-bold">2018</span> and <span class="font-bold">2019</span>, but a significant change regarding 
+              From the values ​​observed it is possible to note a general stability
+              between the years of <span class="font-bold">2018</span> and <span class="font-bold">2019</span>, but a
+              significant change regarding
               specific sectors such as medical products and transport and fuels and
-              lubricants for personal transport equipment, in which, between <span class="font-bold">2018</span> and <span class="font-bold">2023</span>
-              went from sharply falling prices probably caused by a collapse in demand 
+              lubricants for personal transport equipment, in which, between <span class="font-bold">2018</span> and
+              <span class="font-bold">2023</span>
+              went from sharply falling prices probably caused by a collapse in demand
               compared to previous years, to a strong increase even above 10%.
-              <span class="font-bold">2020</span> marks the collapse of <span class=" font-bold text-green-600">inflation</span>, due 
-              to the economic restrictions caused by the lockdown, 
-              especially for transport, fuels and lubricants. In <span class="font-bold">2021</span>, 
+              <span class="font-bold">2020</span> marks the collapse of <span
+                class=" font-bold text-green-600">inflation</span>, due
+              to the economic restrictions caused by the lockdown,
+              especially for transport, fuels and lubricants. In <span class="font-bold">2021</span>,
               the post-pandemic recovery leads
-              to price growth, with a surge in <span class="font-bold">2022</span> in conjunction with the war in Ukraine.
-              The <span class="font-bold">2023</span> marks the start of a <span class="font-bold text-red-500">deflation</span>,
-               in particular for the transport and fuels 
+              to price growth, with a surge in <span class="font-bold">2022</span> in conjunction with the war in
+              Ukraine.
+              The <span class="font-bold">2023</span> marks the start of a <span
+                class="font-bold text-red-500">deflation</span>,
+              in particular for the transport and fuels
               and lubricants categories, while education shows an inverse trend.
 
 
@@ -572,9 +577,9 @@
           <!-- BEESWARM END -->
 
 
-           <!--BUBBLEMAP-->
+          <!--BUBBLEMAP-->
 
-           <div class="window">
+          <div class="window">
             <div id="map-container-bubble"></div>
 
             <!--Switch-->
@@ -589,7 +594,7 @@
                   <span id="max-year-text-2"></span>
                 </div>
               </div>
-     
+
 
               <div class="flex flex-col">
                 <label for="map-selector-2" class="text-black">Select type of data:</label>
@@ -768,6 +773,7 @@
     <script type="module" src="./../js/healthcare/waffleChartHealth.js"></script>
     <script type="module" src="./../js/healthcare/barChartHealth.js"></script>
     <script type="module" src="./../js/healthcare/beeswarmHealth.js"></script>
+    <script type="module" src="./../js/healthcare/mapHealth.js"></script>
 
     <!-- OUTCOMES -->
     <script type="module" src="../js/outcomes/gdpChange.js"></script>
