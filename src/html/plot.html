@@ -209,9 +209,15 @@
         <!-- STACKEDBARCHART END -->
       </div>
 
-      <div id="section2" class="min-h-screen flex flex-col items-center gap-8">
-        <!--BUBBLECHART-->
-        <h1 class="text-4xl font-bold">Economy</h1>
+      <div id="section2" class="min-h-screen flex flex-col items-center gap-8 ">
+        
+        <h1 class="text-4xl font-bold mt-20">Economy</h1>
+        <p>The COVID-19 pandemic and lockdown had a profound economic 
+          impact on Europe, causing changes in various sectors such as 
+          the housing market, GDP, and tourism. In this section, we will
+           explore the impact of the pandemic, analyzing whether it slowed 
+           down the market in different aspects or, on the contrary, fueled new dynamics.</p>
+        <!--BUBBLECHART-->   
         <div class="window">
           <h3 class="plot-title">Flow of GDP and House Price during Covid years</h3>
           <div class="flex justify-between items-center w-full">
@@ -258,7 +264,6 @@
 
 
           <!--BUBBLECHART_2-->
-          <h1 class="text-4xl font-bold">Economy</h1>
           <div class="window">
 
           <h3 class="plot-title">Tourism inbound during Covid</h3>
@@ -270,13 +275,33 @@
 
             <div id="bubblechart_container_2"></div>
 
+
+            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
+
+            <p class="text-black justify-normal items-center">
+              The graph shows the trend of house prices and the Gross Domestic Product (GDP) 
+              in the various quarters from 2020 to 2023, maintaining the relationship with 
+              the number of new cases in the analyzed country. The GDP indicates the percentage 
+              growth rate of real GDP, adjusted for seasonal fluctuations and calendar
+              irregularities. It tells you whether the economy is growing or contracting
+               compared to the previous quarter, by comparing consecutive periods without 
+               distortions due to seasonality or calendar variations, as the data has been 
+               adjusted for both seasonal effects (variations due to holidays, seasonal cycles) 
+               and calendar differences (e.g., leap years). If the value is positive, 
+               it means the economy has grown compared to the previous period,
+                while if it is negative, it means there has been an economic contraction. 
+                Meanwhile, the house price provides an overall overview of the real estate 
+                price trends, showing the percentage change in house prices compared to the 
+                previous quarter.
+            </p>
+
           </div>
           <!--BUBBLECHART_2_END-->
 
 
         <!--butterflychart-->
-        <h1 class="text-4xl font-bold">Economy</h1>
         <div class="window">
+          <h3 class="plot-title">COVID-19 impact on HICP - monthly data (annual rate of change)</h3>
           <div class="flex justify-between items-center w-full">
             <!--selector-->
             <div class="flex flex-col w-1/3 ">
@@ -341,6 +366,32 @@
 
             <div id="butterflychart_container" class="flex justify-center items-center w-full "></div>
 
+
+            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
+
+            <p class="text-black justify-normal items-center">
+              The graph presents the Harmonized Index of Consumer Prices (HICP) 
+              in European countries and indicates the percentage change in
+               inflation compared to the same month of the previous year.
+
+              From the values ​​observed it is possible to note a general stability 
+              between the years of <span class="font-bold">2018</span> and <span class="font-bold">2019</span>, but a significant change regarding 
+              specific sectors such as medical products and transport and fuels and
+              lubricants for personal transport equipment, in which, between <span class="font-bold">2018</span> and <span class="font-bold">2023</span>
+              went from sharply falling prices probably caused by a collapse in demand 
+              compared to previous years, to a strong increase even above 10%.
+              <span class="font-bold">2020</span> marks the collapse of <span class=" font-bold text-green-600">inflation</span>, due 
+              to the economic restrictions caused by the lockdown, 
+              especially for transport, fuels and lubricants. In <span class="font-bold">2021</span>, 
+              the post-pandemic recovery leads
+              to price growth, with a surge in <span class="font-bold">2022</span> in conjunction with the war in Ukraine.
+              The <span class="font-bold">2023</span> marks the start of a <span class="font-bold text-red-500">deflation</span>,
+               in particular for the transport and fuels 
+              and lubricants categories, while education shows an inverse trend.
+
+
+            </p>
+
           </div>
           <!--butterflychart_END-->
 
@@ -383,13 +434,10 @@
         </div>
         <!-- Education & Jobs END -->
 
-        <div id="section4" class="min-h-screen flex items-center justify-center">
+        <div id="section4" class="min-h-screen flex flex-col items-center justify-center gap-6">
           <h2 class="text-3xl font-semibold">Section 4</h2>
 
-          <!--HISTOGRAM-->
-
-
-          <!--HISTOGRAM_END-->
+    
 
           <!--MAP-->
           <!--MAP_END-->
@@ -462,6 +510,40 @@
             </div>
           </div>
           <!-- BEESWARM END -->
+
+
+           <!--BUBBLEMAP-->
+
+           <div class="window">
+            <div id="map-container-bubble"></div>
+
+            <!--Switch-->
+            <div class="flex justify-between items-center mt-15 gap-14">
+              <div class="flex-1">
+                <label for="year-slider-2" class="block text-sm text-black font-medium mb-2">
+                  Select Year
+                </label>
+                <input type="range" id="year-slider-2" name="year-slider-2" class="w-full accent-blue-500">
+                <div class="flex justify-between text-sm text-gray-400">
+                  <span id="min-year-text-2"></span>
+                  <span id="max-year-text-2"></span>
+                </div>
+              </div>
+     
+
+              <div class="flex flex-col">
+                <label for="map-selector-2" class="text-black">Select type of data:</label>
+                <select id="map-selector-2" class=" text-black select">
+                  <option value="deaths">Confirmed deaths</option>
+                  <option value="cases">Confirmed cases</option>
+                  <option value="vaccines">Vaccines</option>
+                  <!-- <option value="hospitalized">Ricoverati</option> -->
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!--BUBBLEMAP_END-->
         </div>
       </div>
     </div>
@@ -487,6 +569,8 @@
     <!-- HEALTHCARE -->
     <script type="module" src="./../js/healthcare/waffleChartHealth.js"></script>
     <script type="module" src="./../js/healthcare/beeswarmHealth.js"></script>
+    <script type="module" src="./../js/healthcare/mapHealth.js"></script>
+
 
     <script type="module" src="./../js/utils.js"></script>
     

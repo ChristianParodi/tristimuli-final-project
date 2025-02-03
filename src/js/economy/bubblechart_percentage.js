@@ -91,15 +91,20 @@ function BubbleChart() {
             .text('Total Cases (%)')
             .style("font-size", "16px");
 
-        const tooltip = d3.select("body").append("div")
-            .attr("class", "tooltip")
+            const tooltip = d3.select("body")
+            .append("div")
             .style("position", "absolute")
-            .style("padding", "6px")
-            .style("background", "rgba(0, 0, 0, 0.7)")
-            .style("color", "#fff")
-            .style("border-radius", "4px")
+            .style("background-color", "white")
+            .style("border", "2px solid #ccc")
+            .style("border-radius", "10px")
+            .style("padding", "10px")
+            .style("font-size", "16px")
+            .style("font-weight", "bold")
+            .style("text-align", "center")
+            .style("box-shadow", "2px 2px 10px rgba(0, 0, 0, 0.2)")
             .style("pointer-events", "none")
-            .style("opacity", 0);
+            .style("opacity", 0)
+            .style("transition", "opacity 0.3s ease-in-out");
 
         const showTooltip = function (event, d) {
             d3.select(this)
@@ -109,7 +114,41 @@ function BubbleChart() {
                 .attr("stroke-width", 1);
 
             tooltip.transition().duration(200).style("opacity", 1);
-            tooltip.html(`Country: ${d.country}<br>Year: ${d.year}<br>Total Cases (%): ${d.percentage_cases}<br>Vaccinated (%): ${d.percentage_vaccines}<br>Tourism Inbound: ${d.inbound}`)
+            tooltip.html(`
+            
+            <div style="font-size: 14px; "> YYYY: ${d.year} </div>
+        <div style="font-size: 18px; font-weight: bold;">${d.country}  </div>
+
+        <hr class="border-t border-gray-300 my-1">
+
+        <div class="mh-5 mt-1 w-full">
+      <div class="flex justify-between text-center gap-10">
+
+        <!-- Colonna Sinistra: Number of selectedMetric -->
+        <div class="flex flex-col items-center">
+          <div style="font-weight: bold;">Total Cases</div>
+          <div style="font-size: 16px; color: gray;">
+            ${d.percentage_cases.toLocaleString()}%
+          </div>
+
+          <div style="font-weight: bold;">Vaccinated</div>
+          <div style="font-size: 16px; color: gray;">
+            ${d.percentage_vaccines.toLocaleString()}%
+          </div>
+        </div>
+
+        <!-- Colonna Destra: Health Spending -->
+        <div class="flex flex-col items-center">
+          <div style="font-weight: bold;">Tourism Inbound</div>
+          <div style="font-size: 22px; font-weight: bold; color: black;">
+          ${d.inbound.toLocaleString()} 
+          </div>
+        </div>
+
+      </div>
+    </div>
+            
+            `)
                 .style("left", `${event.pageX + 10}px`)
                 .style("top", `${event.pageY + 10}px`);
         };
@@ -129,7 +168,15 @@ function BubbleChart() {
         .append("option")
         .text(d => d)
         .attr("value", d => d);
-        
+
+    
+        console.log("Dati combinati di tutti i paesi e anni:", combinedData.map(d => ({
+            country: d.country,
+            year: d.year,
+            inbound: d.inbound,
+            percentage_cases: d.percentage_cases,
+            percentage_vaccines: d.percentage_vaccines
+        })));
 
         function updateChart(selectedYear) {
             const filteredData = combinedData.filter(d => d.year === +selectedYear);
