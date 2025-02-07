@@ -651,6 +651,8 @@ video {
 }
 
 .plot-title{
+  margin-bottom: 2rem;
+  margin-top: 1rem;
   font-size: 1.875rem;
   line-height: 2.25rem;
   font-weight: 700;
@@ -814,10 +816,6 @@ video {
 
 .mb-5{
   margin-bottom: 1.25rem;
-}
-
-.mb-6{
-  margin-bottom: 1.5rem;
 }
 
 .me-4{
@@ -1577,6 +1575,13 @@ text {
   justify-content: normal;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.container-selector{
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 html {

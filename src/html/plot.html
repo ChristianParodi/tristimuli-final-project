@@ -217,7 +217,7 @@ path,
           <div class="window">
             <h3 class="plot-title"><span class="text-[#E94F37]">Cases</span>, <span class="text-[#3F88C5]">Deaths</span> and <span class="text-[#03A059]">Vaccines</span> in contries during COVID-19</h3>
             <!-- select metric  -->
-            <div class="flex flex-row items-center">
+            <div class="container-selector">
               <label for="map-selector" class="selector me-4">Select type of data</label>
               <select id="map-selector" class=" text-black select">
                 <option value="cases">Confirmed cases</option>
@@ -269,7 +269,7 @@ path,
           <!--LINECHART-->
           <div class="window mt-10">
             <h1 class="plot-title">Infection Trends by Country</h1>
-            <div class="flex flex-row items-center">
+            <div class="container-selector">
               <label for="country-selector" class="selector me-4">Select country</label>
               <select id="country-selector" class=" select"></select>
             </div>
@@ -306,13 +306,15 @@ path,
               <option value="infette">Infetti</option>
             </select>
           </div> -->
-            <button id="barchart-covid-button"
+            <button id="barchart-covid-button mb-5"
               class="select p-2 hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
               Confirmed cases
             </button>
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
 
             <div id="barchart-covid-container"></div>
+            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
             <p>
               Although the absolute number of deaths is high, it is important to consider
               that the overall percentage mortality remains relatively low compared to the total number of infection
@@ -338,12 +340,12 @@ path,
             <h3 class="plot-title">Flow of GDP and House Price during Covid years</h3>
             <div class="flex items-center justify-center w-full gap-x-12">
   
-              <div class="flex flex-row items-center">
+              <div class="container-selector">
                 <label for="contry_selector_bubble" class="selector me-4">Select country</label>
                 <select id="contry_selector_bubble" class="text-gray-800 select w-40"></select>
               </div>
             
-              <div class="flex flex-row items-center">
+              <div class="container-selector">
                 <label for="metric_selector_bubble" class="selector me-4">Select metric</label>
                 <select id="metric_selector_bubble" class="text-gray-800 select w-40"></select>
               </div>
@@ -385,7 +387,7 @@ path,
           <div class="window mt-10">
 
             <h3 class="plot-title">Tourism inbound during Covid</h3>
-            <div class="flex flex-row items-center ">
+            <div class="container-selector">
               <label for="selector_year_2" class=" selector me-4">Select metric</label>
               <select id="selector_year_2" class=" text-gray-800 select w-30"></select>
             </div>
@@ -422,7 +424,7 @@ path,
             <h3 class="plot-title">COVID-19 impact on HICP - monthly data (annual rate of change)</h3>
           
               <!--selector-->
-              <div class="flex flex-row items-center  ">
+              <div class="container-selector  ">
                 <label for="data-selector-butt " class="selector me-4"> Type of inflaction</label>
                 <select id="data-selector-butt" class="text-gray-800  select w-70">
                   <option value="All-items HICP">General Inflation</option>
@@ -447,7 +449,7 @@ path,
             
             <div class="flex w-full justify-start space-x-56">
               <!-- Selector Year 1 -->
-              <div class="flex flex-row items-center ml-60">
+              <div class="container-selector ml-60 mt-5">
                 <label for="selector-butt-1" class="selector me-4">Year</label>
                 <select id="selector-butt-1" class="text-gray-800 select w-40">
                   <option value="2018">2018</option>
@@ -460,7 +462,7 @@ path,
               </div>
             
               <!-- Selector Year 2 -->
-              <div class="flex flex-row items-center">
+              <div class="container-selector mt-5">
                 <label for="selector-butt-2" class="selector me-4">Year</label>
                 <select id="selector-butt-2" class="text-gray-800 select w-40">
                   <option value="2018">2018</option>
@@ -540,10 +542,12 @@ path,
           <div class="window ">
             <h3 class="plot-title">COVID-19 impact on Education (<span class="text-[steelblue]">Males</span>, <span
                 class="text-[#FF69B4]">Females</span> and <span class="text-[green]">Total</span>)</h3>
-            <div class="flex flex-row items-center">
+            <div class="container-selector">
               <label for="country-selector-dumbbell-enrollments" class="selector me-4">Country</label>
               <select id="country-selector-dumbbell-enrollments" class="select"></select>
             </div>
+            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
             <div id="dumbbell-enrollments"></div>
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
 
@@ -562,10 +566,12 @@ path,
           <div class="window mt-10">
             <h3 class="plot-title">COVID-19 impact on Unemployment (<span class="text-[steelblue]">Males</span>, <span
                 class="text-[#FF69B4]">Females</span> and <span class="text-[green]">Total</span>)</h3>
-            <div class="flex flex-row items-center mb-6">
+            <div class="container-selector">
               <label for="country-selector-dumbbell-unemployments" class="selector me-4">Country</label>
               <select id="country-selector-dumbbell-unemployments" class="select"></select>
             </div>
+            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
             <div id="dumbbell-unemployments"></div>
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
 
@@ -601,24 +607,7 @@ path,
           </div>
           <!-- BUBBLE END 2 -->
         </div>
-        <!-- Education & Jobs END -->
-
-        <!-- <div id="section4" class="min-h-screen flex items-center justify-center">
-          <h2 class="text-3xl font-semibold">Section 4</h2>
-
-          <!--HISTOGRAM-->
-
-
-        <!--HISTOGRAM_END-->
-
-        <!--MAP-->
-        <!--MAP_END-->
-
-        <!--HIGHLIGHTS-->
-
-        <!--HIGHLIGHTS_END
-
-        </div> -->
+  
         <div id="section4" class="min-h-screen flex flex-col items-center justify-center gap-6 mt-20">
           <h2 class="text-3xl font-semibold mb-5">Section 5</h2>
           <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisci elit, 
@@ -634,7 +623,7 @@ path,
             <h3 class="plot-title">Did COVID-19 affect the number of deaths for mental disorders?</h3>
             
               <div id="waffle-categories" class="flex flex-col gap-1">
-                <div class="flex flex-row items-center ">
+                <div class="container-selector ">
                 <p class="selector  me-4">Select the causes of deaths to show</p>
 
                   <div>
@@ -661,16 +650,19 @@ path,
               </div>
          
             <div id="waffle-years" class="w-full flex justify-around margin-top-4">
-              <div class="flex flex-row items-center ">
+              <div class="container-selector ">
                 <label for="waffle-year-1" class="selector me-4">Select the first year</label>
                 <select id="waffle-year-1" class="text-black"></select>
               </div>
-              <div class="flex flex-row items-center">
+              <div class="container-selector">
                 <label for="waffle-year-2" class=" selector me-4">Select the second year</label>
                 <select id="waffle-year-2" class="text-black"></select>
               </div>
             </div>
-            <div id="waffle-deaths-per-dot" class="w-full flex justify-center items-center gap-1"></div>
+
+            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
+            <div id="waffle-deaths-per-dot" class="w-full flex justify-center items-center gap-1 "></div>
             <div id="waffle-chart-container" class="flex justify-center"></div>
 
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
@@ -698,8 +690,8 @@ path,
               <option value="25-64">25-64</option>
               <option value="65+">65+</option>
             </select>
-            <div id="bar-chart-health-container">
-            </div>
+            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+            <div id="bar-chart-health-container"></div>
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
 
             <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit, 
@@ -744,6 +736,18 @@ path,
           <!--BUBBLEMAP-->
 
           <div class="window mt-10">
+            <h3 class="plot-title">Health spending during COVID-19</h3>
+            <div class="container-selector">
+              <label for="map-selector-2" class="selector me-4">Select type of data</label>
+              <select id="map-selector-2" class=" text-black select">
+                <option value="deaths">Confirmed deaths</option>
+                <option value="cases">Confirmed cases</option>
+                <option value="vaccines">Vaccines</option>
+                <!-- <option value="hospitalized">Ricoverati</option> -->
+              </select>
+            </div>
+
+            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
             <div id="map-container-bubble"></div>
 
             <!--Switch-->
@@ -759,16 +763,6 @@ path,
                 </div>
               </div>
 
-
-              <div class="flex flex-row items-center">
-                <label for="map-selector-2" class="selector me-4">Select type of data:</label>
-                <select id="map-selector-2" class=" text-black select">
-                  <option value="deaths">Confirmed deaths</option>
-                  <option value="cases">Confirmed cases</option>
-                  <option value="vaccines">Vaccines</option>
-                  <!-- <option value="hospitalized">Ricoverati</option> -->
-                </select>
-              </div>
             </div>
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
 
