@@ -123,13 +123,11 @@ function waffleChart() {
     function updateWaffles(year1, year2) {
         deathsPerDot = 10;
         countryData = data.filter(d => d.country == currentCountry && d.sex === currentSex && d.age === currentAge);
-
         yearData1 = countryData.filter(d => +d.year === +year1);
         yearData2 = countryData.filter(d => +d.year === +year2);
 
-        const totalDeaths1 = yearData1.find(d => d.cause === "Total").deaths;
-        const totalDeaths2 = yearData2.find(d => d.cause === "Total").deaths;
-        const maxDeaths = Math.max(totalDeaths1, totalDeaths2);
+
+        const maxDeaths = d3.max(countryData, d => d.deaths);
         do {
             let maxDots = Math.ceil(maxDeaths / deathsPerDot);
             if (maxDots / cols <= maxRows) break;
