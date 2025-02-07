@@ -1,4 +1,4 @@
-import { covidDates, datasets, population, unemploymentQuantiles } from '../utils.js'
+import { covidDates, datasets, customColors, unemploymentQuantiles } from '../utils.js'
 
 function dumbbellUnemployment() {
 
@@ -118,7 +118,7 @@ function dumbbellUnemployment() {
     // remove total
     g.selectAll('path')
       .filter(function () {
-        return d3.select(this).attr('stroke') === 'green';
+        return d3.select(this).attr('stroke') === customColors['green'];
       })
       .transition()
       .duration(200)
@@ -229,6 +229,25 @@ function dumbbellUnemployment() {
       .attr("cy", d => yScale(d.value))
       .attr("opacity", 1);
 
+    // Connect totalData points under the dots
+    const totalLine = d3.line()
+      .x(d => xScale(d.year) + xScale.bandwidth() / 2)
+      .y(d => yScale(d.value));
+
+    g.insert("path", ":first-child")
+      .datum(totalData)
+      .attr("fill", "none")
+      .attr("stroke", customColors["green"])
+      .attr("stroke-width", 2)
+      .attr("d", totalLine)
+      .attr("stroke-dasharray", function () { return this.getTotalLength(); })
+      .attr("stroke-dashoffset", function () { return this.getTotalLength(); })
+      .attr("opacity", 0)
+      .transition()
+      .duration(1000)
+      .delay(200)
+      .attr("stroke-dashoffset", 0)
+      .attr("opacity", 1);
     // total dots
     const totalDots = g.selectAll(".dot.total").data(totalData);
 
@@ -237,14 +256,14 @@ function dumbbellUnemployment() {
       .attr("class", "dot total")
       .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
       .attr("r", 6)
-      .attr("fill", "green")
+      .attr("fill", customColors["green"])
       .attr("opacity", 0)
       .raise()
       .merge(totalDots)
       .on("mouseover", function (_, d) {
         tooltip
           .style("visibility", "visible")
-          .html(`<span style='color: green;'>${Math.round(d.value).toLocaleString()}</span>`)
+          .html(`<span style='color: ${customColors['green']};'>${Math.round(d.value).toLocaleString()}</span>`)
           .style("opacity", 0)
           .transition()
           .duration(300)
@@ -269,26 +288,6 @@ function dumbbellUnemployment() {
       .duration(500)
       .ease(d3.easeCubicInOut)
       .attr("cy", d => yScale(d.value))
-      .attr("opacity", 1);
-
-    // Connect totalData points
-    const totalLine = d3.line()
-      .x(d => xScale(d.year) + xScale.bandwidth() / 2)
-      .y(d => yScale(d.value));
-
-    g.append("path")
-      .datum(totalData)
-      .attr("fill", "none")
-      .attr("stroke", "green")
-      .attr("stroke-width", 2)
-      .attr("d", totalLine)
-      .attr("stroke-dasharray", function () { return this.getTotalLength(); })
-      .attr("stroke-dashoffset", function () { return this.getTotalLength(); })
-      .attr("opacity", 0)
-      .transition()
-      .duration(1000)
-      .delay(200)
-      .attr("stroke-dashoffset", 0)
       .attr("opacity", 1);
   }
 

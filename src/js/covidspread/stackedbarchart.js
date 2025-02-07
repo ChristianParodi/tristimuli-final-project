@@ -1,4 +1,4 @@
-import { datasets, population } from "../utils.js";
+import { datasets, customColors } from "../utils.js";
 
 function groupedBarChart() {
   let isConfirmedCases = false;
@@ -56,7 +56,6 @@ function groupedBarChart() {
       .tickFormat(d3.format(".2s")))
     .style("color", "white")
     .selectAll("text")
-    .style("fill", "white")
     .style("font-size", "14px");
 
   // X label
@@ -65,7 +64,6 @@ function groupedBarChart() {
     .attr("x", width / 2 + margin.left)
     .attr("y", height - 10)
     .text("Number of confirmed cases")
-    .attr("fill", "white");
 
   // Y axis
   svg.append("g")
@@ -73,7 +71,6 @@ function groupedBarChart() {
     .call(d3.axisLeft(yScale))
     .style("color", "white")
     .selectAll("text")
-    .style("fill", "white")
     .style("font-size", "14px");
 
   const updateChart = (isConfirmedCases) => {
@@ -155,9 +152,7 @@ function groupedBarChart() {
         .call(d3.axisBottom(xScale)
           .ticks(10)
           .tickFormat(d3.format(".2s")))
-        .style("color", "white")
         .selectAll("text")
-        .style("fill", "white")
         .style("font-size", "14px");
       // Update deaths bars without additional delay
       svg.selectAll("rect")
@@ -173,9 +168,9 @@ function groupedBarChart() {
       casesLabels.enter()
         .append("text")
         .attr("class", "label-text-cases")
-        .attr("fill", "#ff514b")
         .style("font-size", "18px")
         .attr("text-anchor", "start")
+        .style("fill", customColors['red'])
         // Start at the beginning of the bin
         .attr("x", xScale(0))
         .attr("y", d => yScale(d.country) + subGroupScale("cases") + subGroupScale.bandwidth() / 2)
@@ -187,6 +182,7 @@ function groupedBarChart() {
         .attr("x", d => xScale(d.cases))
         .attr("y", d => yScale(d.country) + subGroupScale("cases") + subGroupScale.bandwidth() / 2)
         .style("opacity", isConfirmedCases ? 1 : 0)
+        .style("font-size", "18px")
         .text("cases");
 
       casesLabels.exit()
@@ -312,7 +308,7 @@ function groupedBarChart() {
   // Color scale
   const color = d3.scaleOrdinal()
     .domain(subgroups)
-    .range(["#ff514b", "#c5c5c5"]);
+    .range(["#E94F37", "#c5c5c5"]);
 
   updateChart(false)
 
