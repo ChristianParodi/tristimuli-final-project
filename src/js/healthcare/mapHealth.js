@@ -38,8 +38,10 @@ function mapBubble() {
 
 
   const getLastDayData = (data, metric) => {
+    const excludedCountries = new Set(["Russia", "Vatican", "Bosnia and Herzegovina", "Cyprus", "Faroe Islands"]);
     const map = new Map();
     data.forEach(d => {
+      if (excludedCountries.has(d.country)) return;
       const key = `${d.ISO3}-${d.year}-${d.month}`;
       map.set(key, {
         ISO3: d.ISO3,
@@ -54,7 +56,7 @@ function mapBubble() {
 
   // Creiamo un Set con i paesi presenti nei dati giornalieri
   const validCountries = new Set(datasets.covidData.daily.cases.map(d => d.country));
-  const excludedCountries = new Set(["Russia", "Vatican"]);
+  const excludedCountries = new Set(["Russia", "Vatican", "Bosnia and Herzegovina", "Cyprus", "Faroe Islands"]);
 
   // Filtriamo expendituresData per includere solo i paesi presenti nei dati di getLastDayData
   const expendituresData = datasets.expendituresData
@@ -152,7 +154,7 @@ function mapBubble() {
   function updateMap() {
     const selectedMetric = dataSelector.value; // cases, deaths, vaccines
     const selectedData = processedData[selectedMetric];
-    const filteredData = selectedData.filter(d => +d.year === currentYear && +d.month === currentMonth && d.country !== "Russia" && d.country !== "Bosnia and Herzegovina" && d.country !== "Cyprus" && d.country !== "Faroe Islands");
+    const filteredData = selectedData.filter(d => +d.year === currentYear && +d.month === currentMonth);
 
     europeMap.selectAll("path")
       .data(europeGeoJson.features.filter(d => !excludedCountries.has(d.properties.name)))
@@ -178,6 +180,8 @@ function mapBubble() {
       .attr("cx", d => {
         const country1 = europeGeoJson.features.find(c => c.properties.name === d.country);
         let x = projection(d3.geoCentroid(country1))[0];
+
+        if (isNaN(x)) console.log(d.country)
         return d.country === "France" ? x + 100 : x;
       })
       .attr("cy", d => {
