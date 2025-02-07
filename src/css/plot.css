@@ -18,7 +18,8 @@ title {
 p,
 li,
 span,
-text {
+text,
+label {
   font-family: 'Fira Sans', sans-serif;
 }
 
