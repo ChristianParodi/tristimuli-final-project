@@ -665,7 +665,7 @@ video {
   width: 100%;
   cursor: pointer;
   border-radius: 0.5rem;
-  accent-color: #C04B4F;
+  accent-color: #E94F37;
 }
 
 .play-button{
@@ -676,7 +676,7 @@ video {
   justify-content: center;
   border-radius: 0.25rem;
   --tw-bg-opacity: 1;
-  background-color: rgb(192 75 79 / var(--tw-bg-opacity, 1));
+  background-color: rgb(233 79 55 / var(--tw-bg-opacity, 1));
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.5rem;

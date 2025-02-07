@@ -223,9 +223,8 @@ function mapMercator() {
 
   const mapLabel = d3.select("#map-label")
     .style("padding", "10px")
-    .style("color", "#333")
     .style("font-size", "24px")
-    .style("border", "1px solid #000")
+    .style("border", "1px solid #fff")
     .style("border-radius", "5px")
     .text(`Date: ${minDate.getMonth() + 1 < 10 ? `0${minDate.getMonth() + 1}` : minDate.getMonth() + 1}/${minDate.getFullYear()}`);
 

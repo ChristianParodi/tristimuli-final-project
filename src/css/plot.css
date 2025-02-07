@@ -31,13 +31,12 @@ text {
     @apply w-6 h-6 bg-gray-200 rounded-full border-2 border-gray-200 hover:bg-blue-400 active:bg-blue-400 focus:bg-blue-400 focus:outline-none;
   }
 
-.selector{
-  @apply text-white font-sans text-lg font-semibold 
-}
+  .selector {
+    @apply text-white font-sans text-lg font-semibold
+  }
+
   .window {
-      @apply flex flex-col items-center max-w-[90%] justify-end lg:justify-center 
-    mr-12 lg:mr-0 self-end lg:self-center gap-6 w-[80%] 
-    border border-white p-8 rounded-lg shadow-lg;
+    @apply flex flex-col items-center max-w-[90%] justify-end lg:justify-center mr-12 lg:mr-0 self-end lg:self-center gap-6 w-[80%] border border-white p-8 rounded-lg shadow-lg;
   }
 
   .select {
@@ -54,19 +53,19 @@ text {
   }
 
   .year-slider {
-    @apply w-full h-2 rounded-lg cursor-pointer accent-[#C04B4F];
+    @apply w-full h-2 rounded-lg cursor-pointer accent-[#E94F37];
   }
 
   .play-button {
-    @apply w-12 h-12 flex items-center justify-center bg-[#C04B4F] text-white text-4xl px-4 py-2 rounded;
+    @apply w-12 h-12 flex items-center justify-center bg-[#E94F37] text-white text-4xl px-4 py-2 rounded;
   }
 }
 
-.corpus{
+.corpus {
   @apply text-white justify-normal items-center
 }
 
-.container-selector{
+.container-selector {
   @apply flex flex-row items-center mb-5
 }
 
