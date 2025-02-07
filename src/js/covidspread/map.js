@@ -1,4 +1,4 @@
-import { datasets, europeGeoJson } from "../utils.js"
+import { datasets, europeGeoJson, customColors } from "../utils.js"
 
 function mapMercator() {
   const width = 1000;
@@ -16,6 +16,7 @@ function mapMercator() {
     .style("border-radius", "5px")
     .style("pointer-events", "none")
     .style("font-size", "16px")
+    .style("opacity", 0)
     .style("color", "black");
 
   const projection = d3.geoMercator()
@@ -84,8 +85,8 @@ function mapMercator() {
 
 
   const colorMap = new Map([
-    ["cases", ["#fdd0d0", "#a50f15"]],
-    ["deaths", ["#c6dbef", "#08306b"]],
+    ["cases", customColors['red-gradient']],
+    ["deaths", customColors['blue-gradient']],
     ["vaccines", ["#bae4b3", "#005a32"]],
   ]);
 
@@ -133,6 +134,7 @@ function mapMercator() {
         ${value.toLocaleString()} ${selectedMetric} to ${currentYear}/${currentMonth}
         `;
 
+        tooltip.style("opacity", 1);
         tooltip
           .style("opacity", 1)
           .html(tooltipText)
@@ -151,12 +153,70 @@ function mapMercator() {
             if (value === 0) return "#f1f1f1";
             return colorScale(value);
           });
+
         tooltip.style("opacity", 0);
         europeMap.selectAll("path")
           .transition()
           .duration(200)
           .attr("opacity", 1);
       })
+    // Legend update
+    // Remove any previously created legend
+    svg.selectAll(".legend").remove();
+    svg.selectAll("defs").remove();
+
+    // Define legend dimensions
+    const legendThickness = 20;
+    const legendLength = 200;
+
+    const legendGroup = svg.append("g")
+      .attr("class", "legend")
+      .attr("transform", `translate(20, ${height - legendLength - 300})`);
+
+    const defs = svg.append("defs");
+    const gradient = defs.append("linearGradient")
+      .attr("id", "legend-gradient")
+      .attr("x1", "0%")
+      .attr("y1", "0%")  // start at the top
+      .attr("x2", "0%")
+      .attr("y2", "100%"); // go to the bottom
+
+    // Use d3.interpolate to create a color interpolator from the selected colorScale range
+    // Remove any existing stops before appending new ones
+    gradient.selectAll("stop").remove();
+
+    const interpolator = d3.interpolate(colorMap.get(selectedMetric)[0], colorMap.get(selectedMetric)[1]);
+
+    gradient.append("stop")
+      .attr("offset", "0%")
+      .attr("stop-color", interpolator(0));
+
+    gradient.append("stop")
+      .attr("offset", "100%")
+      .attr("stop-color", interpolator(1));
+
+    // Remove any existing legend rect before adding the new one
+    legendGroup.selectAll("rect").remove();
+
+    legendGroup.append("rect")
+      .attr("width", legendThickness)
+      .attr("height", legendLength)
+      .style("fill", "url(#legend-gradient)");
+
+    const legendScale = d3.scaleLinear()
+      .domain([0, d3.max(selectedData, d => d[selectedMetric])])
+      .range([0, legendLength]); // 0 at top, max at bottom
+
+    const legendAxis = d3.axisRight(legendScale)
+      .tickFormat(d3.format(".2s"));
+
+    // Remove any existing axis groups before adding the new one
+    legendGroup.selectAll(".axis").remove();
+
+    legendGroup.append("g")
+      .attr("class", "axis")
+      .attr("transform", `translate(${legendThickness}, 0)`)
+      .call(legendAxis);
   }
 
   updateMap();
@@ -170,14 +230,14 @@ function mapMercator() {
     .text(`Date: ${minDate.getMonth() + 1 < 10 ? `0${minDate.getMonth() + 1}` : minDate.getMonth() + 1}/${minDate.getFullYear()}`);
 
   dataSelector.addEventListener("change", () => {
-    const colorMap = {
-      'cases': 'rgb(192, 75, 79)',
-      'deaths': 'rgb(104, 135, 174)',
-      'vaccines': 'rgb(80, 149, 105)'
-    }
+    const selectedColor =
+      dataSelector.value === 'cases' ?
+        customColors['red'] :
+        dataSelector.value === 'deaths' ?
+          customColors['blue'] : customColors['green']
 
-    d3.select("#play-button-covid-map").style("background-color", colorMap[dataSelector.value]);
-    d3.select("#covid-map-year-slider").style("accent-color", colorMap[dataSelector.value]);
+    d3.select("#play-button-covid-map").style("background-color", selectedColor);
+    d3.select("#covid-map-year-slider").style("accent-color", selectedColor);
     updateMap()
   });
 
@@ -218,6 +278,7 @@ function mapMercator() {
       clearInterval(intervalId);
     }
   });
+
 }
 
 mapMercator();

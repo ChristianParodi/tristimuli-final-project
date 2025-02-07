@@ -29,6 +29,14 @@ export async function includeHTML() {
   await Promise.all(fetchPromises);
 }
 
+export const customColors = {
+  "red-gradient": ['#ffd9d9', '#e94f37'],
+  "blue-gradient": ['#d3ebff', '#003965'],
+  "red": '#E94F37',
+  'blue': '#3F88C5',
+  'green': '#03A059'
+};
+
 export const covidDates = {
   start: new Date(2020, 1, 1),
   end: new Date(2023, 2, 5)

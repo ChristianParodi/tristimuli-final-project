@@ -89,18 +89,12 @@ function dumbbellUnemployment() {
       .tickValues(years))
     .selectAll("text")
     .style("font-size", "14px")
-    .style("fill", "black");
 
   g.append("g")
     .attr("class", "yaxis")
     .call(d3.axisLeft(yScale))
     .selectAll("text")
     .style("font-size", "14px")
-    .style("fill", "black");
-
-  // Set axis line and tick color to black
-  g.selectAll(".xaxis path, .xaxis line, .yaxis path, .yaxis line")
-    .style("stroke", "black");
 
   // Draw vertical lines for COVID start and end dates
   const covidStartX = xScale(covidDates.start.getFullYear()) + xScale.bandwidth() / 2;
@@ -113,7 +107,6 @@ function dumbbellUnemployment() {
     .attr("x", -height / 2)
     .attr("dy", "1em")
     .style("text-anchor", "middle")
-    .style("fill", "black")
     .style("font-size", "16px")
     .text("Unemployment [#people]");
 
@@ -145,7 +138,6 @@ function dumbbellUnemployment() {
       .call(d3.axisLeft(yScale).tickFormat(d3.format(".2s")))
       .selectAll("text")
       .style("font-size", "14px")
-      .style("fill", "black");
 
     // vertical lines
     femaleData.forEach((female, i) => {
@@ -314,7 +306,6 @@ function drawCovidLines(g, covidStartX, height, covidEndX) {
     .attr("x2", covidStartX)
     .attr("y1", 0)
     .attr("y2", height)
-    .attr("stroke", "black")
     .attr("stroke-width", 2)
     .attr("stroke-dasharray", "4");
 
@@ -323,7 +314,6 @@ function drawCovidLines(g, covidStartX, height, covidEndX) {
     .attr("x", covidStartX)
     .attr("y", -10)
     .attr("text-anchor", "middle")
-    .attr("fill", "black")
     .style("font-size", "12px")
     .text("COVID Starts");
 
@@ -332,7 +322,6 @@ function drawCovidLines(g, covidStartX, height, covidEndX) {
     .attr("x2", covidEndX)
     .attr("y1", 0)
     .attr("y2", height)
-    .attr("stroke", "black")
     .attr("stroke-width", 2)
     .attr("stroke-dasharray", "4");
 
@@ -341,7 +330,6 @@ function drawCovidLines(g, covidStartX, height, covidEndX) {
     .attr("x", covidEndX)
     .attr("y", -10)
     .attr("text-anchor", "middle")
-    .attr("fill", "black")
     .style("font-size", "12px")
     .text("COVID Ends");
 }

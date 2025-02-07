@@ -65,7 +65,7 @@ function groupedBarChart() {
     .attr("x", width / 2 + margin.left)
     .attr("y", height - 10)
     .text("Number of confirmed cases")
-    .attr("fill", "white") ;
+    .attr("fill", "white");
 
   // Y axis
   svg.append("g")
@@ -312,7 +312,7 @@ function groupedBarChart() {
   // Color scale
   const color = d3.scaleOrdinal()
     .domain(subgroups)
-    .range(["#ff514b", "#3f3f3f"]);
+    .range(["#ff514b", "#c5c5c5"]);
 
   updateChart(false)
 

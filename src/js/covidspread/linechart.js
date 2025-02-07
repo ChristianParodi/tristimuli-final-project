@@ -1,4 +1,4 @@
-import { covidDates, omicronRelease, datasets } from "../utils.js";
+import { covidDates, omicronRelease, datasets, customColors } from "../utils.js";
 
 function LineChart() {
     // Actual plot
@@ -61,7 +61,6 @@ function LineChart() {
         .selectAll("text")
         .attr("transform", "rotate(-45)")
         .style("text-anchor", "end")
-        .style("fill", "black")
         .style("font-size", "14px");
 
     svg.selectAll(".x-axis path, .x-axis line").style("stroke", "black");
@@ -98,14 +97,13 @@ function LineChart() {
         .attr("y1", 0)
         .attr("x2", x(covidDates.start))
         .attr("y2", height)
-        .attr("stroke", "black")
         .attr("stroke-dasharray", "4");
 
     svg.append("text")
         .attr("x", x(covidDates.start))
         .attr("y", -20)
         .attr("text-anchor", "middle")
-        .style("fill", "black")
+        .style("fill", "white")
         .style("font-weight", "bold")
         .text("COVID Starts");
 
@@ -114,14 +112,13 @@ function LineChart() {
         .attr("y1", 0)
         .attr("x2", x(covidDates.end))
         .attr("y2", height)
-        .attr("stroke", "black")
         .attr("stroke-dasharray", "4");
 
     svg.append("text")
         .attr("x", x(covidDates.end))
         .attr("y", -20)
         .attr("text-anchor", "middle")
-        .style("fill", "black")
+        .style("fill", "white")
         .style("font-weight", "bold")
         .text("COVID Ends");
 
@@ -131,7 +128,7 @@ function LineChart() {
         .attr("y1", 0)
         .attr("x2", x(omicronRelease))
         .attr("y2", height)
-        .attr("stroke", "steelblue")
+        .attr("stroke", customColors['blue'])
         .attr("stroke-width", 2)
         .attr("stroke-dasharray", "4");
 
@@ -139,7 +136,7 @@ function LineChart() {
         .attr("x", x(omicronRelease))
         .attr("y", -20)
         .attr("text-anchor", "middle")
-        .style("fill", "steelblue")
+        .style("fill", customColors['blue'])
         .style("font-weight", "bold")
         .text("Omicron Variant")
 
@@ -158,7 +155,6 @@ function LineChart() {
             .duration(500)
             .call(d3.axisLeft(y).tickFormat(d3.format(".2s")))
             .selectAll("text")
-            .style("fill", "black")
             .style("font-size", "14px");
 
         svg.selectAll(".y-axis path, .y-axis line").style("stroke", "black");
@@ -188,7 +184,7 @@ function LineChart() {
             .attr("class", "line-cases")
             .attr("d", lineCases)
             .attr("fill", "none")
-            .attr("stroke", "red")
+            .attr("stroke", customColors["red"])
             .attr("stroke-width", 2);
 
         const totalLengthCases = pathCases.node().getTotalLength();
@@ -206,7 +202,7 @@ function LineChart() {
             .attr("class", "line-vaccines")
             .attr("d", lineVaccines)
             .attr("fill", "none")
-            .attr("stroke", "green")
+            .attr("stroke", customColors["green"])
             .attr("stroke-width", 2);
 
         const totalLengthVaccines = pathVaccines.node().getTotalLength();
@@ -225,7 +221,7 @@ function LineChart() {
             .append("circle")
             .attr("class", "point-cases")
             .attr("r", 4)
-            .attr("fill", "red")
+            .attr("fill", customColors["red"])
             .attr("cx", d => x(d.date))
             .attr("cy", d => y(d.total_cases))
             .attr("opacity", 0)
@@ -240,7 +236,7 @@ function LineChart() {
             .append("circle")
             .attr("class", "point-vaccines")
             .attr("r", 4)
-            .attr("fill", "green")
+            .attr("fill", customColors["green"])
             .attr("cx", d => x(d.date))
             .attr("cy", d => y(d.total_vaccines))
             .attr("opacity", 0)
@@ -255,7 +251,7 @@ function LineChart() {
             .attr("y", y(lastCase.total_cases))
             .attr("class", "label-cases")
             .attr("dy", "0.35em")
-            .attr("fill", "red")
+            .attr("fill", customColors["red"])
             .attr("font-size", "16px")
             .text("Infected")
             .attr("opacity", 0)
@@ -271,7 +267,7 @@ function LineChart() {
                 .attr("y", y(lastVaccine.total_vaccines))
                 .attr("class", "label-vaccines")
                 .attr("dy", "0.35em")
-                .attr("fill", "green")
+                .attr("fill", customColors["green"])
                 .attr("font-size", "16px")
                 .text("Vaccines")
                 .attr("opacity", 0)
@@ -358,18 +354,18 @@ function LineChart() {
 
                 d3.select(this)
                     .attr("r", 4)
-                    .attr("fill", d3.select(this).classed("point-cases") ? "red" : "green");
+                    .attr("fill", d3.select(this).classed("point-cases") ? customColors["red"] : customColors["green"]);
 
                 if (d3.select(this).classed("point-cases")) {
                     svg.selectAll(".point-vaccines")
                         .filter(pd => +pd.date === +d.date)
                         .attr("r", 4)
-                        .attr("fill", "green");
+                        .attr("fill", customColors["green"]);
                 } else {
                     svg.selectAll(".point-cases")
                         .filter(pd => +pd.date === +d.date)
                         .attr("r", 4)
-                        .attr("fill", "red");
+                        .attr("fill", customColors["red"]);
                 }
 
                 highlightGroup.style("display", "none");

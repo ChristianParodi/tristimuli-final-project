@@ -83,14 +83,12 @@ function dumbbellEnrollments() {
     .call(d3.axisBottom(xScale).tickFormat(d3.format("d")).tickValues(years))
     .selectAll("text")
     .style("font-size", "14px")
-    .style("fill", "black");
 
   g.append("g")
     .attr("class", "yaxis")
     .call(d3.axisLeft(yScale).tickFormat(d3.format(".2s")))
     .selectAll("text")
     .style("font-size", "14px")
-    .style("fill", "black");
 
   g.append("text")
     .attr("transform", "rotate(-90)")
@@ -98,7 +96,6 @@ function dumbbellEnrollments() {
     .attr("x", 0 - (height / 2))
     .attr("dy", "1em")
     .style("text-anchor", "middle")
-    .style("fill", "black")
     .style("font-size", "18px")
     .text("Tertiary education enrollments");
 
@@ -119,7 +116,6 @@ function dumbbellEnrollments() {
       .attr("x2", covidStartX)
       .attr("y1", 0)
       .attr("y2", height)
-      .attr("stroke", "black")
       .attr("stroke-width", 2)
       .attr("stroke-dasharray", "4");
 
@@ -127,7 +123,6 @@ function dumbbellEnrollments() {
       .attr("x", covidStartX)
       .attr("y", -10)
       .attr("text-anchor", "middle")
-      .attr("fill", "black")
       .style("font-size", "12px")
       .text("COVID Starts");
 
@@ -157,9 +152,6 @@ function dumbbellEnrollments() {
       .call(d3.axisLeft(yScale).tickFormat(d3.format(".2s")))
       .selectAll("text")
       .style("font-size", "14px")
-      .style("fill", "black");
-
-    svg.selectAll('.domain, .tick line').attr('stroke', 'black');
 
     femaleData.forEach((female, i) => {
       const male = maleData[i];
@@ -376,7 +368,6 @@ const tooltip = d3.select("#dumbbell-enrollments")
   .style("border", "1px solid #ccc")
   .style("padding", "6px")
   .style("border-radius", "4px")
-  .style("color", "black");
 
 // Call renamed function
 dumbbellEnrollments();
