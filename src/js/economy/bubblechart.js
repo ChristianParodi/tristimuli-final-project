@@ -127,7 +127,7 @@ function BubbleChart() {
             tooltip.transition().duration(200).style("opacity", 1);
 
             tooltip.html(`
-                <div style="font-size: 14px;">MM/YYYY: ${d.quarter}/${d.year}</div>
+                <div style="font-size: 14px;">${d.quarter} - ${d.year}</div>
                 <div style="font-size: 18px; font-weight: bold;">${d.country}</div>
                 <hr class="border-t border-gray-300 my-1">
                 <div class="mh-5 mt-1 w-full">

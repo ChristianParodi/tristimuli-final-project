@@ -118,7 +118,7 @@ function BubbleChart() {
             tooltip.transition().duration(200).style("opacity", 1);
             tooltip.html(`
             
-            <div style="font-size: 14px; "> YYYY: ${d.year} </div>
+            <div style="font-size: 14px; "> Year: ${d.year} </div>
         <div style="font-size: 18px; font-weight: bold;">${d.country}  </div>
 
         <hr class="border-t border-gray-300 my-1">
@@ -141,7 +141,7 @@ function BubbleChart() {
 
         <!-- Colonna Destra: Health Spending -->
         <div class="flex flex-col items-center">
-          <div style="font-weight: bold;">Tourism Inbound</div>
+          <div style="font-weight: bold;">Inbound tourists</div>
           <div style="font-size: 22px; font-weight: bold; color: black;">
           ${d.inbound.toLocaleString()} 
           </div>

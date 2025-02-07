@@ -355,9 +355,9 @@
           <!--BUBBLECHART_2-->
           <div class="window mt-10">
 
-            <h3 class="plot-title">Tourism inbound during Covid</h3>
+            <h3 class="plot-title">Inbound tourism during Covid</h3>
             <div class="container-selector">
-              <label for="selector_year_2" class=" selector me-4">Select metric</label>
+              <label for="selector_year_2" class=" selector me-4">Select year</label>
               <select id="selector_year_2" class=" text-gray-800 select w-30"></select>
             </div>
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
@@ -591,8 +591,8 @@
             <h3 class="plot-title">Did COVID-19 affect the number of deaths for mental disorders?</h3>
 
             <div id="waffle-categories" class="flex flex-col gap-1">
-              <div class="container-selector ">
-                <p class="selector  me-4">Select the causes of deaths to show</p>
+              <div class="container-selector">
+                <p class="selector me-4">Select the causes of deaths:</p>
 
                 <div>
                   <input type="checkbox" id="waffle-covid" name="waffle-metric" value="COVID-19" checked
@@ -612,25 +612,24 @@
                 </div>
               </div>
             </div>
-            <div id="waffle-country">
-              <label class="selector me-4">Select country</p>
-                <select id="waffle-country-selector" class="text-black"></select>
+            <div id="waffle-country" class="container-selector">  
+              <label class="selector me-4">Select country</label>
+                <select id="waffle-country-selector" class="select text-black"></select>
             </div>
-            <div id="waffle-deaths-per-dot" class="w-full flex justify-center items-center gap-1"></div>
             <div id="waffle-years" class="w-full flex justify-around margin-top-4">
               <div class="container-selector ">
-                <label for="waffle-year-1" class="selector me-4">Select the first year</label>
-                <select id="waffle-year-1" class="text-black"></select>
+                <label for="waffle-year-1" class="selector me-4">Select the first year:</label>
+                <select id="waffle-year-1" class="select text-black"></select>
               </div>
               <div class="container-selector">
-                <label for="waffle-year-2" class=" selector me-4">Select the second year</label>
-                <select id="waffle-year-2" class="text-black"></select>
+                <label for="waffle-year-2" class="selector me-4">Select the second year:</label>
+                <select id="waffle-year-2" class="select text-black"></select>
               </div>
             </div>
+            <div id="waffle-deaths-per-dot" class="w-full flex justify-center items-center gap-1"></div>
 
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
 
-            <div id="waffle-deaths-per-dot" class="w-full flex justify-center items-center gap-1 "></div>
             <div id="waffle-chart-container" class="flex justify-center"></div>
 
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
@@ -852,7 +851,7 @@
     <script type="module" src="../js/outcomes/enrollmentChange.js"></script>
     <script type="module" src="../js/outcomes/unemploymentChange.js"></script>
     <script type="module" src="../js/outcomes/mentalDeathsChange.js"></script>
-    <script type="module" src="../js/outcomes/mentalDisordersDeathsChange.js"></script>
+    <script type="module" src="../js/outcomes/mentalDisordersDeathsChange.js"></script> 
 
     <script type="module" src="./../js/utils.js"></script>
 
