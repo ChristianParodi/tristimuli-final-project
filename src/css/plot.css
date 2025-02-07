@@ -45,7 +45,7 @@ text {
   }
 
   .plot-title {
-    @apply text-white text-3xl font-bold;
+    @apply text-white text-3xl font-bold mb-8 mt-4;
 
   }
 
@@ -66,7 +66,9 @@ text {
   @apply text-white justify-normal items-center
 }
 
-
+.container-selector{
+  @apply flex flex-row items-center mb-5
+}
 
 
 html {

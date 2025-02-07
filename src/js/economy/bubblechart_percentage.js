@@ -173,69 +173,73 @@ function BubbleChart() {
 
             const filteredData = combinedData.filter(d => d.year === 2021);
 
-            x.domain([0, d3.max(filteredData, d => d.percentage_vaccines)]);
-            z.domain([0,d3.max(combinedData, d => d.inbound)]);
+            x.domain([-5, d3.max(filteredData, d => d.percentage_vaccines)]);
+            // Calcola il massimo di inbound sull'intero dataset (tutti gli anni)
+const maxInbound = d3.max(combinedData, d => d.inbound);
 
-        function updateChart(selectedYear) {
-            let filteredData = combinedData.filter(d => d.year === +selectedYear);
+// Imposta il dominio della scala z una volta sola
+z.domain([4, maxInbound]);
 
-            //x.domain([d3.min(filteredData, d => d.percentage_vaccines - 0.02), d3.max(filteredData, d => d.percentage_vaccines)]);
-            y.domain([d3.min(filteredData, d => d.percentage_cases - 0.1), d3.max(filteredData, d => d.percentage_cases)]);
-            z.domain([0, d3.max(filteredData, d => d.inbound)]);
+function updateChart(selectedYear) {
+    let filteredData = combinedData.filter(d => d.year === +selectedYear);
 
-            console.log("Scala z dominio:", z.domain());
-            console.log("Dati inbound:", filteredData.map(d => d.inbound));
+    // Ordina i dati in modo che i bubble con dimensioni maggiori vengano disegnati per primi
+    // e quelli piccoli (z più piccoli) in seguito, apparendo in primo piano.
+    filteredData.sort((a, b) => d3.descending(z(a.inbound), z(b.inbound)));
 
-            xAxis.transition().duration(500).call(d3.axisBottom(x));
-            yAxis.transition().duration(500).call(d3.axisLeft(y));
+    x.domain([-0.01, d3.max(filteredData, d => d.percentage_vaccines)]);
+    y.domain([
+      d3.min(filteredData, d => d.percentage_cases - 2),
+      d3.max(filteredData, d => d.percentage_cases)
+    ]);
 
-            //grid
-            svg.selectAll(".grid").remove();
-            createGrid(svg, x, y, width, height);
-            svg.selectAll(".grid").lower();
+    console.log("Scala z dominio:", z.domain());
+    console.log("Dati inbound:", filteredData.map(d => d.inbound));
 
-            const bubbles = svg.selectAll(".bubble").data(filteredData, d => d.country);
+    xAxis.transition().duration(500).call(d3.axisBottom(x));
+    yAxis.transition().duration(500).call(d3.axisLeft(y));
 
-            // Rimuove elementi non più necessari
-            bubbles.exit().remove();
+    // Aggiorna la griglia
+    svg.selectAll(".grid").remove();
+    createGrid(svg, x, y, width, height);
+    svg.selectAll(".grid").lower();
 
-            // Aggiungi rettangoli per i bordi
-            const borders = svg.selectAll(".border").data(filteredData, d => d.country);
+    const bubbles = svg.selectAll(".bubble").data(filteredData, d => d.country);
+    bubbles.exit().remove();
 
-            borders.exit().remove();
+    const borders = svg.selectAll(".border").data(filteredData, d => d.country);
+    borders.exit().remove();
 
-            borders.enter()
-                .append("rect")
-                .attr("class", "border")
-                .merge(borders)
-                .transition()
-                .duration(500)
-                .attr("x", d => x(d.percentage_vaccines) - z(d.inbound) / 2 - 2)  // Margine per il bordo
-                .attr("y", d => y(d.percentage_cases) - z(d.inbound) / 2 - 2)
-                .attr("width", d => z(d.inbound) + 4)  // Aggiungi spessore del bordo
-                .attr("height", d => z(d.inbound) + 4)
-                .attr("fill", "white") // Colore del bordo
-                .attr("fill-width", 0.5)
-                .attr("stroke", "black") // Colore del bordo esterno
-                .attr("stroke-width", 1);
+    borders.enter()
+        .append("rect")
+        .attr("class", "border")
+        .merge(borders)
+        .transition()
+        .duration(500)
+        .attr("x", d => x(d.percentage_vaccines) - z(d.inbound) / 2 - 2)
+        .attr("y", d => y(d.percentage_cases) - z(d.inbound) / 2 - 2)
+        .attr("width", d => z(d.inbound) + 4)
+        .attr("height", d => z(d.inbound) + 4)
+        .attr("fill", "white")
+        .attr("stroke", "black")
+        .attr("stroke-width", 1);
 
-            // Usa <image> invece di <circle> per le bandiere
-            bubbles.enter()
-                .append("image")
-                .attr("class", "bubble")
-                .merge(bubbles)
-                .on('mouseover', showTooltip)
-                .on("mouseleave", hideTooltip)
-                .transition()
-                .duration(500)
-                .attr("x", d => x(d.percentage_vaccines) - z(d.inbound) / 2)
-                .attr("y", d => y(d.percentage_cases) - z(d.inbound) / 2)
-                .attr("width", d => z(d.inbound))
-                .attr("height", d => z(d.inbound))
-                .attr("xlink:href", d => `https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/flags/1x1/${d.ISO2.toLowerCase()}.svg`);
+    bubbles.enter()
+        .append("image")
+        .attr("class", "bubble")
+        .merge(bubbles)
+        .on('mouseover', showTooltip)
+        .on("mouseleave", hideTooltip)
+        .transition()
+        .duration(500)
+        .attr("x", d => x(d.percentage_vaccines) - z(d.inbound) / 2)
+        .attr("y", d => y(d.percentage_cases) - z(d.inbound) / 2)
+        .attr("width", d => z(d.inbound))
+        .attr("height", d => z(d.inbound))
+        .attr("xlink:href", d => `https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/flags/1x1/${d.ISO2.toLowerCase()}.svg`);
+}
 
 
-        }
 
         d3.select("#selector_year_2").on("change", function () {
             updateChart(this.value);
