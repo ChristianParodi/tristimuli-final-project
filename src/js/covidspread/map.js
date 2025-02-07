@@ -7,7 +7,7 @@ function mapMercator() {
   const dataSelector = document.getElementById("map-selector");
   const yearSlider = d3.select("#covid-map-year-slider");
 
-  const tooltip = d3.select("body")
+  const tooltip = d3.select("#map-covid-container")
     .append("div")
     .style("position", "absolute")
     .style("background-color", "white")
@@ -15,7 +15,8 @@ function mapMercator() {
     .style("border", "1px solid #ccc")
     .style("border-radius", "5px")
     .style("pointer-events", "none")
-    .style("font-size", "16px");
+    .style("font-size", "16px")
+    .style("color", "black");
 
   const projection = d3.geoMercator()
     .scale(600)

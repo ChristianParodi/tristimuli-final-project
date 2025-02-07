@@ -29,11 +29,67 @@
       .grid path {
         stroke-width: 0;
       }
+      #min-year-text,
+#year-1-text,
+#year-2-text,
+#year-3-text,
+#max-year-text {
+  color: white;
+}
 
-      /* path,
-      line {
-        stroke: black;
-      } */
+
+
+/* Applica lo stile solo agli elementi NON contenuti in #slider-range */
+:not(#slider-range) path,
+:not(#slider-range) line {
+  stroke: white !important;
+  color: white !important;
+}
+
+#map-covid-container path, #map-covid-container line{ 
+  stroke: grey !important;
+}
+
+#map-container-bubble path, #map-container-bubble line{ 
+  stroke: grey !important;
+}
+
+:not(#slider-range) text {
+  color: white !important;
+}
+
+/* Imposta lo stile per lo slider */
+#slider-range .track-overlay {
+  stroke-width: 4 !important;
+  fill: green !important; /* Colore della selezione */
+}
+
+#slider-range .track-inset {
+  stroke: black !important;
+}
+
+#slider-range .track {
+  stroke: grey !important;
+}
+
+#slider-range .handle {
+  fill: white !important;
+  stroke: black !important;
+  stroke-width: 2 !important;
+}
+
+path,
+ line {
+  stroke: white !important;
+}
+
+.track-overlay{
+  stroke-width: 4 !important;
+}
+
+ text {
+  color: black !important;
+}
 
       .tick {
         color: black;
@@ -73,57 +129,38 @@
         animation: fadeIn 1s ease-in forwards;
         animation-delay: 2s;
       }
+   
     </style>
   </head>
 
-  <body>
-    <div id='home' class="relative isolate px-6 pt-14 lg:px-8">
-      <!-- Background image with semi-transparent black overlay -->
-      <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('./../../covid.jpg');">
+  <body class=" min-h-screen">
+    <div id="home" class="relative isolate px-6 pt-14 lg:px-8 min-h-screen ">
+      <!-- Background image with parallax effect -->
+      <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('./../../covid.jpg'); background-attachment: fixed;">
         <div class="absolute inset-0 bg-black opacity-60"></div> <!-- Semi-transparent black overlay -->
       </div>
-
+    
       <!-- Content -->
-      <div class="relative mx-auto max-w-2xl py-16 sm:py-24 lg:py-32 -mt-20 z-10 text-center">
-        <!-- Logo centrato -->
-        <img src="./../../tristi.png" class="logo w-20 mx-auto block" />
-        <h1 class="text-balance text-5xl font-semibold tracking-tight text-white sm:text-7xl">The Effects of Covid in
-          Europe</h1>
-        <p class="mt-8 text-pretty text-lg font-medium text-white sm:text-xl tracking-widest mx-auto max-w-3xl">
+      <div class="relative mx-auto max-w-2xl py-16 sm:py-24 lg:py-32 -mt-20 z-10 text-center ">
+        <!-- Logo centered -->
+        <img src="./../../tristi.png" class="logo mx-auto block mb-10 w-32" />
+        <h1 class="text-balance text-5xl font-semibold tracking-tight text-white sm:text-7xl ">The Effects of Covid in Europe</h1>
+        <p class="mt-8 text-pretty font-medium text-white tracking-widest mx-auto max-w-3xl">
           The SARS-CoV-2 Coronavirus is a respiratory virus that belongs to the large family of coronaviruses (CoV).
-          Coronaviruses are responsible for a range of diseases, varying in severity, from common colds to more serious
-          respiratory conditions.
+          Coronaviruses are responsible for a range of diseases, varying in severity, from common colds to more serious respiratory conditions.
         </p>
       </div>
-
+    
       <!-- Background gradient -->
-      <div
-        class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-        aria-hidden="true">
-        <div
-          class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#923737] to-[#fc89936d] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+      <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+        <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#923737] to-[#fc89936d] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
           style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
         </div>
       </div>
     </div>
-
-    <!-- Triangolo tra le due sezioni -->
-    <div class="absolute left-1/2 top-[77%] -translate-x-1/2 -translate-y-[70%] z-10">
-      <div class="relative w-40 h-40"> <!-- Aumenta la grandezza -->
-        <svg class="stroke-red-700 stroke-[6] fill-none animate-draw-triangle" width="160" height="160"
-          viewBox="0 0 100 100">
-          <polygon points="50,10 90,90 10,90" stroke-dasharray="300" stroke-dashoffset="300" stroke-linecap="round"
-            stroke-linejoin="round"></polygon>
-        </svg>
-
-        <!-- Punto esclamativo che appare dopo -->
-        <span
-          class="absolute inset-0 flex items-center justify-center text-red-700 text-7xl font-bold opacity-0 animate-fade-in-delay mt-8">!</span>
-      </div>
-    </div>
-
-    <div id="page-background" class="bg-slate-700 text-white min-h-screen flex">
-
+    
+    <div id="page-background" class="bg-[#242734] text-white min-h-screen flex">
+     
       <!-- Sidebar -->
       <div class="fixed left-0 top-0 h-full flex flex-col items-center justify-center sidebar">
         <div class="relative flex flex-col items-center h-full">
@@ -133,27 +170,27 @@
           <div class="absolute flex flex-col items-center space-y-20 z-10 top-[20%] left-7">
             <div class="flex items-center gap-4 w-32">
               <a href="#home" class="dotss"></a>
-              <span class="px-2 py-1 rounded">Home</span>
+              <span class="px-2 py-1 rounded"><img src="./../../icon/home.svg" class="  block  w-7" /></span>
             </div>
             <div class="flex items-center gap-4 w-32">
               <a href="#section1" class="dotss"></a>
-              <span class="px-2 py-1 rounded">Covid</span>
+              <span class="px-2 py-1 rounded"><img src="./../../icon/covid-19.svg" class="  block  w-9" /></span>
             </div>
             <div class="flex items-center gap-4 w-32">
               <a href="#section2" class="dotss"></a>
-              <span class="px-2 py-1 rounded">Economy</span>
+              <span class="px-2 py-1 rounded"><img src="./../../icon/dollar.svg" class=" block  w-7" /></span>
             </div>
             <div class="flex items-center gap-4 w-32">
-              <a href="#section3" class="dotss w-12"></a>
-              <span class="px-2 py-1 rounded">Education & Jobs</span>
+              <a href="#section3" class="dotss "></a>
+              <span class="px-2 py-1 rounded"><img src="./../../icon/education.svg" class="  block w-7 " /></span>
             </div>
             <div class="flex items-center w-32">
               <a href="#section4" class="dotss mr-2"></a>
-              <span class="px-2 py-1 rounded">Healthcare</span>
+              <span class="px-2 py-1 rounded"><img src="./../../icon/health.svg" class="  block w-7" /></span>
             </div>
             <div class="flex items-center gap-4 w-32">
               <a href="#section5" class="dotss"></a>
-              <span class="px-2 py-1 rounded">Outcomes</span>
+              <span class="px-2 py-1 rounded"><img src="./../../icon/graphics-scale.svg" class=" block w-7" /></span>
             </div>
           </div>
           <script src="../js/sideMenu.js"></script>
@@ -161,18 +198,27 @@
       </div>
 
       <!-- Content -->
-      <div class=" w-full mt-28 ">
+      <div class=" w-full mt-20 ">
 
         <div id="section1" class="min-h-screen flex flex-col items-center justify-center gap-6">
 
 
-          <h1 class="text-4xl font-bold text-center">Covid Spread</h1>
+          <h1 class="text-4xl font-bold text-center mb-5">Covid Spread</h1>
+          <p class="corpus mb-5">Lorem ipsum dolor sit amet, consectetur adipisci elit, 
+            sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+             Ut enim ad minim veniam, quis nostrum exercitationem ullam 
+             corporis suscipit laboriosam, nisi ut aliquid ex ea commodi 
+             consequatur. Quis aute iure reprehenderit in voluptate velit 
+             esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+             obcaecat cupiditat non proident, sunt in culpa qui officia 
+             deserunt mollit anim id est laborum.</p>
 
           <!--Container-->
           <div class="window">
+            <h3 class="plot-title"><span class="text-[#E94F37]">Cases</span>, <span class="text-[#3F88C5]">Deaths</span> and <span class="text-[#03A059]">Vaccines</span> in contries during COVID-19</h3>
             <!-- select metric  -->
-            <div class="flex flex-col">
-              <label for="map-selector" class="text-black">Select type of data:</label>
+            <div class="flex flex-row items-center">
+              <label for="map-selector" class="selector me-4">Select type of data</label>
               <select id="map-selector" class=" text-black select">
                 <option value="cases">Confirmed cases</option>
                 <option value="deaths">Confirmed deaths</option>
@@ -180,6 +226,7 @@
               </select>
             </div>
             <!-- end select metric  -->
+            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
             <div id="map-covid-container" class="self-center"></div>
             <span id="map-label" class="text-black w-fit"></span>
             <!--Switch-->
@@ -189,7 +236,7 @@
                 <button id="play-button-covid-map" class="play-button">⏵︎</button>
                 <!-- year selector -->
                 <div class="w-full">
-                  <label for="covid-map-year-slider" class="block text-sm text-black font-medium mb-2">
+                  <label for="covid-map-year-slider" class="selector me-4">
                     Select Year
                   </label>
                   <input type="range" id="covid-map-year-slider" name="covid-map-year-slider" class="year-slider">
@@ -204,26 +251,47 @@
                 <!-- end year selector -->
               </div>
             </div>
+
+            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
+            <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit, 
+              sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+               Ut enim ad minim veniam, quis nostrum exercitationem ullam 
+               corporis suscipit laboriosam, nisi ut aliquid ex ea commodi 
+               consequatur. Quis aute iure reprehenderit in voluptate velit 
+               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+               obcaecat cupiditat non proident, sunt in culpa qui officia 
+               deserunt mollit anim id est laborum.</p>
           </div>
 
           <!--MAP_END-->
 
           <!--LINECHART-->
-          <div class="window">
+          <div class="window mt-10">
             <h1 class="plot-title">Infection Trends by Country</h1>
-            <div class="flex flex-col">
-              <label for="country-selector" class=" text-black">Country</label>
+            <div class="flex flex-row items-center">
+              <label for="country-selector" class="selector me-4">Select country</label>
               <select id="country-selector" class=" select"></select>
             </div>
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
 
             <div id="linechart-covid"></div>
+            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
+            <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit, 
+              sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+               Ut enim ad minim veniam, quis nostrum exercitationem ullam 
+               corporis suscipit laboriosam, nisi ut aliquid ex ea commodi 
+               consequatur. Quis aute iure reprehenderit in voluptate velit 
+               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+               obcaecat cupiditat non proident, sunt in culpa qui officia 
+               deserunt mollit anim id est laborum.</p>
           </div>
 
           <!--LINECHART_END-->
 
           <!-- STACKEDBARCHART -->
-          <div class="window">
+          <div class="window mt-10">
             <h1 class="plot-title">Infection Trends by Top (2024)</h1>
             <!-- <label for="group" class=" text-black">Groups for:</label>
           <select id="group" class=" text-black">
@@ -245,14 +313,25 @@
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
 
             <div id="barchart-covid-container"></div>
+            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
+            <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit, 
+              sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+               Ut enim ad minim veniam, quis nostrum exercitationem ullam 
+               corporis suscipit laboriosam, nisi ut aliquid ex ea commodi 
+               consequatur. Quis aute iure reprehenderit in voluptate velit 
+               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+               obcaecat cupiditat non proident, sunt in culpa qui officia 
+               deserunt mollit anim id est laborum.</p>
           </div>
           <!-- STACKEDBARCHART END -->
+          
         </div>
 
-        <div id="section2" class="min-h-screen flex flex-col items-center gap-8 ">
+        <div id="section2" class="min-h-screen flex flex-col items-center gap-8 mt-20">
 
-          <h1 class="text-4xl font-bold mt-20">Economy</h1>
-          <p>The COVID-19 pandemic and lockdown had a profound economic
+          <h1 class="text-4xl font-bold  mb-5">Economy</h1>
+          <p class="mb-5">The COVID-19 pandemic and lockdown had a profound economic
             impact on Europe, causing changes in various sectors such as
             the housing market, GDP, and tourism. In this section, we will
             explore the impact of the pandemic, analyzing whether it slowed
@@ -260,18 +339,20 @@
           <!--BUBBLECHART-->
           <div class="window">
             <h3 class="plot-title">Flow of GDP and House Price during Covid years</h3>
-            <div class="flex justify-between items-center w-full">
-
-              <div class="flex flex-col w-1/3 ">
-                <label for="contry_selector_bubble" class=" text-gray-800 font-bold">Select country:</label>
-                <select id="contry_selector_bubble" class=" text-gray-800 select w-40"></select>
+            <div class="flex items-center justify-center w-full gap-x-12">
+  
+              <div class="flex flex-row items-center">
+                <label for="contry_selector_bubble" class="selector me-4">Select country</label>
+                <select id="contry_selector_bubble" class="text-gray-800 select w-40"></select>
               </div>
-
-              <div class="flex flex-col w-1/2">
-                <label for="metric_selector_bubble" class=" text-gray-800 font-bold">Select metric:</label>
-                <select id="metric_selector_bubble" class=" text-gray-800 select w-40"></select>
+            
+              <div class="flex flex-row items-center">
+                <label for="metric_selector_bubble" class="selector me-4">Select metric</label>
+                <select id="metric_selector_bubble" class="text-gray-800 select w-40"></select>
               </div>
+            
             </div>
+            
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
 
             <div id="bubblechart_container"></div>
@@ -280,8 +361,8 @@
 
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
 
-            <div>
-              <p class="text-black justify-normal items-center">
+        
+              <p class="corpus">
                 The graph shows the trend of house prices and the Gross Domestic Product (GDP)
                 in the various quarters from 2020 to 2023, maintaining the relationship with
                 the number of new cases in the analyzed country. The GDP indicates the percentage
@@ -297,18 +378,18 @@
                 price trends, showing the percentage change in house prices compared to the
                 previous quarter.
               </p>
-            </div>
+       
 
           </div>
           <!--BUBBLECHART_END-->
 
 
           <!--BUBBLECHART_2-->
-          <div class="window">
+          <div class="window mt-10">
 
             <h3 class="plot-title">Tourism inbound during Covid</h3>
-            <div class="flex flex-col ">
-              <label for="selector_year_2" class=" text-gray-800 font-bold">Select metric:</label>
+            <div class="flex flex-row items-center ">
+              <label for="selector_year_2" class=" selector me-4">Select metric</label>
               <select id="selector_year_2" class=" text-gray-800 select w-30"></select>
             </div>
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
@@ -318,7 +399,7 @@
 
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
 
-            <p class="text-black justify-normal items-center">
+            <p class="corpus">
               The graph shows the trend of house prices and the Gross Domestic Product (GDP)
               in the various quarters from 2020 to 2023, maintaining the relationship with
               the number of new cases in the analyzed country. The GDP indicates the percentage
@@ -340,12 +421,12 @@
 
 
           <!--butterflychart-->
-          <div class="window">
+          <div class="window mt-10">
             <h3 class="plot-title">COVID-19 impact on HICP - monthly data (annual rate of change)</h3>
-            <div class="flex justify-between items-center w-full">
+          
               <!--selector-->
-              <div class="flex flex-col w-1/3 ">
-                <label for="data-selector-butt " class="text-gray-800  font-bold"> Type of inflaction:</label>
+              <div class="flex flex-row items-center  ">
+                <label for="data-selector-butt " class="selector me-4"> Type of inflaction</label>
                 <select id="data-selector-butt" class="text-gray-800  select w-70">
                   <option value="All-items HICP">General Inflation</option>
                   <option value="Food and non-alcoholic beverages">Food and non-alcoholic beverages</option>
@@ -365,20 +446,13 @@
               </div>
               <!--end_selector-->
 
-              <!--slider-->
-              <div class="flex flex-col w-1/2 ">
-                <label for="month-slider-butt " class="text-gray-800 font-bold">Select month:</label>
-                <input type="range" id="month-slider-butt" min="1" max="12" value="1"
-                  class="slider w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800">
-                <p class="text-gray-800">Month: <span id="number-month" class="font-medium">01</span></p>
-              </div>
-              <!--slider_end-->
-            </div>
-            <div class="flex space-x-8">
-              <!--selctorsyear-->
-              <div class="flex flex-col w-1/8">
-                <label for="selector-butt-1" class="text-gray-800  font-bold"> Year:</label>
-                <select id="selector-butt-1" class="text-gray-800 select">
+            
+            
+            <div class="flex w-full justify-start space-x-56">
+              <!-- Selector Year 1 -->
+              <div class="flex flex-row items-center ml-60">
+                <label for="selector-butt-1" class="selector me-4">Year</label>
+                <select id="selector-butt-1" class="text-gray-800 select w-40">
                   <option value="2018">2018</option>
                   <option value="2019">2019</option>
                   <option value="2020">2020</option>
@@ -387,10 +461,11 @@
                   <option value="2023">2023</option>
                 </select>
               </div>
-
-              <div class="flex flex-col w-1/8">
-                <label for="selector-butt-2" class="text-gray-800  font-bold"> Year:</label>
-                <select id="selector-butt-2" class="text-gray-800 select">
+            
+              <!-- Selector Year 2 -->
+              <div class="flex flex-row items-center">
+                <label for="selector-butt-2" class="selector me-4">Year</label>
+                <select id="selector-butt-2" class="text-gray-800 select w-40">
                   <option value="2018">2018</option>
                   <option value="2019">2019</option>
                   <option value="2020">2020</option>
@@ -400,16 +475,27 @@
                 </select>
               </div>
             </div>
+            
+            
             <!--selctorsyear-->
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
+            <div class="w-full h-px bg-gray-200  mb-4"></div>
 
 
             <div id="butterflychart_container" class="flex justify-center items-center w-full "></div>
+             <!--slider-->
+             <div class="flex flex-row items-center w-full justify-between">
+              <label for="month-slider-butt" class="selector mr-4 whitespace-nowrap">Select month</label>
+              <input type="range" id="month-slider-butt" min="1" max="12" value="1"
+                class="slider w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800">
+            </div>
+              <p class="selector  ">Month: <span id="number-month" class="font-thin">01</span></p>
+           
+            <!--slider_end-->
 
 
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
 
-            <p class="text-black justify-normal items-center">
+            <p class="corpus">
               The graph presents the Harmonized Index of Consumer Prices (HICP)
               in European countries and indicates the percentage change in
               inflation compared to the same month of the previous year.
@@ -443,37 +529,79 @@
         </div>
 
         <!-- Education & Jobs -->
-        <div id="section3" class="min-h-screen flex flex-col items-center justify-center gap-6">
-          <h2 class="text-3xl font-semibold">Education & Jobs</h2>
+        <div id="section3" class="min-h-screen flex flex-col items-center justify-center gap-6 mt-20">
+          <h2 class="text-3xl font-semibold mb-5">Education & Jobs</h2>
+          <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisci elit, 
+            sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+             Ut enim ad minim veniam, quis nostrum exercitationem ullam 
+             corporis suscipit laboriosam, nisi ut aliquid ex ea commodi 
+             consequatur. Quis aute iure reprehenderit in voluptate velit 
+             esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+             obcaecat cupiditat non proident, sunt in culpa qui officia 
+             deserunt mollit anim id est laborum.</p>
           <!--DUMBBELLCHART 1-->
-          <div class="window">
+          <div class="window ">
             <h3 class="plot-title">COVID-19 impact on Education (<span class="text-[steelblue]">Males</span>, <span
                 class="text-[#FF69B4]">Females</span> and <span class="text-[green]">Total</span>)</h3>
-            <div class="flex flex-col">
-              <label for="country-selector-dumbbell-enrollments" class="text-black">Country</label>
+            <div class="flex flex-row items-center">
+              <label for="country-selector-dumbbell-enrollments" class="selector me-4">Country</label>
               <select id="country-selector-dumbbell-enrollments" class="select"></select>
             </div>
             <div id="dumbbell-enrollments"></div>
+
+            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
+            <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit, 
+              sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+               Ut enim ad minim veniam, quis nostrum exercitationem ullam 
+               corporis suscipit laboriosam, nisi ut aliquid ex ea commodi 
+               consequatur. Quis aute iure reprehenderit in voluptate velit 
+               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+               obcaecat cupiditat non proident, sunt in culpa qui officia 
+               deserunt mollit anim id est laborum.</p>
+
           </div>
           <!--DUMBBELLCHART_END 1-->
+
           <!-- DUMBBELLCHART 2 -->
-          <div class="window">
+          <div class="window mt-10">
             <h3 class="plot-title">COVID-19 impact on Unemployment (<span class="text-[steelblue]">Males</span>, <span
                 class="text-[#FF69B4]">Females</span> and <span class="text-[green]">Total</span>)</h3>
-            <div class="flex flex-col mb-6">
-              <label for="country-selector-dumbbell-unemployments" class="text-black">Country</label>
+            <div class="flex flex-row items-center mb-6">
+              <label for="country-selector-dumbbell-unemployments" class="selector me-4">Country</label>
               <select id="country-selector-dumbbell-unemployments" class="select"></select>
             </div>
             <div id="dumbbell-unemployments"></div>
+
+            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
+            <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit, 
+              sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+               Ut enim ad minim veniam, quis nostrum exercitationem ullam 
+               corporis suscipit laboriosam, nisi ut aliquid ex ea commodi 
+               consequatur. Quis aute iure reprehenderit in voluptate velit 
+               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+               obcaecat cupiditat non proident, sunt in culpa qui officia 
+               deserunt mollit anim id est laborum.</p>
           </div>
           <!-- DUMBBELLCHART_END 2 -->
           <!-- BUBBLE -->
-          <div class="window gap-12">
+          <div class="window gap-12 mt-10">
             <h3 class="plot-title">Lockdown Impact on Education (2019-2021)</h3>
             <div class="flex justify-center">
               <div id="bubble-lockdown"></div>
               <div id="bubble-lockdown-legend"></div>
             </div>
+            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
+            <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit, 
+              sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+               Ut enim ad minim veniam, quis nostrum exercitationem ullam 
+               corporis suscipit laboriosam, nisi ut aliquid ex ea commodi 
+               consequatur. Quis aute iure reprehenderit in voluptate velit 
+               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+               obcaecat cupiditat non proident, sunt in culpa qui officia 
+               deserunt mollit anim id est laborum.</p>
           </div>
           <!-- BUBBLE END 2 -->
         </div>
@@ -495,55 +623,75 @@
         <!--HIGHLIGHTS_END
 
         </div> -->
-        <div id="section4" class="min-h-screen flex flex-col items-center justify-center gap-6">
-          <h2 class="text-3xl font-semibold">Section 5</h2>
+        <div id="section4" class="min-h-screen flex flex-col items-center justify-center gap-6 mt-20">
+          <h2 class="text-3xl font-semibold mb-5">Section 5</h2>
+          <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisci elit, 
+            sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+             Ut enim ad minim veniam, quis nostrum exercitationem ullam 
+             corporis suscipit laboriosam, nisi ut aliquid ex ea commodi 
+             consequatur. Quis aute iure reprehenderit in voluptate velit 
+             esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+             obcaecat cupiditat non proident, sunt in culpa qui officia 
+             deserunt mollit anim id est laborum.</p>
           <!--WAFFLE CHART-->
           <div class="window">
             <h3 class="plot-title">Did COVID-19 affect the number of deaths for mental disorders?</h3>
-            <div id="waffle-options" class="options flex justify-between">
+            
               <div id="waffle-categories" class="flex flex-col gap-1">
-                <p class="text-black">Select the causes of deaths to show:</p>
-                <div id="waffle-categories-options" class="flex gap-4">
+                <div class="flex flex-row items-center ">
+                <p class="selector  me-4">Select the causes of deaths to show</p>
+
                   <div>
                     <input type="checkbox" id="waffle-covid" name="waffle-metric" value="COVID-19" checked
                       class="cursor-pointer">
-                    <label for="waffle-covid" class="text-black cursor-pointer">Covid</label>
+                    <label for="waffle-covid" class="text-white cursor-pointer me-4">Covid</label>
                   </div>
                   <div>
                     <input type="checkbox" id="waffle-mental-disturb" name="waffle-metric"
                       value="Mental and behavioural disorders" class="cursor-pointer" checked>
-                    <label for="waffle-mental-disturb" class="text-black cursor-pointer">Mental and behavioural
+                    <label for="waffle-mental-disturb" class="text-white cursor-pointer me-4">Mental and behavioural
                       disorders</label>
                   </div>
                   <div>
                     <input type="checkbox" id="waffle-self-harm" name="waffle-metric" value="Intentional self-harm"
                       class="cursor-pointer" checked>
-                    <label for="waffle-self-harm" class="text-black cursor-pointer">Intentional self-harm</label>
+                    <label for="waffle-self-harm" class="text-white cursor-pointer me-4">Intentional self-harm</label>
                   </div>
                 </div>
               </div>
               <div id="waffle-country">
-                <label class="text-black">Select country:</p>
+                <label class="selector me-4">Select country</p>
                   <select id="waffle-country-selector" class="text-black"></select>
               </div>
-            </div>
+         
             <div id="waffle-years" class="w-full flex justify-around margin-top-4">
-              <div class="flex flex-col">
-                <label for="waffle-year-1" class="text-black">Select the first year:</label>
+              <div class="flex flex-row items-center ">
+                <label for="waffle-year-1" class="selector me-4">Select the first year</label>
                 <select id="waffle-year-1" class="text-black"></select>
               </div>
-              <div class="flex flex-col">
-                <label for="waffle-year-2" class="text-black">Select the second year:</label>
+              <div class="flex flex-row items-center">
+                <label for="waffle-year-2" class=" selector me-4">Select the second year</label>
                 <select id="waffle-year-2" class="text-black"></select>
               </div>
             </div>
             <div id="waffle-deaths-per-dot" class="w-full flex justify-center items-center gap-1"></div>
             <div id="waffle-chart-container" class="flex justify-center"></div>
+
+            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
+            <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit, 
+              sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+               Ut enim ad minim veniam, quis nostrum exercitationem ullam 
+               corporis suscipit laboriosam, nisi ut aliquid ex ea commodi 
+               consequatur. Quis aute iure reprehenderit in voluptate velit 
+               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+               obcaecat cupiditat non proident, sunt in culpa qui officia 
+               deserunt mollit anim id est laborum.</p>
           </div>
           <!--WAFFLE CHART_END-->
 
           <!-- BAR CHART HEALTH START -->
-          <div class="window">
+          <div class="window mt-10">
             <h3 class="plot-title">Bar Chart title</h3>
             <div id="age-range-selector"></div>
             <label for="age-range">Select Age Range:</label>
@@ -556,12 +704,22 @@
             </select>
             <div id="bar-chart-health-container">
             </div>
+            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
+            <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit, 
+              sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+               Ut enim ad minim veniam, quis nostrum exercitationem ullam 
+               corporis suscipit laboriosam, nisi ut aliquid ex ea commodi 
+               consequatur. Quis aute iure reprehenderit in voluptate velit 
+               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+               obcaecat cupiditat non proident, sunt in culpa qui officia 
+               deserunt mollit anim id est laborum.</p>
           </div>
 
           <!-- BAR CHART HEALTH END -->
 
           <!-- BEESWARM START -->
-          <div class="window">
+          <div class="window mt-10">
             <h3 class="plot-title">Beeswarm title</h3>
             <div id="beeswarm-container">
               <div class="flex justify-center items-center gap-2">
@@ -573,13 +731,23 @@
                 </div>
               </div>
             </div>
+            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
+            <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit, 
+              sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+               Ut enim ad minim veniam, quis nostrum exercitationem ullam 
+               corporis suscipit laboriosam, nisi ut aliquid ex ea commodi 
+               consequatur. Quis aute iure reprehenderit in voluptate velit 
+               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+               obcaecat cupiditat non proident, sunt in culpa qui officia 
+               deserunt mollit anim id est laborum.</p>
           </div>
           <!-- BEESWARM END -->
 
 
           <!--BUBBLEMAP-->
 
-          <div class="window">
+          <div class="window mt-10">
             <div id="map-container-bubble"></div>
 
             <!--Switch-->
@@ -596,8 +764,8 @@
               </div>
 
 
-              <div class="flex flex-col">
-                <label for="map-selector-2" class="text-black">Select type of data:</label>
+              <div class="flex flex-row items-center">
+                <label for="map-selector-2" class="selector me-4">Select type of data:</label>
                 <select id="map-selector-2" class=" text-black select">
                   <option value="deaths">Confirmed deaths</option>
                   <option value="cases">Confirmed cases</option>
@@ -606,14 +774,32 @@
                 </select>
               </div>
             </div>
+            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
+            <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit, 
+              sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+               Ut enim ad minim veniam, quis nostrum exercitationem ullam 
+               corporis suscipit laboriosam, nisi ut aliquid ex ea commodi 
+               consequatur. Quis aute iure reprehenderit in voluptate velit 
+               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+               obcaecat cupiditat non proident, sunt in culpa qui officia 
+               deserunt mollit anim id est laborum.</p>
           </div>
 
           <!--BUBBLEMAP_END-->
         </div>
 
 
-        <div id="section5" class="min-h-screen flex flex-col items-center">
-          <h2 class="text-3xl font-semibold my-10">Outcomes</h2>
+        <div id="section5" class="min-h-screen flex flex-col items-center mb-20">
+          <h2 class="text-3xl font-semibold my-10 mt-5">Outcomes</h2>
+          <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisci elit, 
+            sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+             Ut enim ad minim veniam, quis nostrum exercitationem ullam 
+             corporis suscipit laboriosam, nisi ut aliquid ex ea commodi 
+             consequatur. Quis aute iure reprehenderit in voluptate velit 
+             esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+             obcaecat cupiditat non proident, sunt in culpa qui officia 
+             deserunt mollit anim id est laborum.</p>
           <!-- Grid -->
           <div class="grid grid-cols-3 gap-4">
             <!-- Economy outcomes: Every one is poorer -->
@@ -681,8 +867,16 @@
         </div>
 
 
-        <div id="section5" class="min-h-screen flex flex-col items-center">
-          <h2 class="text-3xl font-semibold my-10">Outcomes</h2>
+        <div id="section5" class="min-h-screen flex flex-col items-center mt-20">
+          <h2 class="text-3xl font-semibold my-10 mb-5">Outcomes</h2>
+          <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisci elit, 
+            sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+             Ut enim ad minim veniam, quis nostrum exercitationem ullam 
+             corporis suscipit laboriosam, nisi ut aliquid ex ea commodi 
+             consequatur. Quis aute iure reprehenderit in voluptate velit 
+             esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+             obcaecat cupiditat non proident, sunt in culpa qui officia 
+             deserunt mollit anim id est laborum.</p>
           <!-- Grid -->
           <div class="grid grid-cols-3 gap-4">
             <!-- Economy outcomes: Every one is poorer -->
@@ -754,14 +948,14 @@
     </div>
 
     <!-- COVID -->
-    <script type="module" src="./../js/covidspread/map.js"></script>
+    <script type="module" src="./../js/covidspread/map.js"></script>  
     <script type="module" src="./../js/covidspread/linechart.js"></script>
     <script type="module" src="./../js/covidspread/stackedbarchart.js"></script>
 
     <!-- ECONOMY -->
-    <script src="./../js/economy/bubblechart.js"></script>
-    <script src="./../js/economy/bubblechart_percentage.js"></script>
-    <script src="./../js/lockdowns/bubbleEnrollments.js"></script>
+    <script src="./../js/economy/bubblechart.js"></script> 
+    <script src="./../js/economy/bubblechart_percentage.js"> </script> 
+    <script src="./../js/lockdowns/bubbleEnrollments.js"></script> 
     <script src="./../js/economy/butterflychart.js"></script>
 
     <!-- EDUCATION -->

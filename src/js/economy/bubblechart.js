@@ -99,10 +99,11 @@ function BubbleChart() {
         const myColor = d3.scaleOrdinal().range(d3.schemeSet2);
 
         // Tooltip
-        const tooltip = d3.select("body")
+        const tooltip = d3.select("#bubblechart_container")
         .append("div")
         .style("position", "absolute")
         .style("background-color", "white")
+        .style("color", "black")
         .style("border", "2px solid #ccc")
         .style("border-radius", "10px")
         .style("padding", "10px")

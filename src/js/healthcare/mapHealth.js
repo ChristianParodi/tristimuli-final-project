@@ -7,12 +7,13 @@ function mapBubble() {
   const dataSelector = document.getElementById("map-selector-2");
   const yearSlider = d3.select("#year-slider-2");
 
-  const tooltip = d3.select("body")
+  const tooltip = d3.select("#map-container-bubble")
     .append("div")
     .style("position", "absolute")
     .style("background-color", "white")
     .style("border", "2px solid #ccc")
     .style("border-radius", "10px")
+    .style("color", "black")
     .style("padding", "10px")
     .style("font-size", "16px")
     .style("font-weight", "bold")

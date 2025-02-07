@@ -70,7 +70,7 @@ function LineChart() {
         .x(d => x(d.date))
         .y(d => y(d.total_cases));
 
-    const tooltip = d3.select("body")
+    const tooltip = d3.select("#linechart-covid")
         .append("div")
         .style("position", "absolute")
         .style("background-color", "white")

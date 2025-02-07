@@ -15,10 +15,10 @@ function updateActiveState() {
 
       if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
         dotss[index].classList.add('active');
-        labels[index].classList.add('bg-white', 'text-black', 'transition-colors');
+        labels[index].classList.add('bg-gray-900', 'text-black', 'transition-colors');
       } else {
         dotss[index].classList.remove('active');
-        labels[index].classList.remove('bg-white', 'text-black', 'transition-colors');
+        labels[index].classList.remove('bg-gray-900', 'text-black', 'transition-colors');
       }
     }
   });

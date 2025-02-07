@@ -54,9 +54,9 @@ function groupedBarChart() {
     .call(d3.axisBottom(xScale)
       .ticks(10)
       .tickFormat(d3.format(".2s")))
-    .style("color", "black")
+    .style("color", "white")
     .selectAll("text")
-    .style("fill", "black")
+    .style("fill", "white")
     .style("font-size", "14px");
 
   // X label
@@ -64,15 +64,16 @@ function groupedBarChart() {
     .attr("text-anchor", "end")
     .attr("x", width / 2 + margin.left)
     .attr("y", height - 10)
-    .text("Number of confirmed cases");
+    .text("Number of confirmed cases")
+    .attr("fill", "white") ;
 
   // Y axis
   svg.append("g")
     .attr("transform", `translate(${margin.left}, 0)`)
     .call(d3.axisLeft(yScale))
-    .style("color", "black")
+    .style("color", "white")
     .selectAll("text")
-    .style("fill", "black")
+    .style("fill", "white")
     .style("font-size", "14px");
 
   const updateChart = (isConfirmedCases) => {
@@ -154,9 +155,9 @@ function groupedBarChart() {
         .call(d3.axisBottom(xScale)
           .ticks(10)
           .tickFormat(d3.format(".2s")))
-        .style("color", "black")
+        .style("color", "white")
         .selectAll("text")
-        .style("fill", "black")
+        .style("fill", "white")
         .style("font-size", "14px");
       // Update deaths bars without additional delay
       svg.selectAll("rect")
@@ -257,9 +258,9 @@ function groupedBarChart() {
         .call(d3.axisBottom(xScale)
           .ticks(10)
           .tickFormat(d3.format(".2s")))
-        .style("color", "black")
+        .style("color", "white")
         .selectAll("text")
-        .style("fill", "black")
+        .style("fill", "white")
         .style("font-size", "14px");
       // Update deaths bars without additional delay
       svg.selectAll("rect")
@@ -275,7 +276,7 @@ function groupedBarChart() {
       const deathsLabelsUpdate = deathsLabels.enter()
         .append("text")
         .attr("class", "label-text-deaths")
-        .attr("fill", "black")
+        .attr("fill", "white")
         .style("font-size", "18px")
         // Start from the left edge so it can transition with the bin’s width
         .attr("x", xScale(0))

@@ -46,7 +46,7 @@ function BubbleChart() {
 
         const x = d3.scaleLinear().range([0, width]);
         const y = d3.scaleLinear().range([height, 0]);
-        const z = d3.scaleSqrt().range([4, 40]);
+        const z = d3.scaleSqrt().range([1, 100]);
 
         // // Crea un pattern per ogni bandiera
         // const flagPatterns = svg.append("defs")
@@ -92,13 +92,14 @@ function BubbleChart() {
             .text('Total Cases (%)')
             .style("font-size", "16px");
 
-            const tooltip = d3.select("body")
+            const tooltip = d3.select("#bubblechart_container_2")
             .append("div")
             .style("position", "absolute")
             .style("background-color", "white")
             .style("border", "2px solid #ccc")
             .style("border-radius", "10px")
             .style("padding", "10px")
+            .style("color", "black")
             .style("font-size", "16px")
             .style("font-weight", "bold")
             .style("text-align", "center")
@@ -170,13 +171,20 @@ function BubbleChart() {
             .text(d => d)
             .attr("value", d => d);
 
+            const filteredData = combinedData.filter(d => d.year === 2021);
+
+            x.domain([0, d3.max(filteredData, d => d.percentage_vaccines)]);
+            z.domain([0,d3.max(combinedData, d => d.inbound)]);
 
         function updateChart(selectedYear) {
-            const filteredData = combinedData.filter(d => d.year === +selectedYear);
+            let filteredData = combinedData.filter(d => d.year === +selectedYear);
 
-            x.domain([d3.min(filteredData, d => d.percentage_vaccines - 0.02), d3.max(filteredData, d => d.percentage_vaccines)]);
+            //x.domain([d3.min(filteredData, d => d.percentage_vaccines - 0.02), d3.max(filteredData, d => d.percentage_vaccines)]);
             y.domain([d3.min(filteredData, d => d.percentage_cases - 0.1), d3.max(filteredData, d => d.percentage_cases)]);
-            z.domain(d3.extent(filteredData, d => d.inbound));
+            z.domain([0, d3.max(filteredData, d => d.inbound)]);
+
+            console.log("Scala z dominio:", z.domain());
+            console.log("Dati inbound:", filteredData.map(d => d.inbound));
 
             xAxis.transition().duration(500).call(d3.axisBottom(x));
             yAxis.transition().duration(500).call(d3.axisLeft(y));
