@@ -79,7 +79,8 @@
       #slider-range .handle {
         fill: white !important;
         stroke: black !important;
-        stroke-width: 2 !important;
+        stroke-width: 1 !important;
+        
       }
 
       path,
@@ -450,13 +451,14 @@
 
             <div id="butterflychart_container" class="flex justify-center items-center w-full "></div>
             <!--slider-->
+            <p class="selector  ">Month: <span id="number-month" class="font-thin">01</span></p>
+
             <div class="flex flex-row items-center w-full justify-between">
               <label for="month-slider-butt" class="selector mr-4 whitespace-nowrap">Select month</label>
               <input type="range" id="month-slider-butt" min="1" max="12" value="1"
                 class="slider w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800">
             </div>
-            <p class="selector  ">Month: <span id="number-month" class="font-thin">01</span></p>
-
+            
             <!--slider_end-->
 
 

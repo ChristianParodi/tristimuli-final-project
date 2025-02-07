@@ -61,6 +61,7 @@ function BubbleChart() {
         const filteredGdpData = gdpData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);
         const filteredHousePriceData = housePriceData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);
         const filteredCovidData = covidData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);
+        
 
         // Associa le metriche ai rispettivi dataset
         const metrics = ["gdpPercap", "housePrices"];
@@ -156,18 +157,23 @@ function BubbleChart() {
         const hideTooltip = function () {
             d3.select(this)
                 .transition().duration(200)
-                .style("opacity", 0.5) // Ripristina l'opacità originale
+                .style("opacity", 0.9) // Ripristina l'opacità originale
                 .attr("stroke", "none"); // Rimuove il bordo
             tooltip.transition().duration(200).style("opacity", 0);
         };
 
-        // Popola il selettore delle metriche
+        const metricLabels = {
+            gdpPercap: "GDP",
+            housePrices: "House Price"
+        };
+        
+        // Popola il selettore delle metriche con nomi leggibili
         d3.select("#metric_selector_bubble")
             .selectAll("option")
             .data(metrics)
             .enter()
             .append("option")
-            .text(d => d)
+            .text(d => metricLabels[d])  // Mostra "GDP" e "House Prices" nel menu a tendina
             .attr("value", d => d);
 
 
@@ -239,13 +245,14 @@ function BubbleChart() {
             .default([0, 3])  // Impostazioni di default
             .fill('#85bb65');
 
+            const sliderWidth = 800; 
         // Aggiungi lo slider al DOM
         const gRange = d3
             .select('#slider-range')
             .append('svg')
             .attr('width', 1400) // Imposta una larghezza maggiore per l'area dello slider
             .append('g') // Posiziona lo slider
-            .attr('transform', `translate(${(width) / 2}, 50)`);
+            .attr('transform', `translate(${(1400 - sliderWidth) / 2}, 50)`);
 
         gRange.call(sliderRange)
             // Modifica la dimensione del testo delle etichette
@@ -341,7 +348,7 @@ function BubbleChart() {
 
 
             // Scala Y (aggiornata in base alla metrica selezionata)
-            const yDomain = [d3.min(combinedData, d => d.value - 2), d3.max(combinedData, d => d.value)];
+            const yDomain = [d3.min(combinedData, d => d.value - 1.5), d3.max(combinedData, d => d.value)];
             y.domain(yDomain);
 
             let textValue;
@@ -385,13 +392,15 @@ function BubbleChart() {
                 .attr("cy", d => y(d.value))  // Usa d.value per l'asse Y
                 .attr("r", d => z(d.new_cases))
                 .style("fill", myColor(selectedCountry))
-                .style('opacity', '0.5');
+                .style('opacity', 0.9);
 
             svg.selectAll(".grid").remove();
             createGrid(svg, x, y, width, height);
+            svg.selectAll(".grid").lower();
 
 
         }
+
 
         // Gestore evento per lo slider
         sliderRange.on('onchange', val => {
