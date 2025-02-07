@@ -174,7 +174,7 @@ function bubbleEnrollments() {
   bubbleGroups.append('circle')
     .attr('r', d => r(d.population))
     .attr('fill', 'none')
-    .attr('stroke', 'black')
+    .attr('stroke', 'white')
     .attr('stroke-width', 1);
 
   // X label
@@ -209,7 +209,8 @@ function drawLegend(lockdownPopulation) {
     .append('svg')
     .attr('width', legendWidth)
     .attr('height', legendHeight)
-    .style('border', '1px solid rgba(0, 0, 0, 0.2)');
+    .style('border', '1px solid white')
+    .style("border-radius", '0.3rem')
 
   const legendGroup = svgLegend.append('g')
     .attr("transform", `translate(${legendRadius + legendMargin}, ${legendHeight / 5})`);
@@ -238,20 +239,20 @@ function drawLegend(lockdownPopulation) {
       .attr('cy', d.y)
       .attr('r', legendRadius * d.scale)
       .attr('fill', 'none')
-      .attr('stroke', 'black');
+      .attr('stroke', 'white');
 
     legendGroup.append('line')
       .attr('x1', 0)
       .attr('y1', d.y)
       .attr('x2', legendRadius * d.scale)
       .attr('y2', d.y)
-      .attr('stroke', 'black');
+      .attr('stroke', 'white');
 
     legendGroup.append('text')
       .attr('x', legendRadius * d.scale + 10)
       .attr('y', d.y)
       .attr('dominant-baseline', 'middle')
-      .attr('fill', 'black')
+      .attr('fill', 'white')
       .text(populationText);
   });
 }

@@ -3,7 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
+html {
+  height: 100%;
+  margin: 0;
+}
 
 h1,
 h2,
@@ -26,15 +29,15 @@ label {
 @layer components {
 
   .dotss {
-    @apply w-6 h-6 bg-gray-200 rounded-full border-2 border-gray-200 hover:bg-blue-400;
+    @apply w-6 h-6 bg-gray-200 rounded-full border-2 border-gray-200 hover:bg-blue-400 active:bg-blue-400 focus:bg-blue-400 focus:outline-none;
   }
 
-  .backgroundwindow {
-    @apply bg-mfn_green bg-opacity-80 text-white rounded-lg shadow-lg p-10 text-center flex flex-col items-center justify-center w-full h-full;
+  .selector {
+    @apply text-white font-sans text-lg font-semibold
   }
 
   .window {
-    @apply flex flex-col items-center gap-6 w-[80%] bg-gray-50 p-8 rounded-lg shadow-lg hover:shadow-2xl;
+    @apply flex flex-col items-center max-w-[90%] justify-end lg:justify-center mr-12 lg:mr-0 self-end lg:self-center gap-6 w-[80%] border border-white p-8 rounded-lg shadow-lg;
   }
 
   .select {
@@ -42,8 +45,7 @@ label {
   }
 
   .plot-title {
-    @apply text-black text-2xl font-bold;
-
+    @apply text-white text-3xl font-bold mb-8 mt-4;
   }
 
   .options {
@@ -51,11 +53,21 @@ label {
   }
 
   .year-slider {
-    @apply w-[60%] h-2 rounded-lg appearance-none cursor-pointer;
+    @apply w-full h-2 rounded-lg cursor-pointer accent-[#E94F37];
+  }
+
+  .play-button {
+    @apply w-12 h-12 flex items-center justify-center bg-[#E94F37] text-white text-4xl px-4 py-2 rounded;
   }
 }
 
+.corpus {
+  @apply text-white max-w-4xl;
+}
 
+.container-selector {
+  @apply flex flex-row items-center mb-5
+}
 
 
 html {

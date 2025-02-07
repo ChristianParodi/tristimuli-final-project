@@ -1,4 +1,4 @@
-import { datasets, europeGeoJson } from "../utils.js"
+import { datasets, europeGeoJson, customColors } from "../utils.js"
 
 function mapMercator() {
   const width = 1000;
@@ -7,7 +7,7 @@ function mapMercator() {
   const dataSelector = document.getElementById("map-selector");
   const yearSlider = d3.select("#covid-map-year-slider");
 
-  const tooltip = d3.select("body")
+  const tooltip = d3.select("#map-covid-container")
     .append("div")
     .style("position", "absolute")
     .style("background-color", "white")
@@ -15,7 +15,9 @@ function mapMercator() {
     .style("border", "1px solid #ccc")
     .style("border-radius", "5px")
     .style("pointer-events", "none")
-    .style("font-size", "16px");
+    .style("font-size", "16px")
+    .style("opacity", 0)
+    .style("color", "black");
 
   const projection = d3.geoMercator()
     .scale(600)
@@ -53,6 +55,22 @@ function mapMercator() {
   const minDate = d3.min(processedData.cases, d => new Date(d.year, d.month, 0));
   const maxDate = d3.max(processedData.cases, d => new Date(d.year, d.month, 0));
 
+  // set the intermediate years and months
+  const dateRange = maxDate.getTime() - minDate.getTime();
+  const dateStep = dateRange / 4;
+
+  const dateTicks = Array.from({ length: 6 }, (_, i) => new Date(minDate.getTime() + (dateStep * i)));
+
+  const dateTickLabels = dateTicks.map(date =>
+    `${date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}/${date.getFullYear()}`
+  );
+
+  d3.select("#min-year-text").text(dateTickLabels[0]);
+  d3.select("#year-1-text").text(dateTickLabels[1]);
+  d3.select("#year-2-text").text(dateTickLabels[2]);
+  d3.select("#year-3-text").text(dateTickLabels[3]);
+  d3.select("#max-year-text").text(dateTickLabels[4]);
+
   let currentYear = minDate.getFullYear();
   let currentMonth = minDate.getMonth() + 1;
 
@@ -65,12 +83,10 @@ function mapMercator() {
     .property("value", minDate.getTime())
     .attr("step", sliderStep);
 
-  d3.select("#min-year-text").text(`${minDate.getMonth() + 1}/${minDate.getFullYear()}`);
-  d3.select("#max-year-text").text(`${maxDate.getMonth() + 1}/${maxDate.getFullYear()}`);
 
   const colorMap = new Map([
-    ["cases", ["#fdd0d0", "#a50f15"]],
-    ["deaths", ["#c6dbef", "#08306b"]],
+    ["cases", customColors['red-gradient']],
+    ["deaths", customColors['blue-gradient']],
     ["vaccines", ["#bae4b3", "#005a32"]],
   ]);
 
@@ -118,6 +134,7 @@ function mapMercator() {
         ${value.toLocaleString()} ${selectedMetric} to ${currentYear}/${currentMonth}
         `;
 
+        tooltip.style("opacity", 1);
         tooltip
           .style("opacity", 1)
           .html(tooltipText)
@@ -136,25 +153,92 @@ function mapMercator() {
             if (value === 0) return "#f1f1f1";
             return colorScale(value);
           });
+
         tooltip.style("opacity", 0);
         europeMap.selectAll("path")
           .transition()
           .duration(200)
           .attr("opacity", 1);
       })
+    // Legend update
+    // Remove any previously created legend
+    svg.selectAll(".legend").remove();
+    svg.selectAll("defs").remove();
+
+    // Define legend dimensions
+    const legendThickness = 20;
+    const legendLength = 200;
+
+    const legendGroup = svg.append("g")
+      .attr("class", "legend")
+      .attr("transform", `translate(20, ${height - legendLength - 300})`);
+
+    const defs = svg.append("defs");
+    const gradient = defs.append("linearGradient")
+      .attr("id", "legend-gradient")
+      .attr("x1", "0%")
+      .attr("y1", "0%")  // start at the top
+      .attr("x2", "0%")
+      .attr("y2", "100%"); // go to the bottom
+
+    // Use d3.interpolate to create a color interpolator from the selected colorScale range
+    // Remove any existing stops before appending new ones
+    gradient.selectAll("stop").remove();
+
+    const interpolator = d3.interpolate(colorMap.get(selectedMetric)[0], colorMap.get(selectedMetric)[1]);
+
+    gradient.append("stop")
+      .attr("offset", "0%")
+      .attr("stop-color", interpolator(0));
+
+    gradient.append("stop")
+      .attr("offset", "100%")
+      .attr("stop-color", interpolator(1));
+
+    // Remove any existing legend rect before adding the new one
+    legendGroup.selectAll("rect").remove();
+
+    legendGroup.append("rect")
+      .attr("width", legendThickness)
+      .attr("height", legendLength)
+      .style("fill", "url(#legend-gradient)");
+
+    const legendScale = d3.scaleLinear()
+      .domain([0, d3.max(selectedData, d => d[selectedMetric])])
+      .range([0, legendLength]); // 0 at top, max at bottom
+
+    const legendAxis = d3.axisRight(legendScale)
+      .tickFormat(d3.format(".2s"));
+
+    // Remove any existing axis groups before adding the new one
+    legendGroup.selectAll(".axis").remove();
+
+    legendGroup.append("g")
+      .attr("class", "axis")
+      .attr("transform", `translate(${legendThickness}, 0)`)
+      .call(legendAxis);
   }
 
   updateMap();
 
   const mapLabel = d3.select("#map-label")
     .style("padding", "10px")
-    .style("color", "#333")
     .style("font-size", "24px")
-    .style("border", "1px solid #000")
+    .style("border", "1px solid #fff")
     .style("border-radius", "5px")
     .text(`Date: ${minDate.getMonth() + 1 < 10 ? `0${minDate.getMonth() + 1}` : minDate.getMonth() + 1}/${minDate.getFullYear()}`);
 
-  dataSelector.addEventListener("change", updateMap);
+  dataSelector.addEventListener("change", () => {
+    const selectedColor =
+      dataSelector.value === 'cases' ?
+        customColors['red'] :
+        dataSelector.value === 'deaths' ?
+          customColors['blue'] : customColors['green']
+
+    d3.select("#play-button-covid-map").style("background-color", selectedColor);
+    d3.select("#covid-map-year-slider").style("accent-color", selectedColor);
+    updateMap()
+  });
 
   yearSlider.node().addEventListener("input", function () {
     const date = new Date(+this.value);
@@ -172,7 +256,7 @@ function mapMercator() {
 
   playButton.addEventListener('click', () => {
     playing = !playing;
-    playButton.textContent = playing ? 'Pause' : 'Play';
+    playButton.textContent = playing ? '⏸︎' : '⏵︎';
     if (playing) {
       intervalId = setInterval(() => {
         if (goBack) {
@@ -193,6 +277,7 @@ function mapMercator() {
       clearInterval(intervalId);
     }
   });
+
 }
 
 mapMercator();

@@ -1,4 +1,4 @@
-import { datasets, population } from "../utils.js";
+import { datasets, customColors } from "../utils.js";
 
 function groupedBarChart() {
   let isConfirmedCases = false;
@@ -54,9 +54,8 @@ function groupedBarChart() {
     .call(d3.axisBottom(xScale)
       .ticks(10)
       .tickFormat(d3.format(".2s")))
-    .style("color", "black")
+    .style("color", "white")
     .selectAll("text")
-    .style("fill", "black")
     .style("font-size", "14px");
 
   // X label
@@ -64,15 +63,14 @@ function groupedBarChart() {
     .attr("text-anchor", "end")
     .attr("x", width / 2 + margin.left)
     .attr("y", height - 10)
-    .text("Number of confirmed cases");
+    .text("Number of confirmed cases")
 
   // Y axis
   svg.append("g")
     .attr("transform", `translate(${margin.left}, 0)`)
     .call(d3.axisLeft(yScale))
-    .style("color", "black")
+    .style("color", "white")
     .selectAll("text")
-    .style("fill", "black")
     .style("font-size", "14px");
 
   const updateChart = (isConfirmedCases) => {
@@ -154,9 +152,7 @@ function groupedBarChart() {
         .call(d3.axisBottom(xScale)
           .ticks(10)
           .tickFormat(d3.format(".2s")))
-        .style("color", "black")
         .selectAll("text")
-        .style("fill", "black")
         .style("font-size", "14px");
       // Update deaths bars without additional delay
       svg.selectAll("rect")
@@ -164,6 +160,35 @@ function groupedBarChart() {
         .transition()
         .duration(500)
         .attr("width", d => xScale(d.value) - xScale(0));
+
+      // cases label
+      const casesLabels = svg.selectAll(".label-text-cases")
+        .data(isConfirmedCases ? [top10[0]] : [], d => d.country);
+
+      casesLabels.enter()
+        .append("text")
+        .attr("class", "label-text-cases")
+        .style("font-size", "18px")
+        .attr("text-anchor", "start")
+        .style("fill", customColors['red'])
+        // Start at the beginning of the bin
+        .attr("x", xScale(0))
+        .attr("y", d => yScale(d.country) + subGroupScale("cases") + subGroupScale.bandwidth() / 2)
+        .attr("dy", "0.35em")
+        .merge(casesLabels)
+        .transition()
+        .duration(500)
+        // Update x to follow the end of its bin as its width expands
+        .attr("x", d => xScale(d.cases))
+        .attr("y", d => yScale(d.country) + subGroupScale("cases") + subGroupScale.bandwidth() / 2)
+        .style("opacity", isConfirmedCases ? 1 : 0)
+        .style("font-size", "18px")
+        .text("cases");
+
+      casesLabels.exit()
+        .transition()
+        .duration(500)
+        .remove();
     } else { // we are on deaths
       xScale.domain([0, xMaxDeaths + 200000]);
       // Draw grouped bars with synchronized animation
@@ -196,9 +221,9 @@ function groupedBarChart() {
           tooltip
             .style("visibility", "visible")
             .html(`
-          <strong>${d.country}</strong><br/>
-          Deaths: ${Math.round(d.value).toLocaleString()}
-        `)
+            <strong>${d.country}</strong><br/>
+            Deaths: ${Math.round(d.value).toLocaleString()}
+            `)
             .style("opacity", 0)
             .transition()
             .duration(300)
@@ -229,9 +254,9 @@ function groupedBarChart() {
         .call(d3.axisBottom(xScale)
           .ticks(10)
           .tickFormat(d3.format(".2s")))
-        .style("color", "black")
+        .style("color", "white")
         .selectAll("text")
-        .style("fill", "black")
+        .style("fill", "white")
         .style("font-size", "14px");
       // Update deaths bars without additional delay
       svg.selectAll("rect")
@@ -239,13 +264,51 @@ function groupedBarChart() {
         .transition()
         .duration(500)
         .attr("width", d => xScale(d.key === "deaths" ? d.value : 0) - xScale(0));
+
+      // deaths label
+      const deathsLabels = svg.selectAll(".label-text-deaths")
+        .data([top10[0]], d => d.country);
+
+      const deathsLabelsUpdate = deathsLabels.enter()
+        .append("text")
+        .attr("class", "label-text-deaths")
+        .attr("fill", "white")
+        .style("font-size", "18px")
+        // Start from the left edge so it can transition with the bin’s width
+        .attr("x", xScale(0))
+        .attr("y", d => yScale(d.country) + subGroupScale("deaths") + subGroupScale.bandwidth() / 2)
+        .attr("dy", "0.35em")
+        .merge(deathsLabels);
+
+      deathsLabelsUpdate
+        .transition()
+        .duration(500)
+        .style("opacity", 1)
+        // Update x to follow the end of its bin as its width expands or shrinks
+        .attr("x", d => xScale(d.deaths))
+        .attr("y", d => yScale(d.country) + subGroupScale("deaths") + subGroupScale.bandwidth() / 2)
+        .text("deaths");
+
+      deathsLabels.exit()
+        .remove();
     }
+    // update deaths label
+    d3.selectAll('.label-text-deaths')
+      .transition()
+      .duration(500)
+      .attr('x', d => xScale(d.deaths) + 10);
+
+    // update cases label
+    d3.selectAll('.label-text-cases')
+      .transition()
+      .duration(500)
+      .attr('x', d => xScale(d.cases) + 10);
   }
 
   // Color scale
   const color = d3.scaleOrdinal()
     .domain(subgroups)
-    .range(["#ff514b", "#3f3f3f"]);
+    .range(["#E94F37", "#c5c5c5"]);
 
   updateChart(false)
 
@@ -253,6 +316,7 @@ function groupedBarChart() {
     const newText = isConfirmedCases ? "Confirmed cases" : "Confirmed deaths";
     d3.select(event.target).text(newText);
     isConfirmedCases = !isConfirmedCases;
+    console.log(isConfirmedCases)
     updateChart(isConfirmedCases)
   })
 }

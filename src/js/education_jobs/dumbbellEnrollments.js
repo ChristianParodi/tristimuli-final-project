@@ -1,4 +1,4 @@
-import { covidDates, datasets, enrollemntQuantiles } from '../utils.js';
+import { covidDates, datasets, enrollemntQuantiles, customColors } from '../utils.js';
 
 // Renamed for clarity
 function dumbbellEnrollments() {
@@ -83,14 +83,12 @@ function dumbbellEnrollments() {
     .call(d3.axisBottom(xScale).tickFormat(d3.format("d")).tickValues(years))
     .selectAll("text")
     .style("font-size", "14px")
-    .style("fill", "black");
 
   g.append("g")
     .attr("class", "yaxis")
     .call(d3.axisLeft(yScale).tickFormat(d3.format(".2s")))
     .selectAll("text")
     .style("font-size", "14px")
-    .style("fill", "black");
 
   g.append("text")
     .attr("transform", "rotate(-90)")
@@ -98,7 +96,6 @@ function dumbbellEnrollments() {
     .attr("x", 0 - (height / 2))
     .attr("dy", "1em")
     .style("text-anchor", "middle")
-    .style("fill", "black")
     .style("font-size", "18px")
     .text("Tertiary education enrollments");
 
@@ -107,7 +104,7 @@ function dumbbellEnrollments() {
     // remove total
     g.selectAll('path')
       .filter(function () {
-        return d3.select(this).attr('stroke') === 'green';
+        return d3.select(this).attr('stroke') === customColors['green'];
       })
       .transition()
       .duration(200)
@@ -119,7 +116,6 @@ function dumbbellEnrollments() {
       .attr("x2", covidStartX)
       .attr("y1", 0)
       .attr("y2", height)
-      .attr("stroke", "black")
       .attr("stroke-width", 2)
       .attr("stroke-dasharray", "4");
 
@@ -127,7 +123,6 @@ function dumbbellEnrollments() {
       .attr("x", covidStartX)
       .attr("y", -10)
       .attr("text-anchor", "middle")
-      .attr("fill", "black")
       .style("font-size", "12px")
       .text("COVID Starts");
 
@@ -157,9 +152,6 @@ function dumbbellEnrollments() {
       .call(d3.axisLeft(yScale).tickFormat(d3.format(".2s")))
       .selectAll("text")
       .style("font-size", "14px")
-      .style("fill", "black");
-
-    svg.selectAll('.domain, .tick line').attr('stroke', 'black');
 
     femaleData.forEach((female, i) => {
       const male = maleData[i];
@@ -250,6 +242,25 @@ function dumbbellEnrollments() {
       .attr("cy", d => yScale(d.enrollments))
       .attr("opacity", 1);
 
+    // Connect totalData points
+    const totalLine = d3.line()
+      .x(d => xScale(d.year) + xScale.bandwidth() / 2)
+      .y(d => yScale(d.enrollments));
+
+    g.insert("path", ":first-child")
+      .datum(totalData)
+      .attr("fill", "none")
+      .attr("stroke", customColors["green"])
+      .attr("stroke-width", 2)
+      .attr("d", totalLine)
+      .attr("stroke-dasharray", function () { return this.getTotalLength(); })
+      .attr("stroke-dashoffset", function () { return this.getTotalLength(); })
+      .attr("opacity", 0)
+      .transition()
+      .duration(1000)
+      .delay(200)
+      .attr("stroke-dashoffset", 0)
+      .attr("opacity", 1);
     // total dots
     const totalDots = g.selectAll(".dot.total").data(totalData);
     totalDots.enter()
@@ -257,14 +268,14 @@ function dumbbellEnrollments() {
       .attr("class", "dot total")
       .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
       .attr("r", 6)
-      .attr("fill", "green")
+      .attr("fill", customColors["green"])
       .attr("opacity", 0)
       .raise()
       .merge(totalDots)
       .on("mouseover", function (_, d) {
         tooltip
           .style("visibility", "visible")
-          .html(`<span style='color: green;'>${d.enrollments.toLocaleString()}</span>`)
+          .html(`<span style='color: ${customColors['green']};'>${d.enrollments.toLocaleString()}</span>`)
           .style("opacity", 0)
           .transition()
           .duration(300)
@@ -289,26 +300,6 @@ function dumbbellEnrollments() {
       .duration(500)
       .ease(d3.easeCubicInOut)
       .attr("cy", d => yScale(d.enrollments))
-      .attr("opacity", 1);
-
-    // Connect totalData points
-    const totalLine = d3.line()
-      .x(d => xScale(d.year) + xScale.bandwidth() / 2)
-      .y(d => yScale(d.enrollments));
-
-    g.append("path")
-      .datum(totalData)
-      .attr("fill", "none")
-      .attr("stroke", "green")
-      .attr("stroke-width", 2)
-      .attr("d", totalLine)
-      .attr("stroke-dasharray", function () { return this.getTotalLength(); })
-      .attr("stroke-dashoffset", function () { return this.getTotalLength(); })
-      .attr("opacity", 0)
-      .transition()
-      .duration(1000)
-      .delay(200)
-      .attr("stroke-dashoffset", 0)
       .attr("opacity", 1);
   }
 
@@ -376,7 +367,6 @@ const tooltip = d3.select("#dumbbell-enrollments")
   .style("border", "1px solid #ccc")
   .style("padding", "6px")
   .style("border-radius", "4px")
-  .style("color", "black");
 
 // Call renamed function
 dumbbellEnrollments();

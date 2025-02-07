@@ -207,7 +207,7 @@ function beeswarm() {
 
     playButton.addEventListener('click', () => {
         playing = !playing;
-        playButton.textContent = playing ? 'Pause' : 'Play';
+        playButton.textContent = playing ? '⏸︎' : '⏵︎';
         if (playing) {
             intervalId = setInterval(() => {
                 yearSlider.node().stepUp();
