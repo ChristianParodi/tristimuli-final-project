@@ -107,23 +107,23 @@ async function loadExpenditures() {
 
 async function loadMentalHealth() {
   // return await d3.csv("./../../../dataset/MENTAL_HEALTH/clean/perc_estat_hlth_cd_aro.csv");
-  return await d3.csv("./../../../dataset/MENTAL_HEALTH/clean/melted_estat_hlth_cd_aro_ISO2.csv");
+  return await d3.csv("../../../dataset/MENTAL_HEALTH/clean/melted_estat_hlth_cd_aro_ISO2.csv");
 }
 
 async function loadCovidData() {
   return {
     year_max: {
-      cases: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_cases_max_year.csv"),
-      deaths: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_deaths_max_year.csv"),
-      vaccines: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_vaccines_max_year.csv"),
+      cases: await d3.csv("../../../dataset/COVID/covid_temp/clean/covid_cases_max_year.csv"),
+      deaths: await d3.csv("../../../dataset/COVID/covid_temp/clean/covid_deaths_max_year.csv"),
+      vaccines: await d3.csv("../../../dataset/COVID/covid_temp/clean/covid_vaccines_max_year.csv"),
     },
     daily: {
-      cases: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_cases_filled.csv"),
-      deaths: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_deaths_filled.csv"),
-      vaccines: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_vaccines_filled.csv"),
+      cases: await d3.csv("../../../dataset/COVID/covid_temp/clean/covid_cases_filled.csv"),
+      deaths: await d3.csv("../../../dataset/COVID/covid_temp/clean/covid_deaths_filled.csv"),
+      vaccines: await d3.csv("../../../dataset/COVID/covid_temp/clean/covid_vaccines_filled.csv"),
     },
     year_new: {
-      cases: await d3.csv("./../../../dataset/COVID/covid_temp/clean/covid_new_cases_year.csv"),
+      cases: await d3.csv("../../../dataset/COVID/covid_temp/clean/covid_new_cases_year.csv"),
     }
   }
 }

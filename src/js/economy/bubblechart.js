@@ -38,19 +38,19 @@ function initializeYScale(selectedMetric) {
 function BubbleChart() {
     // Carica i dataset
     Promise.all([
-        d3.csv("./../../../dataset/GDP/clean/gdp_final.csv", d => ({
+        d3.csv("../../../dataset/GDP/clean/gdp_final.csv", d => ({
             country: d.country,
             year: +d.year,
             quarter: d.quarter,
             value: +parseFloat(d.value.replace(/[^\d.-]/g, ''))
         })),
-        d3.csv("./../../../dataset/HOUSE_PRICE/clean/house_price_final.csv", d => ({
+        d3.csv("../../../dataset/HOUSE_PRICE/clean/house_price_final.csv", d => ({
             country: d.country,
             year: +d.year,
             quarter: d.quarter,
             value: +parseFloat(d.value.replace(/[^\d.-]/g, ''))
         })),
-        d3.csv("./../../../dataset/COVID/bubblechart/covid_bubble.csv", d => ({
+        d3.csv("../../../dataset/COVID/bubblechart/covid_bubble.csv", d => ({
             country: d.country,
             year: +d.year,
             quarter: d.quarter,
@@ -60,7 +60,7 @@ function BubbleChart() {
     ]).then(([gdpData, housePriceData, covidData]) => {
         const filteredGdpData = gdpData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);
         const filteredHousePriceData = housePriceData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);
-        const filteredCovidData = covidData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);       
+        const filteredCovidData = covidData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);
 
 
 
@@ -170,7 +170,7 @@ function BubbleChart() {
             gdpPercap: "GDP",
             housePrices: "House Price"
         };
-        
+
         // Popola il selettore delle metriche con nomi leggibili
         d3.select("#metric_selector_bubble")
             .selectAll("option")
@@ -249,7 +249,7 @@ function BubbleChart() {
             .default([0, 3])  // Impostazioni di default
             .fill('#85bb65');
 
-            const sliderWidth = 770; 
+        const sliderWidth = 770;
         // Aggiungi lo slider al DOM
         const gRange = d3
             .select('#slider-range')
@@ -271,18 +271,18 @@ function BubbleChart() {
             const currentData = dataMap[selectedMetric];
             const countries = [...new Set(currentData.map(d => d.country))];
             const countrySelector = d3.select("#contry_selector_bubble");
-        
+
             // Ottieni il paese attualmente selezionato
             let selectedCountry = countrySelector.property("value");
-        
+
             // Se il paese selezionato non è presente nei nuovi dati, sceglie il primo paese disponibile
             if (!countries.includes(selectedCountry)) {
-                selectedCountry = countries[0]; 
+                selectedCountry = countries[0];
             }
-        
+
             // Aggiorna il selettore con i nuovi paesi
             countrySelector.selectAll("option").remove();
-            
+
             countrySelector
                 .selectAll("option")
                 .data(countries)
@@ -290,11 +290,11 @@ function BubbleChart() {
                 .append("option")
                 .text(d => d)
                 .attr("value", d => d);
-        
+
             // Mantieni il paese selezionato
             countrySelector.property("value", selectedCountry);
         }
-        
+
 
 
 

@@ -10,7 +10,7 @@ function BubbleChart() {
             }
         }).then(data => data.filter(d => d)),
 
-        d3.csv("./../../../dataset/COVID/bubblechart/covid_cases_vacc_yearly_ISO2.csv", d => {
+        d3.csv("../../../dataset/COVID/bubblechart/covid_cases_vacc_yearly_ISO2.csv", d => {
             if (+d.year >= 2020 && +d.year <= 2022) {
                 return {
                     ISO2: d.ISO2,
@@ -92,7 +92,7 @@ function BubbleChart() {
             .text('Total Cases (%)')
             .style("font-size", "16px");
 
-            const tooltip = d3.select("#bubblechart_container_2")
+        const tooltip = d3.select("#bubblechart_container_2")
             .append("div")
             .style("position", "absolute")
             .style("background-color", "white")
@@ -171,73 +171,73 @@ function BubbleChart() {
             .text(d => d)
             .attr("value", d => d);
 
-            const filteredData = combinedData.filter(d => d.year === 2021);
+        const filteredData = combinedData.filter(d => d.year === 2021);
 
-            x.domain([-5, d3.max(filteredData, d => d.percentage_vaccines)]);
-            // Calcola il massimo di inbound sull'intero dataset (tutti gli anni)
-const maxInbound = d3.max(combinedData, d => d.inbound);
+        x.domain([-5, d3.max(filteredData, d => d.percentage_vaccines)]);
+        // Calcola il massimo di inbound sull'intero dataset (tutti gli anni)
+        const maxInbound = d3.max(combinedData, d => d.inbound);
 
-// Imposta il dominio della scala z una volta sola
-z.domain([4, maxInbound]);
+        // Imposta il dominio della scala z una volta sola
+        z.domain([4, maxInbound]);
 
-function updateChart(selectedYear) {
-    let filteredData = combinedData.filter(d => d.year === +selectedYear);
+        function updateChart(selectedYear) {
+            let filteredData = combinedData.filter(d => d.year === +selectedYear);
 
-    // Ordina i dati in modo che i bubble con dimensioni maggiori vengano disegnati per primi
-    // e quelli piccoli (z più piccoli) in seguito, apparendo in primo piano.
-    filteredData.sort((a, b) => d3.descending(z(a.inbound), z(b.inbound)));
+            // Ordina i dati in modo che i bubble con dimensioni maggiori vengano disegnati per primi
+            // e quelli piccoli (z più piccoli) in seguito, apparendo in primo piano.
+            filteredData.sort((a, b) => d3.descending(z(a.inbound), z(b.inbound)));
 
-    x.domain([-0.01, d3.max(filteredData, d => d.percentage_vaccines)]);
-    y.domain([
-      d3.min(filteredData, d => d.percentage_cases - 2),
-      d3.max(filteredData, d => d.percentage_cases)
-    ]);
+            x.domain([-0.01, d3.max(filteredData, d => d.percentage_vaccines)]);
+            y.domain([
+                d3.min(filteredData, d => d.percentage_cases - 2),
+                d3.max(filteredData, d => d.percentage_cases)
+            ]);
 
-    console.log("Scala z dominio:", z.domain());
-    console.log("Dati inbound:", filteredData.map(d => d.inbound));
+            console.log("Scala z dominio:", z.domain());
+            console.log("Dati inbound:", filteredData.map(d => d.inbound));
 
-    xAxis.transition().duration(500).call(d3.axisBottom(x));
-    yAxis.transition().duration(500).call(d3.axisLeft(y));
+            xAxis.transition().duration(500).call(d3.axisBottom(x));
+            yAxis.transition().duration(500).call(d3.axisLeft(y));
 
-    // Aggiorna la griglia
-    svg.selectAll(".grid").remove();
-    createGrid(svg, x, y, width, height);
-    svg.selectAll(".grid").lower();
+            // Aggiorna la griglia
+            svg.selectAll(".grid").remove();
+            createGrid(svg, x, y, width, height);
+            svg.selectAll(".grid").lower();
 
-    const bubbles = svg.selectAll(".bubble").data(filteredData, d => d.country);
-    bubbles.exit().remove();
+            const bubbles = svg.selectAll(".bubble").data(filteredData, d => d.country);
+            bubbles.exit().remove();
 
-    const borders = svg.selectAll(".border").data(filteredData, d => d.country);
-    borders.exit().remove();
+            const borders = svg.selectAll(".border").data(filteredData, d => d.country);
+            borders.exit().remove();
 
-    borders.enter()
-        .append("rect")
-        .attr("class", "border")
-        .merge(borders)
-        .transition()
-        .duration(500)
-        .attr("x", d => x(d.percentage_vaccines) - z(d.inbound) / 2 - 2)
-        .attr("y", d => y(d.percentage_cases) - z(d.inbound) / 2 - 2)
-        .attr("width", d => z(d.inbound) + 4)
-        .attr("height", d => z(d.inbound) + 4)
-        .attr("fill", "white")
-        .attr("stroke", "black")
-        .attr("stroke-width", 1);
+            borders.enter()
+                .append("rect")
+                .attr("class", "border")
+                .merge(borders)
+                .transition()
+                .duration(500)
+                .attr("x", d => x(d.percentage_vaccines) - z(d.inbound) / 2 - 2)
+                .attr("y", d => y(d.percentage_cases) - z(d.inbound) / 2 - 2)
+                .attr("width", d => z(d.inbound) + 4)
+                .attr("height", d => z(d.inbound) + 4)
+                .attr("fill", "white")
+                .attr("stroke", "black")
+                .attr("stroke-width", 1);
 
-    bubbles.enter()
-        .append("image")
-        .attr("class", "bubble")
-        .merge(bubbles)
-        .on('mouseover', showTooltip)
-        .on("mouseleave", hideTooltip)
-        .transition()
-        .duration(500)
-        .attr("x", d => x(d.percentage_vaccines) - z(d.inbound) / 2)
-        .attr("y", d => y(d.percentage_cases) - z(d.inbound) / 2)
-        .attr("width", d => z(d.inbound))
-        .attr("height", d => z(d.inbound))
-        .attr("xlink:href", d => `https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/flags/1x1/${d.ISO2.toLowerCase()}.svg`);
-}
+            bubbles.enter()
+                .append("image")
+                .attr("class", "bubble")
+                .merge(bubbles)
+                .on('mouseover', showTooltip)
+                .on("mouseleave", hideTooltip)
+                .transition()
+                .duration(500)
+                .attr("x", d => x(d.percentage_vaccines) - z(d.inbound) / 2)
+                .attr("y", d => y(d.percentage_cases) - z(d.inbound) / 2)
+                .attr("width", d => z(d.inbound))
+                .attr("height", d => z(d.inbound))
+                .attr("xlink:href", d => `https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/flags/1x1/${d.ISO2.toLowerCase()}.svg`);
+        }
 
 
 

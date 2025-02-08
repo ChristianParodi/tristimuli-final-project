@@ -1,5 +1,5 @@
 function ButterflyChart() {
-  d3.csv("./../../../dataset/INFLATION/clean/inflation_finale.csv", d => ({
+  d3.csv("../../../dataset/INFLATION/clean/inflation_finale.csv", d => ({
     country: d.country,
     year: +d.year,
     month: +d.month,
@@ -21,7 +21,7 @@ function ButterflyChart() {
     let optionsYear1 = selectYear1.selectAll("option");
     let optionsYear2 = selectYear2.selectAll("option");
 
-    optionsYear1.each(function(d) {
+    optionsYear1.each(function (d) {
       const option = d3.select(this);
       if (+option.property("value") === 2019) {
         option.property("disabled", true); // Disabilita 2019 in selectYear1
@@ -30,7 +30,7 @@ function ButterflyChart() {
       }
     });
 
-    optionsYear2.each(function(d) {
+    optionsYear2.each(function (d) {
       const option = d3.select(this);
       if (+option.property("value") === 2018) {
         option.property("disabled", true); // Disabilita 2018 in selectYear2
@@ -61,7 +61,7 @@ function ButterflyChart() {
 
       svg.append("g").attr("class", "y-axis");
 
-      
+
       svg.append("g").attr("class", "bars");
       svg.append("g")
         .attr("class", "x-axis")
@@ -118,7 +118,7 @@ function ButterflyChart() {
           .range([margin.left, width - margin.right]);
 
         svg.select(".y-axis")
-          .attr("transform", `translate(${margin.left }, 0)`)
+          .attr("transform", `translate(${margin.left}, 0)`)
           .call(d3.axisLeft(yScale))
           .selectAll("path, line")  // Rimuovi la barra vuota
           .remove()
@@ -171,11 +171,11 @@ function ButterflyChart() {
 
     selectYear1.on("change", () => {
       const year1 = +selectYear1.property("value");
-      
+
 
       // Disable the corresponding option in selectYear2
       optionsYear2 = selectYear2.selectAll("option");
-      optionsYear2.each(function(d) {
+      optionsYear2.each(function (d) {
         const option = d3.select(this);
         if (+option.property("value") === year1) {
           option.property("disabled", true); // Disable option for year1
@@ -188,12 +188,12 @@ function ButterflyChart() {
     });
 
     selectYear2.on("change", () => {
-      
+
       const year2 = +selectYear2.property("value");
 
       // Disable the corresponding option in selectYear1
       optionsYear1 = selectYear1.selectAll("option");
-      optionsYear1.each(function(d) {
+      optionsYear1.each(function (d) {
         const option = d3.select(this);
         if (+option.property("value") === year2) {
           option.property("disabled", true); // Disable option for year2

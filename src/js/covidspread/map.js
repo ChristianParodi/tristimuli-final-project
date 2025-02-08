@@ -131,7 +131,7 @@ function mapMercator() {
         else
           tooltipText = `
         <strong>${countryData.country}</strong><br>
-        ${value.toLocaleString()} ${selectedMetric} to ${currentYear}/${currentMonth}
+        ${value.toLocaleString()} ${selectedMetric}
         `;
 
         tooltip.style("opacity", 1);

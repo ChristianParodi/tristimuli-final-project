@@ -1,5 +1,5 @@
 async function loadMentalDeathsChange() {
-  return await d3.csv("./../../../dataset/MENTAL_HEALTH/clean/mental_grouped_only.csv");
+  return await d3.csv("../../../dataset/MENTAL_HEALTH/clean/mental_grouped_only.csv");
 }
 
 async function mentalDisordersDeathsChange() {

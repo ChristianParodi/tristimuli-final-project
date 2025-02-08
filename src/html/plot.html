@@ -8,12 +8,11 @@
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js" defer></script>
     <script src="./../../libs/tailwind.js"></script>
-    <link href="./../css/plot.css" rel="stylesheet">
-    <link href="./../css/mapMercator.css" rel="stylesheet">
-    <link href="./../../dist/plot.css" rel="stylesheet">
+    <link href="../dist/mapMercator.css" rel="stylesheet">
+    <link href="../../dist/plot.css" rel="stylesheet">
     <script src="https://unpkg.com/d3-simple-slider"></script>
-    <script src="./../js/plot.js"></script>
-    <link rel="icon" type="image/png" href="./../../tristi.png" />
+    <script src="../js/plot.js"></script>
+    <link rel="icon" type="image/png" href="../../tristi.png" />
     <style>
       .grid-line {
         stroke: lightgrey;
@@ -80,7 +79,7 @@
         fill: white !important;
         stroke: black !important;
         stroke-width: 1 !important;
-        
+
       }
 
       path,
@@ -141,14 +140,14 @@
     <div id="home" class="relative isolate px-6 pt-14 lg:px-8 min-h-screen ">
       <!-- Background image with parallax effect -->
       <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style="background-image: url('./../../covid.jpg'); background-attachment: fixed;">
+        style="background-image: url('../../covid.jpg'); background-attachment: fixed;">
         <div class="absolute inset-0 bg-black opacity-60"></div> <!-- Semi-transparent black overlay -->
       </div>
 
       <!-- Content -->
       <div class="relative mx-auto max-w-2xl py-16 sm:py-24 lg:py-32 -mt-20 z-10 text-center ">
         <!-- Logo centered -->
-        <img src="./../../tristi.png" class="logo mx-auto block mb-10 w-32" />
+        <img src="../../tristi.png" class="logo mx-auto block mb-10 w-32" />
         <h1 class="text-balance text-5xl font-semibold tracking-tight text-white sm:text-7xl ">The Effects of Covid in
           Europe</h1>
         <p class="mt-8 text-pretty font-medium text-white tracking-widest mx-auto max-w-3xl">
@@ -329,7 +328,7 @@
 
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
 
-            
+
             <p class="corpus">
               The plot shows the trend of house prices and the Gross Domestic Product (GDP)
               in the various quarters from 2020 to 2023, maintaining the relationship with
@@ -345,30 +344,35 @@
               Meanwhile, the house price provides an overall overview of the real estate
               price trends, showing the percentage change in house prices compared to the
               previous quarter.</p>
-              <p class="corpus">
-              GDP has experienced more pronounced fluctuations compared to house prices, 
-              showing greater sensitivity to economic shocks. The data indicates that the 
-              impact of the pandemic was most evident in the early quarters of 2020, while 
+            <p class="corpus">
+              GDP has experienced more pronounced fluctuations compared to house prices,
+              showing greater sensitivity to economic shocks. The data indicates that the
+              impact of the pandemic was most evident in the early quarters of 2020, while
               in the following years, a gradual normalization of the economy was observed.
 
-Due to the pandemic, GDP saw a sharp decline, especially in the first two quarters of 2020, 
-with negative values for almost all European countries. In Italy, where the country was under 
-lockdown from March 9, 2020, to May 18, 2020, GDP dropped by <span class="text-[#E94F37]">-5.8%</span> in the first quarter (Q1)
- and by <span class="text-[#E94F37]">-12.3%</span> in the second quarter (Q2). After the reopening in the third quarter (Q3), GDP 
- rebounded significantly in many countries (Italy +14.4%, Spain +15.9%, France +15.6%). In general,
-  for most countries, from 2021 onwards, a gradual recovery was observed without extreme peaks until 2023.
+              Due to the pandemic, GDP saw a sharp decline, especially in the first two quarters of 2020,
+              with negative values for almost all European countries. In Italy, where the country was under
+              lockdown from March 9, 2020, to May 18, 2020, GDP dropped by <span class="text-[#E94F37]">-5.8%</span> in
+              the first quarter (Q1)
+              and by <span class="text-[#E94F37]">-12.3%</span> in the second quarter (Q2). After the reopening in the
+              third quarter (Q3), GDP
+              rebounded significantly in many countries (Italy +14.4%, Spain +15.9%, France +15.6%). In general,
+              for most countries, from 2021 onwards, a gradual recovery was observed without extreme peaks until 2023.
 
-Regarding house prices, a different trend can be observed, with greater resilience compared to 
-GDP. In Italy, for example, in the second quarter (Q2) of 2020, there was an increase of +3%, 
-followed by a slight decrease of <span class="text-[#E94F37]">-2.5% </span>in the third quarter (Q3). In the 2021-2023 period, 
-the situation varies across different countries: in Italy, moderate fluctuations between positive and negative values were recorded,
- while in other countries, such as Luxembourg, a continuous decline in prices has been observed since the last quarter of 2023.
+              Regarding house prices, a different trend can be observed, with greater resilience compared to
+              GDP. In Italy, for example, in the second quarter (Q2) of 2020, there was an increase of +3%,
+              followed by a slight decrease of <span class="text-[#E94F37]">-2.5% </span>in the third quarter (Q3). In
+              the 2021-2023 period,
+              the situation varies across different countries: in Italy, moderate fluctuations between positive and
+              negative values were recorded,
+              while in other countries, such as Luxembourg, a continuous decline in prices has been observed since the
+              last quarter of 2023.
 
-Finally, the data shows that the months with the highest number of new COVID-19 cases were at 
-the end of 2021 and the beginning of 2022. However, likely thanks to the widespread distribution 
-of vaccines, these peaks did not lead to prolonged lockdowns or significant declines in GDP 
-and house prices, indicating a greater ability of the economy to adapt compared to the early stages 
-of the pandemic.
+              Finally, the data shows that the months with the highest number of new COVID-19 cases were at
+              the end of 2021 and the beginning of 2022. However, likely thanks to the widespread distribution
+              of vaccines, these peaks did not lead to prolonged lockdowns or significant declines in GDP
+              and house prices, indicating a greater ability of the economy to adapt compared to the early stages
+              of the pandemic.
             </p>
 
 
@@ -470,7 +474,7 @@ of the pandemic.
               <input type="range" id="month-slider-butt" min="1" max="12" value="1"
                 class="slider w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800">
             </div>
-            
+
             <!--slider_end-->
 
 
@@ -624,9 +628,9 @@ of the pandemic.
                 </div>
               </div>
             </div>
-            <div id="waffle-country" class="container-selector">  
+            <div id="waffle-country" class="container-selector">
               <label class="selector me-4">Select country</label>
-                <select id="waffle-country-selector" class="select text-black"></select>
+              <select id="waffle-country-selector" class="select text-black"></select>
             </div>
             <div id="waffle-years" class="w-full flex justify-around margin-top-4">
               <div class="container-selector ">
@@ -731,7 +735,7 @@ of the pandemic.
 
             <!--Switch-->
             <div class="flex-1 w-full">
-               <p class="selector  ">Month: <span id="number-month" class="font-thin">01</span></p>
+              <p class="selector  ">Month: <span id="number-month" class="font-thin">01</span></p>
 
               <div class="flex items-center gap-4">
                 <!-- year selector -->
@@ -748,7 +752,7 @@ of the pandemic.
                 <!-- end year selector -->
               </div>
             </div>
-            
+
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
 
             <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit,
@@ -842,7 +846,7 @@ of the pandemic.
     </div>
 
     <!-- COVID -->
-    <script type="module" src="./../js/covidspread/map.js"></script> 
+    <script type="module" src="./../js/covidspread/map.js"></script>
     <script type="module" src="./../js/covidspread/linechart.js"></script>
     <script type="module" src="./../js/covidspread/stackedbarchart.js"></script>
 
@@ -869,7 +873,7 @@ of the pandemic.
     <script type="module" src="../js/outcomes/enrollmentChange.js"></script>
     <script type="module" src="../js/outcomes/unemploymentChange.js"></script>
     <script type="module" src="../js/outcomes/mentalDeathsChange.js"></script>
-    <script type="module" src="../js/outcomes/mentalDisordersDeathsChange.js"></script> 
+    <script type="module" src="../js/outcomes/mentalDisordersDeathsChange.js"></script>
 
     <script type="module" src="./../js/utils.js"></script>
 
