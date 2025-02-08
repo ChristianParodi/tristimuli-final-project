@@ -13,9 +13,9 @@ function barChartHealth() {
     let currentCategory = "Total";
     const data = originalData.filter(d => d.age === "Total" && d.sex === "Total");
     const parentContainer = d3.select("#bar-chart-health-container").node().parentNode;
-    const width = parentContainer.getBoundingClientRect().width * 0.9;
-    const height = 400;
-    const margin = { top: 20, right: 30, bottom: 50, left: 60 };
+    const width = 1000;
+    const height = 600;
+    const margin = { top: 20, right: 30, bottom: 80, left: 100 };
 
     const svg = d3.select("#bar-chart-health-container")
         .append("svg")
@@ -71,7 +71,8 @@ function barChartHealth() {
         .domain(["pre2020", "post2020"])
         .range(["#1f77b4", "#ff7f0e"]);
 
-    const tooltip = d3.select('#bar-chart-health-container').append('div')
+    const tooltip = d3.select('#bar-chart-health-container')
+        .append('div')
         .attr('class', 'tooltip-bar-health')
         .style('position', 'absolute')
         .style('background', '#fff')
@@ -91,6 +92,12 @@ function barChartHealth() {
     svg.append("g")
         .attr("class", "y-axis")
         .call(d3.axisLeft(y));
+
+    svg.select(".x-axis").selectAll("text")
+        .style("font-size", "14px"); // or any desired size
+
+    svg.select(".y-axis").selectAll("text")
+        .style("font-size", "14px"); // or any desired size
 
     // Add X axis label
     svg.append("text")
@@ -150,6 +157,40 @@ function barChartHealth() {
         .attr("stroke", "red")
         .attr("stroke-width", 1);
 
+    const firstCountry = top10[0].country;
+
+    const preText = svg.append("text")
+        .attr("text-anchor", "middle")
+        .attr("x", x0(firstCountry) + x1("pre2020") + x1.bandwidth() / 2)
+        .attr("y", 22)
+        .style("font-size", "12px")
+        .style("font-weight", "bold");
+
+    preText.append("tspan")
+        .text("pre");
+
+    preText.append("tspan")
+        .attr("x", x0(firstCountry) + x1("pre2020") + x1.bandwidth() / 2)
+        .attr("dy", "1.2em")
+        .text("2020");
+
+    const postText = svg.append("text")
+        .attr("text-anchor", "middle")
+        .attr("x", x0(firstCountry) + x1("post2020") + x1.bandwidth() / 2)
+        .attr("y", 98)
+        .attr("fill", "#000")
+        .style("font-size", "12px")
+        .style("font-weight", "bold");
+
+    postText.append("tspan")
+        .text("post")
+        .attr("x", x0(firstCountry) + x1("post2020") + x1.bandwidth() / 2);
+
+    postText.append("tspan")
+        .attr("x", x0(firstCountry) + x1("post2020") + x1.bandwidth() / 2)
+        .attr("dy", "1.2em")
+        .text("2020");
+
     const bars = svg.append("g")
         .selectAll("g")
         .data(top10)
@@ -173,12 +214,12 @@ function barChartHealth() {
                                 <div class="mh-5 mt-1 w-full flex justify-between">
                                     <div class="flex flex-col items-left w-[60%]">
                                         <h2 class="text-left m-0 w-fit">Average deaths</h2>
-                                        <p class="text-left text-md">${minYear}-2020: ${firstValue}</p>
-                                        <p class="text-left text-md">2020-${maxYear}: ${secondValue}</p>
+                                        <p class="text-left text-md text-black">${minYear}-2020: ${firstValue}</p>
+                                        <p class="text-left text-md text-black">2020-${maxYear}: ${secondValue}</p>
                                     </div>
                                     <div class="flex flex-col items-center justify-center border-2 border-black rounded-lg w-[40%] mx-1">
-                                        <p class="text-center">% variation</p>
-                                        <p class="font-bold text-center">${percVar >= 0 ? "+" : ""}${percVar}%</p>
+                                        <p class="text-center text-black">% variation</p>
+                                        <p class="font-bold text-center text-black">${percVar >= 0 ? "+" : ""}${percVar}%</p>
                                     </div>
                                 </div>`;
             tooltip.style("opacity", "0.9")
@@ -219,9 +260,24 @@ function barChartHealth() {
             const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
             const yAxisPosition = svg.select(".x-axis").node().getBoundingClientRect().top + window.scrollY;
             const tooltipHeight = tooltip.node().getBoundingClientRect().height;
+            let tooltipLeft = svgLeft + x0(d.country) + 4 * x1("post2020") + 5;
+            let tooltipTop = yAxisPosition - tooltipHeight - 5;
+
+            // Check if tooltip exceeds the right edge of the page
+            const tooltipWidth = tooltip.node().getBoundingClientRect().width;
+            const pageWidth = window.innerWidth;
+            if (tooltipLeft + tooltipWidth > pageWidth) {
+                tooltipLeft = svgLeft + x0(d.country) - 4 * x1("post2020"); // Adjust to fit within the page
+            }
+
+            // Check if tooltip exceeds the top edge of the page
+            if (tooltipTop < 0) {
+                tooltipTop = 10; // Adjust to fit within the page
+            }
+
             tooltip
-                .style('left', `${svgLeft + x0(d.country) + 3 * x1("post2020") + 10}px`)
-                .style('top', `${yAxisPosition - tooltipHeight - 5}px`);
+                .style('left', `${tooltipLeft}px`)
+                .style('top', `${tooltipTop}px`);
 
         })
         .on("mouseout", function (event, d) {
@@ -328,29 +384,29 @@ function barChartHealth() {
 
         svg.selectAll(".split-rect")
             .on("mouseover", function (event, d) {
-            const tooltipText = `<h2 class="text-center m-0">${d.country}: ${d.key}</h2>
-                        <p class="text-center m-0">Deaths: ${d.value.toFixed(0)}</p>`;
-            tooltip.style("opacity", "0.9")
-                .html(tooltipText);
+                const tooltipText = `<h2 class="text-center m-0">${d.country}: ${d.key}</h2>
+                        <p class="text-center m-0 text-black">Deaths: ${d.value.toFixed(0)}</p>`;
+                tooltip.style("opacity", "0.9")
+                    .html(tooltipText);
 
-            svg.selectAll(".bar").style("opacity", 0);
-            
-            svg.selectAll(".split-rect")
-            .filter(rect => rect.country !== d.country)
-            .style("opacity", 0.3);
-        })
-        .on("mousemove", function (event, d) {
-            const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
-            const yAxisPosition = svg.select(".x-axis").node().getBoundingClientRect().top + window.scrollY;
-            const tooltipHeight = tooltip.node().getBoundingClientRect().height;
-            tooltip
-            .style('left', `${svgLeft + x0(d.country) + 3 * x1("post2020") + 10}px`)
-            .style('top', `${yAxisPosition - tooltipHeight - 5}px`);
-        })
-        .on("mouseout", function () {
-            tooltip.style("opacity", "0");
-            svg.selectAll(".split-rect").style("opacity", 1);
-            svg.selectAll(".bar").style("opacity", 1);
+                svg.selectAll(".bar").style("opacity", 0);
+
+                svg.selectAll(".split-rect")
+                    .filter(rect => rect.country !== d.country)
+                    .style("opacity", 0.3);
+            })
+            .on("mousemove", function (event, d) {
+                const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
+                const yAxisPosition = svg.select(".x-axis").node().getBoundingClientRect().top + window.scrollY;
+                const tooltipHeight = tooltip.node().getBoundingClientRect().height;
+                tooltip
+                    .style('left', `${svgLeft + x0(d.country) + 3 * x1("post2020") + 10}px`)
+                    .style('top', `${yAxisPosition - tooltipHeight - 5}px`);
+            })
+            .on("mouseout", function () {
+                tooltip.style("opacity", "0");
+                svg.selectAll(".split-rect").style("opacity", 1);
+                svg.selectAll(".bar").style("opacity", 1);
             });
     }
 

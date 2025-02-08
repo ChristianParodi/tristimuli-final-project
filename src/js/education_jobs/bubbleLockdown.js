@@ -212,8 +212,17 @@ function drawLegend(lockdownPopulation) {
     .style('border', '1px solid white')
     .style("border-radius", '0.3rem')
 
+  svgLegend.append('text')
+    .attr('x', legendWidth / 2)
+    .attr('y', legendMargin + 15)
+    .attr('text-anchor', 'middle')
+    .attr('fill', 'white')
+    .style('font-size', '16px')
+    .style("font-weight", "bold")
+    .text('Country population');
+
   const legendGroup = svgLegend.append('g')
-    .attr("transform", `translate(${legendRadius + legendMargin}, ${legendHeight / 5})`);
+    .attr("transform", `translate(${legendRadius + legendMargin}, ${legendHeight / 5 + 20})`);
 
   const legendData = [
     { scale: 1 / 3, y: 0 },

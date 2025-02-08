@@ -224,14 +224,16 @@
             <!-- select metric  -->
             <div class="container-selector">
               <label for="map-selector" class="selector me-4">Select type of data</label>
-              <select id="map-selector" class="select">
-                <option value="cases">Confirmed cases</option>
-                <option value="deaths">Confirmed deaths</option>
-                <option value="vaccines">Vaccines</option>
-              </select>
+              <div class="select-wrapper">
+                <select id="map-selector" class="select">
+                  <option value="cases">Confirmed cases</option>
+                  <option value="deaths">Confirmed deaths</option>
+                  <option value="vaccines">Vaccines</option>
+                </select>
+              </div>
             </div>
             <!-- end select metric  -->
-    
+
             <div id="map-covid-container" class="self-center"></div>
             <span id="map-label" class="w-fit"></span>
             <!--Switch-->
@@ -256,7 +258,11 @@
                 <!-- end year selector -->
               </div>
             </div>
-
+            <p class="corpus">
+              After the initial few cases, the situation rapidly deteriorated, especially following the emergence of the
+              Omicron variant in November 2021. However, thanks to widespread vaccination efforts, the severity of the
+              pandemic gradually diminished, paving the way toward recovery.
+            </p>
           </div>
 
           <!--MAP_END-->
@@ -268,9 +274,16 @@
               <label for="country-selector" class="selector me-4">Select country</label>
               <select id="country-selector" class=" select"></select>
             </div>
-
-
             <div id="linechart-covid"></div>
+            <p class="corpus">
+              In many countries, the introduction of vaccines played a crucial role in mitigating the pandemic. However,
+              the situation appeared to stabilize around <strong>2022</strong>. After the emergence of the Omicron
+              variant, many
+              countries experienced a peak in infections. Notably, some regions responded differently to vaccine
+              rollouts. For instance, in <strong>Cyprus</strong> the number of infections eventually surpassed the
+              number of individuals who had received at least one dose, prompting further analysis into vaccine efficacy
+              and public health strategies during the later stages of the pandemic.
+            </p>
           </div>
           <!--LINECHART_END-->
 
@@ -282,9 +295,7 @@
               Confirmed cases
             </button>
 
-
             <div id="barchart-covid-container"></div>
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
             <p class="corpus">
               Although the absolute number of deaths is high, it is important to consider
               that the overall percentage mortality remains relatively low compared to the total number of infection
@@ -395,12 +406,23 @@
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
 
             <p class="corpus">
-              Nel seguente plot sono riportati i dati dei turisti in entrata nel paese che viene rappresentato dalla grandezza della bandiera, rispetto ai valori dei casi totali di infetti (x axis), rappresentato come percentuale rispetto al numero della popolazione e al numero di vaccinati sempre rappresentato come percentuale rispetto al numero della popolazione, in cui viene fatto riferimento ai vaccinati e agli infetti in quell'anno. 
+              Nel seguente plot sono riportati i dati dei turisti in entrata nel paese che viene rappresentato dalla
+              grandezza della bandiera, rispetto ai valori dei casi totali di infetti (x axis), rappresentato come
+              percentuale rispetto al numero della popolazione e al numero di vaccinati sempre rappresentato come
+              percentuale rispetto al numero della popolazione, in cui viene fatto riferimento ai vaccinati e agli
+              infetti in quell'anno.
 
-Dal plot si può osservare come dal 2020 al 2022 ci sia stato un forse incremento degli infetti, in cui vediamo pesi come la Francia che hanno avuto una percentuale del 3,53% nel 2020, al 9,61% nel 2021, fino al 44,18% nel 2022, ovvero una crescita del 40,65% dal 2020 al 2022 e andamenti molto simili sono visibile anche in paesi come la Germania e l'Italia, mentre andamenti diversi vengono riscontrati in paesi come la Polonia in cui si passa da un 3,38% nel 2020,  7,33% nel 2022 fino ad una diminuzione dell'1,44% nel 2022 (percentuale del 2022: 5,89%).
+              Dal plot si può osservare come dal 2020 al 2022 ci sia stato un forse incremento degli infetti, in cui
+              vediamo pesi come la Francia che hanno avuto una percentuale del 3,53% nel 2020, al 9,61% nel 2021, fino
+              al 44,18% nel 2022, ovvero una crescita del 40,65% dal 2020 al 2022 e andamenti molto simili sono visibile
+              anche in paesi come la Germania e l'Italia, mentre andamenti diversi vengono riscontrati in paesi come la
+              Polonia in cui si passa da un 3,38% nel 2020, 7,33% nel 2022 fino ad una diminuzione dell'1,44% nel 2022
+              (percentuale del 2022: 5,89%).
 
-Nel 2021, la maggior parte dei paesi ha avuto una percentuale di vaccinazione molto elevata.
-Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,76%) hanno registrato livelli molto alti. Nel 2022, invece, la percentuale di nuove vaccinazioni è crollata drasticamente, con valori intorno al 2-4% nella maggior parte dei paesi.
+              Nel 2021, la maggior parte dei paesi ha avuto una percentuale di vaccinazione molto elevata.
+              Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,76%) hanno registrato
+              livelli molto alti. Nel 2022, invece, la percentuale di nuove vaccinazioni è crollata drasticamente, con
+              valori intorno al 2-4% nella maggior parte dei paesi.
             </p>
 
           </div>
@@ -429,16 +451,7 @@ Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,
                 <option value="Alcoholic beverages">Alcoholic beverages</option>
               </select>
 
-              <!-- Freccia personalizzata -->
-              <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-                <svg class="w-4 h-4 text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                  fill="currentColor">
-                  <path fill-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd" />
-                </svg>
-              </div>
-              <!-- Freccia personalizzata end -->
+              <div w3-include-html="components/arrow.svg"></div>
             </div>
             <!--end_selector-->
 
@@ -479,8 +492,8 @@ Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,
             <div id="butterflychart_container" class="flex justify-center items-center w-full -mb-10"></div>
             <!--slider-->
             <p class="selector text-2xl ">Month <span id="number-month" class="font-thin text-2xl">01</span></p>
-           
-          
+
+
             <div class="flex flex-row items-center w-full justify-between">
               <label for="month-slider-butt" class="selector mr-4 whitespace-nowrap">Select month</label>
               <input type="range" id="month-slider-butt" min="1" max="12" value="1"
@@ -551,7 +564,7 @@ Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,
               decline in university enrollments. However, further analysis indicates that while the immediate impact was
               significant, the overall long-term trend in enrollments has since stabilized and shows only minor
               deviations from historical patterns. In some countries, educational enrollment trends changed after
-              COVID-19—such as in <strong>Czechia</strong>—although overall, the trends remained stable.
+              COVID-19 - such as in <strong>Czechia</strong> - although overall, the trends remained stable.
 
               Moreover, across Europe, females tend to enroll in higher education more frequently than males. However,
               exceptions exist; for example, in <strong>Germany</strong>, <strong>Greece</strong> and
@@ -695,15 +708,16 @@ Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,
             <h3 class="plot-title">Bar Chart title</h3>
             <div class="flex justify-center items-center gap-4 mt-4 w-full">
               <div class="relative w-[30%] border-[1px] border-[#ffffff7d] rounded-md">
-              <div id="overlay" class="absolute inset-0 bg-blue-500 rounded-md transition-transform duration-300 w-1/3"></div>
-              <div class="flex">
-                <button id="total-button" class="relative z-10 px-4 py-2 text-white w-1/3">Total</button>
-                <button id="sex-button" class="relative z-10 px-4 py-2 text-white w-1/3 border-r border-[#ffffff7d] rounded-md">Sex</button>
-                <button id="age-button" class="relative z-10 px-4 py-2 text-white w-1/3">Age</button>
-              </div>
+                <div id="overlay"
+                  class="absolute inset-0 bg-blue-500 rounded-md transition-transform duration-300 w-1/3"></div>
+                <div class="flex">
+                  <button id="total-button" class="relative z-10 px-4 py-2 text-white w-1/3">Total</button>
+                  <button id="sex-button"
+                    class="relative z-10 px-4 py-2 text-white w-1/3 border-r border-[#ffffff7d] rounded-md">Sex</button>
+                  <button id="age-button" class="relative z-10 px-4 py-2 text-white w-1/3">Age</button>
+                </div>
               </div>
             </div>
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
             <div id="bar-chart-health-container"></div>
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
 
@@ -722,6 +736,7 @@ Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,
           <!-- BEESWARM START -->
           <div class="window mt-10">
             <h3 class="plot-title">Beeswarm title</h3>
+            <div id="beeswarm-legend" class="border-[1px] rounded-md p-2"></div>
             <div id="beeswarm-container"></div>
             <div class="flex-1 w-full">
               <div class="flex justify-center items-center gap-4">
@@ -910,7 +925,6 @@ Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,
     <script type="module" src="../js/outcomes/mentalDisordersDeathsChange.js"></script>
 
     <script type="module" src="./../js/utils.js"></script>
-
   </body>
 
 </html>
