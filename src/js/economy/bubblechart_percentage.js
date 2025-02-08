@@ -37,6 +37,8 @@ function BubbleChart() {
         const width = 900;
         const height = 420;
 
+        console.log(combinedData)
+
         const svg = d3.select("#bubblechart_container_2")
             .append("svg")
             .attr("width", width + margin.left + margin.right)

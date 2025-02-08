@@ -239,6 +239,13 @@ function mapBubble() {
 
 
   updateMap();
+  const mapLabel = d3.select("#number-date")
+  .style("padding", "10px")
+  .style("font-size", "24px")
+  .style("border", "1px solid #fff")
+  .style("border-radius", "5px")
+  .text(`Date: ${minDate.getMonth() + 1 < 10 ? `0${minDate.getMonth() + 1}` : minDate.getMonth() + 1}/${minDate.getFullYear()}`);
+
 
   dataSelector.addEventListener("change", updateMap);
 
@@ -246,6 +253,7 @@ function mapBubble() {
     const date = new Date(+this.value);
     currentYear = date.getFullYear();
     currentMonth = date.getMonth() + 1;
+    mapLabel.text(`Date: ${currentMonth < 10 ? `0${currentMonth}` : currentMonth}/${currentYear}`);
     updateMap();
   });
 }
