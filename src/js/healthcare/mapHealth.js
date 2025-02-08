@@ -24,8 +24,8 @@ function mapBubble() {
     .style("transition", "opacity 0.3s ease-in-out");
 
   const projection = d3.geoMercator()
-    .scale(600)
-    .translate([width / 2.3, height * 1.5]);
+    .scale(650)
+    .translate([width / 2, 1100]);
   const path = d3.geoPath().projection(projection);
 
   const svg = d3.select("#map-container-bubble")
@@ -97,42 +97,87 @@ function mapBubble() {
   const minHealth = d3.min(healthValues);
   const maxHealth = d3.max(healthValues);
 
-// Estendiamo il dominio per includere 4 intervalli extra
-const extendedDomain = [...healthValues, 67952, 80000, 100000, 120000];  // Aggiungiamo i valori superiori, in base ai tuoi requisiti
 
-// Creiamo una nuova scala di colori che va dal verde scuro al nero per gli intervalli extra
-const colorScale = d3.scaleQuantile()
-  .domain(extendedDomain)  // Usa il dominio esteso
-  .range([
-    "#E3FCE8", "#C1EFC3", "#9FE29E", "#7DD579", "#5BC854", "#3BAA3A", "#1B8F20", "#007B44",
-    "#006633", "#004D26", "#00321D", "#00170F", "#000000"  // Colori dal verde scuro al nero per gli intervalli più alti
-  ]);
+  // Estendiamo il dominio per includere 4 intervalli extra
+  // const extendedDomain = [...healthValues, 67952, 80000, 100000, 120000];  // Aggiungiamo i valori superiori, in base ai tuoi requisiti
+  // console.log(extendedDomain);
 
-// Otteniamo i quantili dalla scala estesa
-const quantiles = colorScale.quantiles();
-
-// Aggiungiamo i nuovi intervalli alla legenda
-const legendRanges = [
-  { label: "Not Available", color: "white" },
-  ...quantiles.map((d, i, arr) => ({
-    label: `${i === 0 ? d3.min(healthValues).toFixed(0) : arr[i - 1].toFixed(0)} - ${d.toFixed(0)}`,
-    color: colorScale(d)
-  })),
-  { label: `>131696`, color: colorScale(quantiles[quantiles.length - 1]) } // Impostiamo l'ultima label come ">36144"
-];
-  
+  // Creiamo una nuova scala di colori che va dal verde scuro al nero per gli intervalli extra
   // const colorScale = d3.scaleQuantile()
-  //   .domain(healthValues)
-  //   .range(d3.schemeGreens[7]);
+  //   .domain(extendedDomain)  // Usa il dominio esteso
+  //   .range([
+  //     "#E3FCE8", "#C1EFC3", "#9FE29E", "#7DD579", "#5BC854", "#3BAA3A", "#1B8F20", "#007B44",
+  //     "#006633", "#004D26", "#00321D", "#00170F", "#000000"  // Colori dal verde scuro al nero per gli intervalli più alti
+  //   ]);
 
+  // Otteniamo i quantili dalla scala estesa
   // const quantiles = colorScale.quantiles();
+
+  // // Aggiungiamo i nuovi intervalli alla legenda
   // const legendRanges = [
   //   { label: "Not Available", color: "white" },
   //   ...quantiles.map((d, i, arr) => ({
-  //     label: `${i === 0 ? minHealth.toFixed(0) : arr[i - 1].toFixed(0)} - ${d.toFixed(0)}`,
+  //     label: `${i === 0 ? d3.min(healthValues).toFixed(0) : arr[i - 1].toFixed(0)} - ${d.toFixed(0)}`,
   //     color: colorScale(d)
-  //   }))
+  //   })),
+  //   { label: `>131696`, color: colorScale(quantiles[quantiles.length - 1]) } // Impostiamo l'ultima label come ">36144"
   // ];
+
+  // const colorScale = d3.scaleQuantize()
+  //   .domain([minHealth, maxHealth])
+  //   .range(d3.schemeGreens[7]);
+
+  // const thresholds = [...colorScale.thresholds(), maxHealth];
+  // console.log(thresholds);
+  // const legendRanges = [
+  //   { label: "Not Available", color: "white" },
+  //   ...thresholds.map((d, i, arr) => {
+  //     console.log(d);
+  //     return {
+  //       label: `${i === 0 ? minHealth.toFixed(0) : arr[i - 1].toFixed(0)} - ${d.toFixed(0)}`,
+  //       color: colorScale(d)
+  //     };
+  //   })
+  // ];
+
+  function formatNumber(number) {
+    if (number >= 1000) {
+      return `${(number / 1000).toFixed(2)} Bil €`;
+    } else {
+      return `${number} Mil €`;
+    }
+  }
+
+  const quantileStep = 0.15;
+  const quantiles = d3.scaleQuantile()
+    .domain(healthValues.sort((a, b) => a - b)) // Ensure healthValues are sorted
+    .range(d3.range(0, 1, quantileStep))
+    .quantiles();
+
+
+  const colorScale = d3.scaleThreshold()
+    .domain([...quantiles, maxHealth])
+    .range(d3.schemeGreens[(quantiles.length + 1) % 10]);
+
+
+  const legendRanges = [
+    { label: "Not Available", values: "Not Available", color: "lightgray" },
+    ...quantiles.map((d, i) => {
+      console.log(d);
+      return {
+        label: i === 0
+          ? `< ${((i + 1) * quantileStep * 100).toFixed(0)}th`
+          : `${((i) * quantileStep * 100).toFixed(0)}th - ${((i + 1) * quantileStep * 100).toFixed(0)}th`,
+        values: i === 0
+          ? `< ${formatNumber(d)}`
+          : `${formatNumber(quantiles[i - 1])} - ${formatNumber(d)}`,
+        color: i === 0 ? colorScale.range()[0] : colorScale.range()[i]
+      };
+    }),
+    { label: `> ${((quantiles.length) * quantileStep * 100).toFixed(0)}th`, values: `> ${formatNumber(quantiles[quantiles.length - 1])}`, color: colorScale(maxHealth) }
+  ];
+
+  legendRanges.reverse();
 
   // Creiamo il gruppo della legenda
   const legend = svg.append("g")
@@ -141,12 +186,80 @@ const legendRanges = [
 
   // Aggiungiamo il titolo della legenda
   legend.append("text")
+    .attr("id", "legend-title")
     .attr("x", 0)
     .attr("y", -20)
     .attr("text-anchor", "start")
-    .text("Health Spending")
+    .text("Health Spending (percentiles)")
     .style("font-size", "16px")
     .style("font-weight", "bold");
+
+  // Aggiungiamo il pulsante per cambiare la visualizzazione della legenda
+  const legendButton = legend.append("g")
+    .attr("transform", "translate(0, 210)");
+
+  legendButton.append("rect")
+    .attr("width", 150)
+    .attr("height", 30)
+    .attr("fill", "#ccc")
+    .attr("stroke", "#000")
+    .attr("stroke-width", 0.5)
+    .attr("rx", 5)
+    .attr("ry", 5)
+    .style("cursor", "pointer")
+    .on("click", () => {
+      isPercentile = !isPercentile;
+      updateLegend();
+    });
+
+  legendButton.append("text")
+    .attr("x", 75)
+    .attr("y", 20)
+    .attr("text-anchor", "middle")
+    .text("Switch to Euros")
+    .style("font-size", "14px")
+    .style("font-weight", "bold")
+    .style("pointer-events", "none")
+    .style("fill", "#333");
+
+  let isPercentile = true;
+
+  function updateLegend() {
+    legend.selectAll("rect.legend-box").remove();
+    legend.selectAll("text.legend-label").remove();
+
+    legend.selectAll("rect.legend-box")
+      .data(legendRanges)
+      .enter()
+      .append("rect")
+      .attr("class", "legend-box")
+      .attr("x", 0)
+      .attr("y", (d, i) => i * 25)
+      .attr("width", 20)
+      .attr("height", 20)
+      .attr("fill", d => d.color)
+      .attr("stroke", "#000")
+      .attr("stroke-width", 0.5);
+
+    legend.selectAll("text.legend-label")
+      .data(legendRanges)
+      .enter()
+      .append("text")
+      .attr("class", "legend-label")
+      .attr("x", 30)
+      .attr("y", (d, i) => i * 25 + 15)
+      .text(d => isPercentile ? d.label : d.values)
+      .style("font-size", "14px")
+      .attr("fill", "#333");
+
+    legendButton.select("text")
+      .text(isPercentile ? "Switch to Euros" : "Switch to Percentiles");
+
+    legend.select("#legend-title")
+      .text(isPercentile ? "Health Spending (Percentiles)" : "Health Spending (Euros)");
+  }
+
+  updateLegend();
 
   // Aggiungiamo i rettangoli colorati per la legenda
   legend.selectAll("rect")
@@ -199,7 +312,7 @@ const legendRanges = [
       .attr("stroke", "black")
       .attr("stroke-width", 0.5);
 
-    // Creiamo una scala di colori per la spesa sanitaria
+
     const healthByCountry = new Map(
       datasets.expendituresData
         .filter(d => +d.year === currentYear) // Converte `d.year` in numero
@@ -209,7 +322,6 @@ const legendRanges = [
 
     const maxValue = d3.max(selectedData, d => d[selectedMetric]);
     const radiusScale = d3.scaleSqrt().domain([0, maxValue]).range([8, 35]);
-
 
 
     bubbleLayer.selectAll("circle")
@@ -229,7 +341,7 @@ const legendRanges = [
       })
       .attr("r", d => radiusScale(d[selectedMetric]))
       .attr("fill", d => {
-        return isNaN(healthByCountry.get(d.country)) ? "white" : colorScale(healthByCountry.get(d.country));
+        return isNaN(healthByCountry.get(d.country)) ? "lightgray" : colorScale(healthByCountry.get(d.country));
       })
       .attr("stroke", "black")
       .attr("stroke-width", 1)
@@ -260,11 +372,9 @@ const legendRanges = [
         <div class="flex flex-col items-center">
           <div style="font-weight: bold;">Health Spending</div>
           <div style="font-size: 22px; font-weight: bold; color: black;">
-          ${healthByCountry.get(d.country) && !isNaN(healthByCountry.get(d.country)) ? 
-            (healthByCountry.get(d.country) > 1000 ? 
-                healthByCountry.get(d.country).toLocaleString() + ' Bil' : 
-                healthByCountry.get(d.country).toLocaleString() + ' Mil') 
-            : "N/A"}          </div>
+          ${healthByCountry.get(d.country) && !isNaN(healthByCountry.get(d.country)) ?
+              formatNumber(healthByCountry.get(d.country))
+              : "N/A"}          </div>
         </div>
 
       </div>
