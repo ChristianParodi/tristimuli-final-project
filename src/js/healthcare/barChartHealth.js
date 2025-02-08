@@ -214,12 +214,12 @@ function barChartHealth() {
                                 <div class="mh-5 mt-1 w-full flex justify-between">
                                     <div class="flex flex-col items-left w-[60%]">
                                         <h2 class="text-left m-0 w-fit">Average deaths</h2>
-                                        <p class="text-left text-md">${minYear}-2020: ${firstValue}</p>
-                                        <p class="text-left text-md">2020-${maxYear}: ${secondValue}</p>
+                                        <p class="text-left text-md text-black">${minYear}-2020: ${firstValue}</p>
+                                        <p class="text-left text-md text-black">2020-${maxYear}: ${secondValue}</p>
                                     </div>
                                     <div class="flex flex-col items-center justify-center border-2 border-black rounded-lg w-[40%] mx-1">
-                                        <p class="text-center">% variation</p>
-                                        <p class="font-bold text-center">${percVar >= 0 ? "+" : ""}${percVar}%</p>
+                                        <p class="text-center text-black">% variation</p>
+                                        <p class="font-bold text-center text-black">${percVar >= 0 ? "+" : ""}${percVar}%</p>
                                     </div>
                                 </div>`;
             tooltip.style("opacity", "0.9")
