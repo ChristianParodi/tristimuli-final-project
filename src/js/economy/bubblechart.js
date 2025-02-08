@@ -38,19 +38,19 @@ function initializeYScale(selectedMetric) {
 function BubbleChart() {
     // Carica i dataset
     Promise.all([
-        d3.csv("../../../dataset/GDP/clean/gdp_final.csv", d => ({
+        d3.csv("../../dataset/GDP/clean/gdp_final.csv", d => ({
             country: d.country,
             year: +d.year,
             quarter: d.quarter,
             value: +parseFloat(d.value.replace(/[^\d.-]/g, ''))
         })),
-        d3.csv("../../../dataset/HOUSE_PRICE/clean/house_price_final.csv", d => ({
+        d3.csv("../../dataset/HOUSE_PRICE/clean/house_price_final.csv", d => ({
             country: d.country,
             year: +d.year,
             quarter: d.quarter,
             value: +parseFloat(d.value.replace(/[^\d.-]/g, ''))
         })),
-        d3.csv("../../../dataset/COVID/bubblechart/covid_bubble.csv", d => ({
+        d3.csv("../../dataset/COVID/bubblechart/covid_bubble.csv", d => ({
             country: d.country,
             year: +d.year,
             quarter: d.quarter,

@@ -1,5 +1,5 @@
 function ButterflyChart() {
-  d3.csv("../../../dataset/INFLATION/clean/inflation_finale.csv", d => ({
+  d3.csv("../../dataset/INFLATION/clean/inflation_finale.csv", d => ({
     country: d.country,
     year: +d.year,
     month: +d.month,

@@ -1,6 +1,6 @@
 function BubbleChart() {
     Promise.all([
-        d3.csv("./../../../dataset/TOURISM/clean/tourism_final.csv", d => {
+        d3.csv("../../dataset/TOURISM/clean/tourism_final.csv", d => {
             if (+d.year >= 2020 && +d.year <= 2022 && +d.inbound >= 5) {
                 return {
                     country: d.country,
@@ -10,7 +10,7 @@ function BubbleChart() {
             }
         }).then(data => data.filter(d => d)),
 
-        d3.csv("../../../dataset/COVID/bubblechart/covid_cases_vacc_yearly_ISO2.csv", d => {
+        d3.csv("../../dataset/COVID/bubblechart/covid_cases_vacc_yearly_ISO2.csv", d => {
             if (+d.year >= 2020 && +d.year <= 2022) {
                 return {
                     ISO2: d.ISO2,
