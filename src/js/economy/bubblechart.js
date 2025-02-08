@@ -73,8 +73,8 @@ function BubbleChart() {
 
         // Dimensioni e margini del grafico
         const margin = { top: 60, right: 40, bottom: 80, left: 75 };
-        const width = 700;
-        const height = 450;
+        const width = 900;
+        const height = 420;
 
         // Crea l'elemento SVG
         const svg = d3.select("#bubblechart_container")
