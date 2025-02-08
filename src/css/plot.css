@@ -38,7 +38,7 @@ label {
   }
 
   .window {
-    @apply flex flex-col items-center max-w-7xl justify-end lg:justify-center mr-12 lg:mr-0 self-end lg:self-center gap-6 w-[80%] border border-white p-8 rounded-lg shadow-lg bg-[#242734];
+    @apply flex flex-col items-center max-w-[80%] justify-end lg:justify-center mr-12 lg:mr-0 self-end lg:self-center gap-6 w-[80%] border border-white p-8 rounded-lg shadow-lg bg-[#242734];
   }
 
   .select {
