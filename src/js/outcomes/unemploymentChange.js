@@ -3,12 +3,12 @@ import { datasets } from "../utils.js";
 function unemploymentChange() {
   const age = "Total"
   const sex = "Total"
-  const adj = "Seasonally adjusted data, not calendar adjusted data"
+  // const adj = "Seasonally adjusted data, not calendar adjusted data"
   const unit = "Thousand persons"
   const europe = "European Union"
 
   const unemploymentData = datasets.unemploymentData.filter(
-    d => d.age === age && d.sex === sex && d.country === europe && d.s_adj === adj && d.unit === unit
+    d => d.age === age && d.sex === sex && d.country === europe && d.unit === unit
   ).map(d => ({
     country: d["country"],
     unemployment2019: d["2019-12"],

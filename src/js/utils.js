@@ -34,7 +34,8 @@ export const customColors = {
   "blue-gradient": ['#d3ebff', '#003965'],
   "red": '#E94F37',
   'blue': '#3F88C5',
-  'green': '#03A059'
+  'green': '#03A059',
+  "pink": "#FF69B4"
 };
 
 export const covidDates = {
@@ -107,7 +108,8 @@ async function loadExpenditures() {
 
 async function loadMentalHealth() {
   // return await d3.csv("./../../../dataset/MENTAL_HEALTH/clean/perc_estat_hlth_cd_aro.csv");
-  return await d3.csv("./../../../dataset/MENTAL_HEALTH/clean/melted_estat_hlth_cd_aro_ISO2.csv");
+  // return await d3.csv("./../../../dataset/MENTAL_HEALTH/clean/melted_estat_hlth_cd_aro_ISO2.csv");
+  return await d3.csv("./../../../dataset/MENTAL_HEALTH/clean/melted_estat_hlth_cd_aro_ISO2_NEW.csv");
 }
 
 async function loadCovidData() {
