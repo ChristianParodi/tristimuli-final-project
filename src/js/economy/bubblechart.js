@@ -4,8 +4,8 @@ function createGrid(svg, x, y, width, height) {
         .attr("class", "grid horizontal")
         .call(d3.axisLeft(y).tickSize(-width).tickFormat(""))
         .selectAll("line")
-        .style("stroke",  d => (y(0) === y(d) ? "#1F202A" : "#ccc"))
-        .style("stroke-width", d => (y(0) === y(d) ? "4px" : "1px")) 
+        .style("stroke", d => (y(0) === y(d) ? "#1F202A" : "#ccc"))
+        .style("stroke-width", d => (y(0) === y(d) ? "4px" : "1px"))
         .style("stroke-opacity", 0.7)
         .style("shape-rendering", "crispEdges");
 
@@ -21,19 +21,20 @@ function createGrid(svg, x, y, width, height) {
 }
 
 function drawLegend(newCasesData) {
-    const legendWidth = 590;  // Aumentato per dare più spazio orizzontale
+    const legendWidth = 590;
     const legendHeight = 200;
     const legendMargin = 15;
     const legendRadius = 40;
     const svgLegend = d3.select('#bubble-gdphouse-legend')
-      .append('svg')
-      .attr('width', legendWidth)
-      .attr('height', legendHeight)
-      .style('border', '1px solid white')
-      .style("border-radius", '0.3rem')
+        .append('svg')
+        .attr('width', legendWidth)
+        .attr('height', legendHeight)
+        .style('border', '1px solid white')
+        .style("border-radius", '0.3rem')
+
 
     const legendGroup = svgLegend.append('g')
-      .attr("transform", `translate(${legendMargin}, ${legendHeight / 2})`);  // Centra verticalmente
+        .attr("transform", `translate(${legendMargin}, ${legendHeight / 2})`);  // Centra verticalmente
 
     const minCases = d3.min(newCasesData);
     const maxCases = d3.max(newCasesData);
@@ -45,32 +46,32 @@ function drawLegend(newCasesData) {
     ];
 
     legendData.forEach(d => {
-      const newCases = minCases + (maxCases - minCases) * d.scale;
-      const populationText = Math.round(newCases).toLocaleString();
+        const newCases = minCases + (maxCases - minCases) * d.scale;
+        const populationText = Math.round(newCases).toLocaleString();
 
-      // Crea il cerchio
-      legendGroup.append('circle')
-        .attr('cx', d.x)
-        .attr('cy', 0)
-        .attr('r', legendRadius * d.scale)
-        .attr('fill', 'none')
-        .attr('stroke', 'white');
+        // Crea il cerchio
+        legendGroup.append('circle')
+            .attr('cx', d.x)
+            .attr('cy', 0)
+            .attr('r', legendRadius * d.scale)
+            .attr('fill', 'none')
+            .attr('stroke', 'white');
 
-      // Crea la linea che va dal cerchio
-      legendGroup.append('line')
-        .attr('x1', d.x)
-        .attr('y1', 0)
-        .attr('x2', d.x)
-        .attr('y2', legendRadius * d.scale )  // Lunghezza della linea
-        .attr('stroke', 'white');
+        // Crea la linea che va dal cerchio
+        legendGroup.append('line')
+            .attr('x1', d.x)
+            .attr('y1', 0)
+            .attr('x2', d.x)
+            .attr('y2', legendRadius * d.scale)  // Lunghezza della linea
+            .attr('stroke', 'white');
 
-      // Aggiungi il testo accanto alla palla
-      legendGroup.append('text')
-        .attr('x', d.x + legendRadius * d.scale + 10)
-        .attr('y', d.y )
-        .attr('dominant-baseline', 'middle')
-        .attr('fill', 'white')
-        .text(`${populationText} cases`);
+        // Aggiungi il testo accanto alla palla
+        legendGroup.append('text')
+            .attr('x', d.x + legendRadius * d.scale + 10)
+            .attr('y', d.y)
+            .attr('dominant-baseline', 'middle')
+            .attr('fill', 'white')
+            .text(`${populationText} cases`);
     });
 }
 
@@ -117,10 +118,62 @@ function BubbleChart() {
     ]).then(([gdpData, housePriceData, covidData]) => {
         const filteredGdpData = gdpData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);
         const filteredHousePriceData = housePriceData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);
-        const filteredCovidData = covidData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);       
+        const filteredCovidData = covidData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);
+
+        // Draw legend
+        const newCasesData = filteredCovidData.map(d => d.new_cases);
+        const legendWidth = 590;
+        const legendHeight = 200;
+        const legendMargin = 15;
+        const legendRadius = 40;
+        const svgLegend = d3.select('#bubble-gdphouse-legend')
+            .append('svg')
+            .attr('width', legendWidth)
+            .attr('height', legendHeight)
+            .style('border', '1px solid white')
+            .style("border-radius", '0.3rem')
 
 
-    drawLegend(filteredCovidData.map( d=>d.new_cases));
+        const legendGroup = svgLegend.append('g')
+            .attr("transform", `translate(${legendMargin}, ${legendHeight / 2})`);  // Centra verticalmente
+
+        const minCases = d3.min(newCasesData);
+        const maxCases = d3.max(newCasesData);
+
+        const legendData = [
+            { scale: 1 / 4, x: 0 },
+            { scale: 1 / 2, x: legendRadius * 5 },  // Distanza tra le palle
+            { scale: 1, x: legendRadius * 10 }
+        ];
+
+        legendData.forEach(d => {
+            const newCases = minCases + (maxCases - minCases) * d.scale;
+            const populationText = Math.round(newCases).toLocaleString();
+
+            // Crea il cerchio
+            legendGroup.append('circle')
+                .attr('cx', d.x)
+                .attr('cy', 0)
+                .attr('r', legendRadius * d.scale)
+                .attr('fill', 'none')
+                .attr('stroke', 'white');
+
+            // Crea la linea che va dal cerchio
+            legendGroup.append('line')
+                .attr('x1', d.x)
+                .attr('y1', 0)
+                .attr('x2', d.x)
+                .attr('y2', legendRadius * d.scale)  // Lunghezza della linea
+                .attr('stroke', 'white');
+
+            // Aggiungi il testo accanto alla palla
+            legendGroup.append('text')
+                .attr('x', d.x + legendRadius * d.scale + 10)
+                .attr('y', d.y)
+                .attr('dominant-baseline', 'middle')
+                .attr('fill', 'white')
+                .text(`${populationText} cases`);
+        });
 
         // Associa le metriche ai rispettivi dataset
         const metrics = ["gdpPercap", "housePrices"];
@@ -225,7 +278,7 @@ function BubbleChart() {
             gdpPercap: "GDP",
             housePrices: "House Price"
         };
-        
+
         // Popola il selettore delle metriche con nomi leggibili
         d3.select("#metric_selector_bubble")
             .selectAll("option")
@@ -304,7 +357,7 @@ function BubbleChart() {
             .default([0, 3])  // Impostazioni di default
             .fill('#85bb65');
 
-            const sliderWidth = 770; 
+        const sliderWidth = 770;
         // Aggiungi lo slider al DOM
         const gRange = d3
             .select('#slider-range')
@@ -326,18 +379,18 @@ function BubbleChart() {
             const currentData = dataMap[selectedMetric];
             const countries = [...new Set(currentData.map(d => d.country))];
             const countrySelector = d3.select("#contry_selector_bubble");
-        
+
             // Ottieni il paese attualmente selezionato
             let selectedCountry = countrySelector.property("value");
-        
+
             // Se il paese selezionato non è presente nei nuovi dati, sceglie il primo paese disponibile
             if (!countries.includes(selectedCountry)) {
-                selectedCountry = countries[0]; 
+                selectedCountry = countries[0];
             }
-        
+
             // Aggiorna il selettore con i nuovi paesi
             countrySelector.selectAll("option").remove();
-            
+
             countrySelector
                 .selectAll("option")
                 .data(countries)
@@ -345,11 +398,11 @@ function BubbleChart() {
                 .append("option")
                 .text(d => d)
                 .attr("value", d => d);
-        
+
             // Mantieni il paese selezionato
             countrySelector.property("value", selectedCountry);
         }
-        
+
 
 
 
@@ -388,7 +441,7 @@ function BubbleChart() {
         }
 
 
-        
+
         // Funzione per aggiornare il grafico (scales e bubbles)
         function updateGraph(combinedData, filterData, selectedCountry, selectedMetric) {
 

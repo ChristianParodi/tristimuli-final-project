@@ -17,6 +17,7 @@ function mapMercator() {
     .style("pointer-events", "none")
     .style("font-size", "16px")
     .style("opacity", 0)
+    .style("min-width", "100px")
     .style("color", "black");
 
   const projection = d3.geoMercator()
@@ -130,9 +131,19 @@ function mapMercator() {
           tooltipText = `<strong>${d.properties.name}</strong><br>No data available`;
         else
           tooltipText = `
-        <strong>${countryData.country}</strong><br>
-        ${value.toLocaleString()} ${selectedMetric} to ${currentYear}/${currentMonth}
-        `;
+        
+        <div style="font-size: 18px; font-weight: bold;">${countryData.country}</div>
+        <div style="font-size: 12px; color: gray;"><strong>${currentMonth}/${currentYear}</strong></div>
+
+        <hr class="border-t border-gray-300 my-1">
+        <div class="mh-5 mt-1 w-full">
+        <div class="flex flex-col items-center">
+          <div>${selectedMetric}</div>
+          <div style="font-size: 14px; color: black;">
+            ${value.toLocaleString()}
+          </div>
+        </div>
+      `;
 
         tooltip.style("opacity", 1);
         tooltip
