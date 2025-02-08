@@ -316,7 +316,6 @@ function groupedBarChart() {
     const newText = isConfirmedCases ? "Confirmed cases" : "Confirmed deaths";
     d3.select(event.target).text(newText);
     isConfirmedCases = !isConfirmedCases;
-    console.log(isConfirmedCases)
     updateChart(isConfirmedCases)
   })
 }

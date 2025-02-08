@@ -245,7 +245,6 @@ function waffleChart() {
                         const cause2 = yearData2.find(data => data.cause === cause)
                         const deaths2 = cause2?.deaths ?? "---";
                         const perc2 = cause2?.percentage ?? "---";
-                        console.log(deaths2, perc2);
                         tooltipText = `<h2 class="text-lg">Deaths in ${currentCountry} due to</h2>
                                     <span class="font-bold text-xl" style="color: ${fillColor(d)};">${cause}</span>
                                     <div class="mh-5 mt-1 w-full">

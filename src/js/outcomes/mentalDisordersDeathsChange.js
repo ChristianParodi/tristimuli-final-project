@@ -16,8 +16,7 @@ async function mentalDisordersDeathsChange() {
     deaths2019: d["2019"],
     deaths2021: d["2021"],
   }))[0]
-
-  console.log(filteredData)
+  
   const change = ((filteredData.deaths2019 - filteredData.deaths2021) / filteredData.deaths2019) * 100;
 
   d3.select("#mental-disorders-deaths-change-value")

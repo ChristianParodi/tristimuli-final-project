@@ -180,8 +180,6 @@ function mapBubble() {
       .attr("cx", d => {
         const country1 = europeGeoJson.features.find(c => c.properties.name === d.country);
         let x = projection(d3.geoCentroid(country1))[0];
-
-        if (isNaN(x)) console.log(d.country)
         return d.country === "France" ? x + 100 : x;
       })
       .attr("cy", d => {

@@ -62,11 +62,6 @@ function BubbleChart() {
         const filteredHousePriceData = housePriceData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);
         const filteredCovidData = covidData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);
 
-
-
-        console.log("Dati GDP:", filteredGdpData);
-        console.log("Dati House Price:", filteredHousePriceData);
-
         // Associa le metriche ai rispettivi dataset
         const metrics = ["gdpPercap", "housePrices"];
         const dataMap = {
