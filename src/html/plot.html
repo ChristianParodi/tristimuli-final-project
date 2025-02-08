@@ -730,19 +730,25 @@ of the pandemic.
             <div id="map-container-bubble"></div>
 
             <!--Switch-->
-            <div class="flex justify-between items-center mt-15 gap-14">
-              <div class="flex-1">
-                <label for="year-slider-2" class="block text-sm text-black font-medium mb-2">
-                  Select Year
-                </label>
-                <input type="range" id="year-slider-2" name="year-slider-2" class="w-full accent-blue-500">
-                <div class="flex justify-between text-sm text-gray-400">
-                  <span id="min-year-text-2"></span>
-                  <span id="max-year-text-2"></span>
-                </div>
-              </div>
+            <div class="flex-1 w-full">
+               <p class="selector  ">Month: <span id="number-month" class="font-thin">01</span></p>
 
+              <div class="flex items-center gap-4">
+                <!-- year selector -->
+                <div class="w-full">
+                  <label for="year-slider-2" class="selector me-4">
+                    Select Year
+                  </label>
+                  <input type="range" id="year-slider-2" name="year-slider-2" class="year-slider">
+                  <div class="flex justify-between text-sm text-gray-400 w-full">
+                    <span id="min-year-text-2"></span>
+                    <span id="max-year-text-2"></span>
+                  </div>
+                </div>
+                <!-- end year selector -->
+              </div>
             </div>
+            
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
 
             <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit,

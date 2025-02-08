@@ -249,7 +249,7 @@ function BubbleChart() {
             .default([0, 3])  // Impostazioni di default
             .fill('#85bb65');
 
-            const sliderWidth = 800; 
+            const sliderWidth = 770; 
         // Aggiungi lo slider al DOM
         const gRange = d3
             .select('#slider-range')
