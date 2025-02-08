@@ -330,6 +330,8 @@ function BubbleChart() {
             updateGraph(combinedData, filterData, selectedCountry, selectedMetric);
         }
 
+
+        
         // Funzione per aggiornare il grafico (scales e bubbles)
         function updateGraph(combinedData, filterData, selectedCountry, selectedMetric) {
 

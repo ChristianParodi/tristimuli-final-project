@@ -6,7 +6,7 @@ function ButterflyChart() {
     coicop: d.coicop,
     value: +d.value
   })).then(inflation => {
-    const margin = { top: 40, right: 40, bottom: 40, left: 90 };
+    const margin = { top: 40, right: 40, bottom: 40, left: 150 };
     const width = 400;
     const height = 750;
 
