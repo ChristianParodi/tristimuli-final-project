@@ -4,14 +4,12 @@ function dumbbellUnemployment() {
 
   const unenmploymentData = datasets.unemploymentData;
 
-  const MAX_UNEMPLOYMENT_COUNTRY = "European Union";
   const years = d3.range(2016, 2025);
   const months = d3.range(1, 13);
 
   let selectedCountry = "Italy";
   let selectedUnit = "Thousand persons";
   let selectedAge = "Total";
-  let sexIsTotal = false;
 
   const selector = d3.select("#country-selector-dumbbell-unemployments");
   const allCountries = Array.from(new Set(unenmploymentData.map(d => d.country))).sort();
@@ -113,15 +111,6 @@ function dumbbellUnemployment() {
   drawCovidLines(g, covidStartX, height, covidEndX);
   function updateChart(country) {
     easeOutLinesUnemploy(g);
-    // covid lines
-    // remove total
-    g.selectAll('path')
-      .filter(function () {
-        return d3.select(this).attr('stroke') === customColors['green'];
-      })
-      .transition()
-      .duration(200)
-      .remove()
 
     const filteredData = processedData.filter(d => d.country === country && d.unit === selectedUnit && d.age === selectedAge);
     const maleData = filteredData.filter(d => d.sex === "Males");
@@ -335,7 +324,7 @@ function drawCovidLines(g, covidStartX, height, covidEndX) {
 }
 
 function easeOutLinesUnemploy(g) {
-  g.selectAll("line.male-female-line, path.enrollmenmts-total-line")
+  g.selectAll("line.male-female-line, path.unemployment-total-line")
     .transition()
     .duration(200)
     .attr("x1", function () {
