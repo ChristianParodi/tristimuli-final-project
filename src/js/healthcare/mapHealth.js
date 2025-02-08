@@ -76,7 +76,7 @@ function mapBubble() {
   };
 
   const minDate = d3.min(processedData.cases, d => new Date(d.year, d.month, 0));
-  const maxDate = d3.max(processedData.cases, d => new Date(d.year, d.month, 0));
+  const maxDate = d3.max(processedData.cases, d => new Date(2022, 12, 0));
 
   // Set date labels for slider
   const dateRange = maxDate.getTime() - minDate.getTime();
@@ -99,7 +99,7 @@ function mapBubble() {
 
   // Creiamo una scala di colori per la leggenda
   const colorScale = d3.scaleLinear()
-    .domain([minHealth, maxHealth])
+    .domain([0, maxHealth])
     .range(["#E3FCE8", "#007B44"]);
 
 
@@ -167,6 +167,7 @@ function mapBubble() {
     const selectedMetric = dataSelector.value; // cases, deaths, vaccines
     const selectedData = processedData[selectedMetric];
     const filteredData = selectedData.filter(d => +d.year === currentYear && +d.month === currentMonth);
+  
 
     europeMap.selectAll("path")
       .data(europeGeoJson.features.filter(d => !excludedCountries.has(d.properties.name)))
@@ -177,10 +178,18 @@ function mapBubble() {
       .attr("stroke-width", 0.5);
 
     // Creiamo una scala di colori per la spesa sanitaria
-    const healthByCountry = new Map(expendituresData.map(d => [d.country, d.health]));
-    const maxHealth = d3.max(expendituresData, d => d.health);
-    const colorScale = d3.scaleLinear().domain([0, maxHealth]).range(["#E3FCE8", "#007B44"]);
+    const healthByCountry = new Map(
+      datasets.expendituresData
+        .filter(d => +d.year === currentYear) // Converte `d.year` in numero
+        .map(d => [d.country, d.health])
+    );
 
+    const healthValues = Array.from(healthByCountry.values());
+
+    const colorScale = d3.scaleLinear()
+      .domain([minHealth, maxHealth])
+      .range(["#E3FCE8", "#007B44"]);
+    
     const maxValue = d3.max(selectedData, d => d[selectedMetric]);
     const radiusScale = d3.scaleSqrt().domain([0, maxValue]).range([4, 30]);
 
@@ -203,8 +212,7 @@ function mapBubble() {
       })
       .attr("r", d => radiusScale(d[selectedMetric]))
       .attr("fill", d => {
-        const healthValue = healthByCountry.get(d.country);
-        return isNaN(healthValue) ? "white" : colorScale(healthValue);
+        return isNaN(healthByCountry.get(d.country)) ? "white" : colorScale(healthByCountry.get(d.country));
       })
       .attr("stroke", "black")
       .attr("stroke-width", 1)
@@ -265,9 +273,20 @@ function mapBubble() {
     const date = new Date(+this.value);
     currentYear = date.getFullYear();
     currentMonth = date.getMonth() + 1;
+    
+    
+    if (currentYear > 2022 || (currentYear === 2022 && currentMonth > 12)) {
+      currentYear = 2022;
+      currentMonth = 12;
+      yearSlider.property("value", new Date(2022, 11, 1).getTime());
+    }
     mapLabel.text(`Date: ${currentMonth < 10 ? `0${currentMonth}` : currentMonth}/${currentYear}`);
+
     updateMap();
   });
 }
 
 mapBubble();
+
+
+
