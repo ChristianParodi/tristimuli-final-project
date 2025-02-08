@@ -98,19 +98,30 @@ function mapBubble() {
   const maxHealth = d3.max(healthValues);
 
   // Creiamo una scala di colori per la leggenda
-  const colorScale = d3.scaleLinear()
-    .domain([0, maxHealth])
-    .range(["#E3FCE8", "#007B44"]);
+  const colorScale = d3.scaleThreshold()
+    .domain(d3.range(minHealth, maxHealth, (maxHealth - minHealth) / 6))
+    .range(["#E3FCE8", "#C1EFC3", "#9FE29E", "#7DD579", "#5BC854", "#3BAA3A", "#1B8F20", "#007B44"]);
 
-
-  // Definiamo i range per la legenda in base ai dati effettivi
   const legendRanges = [
-    { label: `Not Available`, color: "white" },
-    { label: `${minHealth.toFixed(0)} Mil - ${(minHealth + (maxHealth - minHealth) * 0.25).toFixed(0)} Bil`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.125) },
-    { label: `${(minHealth + (maxHealth - minHealth) * 0.25).toFixed(0)} Bil - ${(minHealth + (maxHealth - minHealth) * 0.5).toFixed(0)} Bil`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.375) },
-    { label: `${(minHealth + (maxHealth - minHealth) * 0.5).toFixed(0)} Bil - ${(minHealth + (maxHealth - minHealth) * 0.75).toFixed(0)} Bil`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.625) },
-    { label: `${(minHealth + (maxHealth - minHealth) * 0.75).toFixed(0)} Bil - ${maxHealth.toFixed(0)} Bil`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.875) }
+    { label: "Not Available", color: "white" },
+    ...d3.range(minHealth, maxHealth, (maxHealth - minHealth) / 6).map((d, i, arr) => ({
+      label: `${d.toFixed(0)} - ${(arr[i + 1] || maxHealth).toFixed(0)}`,
+      color: colorScale(d)
+    }))
   ];
+
+  // const colorScale = d3.scaleQuantile()
+  //   .domain(healthValues)
+  //   .range(d3.schemeGreens[7]);
+
+  // const quantiles = colorScale.quantiles();
+  // const legendRanges = [
+  //   { label: "Not Available", color: "white" },
+  //   ...quantiles.map((d, i, arr) => ({
+  //     label: `${i === 0 ? minHealth.toFixed(0) : arr[i - 1].toFixed(0)} - ${d.toFixed(0)}`,
+  //     color: colorScale(d)
+  //   }))
+  // ];
 
   // Creiamo il gruppo della legenda
   const legend = svg.append("g")
@@ -151,7 +162,7 @@ function mapBubble() {
     .style("font-size", "14px")
     .attr("fill", "#333");
 
-  
+
 
   let currentYear = minDate.getFullYear();
   let currentMonth = minDate.getMonth() + 1;
@@ -167,7 +178,7 @@ function mapBubble() {
     const selectedMetric = dataSelector.value; // cases, deaths, vaccines
     const selectedData = processedData[selectedMetric];
     const filteredData = selectedData.filter(d => +d.year === currentYear && +d.month === currentMonth);
-  
+
 
     europeMap.selectAll("path")
       .data(europeGeoJson.features.filter(d => !excludedCountries.has(d.properties.name)))
@@ -184,14 +195,9 @@ function mapBubble() {
         .map(d => [d.country, d.health])
     );
 
-    const healthValues = Array.from(healthByCountry.values());
 
-    const colorScale = d3.scaleLinear()
-      .domain([minHealth, maxHealth])
-      .range(["#E3FCE8", "#007B44"]);
-    
     const maxValue = d3.max(selectedData, d => d[selectedMetric]);
-    const radiusScale = d3.scaleSqrt().domain([0, maxValue]).range([4, 30]);
+    const radiusScale = d3.scaleSqrt().domain([0, maxValue]).range([8, 35]);
 
 
 
@@ -260,11 +266,11 @@ function mapBubble() {
 
   updateMap();
   const mapLabel = d3.select("#number-date")
-  .style("padding", "10px")
-  .style("font-size", "24px")
-  .style("border", "1px solid #fff")
-  .style("border-radius", "5px")
-  .text(`Date: ${minDate.getMonth() + 1 < 10 ? `0${minDate.getMonth() + 1}` : minDate.getMonth() + 1}/${minDate.getFullYear()}`);
+    .style("padding", "10px")
+    .style("font-size", "24px")
+    .style("border", "1px solid #fff")
+    .style("border-radius", "5px")
+    .text(`Date: ${minDate.getMonth() + 1 < 10 ? `0${minDate.getMonth() + 1}` : minDate.getMonth() + 1}/${minDate.getFullYear()}`);
 
 
   dataSelector.addEventListener("change", updateMap);
@@ -273,8 +279,8 @@ function mapBubble() {
     const date = new Date(+this.value);
     currentYear = date.getFullYear();
     currentMonth = date.getMonth() + 1;
-    
-    
+
+
     if (currentYear > 2022 || (currentYear === 2022 && currentMonth > 12)) {
       currentYear = 2022;
       currentMonth = 12;
