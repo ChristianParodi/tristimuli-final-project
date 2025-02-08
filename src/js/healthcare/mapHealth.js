@@ -139,14 +139,14 @@ function mapBubble() {
 
 
 
-  let currentYear = maxDate.getFullYear();
-  let currentMonth = maxDate.getMonth() + 1;
+  let currentYear = minDate.getFullYear();
+  let currentMonth = minDate.getMonth() + 1;
 
   yearSlider
     .attr("min", minDate.getTime())
     .attr("max", maxDate.getTime())
-    .attr("value", maxDate.getTime())
-    .property("value", maxDate.getTime());
+    .attr("value", minDate.getTime())
+    .property("value", minDate.getTime());
 
   d3.select("#min-year-text-2").text(`${minDate.getMonth() + 1}/${minDate.getFullYear()}`);
   d3.select("#max-year-text-2").text(`${maxDate.getMonth() + 1}/${maxDate.getFullYear()}`);
