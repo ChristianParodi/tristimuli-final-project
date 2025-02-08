@@ -34,7 +34,7 @@ label {
   }
 
   .selector {
-    @apply text-white font-sans text-lg font-semibold
+    @apply text-white font-sans text-lg font-semibold;
   }
 
   .window {
@@ -42,7 +42,7 @@ label {
   }
 
   .select {
-    @apply bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 pl-3 pr-8 p-2 text-black;
+    @apply block w-full appearance-none bg-[#1F202A] border border-gray-500 text-white py-2 px-4 pr-10 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400;
   }
 
   .plot-title {
