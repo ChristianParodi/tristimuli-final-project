@@ -4,7 +4,8 @@ function createGrid(svg, x, y, width, height) {
         .attr("class", "grid horizontal")
         .call(d3.axisLeft(y).tickSize(-width).tickFormat(""))
         .selectAll("line")
-        .style("stroke", "#ccc")
+        .style("stroke",  d => (y(0) === y(d) ? "#1F202A" : "#ccc"))
+        .style("stroke-width", d => (y(0) === y(d) ? "4px" : "1px")) 
         .style("stroke-opacity", 0.7)
         .style("shape-rendering", "crispEdges");
 
