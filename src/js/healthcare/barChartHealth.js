@@ -15,7 +15,7 @@ function barChartHealth() {
     const parentContainer = d3.select("#bar-chart-health-container").node().parentNode;
     const width = 800;
     const height = 600;
-    const margin = { top: 20, right: 30, bottom: 50, left: 60 };
+    const margin = { top: 20, right: 30, bottom: 80, left: 100 };
 
     const svg = d3.select("#bar-chart-health-container")
         .append("svg")
@@ -92,6 +92,12 @@ function barChartHealth() {
     svg.append("g")
         .attr("class", "y-axis")
         .call(d3.axisLeft(y));
+
+    svg.select(".x-axis").selectAll("text")
+        .style("font-size", "14px"); // or any desired size
+
+    svg.select(".y-axis").selectAll("text")
+        .style("font-size", "14px"); // or any desired size
 
     // Add X axis label
     svg.append("text")
