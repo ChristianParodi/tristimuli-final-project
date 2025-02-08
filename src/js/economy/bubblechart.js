@@ -64,9 +64,6 @@ function BubbleChart() {
 
 
 
-        console.log("Dati GDP:", filteredGdpData);
-        console.log("Dati House Price:", filteredHousePriceData);
-
         // Associa le metriche ai rispettivi dataset
         const metrics = ["gdpPercap", "housePrices"];
         const dataMap = {
