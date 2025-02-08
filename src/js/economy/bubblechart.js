@@ -20,9 +20,9 @@ function createGrid(svg, x, y, width, height) {
         .style("shape-rendering", "crispEdges");
 }
 
-function drawLegend(newCasesData) {
+function drawLeg(newCasesData) {
     const legendWidth = 590;
-    const legendHeight = 200;
+    const legendHeight = 150;
     const legendMargin = 15;
     const legendRadius = 40;
     const svgLegend = d3.select('#bubble-gdphouse-legend')
@@ -32,7 +32,8 @@ function drawLegend(newCasesData) {
         .style('border', '1px solid white')
         .style("border-radius", '0.3rem')
 
-
+    
+        
     const legendGroup = svgLegend.append('g')
         .attr("transform", `translate(${legendMargin}, ${legendHeight / 2})`);  // Centra verticalmente
 
@@ -45,10 +46,19 @@ function drawLegend(newCasesData) {
         { scale: 1, x: legendRadius * 10 }
     ];
 
+    legendGroup.append('text')
+    .attr('x', legendWidth / 18) // Center the title
+    .attr('y', -legendRadius * 1.35) // Position it above the bubbles
+    .attr('text-anchor', 'middle')
+    .attr('fill', 'white')
+    .style('font-size', '16px')
+    .text('People');
+
     legendData.forEach(d => {
         const newCases = minCases + (maxCases - minCases) * d.scale;
         const populationText = Math.round(newCases).toLocaleString();
 
+        
         // Crea il cerchio
         legendGroup.append('circle')
             .attr('cx', d.x)
@@ -71,7 +81,7 @@ function drawLegend(newCasesData) {
             .attr('y', d.y)
             .attr('dominant-baseline', 'middle')
             .attr('fill', 'white')
-            .text(`${populationText} cases`);
+            .text(`${populationText} Mil`);
     });
 }
 
@@ -120,61 +130,9 @@ function BubbleChart() {
         const filteredHousePriceData = housePriceData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);
         const filteredCovidData = covidData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);
 
-        // Draw legend
-        const newCasesData = filteredCovidData.map(d => d.new_cases);
-        const legendWidth = 590;
-        const legendHeight = 200;
-        const legendMargin = 15;
-        const legendRadius = 40;
-        const svgLegend = d3.select('#bubble-gdphouse-legend')
-            .append('svg')
-            .attr('width', legendWidth)
-            .attr('height', legendHeight)
-            .style('border', '1px solid white')
-            .style("border-radius", '0.3rem')
 
-
-        const legendGroup = svgLegend.append('g')
-            .attr("transform", `translate(${legendMargin}, ${legendHeight / 2})`);  // Centra verticalmente
-
-        const minCases = d3.min(newCasesData);
-        const maxCases = d3.max(newCasesData);
-
-        const legendData = [
-            { scale: 1 / 4, x: 0 },
-            { scale: 1 / 2, x: legendRadius * 5 },  // Distanza tra le palle
-            { scale: 1, x: legendRadius * 10 }
-        ];
-
-        legendData.forEach(d => {
-            const newCases = minCases + (maxCases - minCases) * d.scale;
-            const populationText = Math.round(newCases).toLocaleString();
-
-            // Crea il cerchio
-            legendGroup.append('circle')
-                .attr('cx', d.x)
-                .attr('cy', 0)
-                .attr('r', legendRadius * d.scale)
-                .attr('fill', 'none')
-                .attr('stroke', 'white');
-
-            // Crea la linea che va dal cerchio
-            legendGroup.append('line')
-                .attr('x1', d.x)
-                .attr('y1', 0)
-                .attr('x2', d.x)
-                .attr('y2', legendRadius * d.scale)  // Lunghezza della linea
-                .attr('stroke', 'white');
-
-            // Aggiungi il testo accanto alla palla
-            legendGroup.append('text')
-                .attr('x', d.x + legendRadius * d.scale + 10)
-                .attr('y', d.y)
-                .attr('dominant-baseline', 'middle')
-                .attr('fill', 'white')
-                .text(`${populationText} cases`);
-        });
-
+        drawLeg(filteredCovidData.map( d=>d.new_cases));
+        
         // Associa le metriche ai rispettivi dataset
         const metrics = ["gdpPercap", "housePrices"];
         const dataMap = {
