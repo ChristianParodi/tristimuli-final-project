@@ -378,13 +378,22 @@ function barChartHealth() {
 
         svg.selectAll(".split-rect")
             .on("mouseover", function (event, d) {
-                console.log(d)
-                const tooltipText = `<h2 class="text-center m-0 font-bold">${d.country}</h2>
+                let tooltipText;
+                if (currentCategory == "sex") {
+                    tooltipText = `<h2 class="text-center m-0 font-bold">${d.country}</h2>
                          <div class="flex flex-col items-center">
                             <p class="m-0 text-black">Average annual ${d.key.toLowerCase()}
                             deaths from ${d.period === "pre2020" ? "2016 to 2019" : "2020 to 2023"}</p>
                             <p class="m-0 text-black"><b>${d.value.toFixed(0)}</b> - ${d.perc}% of all deaths</p>
                          </div>`;
+                }else{
+                    tooltipText = `<h2 class="text-center m-0 font-bold">${d.country}</h2>
+                         <div class="flex flex-col items-center">
+                            <p class="m-0 text-black">Average annual deaths for age group ${d.key === "15-64" ? "below 65" : "65 and over"}
+                            from ${d.period === "pre2020" ? "2016 to 2019" : "2020 to 2023"}</p>
+                            <p class="m-0 text-black"><b>${d.value.toFixed(0)}</b> - ${d.perc}% of all deaths</p>
+                         </div>`;
+                }
 
                 tooltip.style("opacity", "0.9")
                     .html(tooltipText);
