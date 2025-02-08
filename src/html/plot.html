@@ -733,13 +733,16 @@
           <!-- BEESWARM START -->
           <div class="window mt-10">
             <h3 class="plot-title">Beeswarm title</h3>
-            <div id="beeswarm-container">
-              <div class="flex justify-center items-center gap-2">
-                <button id="play-button" class="play-button bg-blue-500">⏵︎</button>
-                <div id="beeswarm-slider-container" class="year-slider">
-                  <input type="range" id="beeswarm-slider" class="w-full accent-blue-500">
-                  <div id="slider-ticks" class="flex justify-between">
-                  </div>
+            <div id="beeswarm-container"></div>
+            <div class="flex-1 w-full">
+              <div class="flex justify-center items-center gap-4">
+                <button id="play-button" class="play-button">⏵︎</button>
+                <div id="beeswarm-slider-container" class="w-full">
+                  <label for="beeswarm-slider" class="selector me-4">
+                    Select Year
+                  </label>
+                  <input type="range" id="beeswarm-slider" name ="beeswarm-slider" class="year-slider">
+                  <div id="slider-ticks" class="flex justify-between"></div>
                 </div>
               </div>
             </div>
