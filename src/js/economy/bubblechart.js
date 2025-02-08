@@ -60,8 +60,12 @@ function BubbleChart() {
     ]).then(([gdpData, housePriceData, covidData]) => {
         const filteredGdpData = gdpData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);
         const filteredHousePriceData = housePriceData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);
-        const filteredCovidData = covidData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);
-        
+        const filteredCovidData = covidData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);       
+
+
+
+        console.log("Dati GDP:", filteredGdpData);
+        console.log("Dati House Price:", filteredHousePriceData);
 
         // Associa le metriche ai rispettivi dataset
         const metrics = ["gdpPercap", "housePrices"];
@@ -142,7 +146,7 @@ function BubbleChart() {
         
                         <!-- Colonna Destra: New Cases -->
                         <div class="flex flex-col items-center">
-                            <div style="font-weight: bold;">Health Spending</div>
+                            <div style="font-weight: bold;">Covid cases</div>
                             <div style="font-size: 22px; font-weight: bold; color: black;">
                                 ${d.new_cases.toLocaleString()}
                             </div>
@@ -267,10 +271,18 @@ function BubbleChart() {
             const currentData = dataMap[selectedMetric];
             const countries = [...new Set(currentData.map(d => d.country))];
             const countrySelector = d3.select("#contry_selector_bubble");
-
-            // Aggiorna l'elenco delle nazioni nel selettore
+        
+            // Ottieni il paese attualmente selezionato
+            let selectedCountry = countrySelector.property("value");
+        
+            // Se il paese selezionato non è presente nei nuovi dati, sceglie il primo paese disponibile
+            if (!countries.includes(selectedCountry)) {
+                selectedCountry = countries[0]; 
+            }
+        
+            // Aggiorna il selettore con i nuovi paesi
             countrySelector.selectAll("option").remove();
-
+            
             countrySelector
                 .selectAll("option")
                 .data(countries)
@@ -278,16 +290,11 @@ function BubbleChart() {
                 .append("option")
                 .text(d => d)
                 .attr("value", d => d);
-
-            // Ottieni il paese selezionato attualmente
-            const selectedCountry = d3.select("#contry_selector_bubble").property("value");
-
-            // Se il paese selezionato non è valido per la metrica, seleziona il primo paese disponibile
-            if (!countries.includes(currentData)) {
-                // Se il paese selezionato non è disponibile, seleziona il primo paese valido
-                d3.select("#contry_selector_bubble").property("value", countries[0]);
-            }
+        
+            // Mantieni il paese selezionato
+            countrySelector.property("value", selectedCountry);
         }
+        
 
 
 
