@@ -142,11 +142,20 @@ const legendRanges = [
   // Aggiungiamo il titolo della legenda
   legend.append("text")
     .attr("x", 0)
-    .attr("y", -20)
+    .attr("y", -32)
     .attr("text-anchor", "start")
     .text("Health Spending")
     .style("font-size", "16px")
     .style("font-weight", "bold");
+
+
+  legend.append("text")
+  .attr("x", 0)
+  .attr("y", -15)  // Posiziona il sottotitolo subito sotto il titolo
+  .attr("text-anchor", "start")
+  .text("(Mil/Bil)")  // Il testo del sottotitolo
+  .style("font-size", "14px")  // Imposta una dimensione del font più piccola per il sottotitolo
+  .style("font-weight", "normal"); 
 
   // Aggiungiamo i rettangoli colorati per la legenda
   legend.selectAll("rect")
@@ -205,6 +214,7 @@ const legendRanges = [
         .filter(d => +d.year === currentYear) // Converte `d.year` in numero
         .map(d => [d.country, d.health])
     );
+
 
 
     const maxValue = d3.max(selectedData, d => d[selectedMetric]);
@@ -276,7 +286,6 @@ const legendRanges = [
       })
       .on("mouseout", () => tooltip.style("opacity", 0));
   }
-
 
   updateMap();
   const mapLabel = d3.select("#number-date")
