@@ -29,8 +29,8 @@ function LineChart() {
     });
 
     const margin = { top: 80, right: 100, bottom: 80, left: 100 };
-    const width = 800 - margin.left - margin.right;
-    const height = 600 - margin.top - margin.bottom;
+    const width = 900;
+    const height = 500;
 
     const svg = d3.select("#linechart-covid")
         .append("svg")

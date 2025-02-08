@@ -137,7 +137,7 @@ function mapBubble() {
     .style("font-size", "14px")
     .attr("fill", "#333");
 
-
+  
 
   let currentYear = minDate.getFullYear();
   let currentMonth = minDate.getMonth() + 1;
