@@ -58,7 +58,7 @@ function ButterflyChart() {
         .attr("y", margin.top / 2)
         .attr("text-anchor", "middle")
         .text(`Inflation Comparison by Country (${year})`)
-        .style("font-size", "40px");
+        .style("font-size", "20px");
 
       svg.append("g").attr("class", "y-axis")
       .style("font-size", "14px");

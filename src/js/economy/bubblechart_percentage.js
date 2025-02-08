@@ -38,6 +38,8 @@ function BubbleChart() {
         const height = 420;
 
         console.log(combinedData)
+        console.log("Dati combinati:", combinedData.map(d => ({ country: d.country, inbound: d.inbound })));
+
 
         const svg = d3.select("#bubblechart_container_2")
             .append("svg")
@@ -195,8 +197,6 @@ function updateChart(selectedYear) {
       d3.max(filteredData, d => d.percentage_cases)
     ]);
 
-    console.log("Scala z dominio:", z.domain());
-    console.log("Dati inbound:", filteredData.map(d => d.inbound));
 
     xAxis.transition().duration(500).call(d3.axisBottom(x));
     yAxis.transition().duration(500).call(d3.axisLeft(y));
