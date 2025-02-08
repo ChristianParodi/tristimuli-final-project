@@ -105,7 +105,7 @@ const colorScale = d3.scaleQuantile()
   .domain(extendedDomain)  // Usa il dominio esteso
   .range([
     "#E3FCE8", "#C1EFC3", "#9FE29E", "#7DD579", "#5BC854", "#3BAA3A", "#1B8F20", "#007B44",
-    "#006633", "#004D26", "#00321D", "#00170F", "#000000"  // Colori dal verde scuro al nero per gli intervalli più alti
+    "#006633", "#004D26", "#003821", "#00321D", "#001D11"  // Colori dal verde scuro al nero per gli intervalli più alti
   ]);
 
 // Otteniamo i quantili dalla scala estesa
@@ -118,7 +118,7 @@ const legendRanges = [
     label: `${i === 0 ? d3.min(healthValues).toFixed(0) : arr[i - 1].toFixed(0)} - ${d.toFixed(0)}`,
     color: colorScale(d)
   })),
-  { label: `>131696`, color: colorScale(quantiles[quantiles.length - 1]) } // Impostiamo l'ultima label come ">36144"
+  { label: `>131697`, color: colorScale(quantiles[quantiles.length - 1]) } // Impostiamo l'ultima label come ">36144"
 ];
   
   // const colorScale = d3.scaleQuantile()
@@ -261,7 +261,7 @@ const legendRanges = [
           <div style="font-weight: bold;">Health Spending</div>
           <div style="font-size: 22px; font-weight: bold; color: black;">
           ${healthByCountry.get(d.country) && !isNaN(healthByCountry.get(d.country)) ? 
-            (healthByCountry.get(d.country) > 1000 ? 
+            (healthByCountry.get(d.country) >= 1000 ? 
                 healthByCountry.get(d.country).toLocaleString() + ' Bil' : 
                 healthByCountry.get(d.country).toLocaleString() + ' Mil') 
             : "N/A"}          </div>
