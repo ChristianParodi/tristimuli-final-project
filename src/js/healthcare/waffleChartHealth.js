@@ -239,10 +239,13 @@ function waffleChart() {
                     const cause = colorMap.get(d).cause;
                     let tooltipText;
                     if (cause !== "Empty") {
-                        const deaths1 = yearData1.find(data => data.cause === cause)?.deaths ?? "---";
-                        const perc1 = yearData1.find(data => data.cause === cause)?.percentage ?? "---";
-                        const deaths2 = yearData2.find(data => data.cause === cause)?.deaths ?? "---";
-                        const perc2 = yearData2.find(data => data.cause === cause)?.percentage ?? "---";
+                        const cause1 = yearData1.find(data => data.cause === cause)
+                        const deaths1 = cause1?.deaths ?? "---";
+                        const perc1 = cause1?.percentage ?? "---";
+                        const cause2 = yearData2.find(data => data.cause === cause)
+                        const deaths2 = cause2?.deaths ?? "---";
+                        const perc2 = cause2?.percentage ?? "---";
+                        console.log(deaths2, perc2);
                         tooltipText = `<h2 class="text-lg">Deaths in ${currentCountry} due to</h2>
                                     <span class="font-bold text-xl" style="color: ${fillColor(d)};">${cause}</span>
                                     <div class="mh-5 mt-1 w-full">
