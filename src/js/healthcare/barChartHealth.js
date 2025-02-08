@@ -370,7 +370,7 @@ function barChartHealth() {
         svg.selectAll(".split-rect")
             .on("mouseover", function (event, d) {
                 const tooltipText = `<h2 class="text-center m-0">${d.country}: ${d.key}</h2>
-                        <p class="text-center m-0">Deaths: ${d.value.toFixed(0)}</p>`;
+                        <p class="text-center m-0 text-black">Deaths: ${d.value.toFixed(0)}</p>`;
                 tooltip.style("opacity", "0.9")
                     .html(tooltipText);
 
