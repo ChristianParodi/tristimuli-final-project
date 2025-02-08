@@ -66,19 +66,19 @@ export const europeanCountries = [
   'Switzerland', 'Turkey', 'Ukraine', 'United Kingdom'
 ];
 
-export const population = await fetch("../dataset/population.json")
+export const population = await fetch("../../dataset/population.json")
   .then(response => response.json());
 
-export const enrollemntQuantiles = await fetch("../dataset/EDUCATION/clean/enrollmentQuantiles.json")
+export const enrollemntQuantiles = await fetch("../../dataset/EDUCATION/clean/enrollmentQuantiles.json")
   .then(response => response.json());
 
-export const unemploymentQuantiles = await fetch("../dataset/UNEMPLOYMENT/clean/unemploymentQuantiles.json")
+export const unemploymentQuantiles = await fetch("../../dataset/UNEMPLOYMENT/clean/unemploymentQuantiles.json")
   .then(response => response.json());
 
-export const europeGeoJson = await fetch("../dataset/europe.geo.json")
+export const europeGeoJson = await fetch("../../dataset/europe.geo.json")
   .then(response => response.json());
 
-export const ISOCountries = await fetch("../dataset/countries_ISO2_ISO3.json")
+export const ISOCountries = await fetch("../../dataset/countries_ISO2_ISO3.json")
   .then(response => response.json());
 
 async function loadunemploymentData() {
