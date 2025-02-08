@@ -13,7 +13,7 @@ function barChartHealth() {
     let currentCategory = "Total";
     const data = originalData.filter(d => d.age === "Total" && d.sex === "Total");
     const parentContainer = d3.select("#bar-chart-health-container").node().parentNode;
-    const width = 800;
+    const width = 1000;
     const height = 600;
     const margin = { top: 20, right: 30, bottom: 80, left: 100 };
 
@@ -260,9 +260,24 @@ function barChartHealth() {
             const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
             const yAxisPosition = svg.select(".x-axis").node().getBoundingClientRect().top + window.scrollY;
             const tooltipHeight = tooltip.node().getBoundingClientRect().height;
+            let tooltipLeft = svgLeft + x0(d.country) + 4 * x1("post2020") + 5;
+            let tooltipTop = yAxisPosition - tooltipHeight - 5;
+
+            // Check if tooltip exceeds the right edge of the page
+            const tooltipWidth = tooltip.node().getBoundingClientRect().width;
+            const pageWidth = window.innerWidth;
+            if (tooltipLeft + tooltipWidth > pageWidth) {
+                tooltipLeft = svgLeft + x0(d.country) - 4 * x1("post2020"); // Adjust to fit within the page
+            }
+
+            // Check if tooltip exceeds the top edge of the page
+            if (tooltipTop < 0) {
+                tooltipTop = 10; // Adjust to fit within the page
+            }
+
             tooltip
-                .style('left', `${svgLeft + x0(d.country) + 3 * x1("post2020") + 10}px`)
-                .style('top', `${yAxisPosition - tooltipHeight - 5}px`);
+                .style('left', `${tooltipLeft}px`)
+                .style('top', `${tooltipTop}px`);
 
         })
         .on("mouseout", function (event, d) {
