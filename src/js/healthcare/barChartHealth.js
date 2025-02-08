@@ -1,17 +1,17 @@
 import { datasets } from "../utils.js";
 
 function barChartHealth() {
-
-    const data = datasets.mentalHealthData.map(d => ({
+    const originalData = datasets.mentalHealthData.map(d => ({
         ...d,
         year: +d.year,
         deaths: +d.deaths,
         percentage: +d.percentage
     })).filter(d => (d.cause === "Mental and behavioural disorders" || d.cause === "Intentional self-harm") &&
-        d.age === "Total" && d.sex === "Total" &&
         !d.country.includes("Union") &&
         !d.country.includes("Metropolitan"));
 
+    let currentCategory = "Total";
+    const data = originalData.filter(d => d.age === "Total" && d.sex === "Total");
     const parentContainer = d3.select("#bar-chart-health-container").node().parentNode;
     const width = parentContainer.getBoundingClientRect().width * 0.9;
     const height = 400;
@@ -43,6 +43,10 @@ function barChartHealth() {
     }));
 
     const top10 = avgDeaths.sort((a, b) => d3.descending(a.pre2020, b.pre2020)).slice(0, 10);
+    const top10CountriesArray = top10.map(d => d.country);
+
+    const sexData = originalData.filter(d => d.age === "Total" && top10CountriesArray.includes(d.country));
+    const ageData = originalData.filter(d => d.sex === "Total" && top10CountriesArray.includes(d.country));
 
     const years = data.map(d => d.year);
     const minYear = d3.min(years);
@@ -103,7 +107,7 @@ function barChartHealth() {
         .attr("transform", "rotate(-90)")
         .attr("y", -margin.left + 20)
         .attr("x", -height / 2)
-        .text("Average Deaths");
+        .text("Average Yearly Deaths");
 
     // Add Y axis line
     svg.append("line")
@@ -146,7 +150,7 @@ function barChartHealth() {
         .attr("stroke", "red")
         .attr("stroke-width", 1);
 
-    svg.append("g")
+    const bars = svg.append("g")
         .selectAll("g")
         .data(top10)
         .enter().append("g")
@@ -226,6 +230,158 @@ function barChartHealth() {
             svg.selectAll(".highlight-rect").interrupt().remove();
             svg.selectAll(".hover-line").remove();
         });
+
+    const overlay = d3.select('#overlay').node();
+    const totalButton = d3.select('#total-button').node();
+    const sexButton = d3.select('#sex-button').node();
+    const ageButton = d3.select('#age-button').node();
+
+    function removeClassesSex() {
+        Array.from(sexButton.classList).forEach(className => {
+            if (className.startsWith('border')) {
+                sexButton.classList.remove(className);
+            }
+        });
+    }
+
+    function updateChart() {
+        // Remove existing split rects
+        svg.selectAll(".split-rect")
+            .transition()
+            .duration(500)
+            .attr("height", 0)
+            .remove();
+
+        if (currentCategory === "total") {
+            return;
+        }
+
+        const currentData = currentCategory === "sex" ? sexData : ageData;
+
+        const splitByCountry = currentData.reduce((acc, d) => {
+            if (!acc[d.country]) {
+                acc[d.country] = { pre2020: [], post2020: [] };
+            }
+            if (d.year < 2020) {
+                acc[d.country].pre2020.push(d);
+            } else {
+                acc[d.country].post2020.push(d);
+            }
+            return acc;
+        }, {});
+
+        const splitAvgDeaths = Object.entries(splitByCountry).map(([country, values]) => {
+            const pre2020 = d3.groups(values.pre2020, d => d[currentCategory]).map(([key, group]) => ({
+                key,
+                value: d3.mean(group, d => d.deaths)
+            }));
+            const post2020 = d3.groups(values.post2020, d => d[currentCategory]).map(([key, group]) => ({
+                key,
+                value: d3.mean(group, d => d.deaths)
+            }));
+
+            const pre2020Total = pre2020.find(d => d.key === "Total").value;
+            const post2020Total = post2020.find(d => d.key === "Total").value;
+
+            if (pre2020.length > 1) {
+                pre2020[1].value = pre2020Total - pre2020[0].value;
+            }
+            if (post2020.length > 1) {
+                post2020[1].value = post2020Total - post2020[0].value;
+            }
+
+            return {
+                country,
+                pre2020: pre2020Total,
+                post2020: post2020Total,
+                pre2020Split: pre2020.filter(d => d.key !== "Total").sort((a, b) => d3.ascending(a.key, b.key)),
+                post2020Split: post2020.filter(d => d.key !== "Total").sort((a, b) => d3.ascending(a.key, b.key))
+            };
+        });
+
+        const splitColor = d3.scaleOrdinal()
+            .domain(currentCategory === "sex" ? ["Males", "Females"] : ["15-64", "65"])
+            .range(currentCategory === "sex" ? ["steelblue", "#FF69B4"] : ["#673AB7", "#FFC107"]);
+
+        splitAvgDeaths.forEach(d => {
+            ["pre2020", "post2020"].forEach(key => {
+                const splitValues = d[`${key}Split`];
+                let yOffset = 0;
+                splitValues.forEach(split => {
+                    console.log(d.country, d[key], split.key, split.value);
+                    svg.append("rect")
+                        .datum({ country: d.country, key: split.key, value: split.value })
+                        .attr("class", "split-rect")
+                        .attr("x", x0(d.country) + x1(key))
+                        .attr("y", y(d[key]) - yOffset)
+                        .attr("width", x1.bandwidth())
+                        .attr("height", 0)
+                        .attr("fill", splitColor(split.key))
+                        .attr("opacity", 1)
+                        .transition()
+                        .duration(500)
+                        .attr("height", y(d[key] - split.value) - y(d[key]));
+                    yOffset += y(d[key]) - y(d[key] - split.value);
+                });
+            });
+        });
+
+        svg.selectAll(".split-rect")
+            .on("mouseover", function (event, d) {
+            const tooltipText = `<h2 class="text-center m-0">${d.country}: ${d.key}</h2>
+                        <p class="text-center m-0">Deaths: ${d.value.toFixed(0)}</p>`;
+            tooltip.style("opacity", "0.9")
+                .html(tooltipText);
+
+            svg.selectAll(".bar").style("opacity", 0);
+            
+            svg.selectAll(".split-rect")
+            .filter(rect => rect.country !== d.country)
+            .style("opacity", 0.3);
+        })
+        .on("mousemove", function (event, d) {
+            const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
+            const yAxisPosition = svg.select(".x-axis").node().getBoundingClientRect().top + window.scrollY;
+            const tooltipHeight = tooltip.node().getBoundingClientRect().height;
+            tooltip
+            .style('left', `${svgLeft + x0(d.country) + 3 * x1("post2020") + 10}px`)
+            .style('top', `${yAxisPosition - tooltipHeight - 5}px`);
+        })
+        .on("mouseout", function () {
+            tooltip.style("opacity", "0");
+            svg.selectAll(".split-rect").style("opacity", 1);
+            svg.selectAll(".bar").style("opacity", 1);
+            });
+    }
+
+    totalButton.addEventListener('click', () => {
+        overlay.style.transform = 'translateX(0%)';
+        removeClassesSex();
+        sexButton.classList.add('border-r', 'border-[#ffffff7d]');
+        if (currentCategory != "total") {
+            currentCategory = "total"
+            updateChart();
+        }
+    });
+
+    sexButton.addEventListener('click', () => {
+        overlay.style.transform = 'translateX(100%)';
+        removeClassesSex();
+        if (currentCategory != "sex") {
+            currentCategory = "sex";
+            updateChart();
+        }
+    });
+
+    ageButton.addEventListener('click', () => {
+        overlay.style.transform = 'translateX(200%)';
+        removeClassesSex();
+        sexButton.classList.add('border-l', 'border-[#ffffff7d]');
+        if (currentCategory != "age") {
+            currentCategory = "age";
+            updateChart();
+        }
+    });
 }
 
 barChartHealth();

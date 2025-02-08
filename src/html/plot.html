@@ -660,15 +660,16 @@ of the pandemic.
           <!-- BAR CHART HEALTH START -->
           <div class="window mt-10">
             <h3 class="plot-title">Bar Chart title</h3>
-            <div id="age-range-selector"></div>
-            <label for="age-range">Select Age Range:</label>
-            <select id="age-range" class="select">
-              <option value="Total">All Ages</option>
-              <option value="0-14">0-14</option>
-              <option value="15-24">15-24</option>
-              <option value="25-64">25-64</option>
-              <option value="65+">65+</option>
-            </select>
+            <div class="flex justify-center items-center gap-4 mt-4 w-full">
+              <div class="relative w-[30%] border-[1px] border-[#ffffff7d] rounded-md">
+              <div id="overlay" class="absolute inset-0 bg-blue-500 rounded-md transition-transform duration-300 w-1/3"></div>
+              <div class="flex">
+                <button id="total-button" class="relative z-10 px-4 py-2 text-white w-1/3">Total</button>
+                <button id="sex-button" class="relative z-10 px-4 py-2 text-white w-1/3 border-r border-[#ffffff7d] rounded-md">Sex</button>
+                <button id="age-button" class="relative z-10 px-4 py-2 text-white w-1/3">Age</button>
+              </div>
+              </div>
+            </div>
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
             <div id="bar-chart-health-container"></div>
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
@@ -842,20 +843,20 @@ of the pandemic.
     </div>
 
     <!-- COVID -->
-    <script type="module" src="./../js/covidspread/map.js"></script> 
+    <!-- <script type="module" src="./../js/covidspread/map.js"></script> 
     <script type="module" src="./../js/covidspread/linechart.js"></script>
-    <script type="module" src="./../js/covidspread/stackedbarchart.js"></script>
+    <script type="module" src="./../js/covidspread/stackedbarchart.js"></script> -->
 
     <!-- ECONOMY -->
-    <script src="./../js/economy/bubblechart.js"></script>
+    <!-- <script src="./../js/economy/bubblechart.js"></script>
     <script src="./../js/economy/bubblechart_percentage.js"> </script>
     <script src="./../js/lockdowns/bubbleEnrollments.js"></script>
-    <script src="./../js/economy/butterflychart.js"></script>
+    <script src="./../js/economy/butterflychart.js"></script> -->
 
     <!-- EDUCATION -->
-    <script type="module" src="../js/education_jobs/dumbbellEnrollments.js"></script>
+    <!-- <script type="module" src="../js/education_jobs/dumbbellEnrollments.js"></script>
     <script type="module" src="../js/education_jobs/dumbbellUnemployment.js"></script>
-    <script type="module" src="../js/education_jobs/bubbleLockdown.js"></script>
+    <script type="module" src="../js/education_jobs/bubbleLockdown.js"></script> -->
 
     <!-- HEALTHCARE -->
     <script type="module" src="./../js/healthcare/waffleChartHealth.js"></script>
@@ -864,12 +865,12 @@ of the pandemic.
     <script type="module" src="./../js/healthcare/mapHealth.js"></script>
 
     <!-- OUTCOMES -->
-    <script type="module" src="../js/outcomes/gdpChange.js"></script>
+    <!-- <script type="module" src="../js/outcomes/gdpChange.js"></script>
     <script type="module" src="../js/outcomes/inflationChange.js"></script>
     <script type="module" src="../js/outcomes/enrollmentChange.js"></script>
     <script type="module" src="../js/outcomes/unemploymentChange.js"></script>
     <script type="module" src="../js/outcomes/mentalDeathsChange.js"></script>
-    <script type="module" src="../js/outcomes/mentalDisordersDeathsChange.js"></script> 
+    <script type="module" src="../js/outcomes/mentalDisordersDeathsChange.js"></script>  -->
 
     <script type="module" src="./../js/utils.js"></script>
 
