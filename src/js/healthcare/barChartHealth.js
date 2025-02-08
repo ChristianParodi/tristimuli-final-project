@@ -114,7 +114,7 @@ function barChartHealth() {
         .attr("transform", "rotate(-90)")
         .attr("y", -margin.left + 20)
         .attr("x", -height / 2)
-        .text("Average Yearly Deaths");
+        .text("Average annual deaths");
 
     // Add Y axis line
     svg.append("line")
@@ -213,8 +213,8 @@ function barChartHealth() {
                                 <h2 class="text-center font-bold m-0">disorders or intentional self-harm</h2>
                                 <div class="mh-5 mt-1 w-full flex justify-between">
                                     <div class="flex flex-col items-left w-[60%]">
-                                        <h2 class="text-left m-0 w-fit">Average deaths</h2>
-                                        <p class="text-left text-md text-black">${minYear}-2020: ${firstValue}</p>
+                                        <h2 class="text-left m-0 w-fit">Average annual deaths</h2>
+                                        <p class="text-left text-md text-black">${minYear}-2019: ${firstValue}</p>
                                         <p class="text-left text-md text-black">2020-${maxYear}: ${secondValue}</p>
                                     </div>
                                     <div class="flex flex-col items-center justify-center border-2 border-black rounded-lg w-[40%] mx-1">
@@ -268,11 +268,6 @@ function barChartHealth() {
             const pageWidth = window.innerWidth;
             if (tooltipLeft + tooltipWidth > pageWidth) {
                 tooltipLeft = svgLeft + x0(d.country) - 4 * x1("post2020"); // Adjust to fit within the page
-            }
-
-            // Check if tooltip exceeds the top edge of the page
-            if (tooltipTop < 0) {
-                tooltipTop = 10; // Adjust to fit within the page
             }
 
             tooltip
@@ -364,9 +359,8 @@ function barChartHealth() {
                 const splitValues = d[`${key}Split`];
                 let yOffset = 0;
                 splitValues.forEach(split => {
-                    console.log(d.country, d[key], split.key, split.value);
                     svg.append("rect")
-                        .datum({ country: d.country, key: split.key, value: split.value })
+                        .datum({ country: d.country, key: split.key, value: split.value, period: key, perc: (split.value / d[key] * 100).toFixed(2) })
                         .attr("class", "split-rect")
                         .attr("x", x0(d.country) + x1(key))
                         .attr("y", y(d[key]) - yOffset)
@@ -384,8 +378,14 @@ function barChartHealth() {
 
         svg.selectAll(".split-rect")
             .on("mouseover", function (event, d) {
-                const tooltipText = `<h2 class="text-center m-0">${d.country}: ${d.key}</h2>
-                        <p class="text-center m-0 text-black">Deaths: ${d.value.toFixed(0)}</p>`;
+                console.log(d)
+                const tooltipText = `<h2 class="text-center m-0 font-bold">${d.country}</h2>
+                         <div class="flex flex-col items-center">
+                            <p class="m-0 text-black">Average annual ${d.key.toLowerCase()}
+                            deaths from ${d.period === "pre2020" ? "2016 to 2019" : "2020 to 2023"}</p>
+                            <p class="m-0 text-black"><b>${d.value.toFixed(0)}</b> - ${d.perc}% of all deaths</p>
+                         </div>`;
+
                 tooltip.style("opacity", "0.9")
                     .html(tooltipText);
 
@@ -396,12 +396,13 @@ function barChartHealth() {
                     .style("opacity", 0.3);
             })
             .on("mousemove", function (event, d) {
+                const hoveredRect = d3.select(this);
+                const hoveredRectY = hoveredRect.node().getBoundingClientRect().bottom + window.scrollY;
                 const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
-                const yAxisPosition = svg.select(".x-axis").node().getBoundingClientRect().top + window.scrollY;
                 const tooltipHeight = tooltip.node().getBoundingClientRect().height;
                 tooltip
-                    .style('left', `${svgLeft + x0(d.country) + 3 * x1("post2020") + 10}px`)
-                    .style('top', `${yAxisPosition - tooltipHeight - 5}px`);
+                    .style('left', `${svgLeft + x0(d.country) + (d.period === "pre2020" ? 3 : 4) * x1("post2020") + 5}px`)
+                    .style('top', `${hoveredRectY - tooltipHeight - 2}px`);
             })
             .on("mouseout", function () {
                 tooltip.style("opacity", "0");
