@@ -98,7 +98,7 @@ async function loadGDP() {
 }
 
 async function loadInflation() {
-  return await d3.csv("../dataset/INFLATION/clean/inflation_finale.csv");
+  return await d3.csv("../../dataset/INFLATION/clean/inflation_finale.csv");
 }
 
 async function loadExpenditures() {
