@@ -238,6 +238,66 @@ function beeswarm() {
         currentYear = +this.value;
         updateChart();
     });
+
+
+
+    function drawLegend() {
+        const legendData = [1000, 10000, 50000, 100000, 200000]; // Example expenditure values
+
+        let total = 0;
+        legendData.forEach(d => {
+            total += radiusScale(d);
+        });
+        console.log(total);
+
+        const legendWidth = 435;
+        const legendHeight = 120;
+
+        const legendSvg = d3.select("#beeswarm-legend")
+            .append("svg")
+            .attr("width", legendWidth)
+            .attr("height", legendHeight)
+            .append("g")
+            .attr("transform", "translate(20,20)");
+
+        const legendCircles = legendSvg.selectAll(".legend-circle")
+            .data(legendData)
+            .enter()
+            .append("g")
+            .attr("class", "legend-circle")
+            .attr("transform", (d, i) => `translate(${i * 80}, 0)`);
+
+        legendCircles.append("circle")
+            .attr("r", d => radiusScale(d))
+            .attr("cx", d => radiusScale(d))
+            .attr("cy", d => legendHeight - radiusScale(d) - 30) // Align to the bottom
+            .style("fill", "none")
+            .attr('stroke', 'white');
+
+        legendCircles.append("line")
+            .attr("x1", d => radiusScale(d) - radiusScale(d))
+            .attr("x2", d => radiusScale(d) + radiusScale(d))
+            .attr("y1", d => legendHeight - radiusScale(d) - 30)
+            .attr("y2", d => legendHeight - radiusScale(d) - 30)
+            .attr("stroke", "white")
+            .attr("stroke-width", 1);
+
+        legendCircles.append("text")
+            .attr("x", d => radiusScale(d))
+            .attr("y", d => legendHeight - radiusScale(d) * 2 - 40)
+            .attr("dy", "0.35em")
+            .style("font-size", "14px")
+            .style("text-anchor", "middle")
+            .text(d => `${d3.format(",")(d)}€`);
+
+        legendSvg.append("text")
+            .attr("x", -10)
+            .attr("y", 0)
+            .style("font-size", "16px")
+            .text("Health Expenditure (€)");
+
+    }
+    drawLegend();
 }
 
 beeswarm();
