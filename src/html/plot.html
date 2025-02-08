@@ -224,7 +224,7 @@
             <!-- select metric  -->
             <div class="container-selector">
               <label for="map-selector" class="selector me-4">Select type of data</label>
-              <select id="map-selector" class=" text-black select">
+              <select id="map-selector" class="select">
                 <option value="cases">Confirmed cases</option>
                 <option value="deaths">Confirmed deaths</option>
                 <option value="vaccines">Vaccines</option>
@@ -245,12 +245,12 @@
                     Select Year
                   </label>
                   <input type="range" id="covid-map-year-slider" name="covid-map-year-slider" class="year-slider">
-                  <div class="flex justify-between text-sm text-gray-400">
-                    <span id="min-year-text" class="text-black"></span>
-                    <span id="year-1-text" class="text-black"></span>
-                    <span id="year-2-text" class="text-black"></span>
-                    <span id="year-3-text" class="text-black"></span>
-                    <span id="max-year-text" class="text-black"></span>
+                  <div class="flex justify-between text-sm">
+                    <span id="min-year-text"></span>
+                    <span id="year-1-text"></span>
+                    <span id="year-2-text"></span>
+                    <span id="year-3-text"></span>
+                    <span id="max-year-text"></span>
                   </div>
                 </div>
                 <!-- end year selector -->
@@ -311,12 +311,12 @@
 
               <div class="container-selector">
                 <label for="contry_selector_bubble" class="selector me-4">Select country</label>
-                <select id="contry_selector_bubble" class="text-gray-800 select w-40"></select>
+                <select id="contry_selector_bubble" class="select w-40"></select>
               </div>
 
               <div class="container-selector">
                 <label for="metric_selector_bubble" class="selector me-4">Select metric</label>
-                <select id="metric_selector_bubble" class="text-gray-800 select w-40"></select>
+                <select id="metric_selector_bubble" class="select w-40"></select>
               </div>
 
             </div>
@@ -385,8 +385,8 @@
 
             <h3 class="plot-title">Inbound tourism during Covid</h3>
             <div class="container-selector">
-              <label for="selector_year_2" class=" selector me-4">Select year</label>
-              <select id="selector_year_2" class=" text-gray-800 select w-30"></select>
+              <label for="selector_year_2" class="selector me-4">Select year</label>
+              <select id="selector_year_2" class="select w-30"></select>
             </div>
 
             <div id="bubblechart_container_2"></div>
@@ -413,8 +413,7 @@ Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,
 
             <!--selector-->
             <div class="relative w-72">
-              <select id="data-selector-butt"
-                class="block w-full appearance-none bg-[#1F202A] border border-gray-500 text-white py-2 px-4 pr-10 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400">
+              <select id="data-selector-butt" class="select">
                 <option value="All-items HICP">General Inflation</option>
                 <option value="Food and non-alcoholic beverages">Food and non-alcoholic beverages</option>
                 <option value="Transport">Transport</option>
@@ -425,16 +424,21 @@ Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,
                 <option value="Accommodation services">Accommodation services</option>
                 <option value="Education">Education</option>
                 <option value="Communications">Communications</option>
-                <option value="Alcoholic beverages, tobacco and narcotics">Alcoholic beverages, tobacco and narcotics</option>
+                <option value="Alcoholic beverages, tobacco and narcotics">Alcoholic beverages, tobacco and narcotics
+                </option>
                 <option value="Alcoholic beverages">Alcoholic beverages</option>
               </select>
-          
+
               <!-- Freccia personalizzata -->
               <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-                <svg class="w-4 h-4 text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                <svg class="w-4 h-4 text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                  fill="currentColor">
+                  <path fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd" />
                 </svg>
               </div>
+              <!-- Freccia personalizzata end -->
             </div>
             <!--end_selector-->
 
@@ -444,7 +448,7 @@ Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,
               <!-- Selector Year 1 -->
               <div class="container-selector ml-[200px] mt-5">
                 <label for="selector-butt-1" class="selector me-4">Year</label>
-                <select id="selector-butt-1" class="text-gray-800 select w-40">
+                <select id="selector-butt-1" class="select w-40">
                   <option value="2018">2018</option>
                   <option value="2019">2019</option>
                   <option value="2020">2020</option>
@@ -457,7 +461,7 @@ Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,
               <!-- Selector Year 2 -->
               <div class="container-selector mt-5">
                 <label for="selector-butt-2" class="selector me-4">Year</label>
-                <select id="selector-butt-2" class="text-gray-800 select w-40">
+                <select id="selector-butt-2" class="select w-40">
                   <option value="2018">2018</option>
                   <option value="2019">2019</option>
                   <option value="2020">2020</option>
@@ -657,16 +661,16 @@ Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,
             </div>
             <div id="waffle-country" class="container-selector">
               <label class="selector me-4">Select country</label>
-              <select id="waffle-country-selector" class="select text-black"></select>
+              <select id="waffle-country-selector" class="select"></select>
             </div>
             <div id="waffle-years" class="w-full flex justify-around margin-top-4">
               <div class="container-selector ">
                 <label for="waffle-year-1" class="selector me-4">Select the first year:</label>
-                <select id="waffle-year-1" class="select text-black"></select>
+                <select id="waffle-year-1" class="select"></select>
               </div>
               <div class="container-selector">
                 <label for="waffle-year-2" class="selector me-4">Select the second year:</label>
-                <select id="waffle-year-2" class="select text-black"></select>
+                <select id="waffle-year-2" class="select"></select>
               </div>
             </div>
             <div id="waffle-deaths-per-dot" class="w-full flex justify-center items-center gap-1"></div>
@@ -718,13 +722,16 @@ Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,
           <!-- BEESWARM START -->
           <div class="window mt-10">
             <h3 class="plot-title">Beeswarm title</h3>
-            <div id="beeswarm-container">
-              <div class="flex justify-center items-center gap-2">
-                <button id="play-button" class="play-button bg-blue-500">⏵︎</button>
-                <div id="beeswarm-slider-container" class="year-slider">
-                  <input type="range" id="beeswarm-slider" class="w-full accent-blue-500">
-                  <div id="slider-ticks" class="flex justify-between">
-                  </div>
+            <div id="beeswarm-container"></div>
+            <div class="flex-1 w-full">
+              <div class="flex justify-center items-center gap-4">
+                <button id="play-button" class="play-button">⏵︎</button>
+                <div id="beeswarm-slider-container" class="w-full">
+                  <label for="beeswarm-slider" class="selector me-4">
+                    Select Year
+                  </label>
+                  <input type="range" id="beeswarm-slider" name ="beeswarm-slider" class="year-slider">
+                  <div id="slider-ticks" class="flex justify-between"></div>
                 </div>
               </div>
             </div>
@@ -748,7 +755,7 @@ Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,
             <h3 class="plot-title">Health spending during COVID-19</h3>
             <div class="container-selector">
               <label for="map-selector-2" class="selector me-4">Select type of data</label>
-              <select id="map-selector-2" class=" text-black select">
+              <select id="map-selector-2" class="select">
                 <option value="deaths">Confirmed deaths</option>
                 <option value="cases">Confirmed cases</option>
                 <option value="vaccines">Vaccines</option>
