@@ -1,5 +1,3 @@
-
-
 function BubbleChart() {
     Promise.all([
         d3.csv("./../../../dataset/TOURISM/clean/tourism_final.csv", d => {
@@ -38,8 +36,6 @@ function BubbleChart() {
         const margin = { top: 60, right: 25, bottom: 50, left: 65 };
         const width = 900;
         const height = 420;
-
-
 
         const svg = d3.select("#bubblechart_container_2")
             .append("svg")

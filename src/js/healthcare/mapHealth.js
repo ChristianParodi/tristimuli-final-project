@@ -102,7 +102,7 @@ function mapBubble() {
   // const extendedDomain = [...healthValues, 67952, 80000, 100000, 120000];  // Aggiungiamo i valori superiori, in base ai tuoi requisiti
   // console.log(extendedDomain);
 
-  // Creiamo una nuova scala di colori che va dal verde scuro al nero per gli intervalli extra
+// Creiamo una nuova scala di colori che va dal verde scuro al nero per gli intervalli extra  
   // const colorScale = d3.scaleQuantile()
   //   .domain(extendedDomain)  // Usa il dominio esteso
   //   .range([
@@ -188,11 +188,21 @@ function mapBubble() {
   legend.append("text")
     .attr("id", "legend-title")
     .attr("x", 0)
-    .attr("y", -20)
+    .attr("y", -32)
     .attr("text-anchor", "start")
     .text("Health Spending (percentiles)")
     .style("font-size", "16px")
     .style("font-weight", "bold");
+    
+
+
+  legend.append("text")
+  .attr("x", 0)
+  .attr("y", -15)  // Posiziona il sottotitolo subito sotto il titolo
+  .attr("text-anchor", "start")
+  .text("(Mil/Bil)")  // Il testo del sottotitolo
+  .style("font-size", "14px")  // Imposta una dimensione del font più piccola per il sottotitolo
+  .style("font-weight", "normal"); 
 
   // Aggiungiamo il pulsante per cambiare la visualizzazione della legenda
   const legendButton = legend.append("g")
@@ -320,6 +330,7 @@ function mapBubble() {
     );
 
 
+
     const maxValue = d3.max(selectedData, d => d[selectedMetric]);
     const radiusScale = d3.scaleSqrt().domain([0, maxValue]).range([8, 35]);
 
@@ -386,7 +397,6 @@ function mapBubble() {
       })
       .on("mouseout", () => tooltip.style("opacity", 0));
   }
-
 
   updateMap();
   const mapLabel = d3.select("#number-date")
