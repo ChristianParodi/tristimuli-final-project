@@ -33,7 +33,7 @@ function beeswarm() {
 
 
     const width = 1000;
-    const height = 600;
+    const height = 300;
     const margin = { top: 50, right: 50, bottom: 50, left: 50 };
 
     const svg = d3.select("#beeswarm-container")
@@ -51,7 +51,7 @@ function beeswarm() {
 
     const radiusScale = d3.scaleSqrt()
         .domain([0, d3.max(data, d => +d.healthExp)]) // Map totalCases to circle size
-        .range([3, 40]); // Circle radius range
+        .range([6, 50]); // Circle radius range
 
 
     // Axes
