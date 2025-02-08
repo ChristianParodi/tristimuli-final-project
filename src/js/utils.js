@@ -34,7 +34,8 @@ export const customColors = {
   "blue-gradient": ['#d3ebff', '#003965'],
   "red": '#E94F37',
   'blue': '#3F88C5',
-  'green': '#03A059'
+  'green': '#03A059',
+  "pink": "#FF69B4"
 };
 
 export const covidDates = {

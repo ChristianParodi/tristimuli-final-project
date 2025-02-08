@@ -110,11 +110,10 @@ function dumbbellUnemployment() {
     .style("font-size", "16px")
     .text("Unemployment [#people]");
 
+  drawCovidLines(g, covidStartX, height, covidEndX);
   function updateChart(country) {
     easeOutLinesUnemploy(g);
-    removeCovidLines(g)
     // covid lines
-    drawCovidLines(g, covidStartX, height, covidEndX);
     // remove total
     g.selectAll('path')
       .filter(function () {
@@ -152,8 +151,8 @@ function dumbbellUnemployment() {
       .attr("class", "dot male")
       .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
       .attr("r", 6)
-      .attr("fill", "steelblue")
-      .attr("opacity", 0)
+      .attr("fill", customColors['blue'])
+      .attr("opacity", d => d.value === 0 ? 0 : 1)
       .raise()
       .merge(maleDots)
       .on("mouseover", function (_, d) {
@@ -186,7 +185,7 @@ function dumbbellUnemployment() {
       .duration(500)
       .ease(d3.easeCubicInOut)
       .attr("cy", d => yScale(d.value))
-      .attr("opacity", 1);
+      .attr("opacity", d => d.value === 0 ? 0 : 1);
 
     const femaleDots = g.selectAll(".dot.female")
       .data(femaleData);
@@ -195,8 +194,8 @@ function dumbbellUnemployment() {
       .attr("class", "dot female")
       .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
       .attr("r", 6)
-      .attr("fill", "#FF69B4")
-      .attr("opacity", 0)
+      .attr("fill", customColors['pink'])
+      .attr("opacity", d => d.value === 0 ? 0 : 1)
       .raise()
       .merge(femaleDots)
       .on("mouseover", function (_, d) {
@@ -227,14 +226,16 @@ function dumbbellUnemployment() {
       .duration(500)
       .ease(d3.easeCubicInOut)
       .attr("cy", d => yScale(d.value))
-      .attr("opacity", 1);
+      .attr("opacity", d => d.value === 0 ? 0 : 1);
 
     // Connect totalData points under the dots
     const totalLine = d3.line()
+      .defined(d => d.value !== 0)
       .x(d => xScale(d.year) + xScale.bandwidth() / 2)
       .y(d => yScale(d.value));
 
     g.insert("path", ":first-child")
+      .attr("class", "unemployment-total-line")
       .datum(totalData)
       .attr("fill", "none")
       .attr("stroke", customColors["green"])
@@ -257,7 +258,7 @@ function dumbbellUnemployment() {
       .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
       .attr("r", 6)
       .attr("fill", customColors["green"])
-      .attr("opacity", 0)
+      .attr("opacity", d => d.value === 0 ? 0 : 1)
       .raise()
       .merge(totalDots)
       .on("mouseover", function (_, d) {
@@ -288,7 +289,7 @@ function dumbbellUnemployment() {
       .duration(500)
       .ease(d3.easeCubicInOut)
       .attr("cy", d => yScale(d.value))
-      .attr("opacity", 1);
+      .attr("opacity", d => d.value === 0 ? 0 : 1);
   }
 
   updateChart(selectedCountry);
@@ -333,22 +334,8 @@ function drawCovidLines(g, covidStartX, height, covidEndX) {
     .text("COVID Ends");
 }
 
-function removeCovidLines(g) {
-  g.selectAll("line")
-    .filter(function () {
-      return d3.select(this).attr("stroke-dasharray") === "4";
-    })
-    .remove();
-
-  g.selectAll("text")
-    .filter(function () {
-      return d3.select(this).text().includes("COVID");
-    })
-    .remove();
-}
-
 function easeOutLinesUnemploy(g) {
-  g.selectAll("line")
+  g.selectAll("line.male-female-line, path.enrollmenmts-total-line")
     .transition()
     .duration(200)
     .attr("x1", function () {
@@ -378,6 +365,7 @@ function drawLinesUnemploy(g, male, female, xScale, yScale) {
   const middleY = (yScale(male.value) + yScale(female.value)) / 2;
 
   g.insert("line", ":first-child")
+    .attr("class", "male-female-line")
     .attr("x1", xScale(male.year) + xScale.bandwidth() / 2)
     .attr("y1", middleY)
     .attr("x2", xScale(female.year) + xScale.bandwidth() / 2)
