@@ -82,15 +82,15 @@ export const ISOCountries = await fetch("../dataset/countries_ISO2_ISO3.json")
   .then(response => response.json());
 
 async function loadunemploymentData() {
-  return await d3.csv("../dataset/UNEMPLOYMENT/clean/estat_une_rt_m_filtered.csv");
+  return await d3.csv("../../dataset/UNEMPLOYMENT/clean/estat_une_rt_m_filtered.csv");
 }
 
 async function loadEducationData() {
-  return await d3.csv("../dataset/EDUCATION/clean/estat_educ_uoe_enrt02.csv");
+  return await d3.csv("../../dataset/EDUCATION/clean/estat_educ_uoe_enrt02.csv");
 }
 
 async function loadLockdown() {
-  return await d3.csv("../dataset/LOCKDOWN/clean/lockdonws_2022-08-25.csv");
+  return await d3.csv("../../dataset/LOCKDOWN/clean/lockdonws_2022-08-25.csv");
 }
 
 async function loadGDP() {
@@ -102,7 +102,7 @@ async function loadInflation() {
 }
 
 async function loadExpenditures() {
-  return await d3.csv("../dataset/EXPENDITURE/clean/estat_gov_10a_exp_from_2016.csv");
+  return await d3.csv("../../dataset/EXPENDITURE/clean/estat_gov_10a_exp_from_2016.csv");
 }
 
 async function loadMentalHealth() {
