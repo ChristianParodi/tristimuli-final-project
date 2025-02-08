@@ -49,12 +49,12 @@
 
       #map-covid-container path,
       #map-covid-container line {
-        stroke: grey !important;
+        stroke: #1e1612 !important;
       }
 
       #map-container-bubble path,
       #map-container-bubble line {
-        stroke: grey !important;
+        stroke: #1e1612 !important;
       }
 
       :not(#slider-range) text {
@@ -169,7 +169,7 @@
       </div>
     </div>
 
-    <div id="page-background" class="bg-[#242734] text-white min-h-screen flex">
+    <div id="page-background" class="bg-[#1F202A]  text-white min-h-screen flex">
 
       <!-- Sidebar -->
       <div class="fixed left-0 top-0 h-full flex flex-col items-center justify-center sidebar">
@@ -231,7 +231,7 @@
               </select>
             </div>
             <!-- end select metric  -->
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+    
             <div id="map-covid-container" class="self-center"></div>
             <span id="map-label" class="w-fit"></span>
             <!--Switch-->
@@ -268,7 +268,7 @@
               <label for="country-selector" class="selector me-4">Select country</label>
               <select id="country-selector" class=" select"></select>
             </div>
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
+
 
             <div id="linechart-covid"></div>
           </div>
@@ -281,7 +281,7 @@
               class="mb-5 select p-2 hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
               Confirmed cases
             </button>
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
+
 
             <div id="barchart-covid-container"></div>
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
@@ -321,7 +321,6 @@
 
             </div>
 
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
 
             <div id="bubblechart_container"></div>
 
@@ -384,7 +383,6 @@ of the pandemic.
               <label for="selector_year_2" class=" selector me-4">Select year</label>
               <select id="selector_year_2" class=" text-gray-800 select w-30"></select>
             </div>
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
 
             <div id="bubblechart_container_2"></div>
 
@@ -428,9 +426,9 @@ of the pandemic.
 
 
 
-            <div class="flex w-full justify-start space-x-56">
+            <div class="flex w-full justify-start space-x-[255px]">
               <!-- Selector Year 1 -->
-              <div class="container-selector ml-60 mt-5">
+              <div class="container-selector ml-[200px] mt-5">
                 <label for="selector-butt-1" class="selector me-4">Year</label>
                 <select id="selector-butt-1" class="text-gray-800 select w-40">
                   <option value="2018">2018</option>
@@ -458,13 +456,13 @@ of the pandemic.
 
 
             <!--selctorsyear-->
-            <div class="w-full h-px bg-gray-200  mb-4"></div>
 
 
-            <div id="butterflychart_container" class="flex justify-center items-center w-full "></div>
+            <div id="butterflychart_container" class="flex justify-center items-center w-full -mb-10"></div>
             <!--slider-->
-            <p class="selector  ">Month: <span id="number-month" class="font-thin">01</span></p>
-
+            <p class="selector text-2xl ">Month <span id="number-month" class="font-thin text-2xl">01</span></p>
+           
+          
             <div class="flex flex-row items-center w-full justify-between">
               <label for="month-slider-butt" class="selector mr-4 whitespace-nowrap">Select month</label>
               <input type="range" id="month-slider-butt" min="1" max="12" value="1"
@@ -524,7 +522,6 @@ of the pandemic.
               <label for="country-selector-dumbbell-enrollments" class="selector me-4">Country</label>
               <select id="country-selector-dumbbell-enrollments" class="select"></select>
             </div>
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
 
             <div id="dumbbell-enrollments"></div>
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
@@ -548,7 +545,7 @@ of the pandemic.
               <label for="country-selector-dumbbell-unemployments" class="selector me-4">Country</label>
               <select id="country-selector-dumbbell-unemployments" class="select"></select>
             </div>
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
 
             <div id="dumbbell-unemployments"></div>
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
@@ -640,8 +637,6 @@ of the pandemic.
             </div>
             <div id="waffle-deaths-per-dot" class="w-full flex justify-center items-center gap-1"></div>
 
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
-
             <div id="waffle-chart-container" class="flex justify-center"></div>
 
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
@@ -669,7 +664,7 @@ of the pandemic.
               <option value="25-64">25-64</option>
               <option value="65+">65+</option>
             </select>
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
             <div id="bar-chart-health-container"></div>
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
 
@@ -726,13 +721,11 @@ of the pandemic.
               </select>
             </div>
 
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
             <div id="map-container-bubble"></div>
 
             <!--Switch-->
+            <span id="number-date" class="w-fit justify-center -mb-10"></span>
             <div class="flex-1 w-full">
-               <p class="selector  ">Month: <span id="number-month" class="font-thin">01</span></p>
-
               <div class="flex items-center gap-4">
                 <!-- year selector -->
                 <div class="w-full">

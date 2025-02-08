@@ -8,7 +8,7 @@ function ButterflyChart() {
   })).then(inflation => {
     const margin = { top: 40, right: 40, bottom: 40, left: 90 };
     const width = 400;
-    const height = 500;
+    const height = 750;
 
     const container = d3.select("#butterflychart_container")
       .style("display", "flex")
@@ -57,9 +57,11 @@ function ButterflyChart() {
         .attr("x", width / 2)
         .attr("y", margin.top / 2)
         .attr("text-anchor", "middle")
-        .text(`Inflation Comparison by Country (${year})`);
+        .text(`Inflation Comparison by Country (${year})`)
+        .style("font-size", "40px");
 
-      svg.append("g").attr("class", "y-axis");
+      svg.append("g").attr("class", "y-axis")
+      .style("font-size", "14px");
 
       
       svg.append("g").attr("class", "bars");
@@ -109,7 +111,7 @@ function ButterflyChart() {
         const yScale = d3.scaleBand()
           .domain(filteredData.map(d => d.country))
           .range([margin.top, height - margin.bottom])
-          .padding(0.1);
+          .padding(0.2);
 
         const maxValue = d3.max(filteredData, d => Math.abs(d.value));
 
