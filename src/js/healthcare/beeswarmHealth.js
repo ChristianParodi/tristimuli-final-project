@@ -56,8 +56,23 @@ function beeswarm() {
 
     // Axes
     svg.append("g")
-        .attr("transform", `translate(0,${height})`)
-        .call(d3.axisBottom(xScale).tickFormat(d => `${d}%`));
+        .attr("transform", `translate(0,${height - 5})`)
+        .call(d3.axisBottom(xScale).tickFormat(d => `${d}%`))
+        .selectAll("text")
+        .style("font-size", "14px");
+
+    const tickss = xScale.ticks(10);
+
+    tickss.forEach(tick => {
+        svg.append("line")
+            .attr("x1", xScale(tick))
+            .attr("x2", xScale(tick))
+            .attr("y1", 0)
+            .attr("y2", height)
+            .attr("stroke", "black")
+            .attr("stroke-width", 1)
+            .attr("stroke-dasharray", "4,4");
+    });
 
     svg.append("text")
         .attr("x", width / 2)
@@ -178,8 +193,8 @@ function beeswarm() {
                 tooltip.style("opacity", "0.9")
                     .html(`
                         <strong>Country:</strong> ${d.country}<br>
-                        <strong>Deaths (%):</strong> ${d.percDeaths}<br>
-                        <strong>Health expenditure:</strong> ${d3.format(",")(+d.healthExp)}`)
+                        <strong>Deaths:</strong> ${d.percDeaths}%<br>
+                        <strong>Health expenditure:</strong> ${d3.format(",")(+d.healthExp)}€`)
                     .style("color", "black");
             })
             .on("mousemove", (event) => {
