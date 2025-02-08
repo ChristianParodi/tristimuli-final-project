@@ -97,19 +97,30 @@ function mapBubble() {
   const minHealth = d3.min(healthValues);
   const maxHealth = d3.max(healthValues);
 
-  // Creiamo una scala di colori per la leggenda
-  const colorScale = d3.scaleThreshold()
-    .domain(d3.range(minHealth, maxHealth, (maxHealth - minHealth) / 6))
-    .range(["#E3FCE8", "#C1EFC3", "#9FE29E", "#7DD579", "#5BC854", "#3BAA3A", "#1B8F20", "#007B44"]);
+// Estendiamo il dominio per includere 4 intervalli extra
+const extendedDomain = [...healthValues, 67952, 80000, 100000, 120000];  // Aggiungiamo i valori superiori, in base ai tuoi requisiti
 
-  const legendRanges = [
-    { label: "Not Available", color: "white" },
-    ...d3.range(minHealth, maxHealth, (maxHealth - minHealth) / 6).map((d, i, arr) => ({
-      label: `${d.toFixed(0)} - ${(arr[i + 1] || maxHealth).toFixed(0)}`,
-      color: colorScale(d)
-    }))
-  ];
+// Creiamo una nuova scala di colori che va dal verde scuro al nero per gli intervalli extra
+const colorScale = d3.scaleQuantile()
+  .domain(extendedDomain)  // Usa il dominio esteso
+  .range([
+    "#E3FCE8", "#C1EFC3", "#9FE29E", "#7DD579", "#5BC854", "#3BAA3A", "#1B8F20", "#007B44",
+    "#006633", "#004D26", "#00321D", "#00170F", "#000000"  // Colori dal verde scuro al nero per gli intervalli più alti
+  ]);
 
+// Otteniamo i quantili dalla scala estesa
+const quantiles = colorScale.quantiles();
+
+// Aggiungiamo i nuovi intervalli alla legenda
+const legendRanges = [
+  { label: "Not Available", color: "white" },
+  ...quantiles.map((d, i, arr) => ({
+    label: `${i === 0 ? d3.min(healthValues).toFixed(0) : arr[i - 1].toFixed(0)} - ${d.toFixed(0)}`,
+    color: colorScale(d)
+  })),
+  { label: `>131696`, color: colorScale(quantiles[quantiles.length - 1]) } // Impostiamo l'ultima label come ">36144"
+];
+  
   // const colorScale = d3.scaleQuantile()
   //   .domain(healthValues)
   //   .range(d3.schemeGreens[7]);
@@ -126,7 +137,7 @@ function mapBubble() {
   // Creiamo il gruppo della legenda
   const legend = svg.append("g")
     .attr("id", "legend")
-    .attr("transform", `translate(${width - 900}, ${height - 180})`);  // Aggiustato il margine a seconda della posizione
+    .attr("transform", `translate(${width - 900}, ${height - 400})`);  // Aggiustato il margine a seconda della posizione
 
   // Aggiungiamo il titolo della legenda
   legend.append("text")
@@ -249,8 +260,11 @@ function mapBubble() {
         <div class="flex flex-col items-center">
           <div style="font-weight: bold;">Health Spending</div>
           <div style="font-size: 22px; font-weight: bold; color: black;">
-            ${healthByCountry.get(d.country) || "N/A"}
-          </div>
+          ${healthByCountry.get(d.country) && !isNaN(healthByCountry.get(d.country)) ? 
+            (healthByCountry.get(d.country) > 1000 ? 
+                healthByCountry.get(d.country).toLocaleString() + ' Bil' : 
+                healthByCountry.get(d.country).toLocaleString() + ' Mil') 
+            : "N/A"}          </div>
         </div>
 
       </div>
