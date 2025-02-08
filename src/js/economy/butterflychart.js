@@ -138,7 +138,7 @@ function ButterflyChart() {
           .attr("y", d => yScale(d.country))
           .attr("width", d => Math.abs(xScale(d.value) - xScale(0)))
           .attr("height", yScale.bandwidth())
-          .attr("fill", d => d.value > 0 ? "#11AD39" : "#CC2D28");
+          .attr("fill", d => d.value > 0 ? "#03A059" : "#E94F37");
 
         const labels = svg.select(".bars").selectAll(".country-label").data(filteredData, d => d.country);
 

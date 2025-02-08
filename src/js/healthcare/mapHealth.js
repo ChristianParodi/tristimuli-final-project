@@ -78,6 +78,20 @@ function mapBubble() {
   const minDate = d3.min(processedData.cases, d => new Date(d.year, d.month, 0));
   const maxDate = d3.max(processedData.cases, d => new Date(d.year, d.month, 0));
 
+  // Set date labels for slider
+  const dateRange = maxDate.getTime() - minDate.getTime();
+  const dateStep = dateRange / 4;
+  const dateTicks = Array.from({ length: 6 }, (_, i) => new Date(minDate.getTime() + (dateStep * i)));
+  const dateTickLabels = dateTicks.map(date =>
+    `${date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}/${date.getFullYear()}`
+  );
+
+  d3.select("#min-year-text-2").text(dateTickLabels[0]);
+  d3.select("#year-1-text-2").text(dateTickLabels[1]);
+  d3.select("#year-2-text-2").text(dateTickLabels[2]);
+  d3.select("#year-3-text-2").text(dateTickLabels[3]);
+  d3.select("#max-year-text-2").text(dateTickLabels[4]);
+
   // Definiamo la scala dei colori per la spesa sanitaria
   const healthValues = expendituresData.map(d => d.health);
   const minHealth = d3.min(healthValues);
@@ -86,16 +100,16 @@ function mapBubble() {
   // Creiamo una scala di colori per la leggenda
   const colorScale = d3.scaleLinear()
     .domain([minHealth, maxHealth])
-    .range(["#f6e7e5", "#8B0000"]);
+    .range(["#E3FCE8", "#007B44"]);
 
 
   // Definiamo i range per la legenda in base ai dati effettivi
   const legendRanges = [
     { label: `Not Available`, color: "white" },
-    { label: `${minHealth.toFixed(0)} - ${(minHealth + (maxHealth - minHealth) * 0.25).toFixed(0)}`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.125) },
-    { label: `${(minHealth + (maxHealth - minHealth) * 0.25).toFixed(0)} - ${(minHealth + (maxHealth - minHealth) * 0.5).toFixed(0)}`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.375) },
-    { label: `${(minHealth + (maxHealth - minHealth) * 0.5).toFixed(0)} - ${(minHealth + (maxHealth - minHealth) * 0.75).toFixed(0)}`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.625) },
-    { label: `${(minHealth + (maxHealth - minHealth) * 0.75).toFixed(0)} - ${maxHealth.toFixed(0)}`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.875) }
+    { label: `${minHealth.toFixed(0)} Mil - ${(minHealth + (maxHealth - minHealth) * 0.25).toFixed(0)} Bil`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.125) },
+    { label: `${(minHealth + (maxHealth - minHealth) * 0.25).toFixed(0)} Bil - ${(minHealth + (maxHealth - minHealth) * 0.5).toFixed(0)} Bil`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.375) },
+    { label: `${(minHealth + (maxHealth - minHealth) * 0.5).toFixed(0)} Bil - ${(minHealth + (maxHealth - minHealth) * 0.75).toFixed(0)} Bil`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.625) },
+    { label: `${(minHealth + (maxHealth - minHealth) * 0.75).toFixed(0)} Bil - ${maxHealth.toFixed(0)} Bil`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.875) }
   ];
 
   // Creiamo il gruppo della legenda
@@ -148,8 +162,6 @@ function mapBubble() {
     .attr("value", minDate.getTime())
     .property("value", minDate.getTime());
 
-  d3.select("#min-year-text-2").text(`${minDate.getMonth() + 1}/${minDate.getFullYear()}`);
-  d3.select("#max-year-text-2").text(`${maxDate.getMonth() + 1}/${maxDate.getFullYear()}`);
 
   function updateMap() {
     const selectedMetric = dataSelector.value; // cases, deaths, vaccines
@@ -167,7 +179,7 @@ function mapBubble() {
     // Creiamo una scala di colori per la spesa sanitaria
     const healthByCountry = new Map(expendituresData.map(d => [d.country, d.health]));
     const maxHealth = d3.max(expendituresData, d => d.health);
-    const colorScale = d3.scaleLinear().domain([0, maxHealth]).range(["#f6e7e5", "#8B0000"]);
+    const colorScale = d3.scaleLinear().domain([0, maxHealth]).range(["#E3FCE8", "#007B44"]);
 
     const maxValue = d3.max(selectedData, d => d[selectedMetric]);
     const radiusScale = d3.scaleSqrt().domain([0, maxValue]).range([4, 30]);
@@ -200,7 +212,7 @@ function mapBubble() {
         tooltip
           .style("opacity", 1)
           .html(`
-      <div style="font-size: 14px; "> MM/YYYY: ${d.month}/${d.year} </div>
+      <div style="font-size: 14px; "> ${d.month}/${d.year} </div>
         <div style="font-size: 18px; font-weight: bold;">${d.country}  </div>
 
         <hr class="border-t border-gray-300 my-1">

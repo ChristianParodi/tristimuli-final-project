@@ -1,3 +1,58 @@
+function drawLegend(newCasesData) {
+    const legendWidth = 590;  // Aumentato per dare più spazio orizzontale
+    const legendHeight = 200;
+    const legendMargin = 15;
+    const legendRadius = 40;
+    const svgLegend = d3.select('#bubble-percentage-legend')
+      .append('svg')
+      .attr('width', legendWidth)
+      .attr('height', legendHeight)
+      .style('border', '1px solid white')
+      .style("border-radius", '0.3rem')
+
+    const legendGroup = svgLegend.append('g')
+      .attr("transform", `translate(${legendMargin}, ${legendHeight / 2})`);  // Centra verticalmente
+
+    const minCases = d3.min(newCasesData);
+    const maxCases = d3.max(newCasesData);
+
+    const legendData = [
+        { scale: 1 / 4, x: 0 },
+        { scale: 1 / 2, x: legendRadius * 5 },  // Distanza tra le palle
+        { scale: 1, x: legendRadius * 10 }
+    ];
+
+    legendData.forEach(d => {
+      const newCases = minCases + (maxCases - minCases) * d.scale;
+      const populationText = Math.round(newCases).toLocaleString();
+
+      // Crea il cerchio
+      legendGroup.append('circle')
+        .attr('cx', d.x)
+        .attr('cy', 0)
+        .attr('r', legendRadius * d.scale)
+        .attr('fill', 'none')
+        .attr('stroke', 'white');
+
+      // Crea la linea che va dal cerchio
+      legendGroup.append('line')
+        .attr('x1', d.x)
+        .attr('y1', 0)
+        .attr('x2', d.x)
+        .attr('y2', legendRadius * d.scale )  // Lunghezza della linea
+        .attr('stroke', 'white');
+
+      // Aggiungi il testo accanto alla palla
+      legendGroup.append('text')
+        .attr('x', d.x + legendRadius * d.scale + 10)
+        .attr('y', d.y )
+        .attr('dominant-baseline', 'middle')
+        .attr('fill', 'white')
+        .text(`${populationText} cases`);
+    });
+}
+
+
 function BubbleChart() {
     Promise.all([
         d3.csv("./../../../dataset/TOURISM/clean/tourism_final.csv", d => {
@@ -37,8 +92,6 @@ function BubbleChart() {
         const width = 900;
         const height = 420;
 
-        console.log(combinedData)
-        console.log("Dati combinati:", combinedData.map(d => ({ country: d.country, inbound: d.inbound })));
 
 
         const svg = d3.select("#bubblechart_container_2")
