@@ -118,7 +118,7 @@ const legendRanges = [
     label: `${i === 0 ? d3.min(healthValues).toFixed(0) : arr[i - 1].toFixed(0)} - ${d.toFixed(0)}`,
     color: colorScale(d)
   })),
-  { label: `>131697`, color: colorScale(quantiles[quantiles.length - 1]) } // Impostiamo l'ultima label come ">36144"
+  { label: `>131697`, color: colorScale(quantiles[quantiles.length ]) } // Impostiamo l'ultima label come ">36144"
 ];
   
   // const colorScale = d3.scaleQuantile()
