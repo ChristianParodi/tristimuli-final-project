@@ -601,7 +601,7 @@ video {
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.5rem;
+  gap: 1.5rem;
   align-self: flex-end;
   border-radius: 0.5rem;
   border-width: 1px;
@@ -1178,10 +1178,6 @@ video {
   border-width: 1px;
 }
 
-.border-l{
-  border-left-width: 1px;
-}
-
 .border-r{
   border-right-width: 1px;
 }
@@ -1500,6 +1496,10 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+.underline{
+  text-decoration-line: underline;
+}
+
 .accent-blue-500{
   accent-color: #3b82f6;
 }
@@ -1592,12 +1592,13 @@ span,
 text,
 label {
   font-family: 'Fira Sans', sans-serif;
+  color: #ccc;
 }
 
 .corpus{
   max-width: 56rem;
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+  color: rgb(204 204 204 / var(--tw-text-opacity, 1));
 }
 
 .container-selector{
