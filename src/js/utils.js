@@ -94,7 +94,7 @@ async function loadLockdown() {
 }
 
 async function loadGDP() {
-  return await d3.csv("../dataset/GDP/clean/estat_namq_10_gdp_filtered.csv");
+  return await d3.csv("../../dataset/GDP/clean/estat_namq_10_gdp_filtered.csv");
 }
 
 async function loadInflation() {
