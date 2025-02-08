@@ -64,10 +64,6 @@ function beeswarm() {
         .attr("y", height + 40)
         .style("text-anchor", "middle")
         .text("Percentage of Deaths Due to Mental Disorders")
-        .style("color", "black");
-
-    svg.selectAll("path, line").style("stroke", "black").style("color", "black");
-    svg.selectAll(" .tick").style("color", "black");
 
     const years = Array.from(new Set(data.map(d => +d.year)));
     let currentYear = d3.min(years);
@@ -84,7 +80,6 @@ function beeswarm() {
         .data(years)
         .enter()
         .append("p")
-        .attr("class", "text-black")
         .text(d => d);
 
     const simulation = d3.forceSimulation()
@@ -157,16 +152,14 @@ function beeswarm() {
         circlesEnter.append("clipPath")
             .attr("id", d => `circle-clip-${d.country}-${d.year}`)
             .append("circle")
-            .style("stroke", "black")
             .style("stroke-width", "2px")
             .attr("r", d => d.percDeaths === 0 ? 0 : radiusScale(+d.healthExp));
 
         circlesEnter.append("circle")
             .attr("class", "circle")
             .attr("clip-path", d => `url(#circle-clip-${d.country}-${d.year})`)
-            .style("fill", "black")
             .style("opacity", 0.8)
-            .style("stroke", "black")
+            .style("stroke", "white")
             .style("stroke-width", "2px");
 
         circles.merge(circlesEnter)
@@ -174,7 +167,7 @@ function beeswarm() {
             .duration(750)
             .attr("transform", d => `translate(${d.x},${d.y})`)
             .select("circle")
-            .style("stroke", "black")
+            .style("stroke", "white")
             .style("stroke-width", "2px")
             .attr("r", d => d.percDeaths === 0 ? 0 : radiusScale(+d.healthExp));
 

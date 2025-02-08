@@ -38,8 +38,6 @@
         color: white;
       }
 
-
-
       /* Applica lo stile solo agli elementi NON contenuti in #slider-range */
       :not(#slider-range) path,
       :not(#slider-range) line {
@@ -85,7 +83,7 @@
 
       path,
       line {
-        stroke: white;
+        stroke: rgb(204, 204, 204);
       }
 
       .track-overlay {
@@ -93,11 +91,11 @@
       }
 
       text {
-        fill: white;
+        fill: rgb(204, 204, 204);
       }
 
       .tick {
-        color: white !important;
+        color: rgb(204, 204, 204) !important;
       }
 
       @keyframes drawTriangle {
@@ -231,7 +229,7 @@
               </select>
             </div>
             <!-- end select metric  -->
-    
+
             <div id="map-covid-container" class="self-center"></div>
             <span id="map-label" class="w-fit"></span>
             <!--Switch-->
@@ -395,12 +393,23 @@
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
 
             <p class="corpus">
-              Nel seguente plot sono riportati i dati dei turisti in entrata nel paese che viene rappresentato dalla grandezza della bandiera, rispetto ai valori dei casi totali di infetti (x axis), rappresentato come percentuale rispetto al numero della popolazione e al numero di vaccinati sempre rappresentato come percentuale rispetto al numero della popolazione, in cui viene fatto riferimento ai vaccinati e agli infetti in quell'anno. 
+              Nel seguente plot sono riportati i dati dei turisti in entrata nel paese che viene rappresentato dalla
+              grandezza della bandiera, rispetto ai valori dei casi totali di infetti (x axis), rappresentato come
+              percentuale rispetto al numero della popolazione e al numero di vaccinati sempre rappresentato come
+              percentuale rispetto al numero della popolazione, in cui viene fatto riferimento ai vaccinati e agli
+              infetti in quell'anno.
 
-Dal plot si può osservare come dal 2020 al 2022 ci sia stato un forse incremento degli infetti, in cui vediamo pesi come la Francia che hanno avuto una percentuale del 3,53% nel 2020, al 9,61% nel 2021, fino al 44,18% nel 2022, ovvero una crescita del 40,65% dal 2020 al 2022 e andamenti molto simili sono visibile anche in paesi come la Germania e l'Italia, mentre andamenti diversi vengono riscontrati in paesi come la Polonia in cui si passa da un 3,38% nel 2020,  7,33% nel 2022 fino ad una diminuzione dell'1,44% nel 2022 (percentuale del 2022: 5,89%).
+              Dal plot si può osservare come dal 2020 al 2022 ci sia stato un forse incremento degli infetti, in cui
+              vediamo pesi come la Francia che hanno avuto una percentuale del 3,53% nel 2020, al 9,61% nel 2021, fino
+              al 44,18% nel 2022, ovvero una crescita del 40,65% dal 2020 al 2022 e andamenti molto simili sono visibile
+              anche in paesi come la Germania e l'Italia, mentre andamenti diversi vengono riscontrati in paesi come la
+              Polonia in cui si passa da un 3,38% nel 2020, 7,33% nel 2022 fino ad una diminuzione dell'1,44% nel 2022
+              (percentuale del 2022: 5,89%).
 
-Nel 2021, la maggior parte dei paesi ha avuto una percentuale di vaccinazione molto elevata.
-Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,76%) hanno registrato livelli molto alti. Nel 2022, invece, la percentuale di nuove vaccinazioni è crollata drasticamente, con valori intorno al 2-4% nella maggior parte dei paesi.
+              Nel 2021, la maggior parte dei paesi ha avuto una percentuale di vaccinazione molto elevata.
+              Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,76%) hanno registrato
+              livelli molto alti. Nel 2022, invece, la percentuale di nuove vaccinazioni è crollata drasticamente, con
+              valori intorno al 2-4% nella maggior parte dei paesi.
             </p>
 
           </div>
@@ -475,8 +484,8 @@ Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,
             <div id="butterflychart_container" class="flex justify-center items-center w-full -mb-10"></div>
             <!--slider-->
             <p class="selector text-2xl ">Month <span id="number-month" class="font-thin text-2xl">01</span></p>
-           
-          
+
+
             <div class="flex flex-row items-center w-full justify-between">
               <label for="month-slider-butt" class="selector mr-4 whitespace-nowrap">Select month</label>
               <input type="range" id="month-slider-butt" min="1" max="12" value="1"
@@ -547,7 +556,7 @@ Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,
               decline in university enrollments. However, further analysis indicates that while the immediate impact was
               significant, the overall long-term trend in enrollments has since stabilized and shows only minor
               deviations from historical patterns. In some countries, educational enrollment trends changed after
-              COVID-19—such as in <strong>Czechia</strong>—although overall, the trends remained stable.
+              COVID-19, such as in <strong>Czechia</strong>, although overall, the trends remained stable.
 
               Moreover, across Europe, females tend to enroll in higher education more frequently than males. However,
               exceptions exist; for example, in <strong>Germany</strong>, <strong>Greece</strong> and
@@ -691,12 +700,14 @@ Ad esempio, Italia (81,26%), Francia (80,31%), Portogallo (90,16%) e Spagna (82,
             <h3 class="plot-title">Bar Chart title</h3>
             <div class="flex justify-center items-center gap-4 mt-4 w-full">
               <div class="relative w-[30%] border-[1px] border-[#ffffff7d] rounded-md">
-              <div id="overlay" class="absolute inset-0 bg-blue-500 rounded-md transition-transform duration-300 w-1/3"></div>
-              <div class="flex">
-                <button id="total-button" class="relative z-10 px-4 py-2 text-white w-1/3">Total</button>
-                <button id="sex-button" class="relative z-10 px-4 py-2 text-white w-1/3 border-r border-[#ffffff7d] rounded-md">Sex</button>
-                <button id="age-button" class="relative z-10 px-4 py-2 text-white w-1/3">Age</button>
-              </div>
+                <div id="overlay"
+                  class="absolute inset-0 bg-blue-500 rounded-md transition-transform duration-300 w-1/3"></div>
+                <div class="flex">
+                  <button id="total-button" class="relative z-10 px-4 py-2 text-white w-1/3">Total</button>
+                  <button id="sex-button"
+                    class="relative z-10 px-4 py-2 text-white w-1/3 border-r border-[#ffffff7d] rounded-md">Sex</button>
+                  <button id="age-button" class="relative z-10 px-4 py-2 text-white w-1/3">Age</button>
+                </div>
               </div>
             </div>
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->

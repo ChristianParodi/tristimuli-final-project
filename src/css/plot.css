@@ -24,6 +24,7 @@ span,
 text,
 label {
   font-family: 'Fira Sans', sans-serif;
+  color: #ccc;
 }
 
 @layer components {
@@ -62,7 +63,7 @@ label {
 }
 
 .corpus {
-  @apply text-white max-w-4xl;
+  @apply text-[#ccc] max-w-4xl;
 }
 
 .container-selector {
