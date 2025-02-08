@@ -194,7 +194,7 @@ function beeswarm() {
                     .html(`
                         <strong>Country:</strong> ${d.country}<br>
                         <strong>Deaths:</strong> ${d.percDeaths}%<br>
-                        <strong>Health expenditure:</strong> ${d3.format(",")(+d.healthExp)}€`)
+                        <strong>Health expenditure:</strong> ${(+d.healthExp > 1000) ? (d3.format(",")((+d.healthExp / 1000).toFixed(2)) + 'B€') : (d3.format(",")(+d.healthExp) + 'M€')}`)
                     .style("color", "black");
             })
             .on("mousemove", (event) => {
@@ -242,7 +242,7 @@ function beeswarm() {
 
 
     function drawLegend() {
-        const legendData = [1000, 10000, 50000, 100000, 200000]; // Example expenditure values
+        const legendData = [500, 10000, 50000, 100000, 200000]; // Example expenditure values
 
         let total = 0;
         legendData.forEach(d => {
@@ -288,7 +288,7 @@ function beeswarm() {
             .attr("dy", "0.35em")
             .style("font-size", "14px")
             .style("text-anchor", "middle")
-            .text(d => `${d3.format(",")(d)}€`);
+            .text(d => `${(+d > 1000) ? (d3.format(",")((+d / 1000).toFixed(2)) + 'B€') : (d3.format(",")(+d) + 'M€')}`);
 
         legendSvg.append("text")
             .attr("x", -10)
