@@ -329,7 +329,7 @@
 
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
 
-
+            
             <p class="corpus">
               The plot shows the trend of house prices and the Gross Domestic Product (GDP)
               in the various quarters from 2020 to 2023, maintaining the relationship with
@@ -344,7 +344,31 @@
               while if it is negative, it means there has been an economic contraction.
               Meanwhile, the house price provides an overall overview of the real estate
               price trends, showing the percentage change in house prices compared to the
-              previous quarter.
+              previous quarter.</p>
+              <p class="corpus">
+              GDP has experienced more pronounced fluctuations compared to house prices, 
+              showing greater sensitivity to economic shocks. The data indicates that the 
+              impact of the pandemic was most evident in the early quarters of 2020, while 
+              in the following years, a gradual normalization of the economy was observed.
+
+Due to the pandemic, GDP saw a sharp decline, especially in the first two quarters of 2020, 
+with negative values for almost all European countries. In Italy, where the country was under 
+lockdown from March 9, 2020, to May 18, 2020, GDP dropped by <span class="text-[#E94F37]">-5.8%</span> in the first quarter (Q1)
+ and by <span class="text-[#E94F37]">-12.3%</span> in the second quarter (Q2). After the reopening in the third quarter (Q3), GDP 
+ rebounded significantly in many countries (Italy +14.4%, Spain +15.9%, France +15.6%). In general,
+  for most countries, from 2021 onwards, a gradual recovery was observed without extreme peaks until 2023.
+
+Regarding house prices, a different trend can be observed, with greater resilience compared to 
+GDP. In Italy, for example, in the second quarter (Q2) of 2020, there was an increase of +3%, 
+followed by a slight decrease of <span class="text-[#E94F37]">-2.5% </span>in the third quarter (Q3). In the 2021-2023 period, 
+the situation varies across different countries: in Italy, moderate fluctuations between positive and negative values were recorded,
+ while in other countries, such as Luxembourg, a continuous decline in prices has been observed since the last quarter of 2023.
+
+Finally, the data shows that the months with the highest number of new COVID-19 cases were at 
+the end of 2021 and the beginning of 2022. However, likely thanks to the widespread distribution 
+of vaccines, these peaks did not lead to prolonged lockdowns or significant declines in GDP 
+and house prices, indicating a greater ability of the economy to adapt compared to the early stages 
+of the pandemic.
             </p>
 
 
@@ -369,19 +393,7 @@
 
             <p class="corpus">
               The plot shows the trend of house prices and the Gross Domestic Product (GDP)
-              in the various quarters from 2020 to 2023, maintaining the relationship with
-              the number of new cases in the analyzed country. The GDP indicates the percentage
-              growth rate of real GDP, adjusted for seasonal fluctuations and calendar
-              irregularities. It tells you whether the economy is growing or contracting
-              compared to the previous quarter, by comparing consecutive periods without
-              distortions due to seasonality or calendar variations, as the data has been
-              adjusted for both seasonal effects (variations due to holidays, seasonal cycles)
-              and calendar differences (e.g., leap years). If the value is positive,
-              it means the economy has grown compared to the previous period,
-              while if it is negative, it means there has been an economic contraction.
-              Meanwhile, the house price provides an overall overview of the real estate
-              price trends, showing the percentage change in house prices compared to the
-              previous quarter.
+              in the various qua
             </p>
 
           </div>
@@ -560,7 +572,7 @@
               <div id="bubble-lockdown"></div>
               <div id="bubble-lockdown-legend" class="rounded-lg"></div>
             </div>
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+            <div class="w-full h-px bg-gray-200 mt-4"></div><!--line-->
 
             <p class="corpus">
               Another assumption we had was that prolonged lockdowns would have significantly impacted tertiary
@@ -718,19 +730,25 @@
             <div id="map-container-bubble"></div>
 
             <!--Switch-->
-            <div class="flex justify-between items-center mt-15 gap-14">
-              <div class="flex-1">
-                <label for="year-slider-2" class="block text-sm text-black font-medium mb-2">
-                  Select Year
-                </label>
-                <input type="range" id="year-slider-2" name="year-slider-2" class="w-full accent-blue-500">
-                <div class="flex justify-between text-sm text-gray-400">
-                  <span id="min-year-text-2"></span>
-                  <span id="max-year-text-2"></span>
-                </div>
-              </div>
+            <div class="flex-1 w-full">
+               <p class="selector  ">Month: <span id="number-month" class="font-thin">01</span></p>
 
+              <div class="flex items-center gap-4">
+                <!-- year selector -->
+                <div class="w-full">
+                  <label for="year-slider-2" class="selector me-4">
+                    Select Year
+                  </label>
+                  <input type="range" id="year-slider-2" name="year-slider-2" class="year-slider">
+                  <div class="flex justify-between text-sm text-gray-400 w-full">
+                    <span id="min-year-text-2"></span>
+                    <span id="max-year-text-2"></span>
+                  </div>
+                </div>
+                <!-- end year selector -->
+              </div>
             </div>
+            
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
 
             <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit,
