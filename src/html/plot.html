@@ -177,30 +177,31 @@
           <!-- Vertical Line -->
           <div class="absolute w-1 bg-gray-200 top-0 bottom-0 left-10 transform -translate-x-1/2 z-0"></div>
           <!-- Dots -->
-          <div class="absolute flex flex-col items-center space-y-20 z-10 top-[20%] left-7">
+          <div class="absolute flex flex-col items-center space-y-20 z-10 top-[10%] left-7">
             <div class="flex items-center gap-4 w-32">
               <a href="#home" class="dotss"></a>
-              <span class="px-2 py-1 rounded"><img src="./../../icon/home.svg" class="  block  w-7" /></span>
+              <span class="px-2 py-1 rounded"><img src="./../../icon/home.svg" class="block w-8 icon" /></span>
             </div>
             <div class="flex items-center gap-4 w-32">
               <a href="#section1" class="dotss"></a>
-              <span class="px-2 py-1 rounded"><img src="./../../icon/covid-19.svg" class="  block  w-9" /></span>
+              <span class="px-2 py-1 rounded"><img src="./../../icon/covid-19.svg" class="block w-8 icon" /></span>
             </div>
             <div class="flex items-center gap-4 w-32">
               <a href="#section2" class="dotss"></a>
-              <span class="px-2 py-1 rounded"><img src="./../../icon/dollar.svg" class=" block  w-7" /></span>
+              <span class="px-2 py-1 rounded"><img src="./../../icon/dollar.svg" class="block w-8 icon" /></span>
             </div>
             <div class="flex items-center gap-4 w-32">
               <a href="#section3" class="dotss "></a>
-              <span class="px-2 py-1 rounded"><img src="./../../icon/education.svg" class="  block w-7 " /></span>
+              <span class="px-2 py-1 rounded"><img src="./../../icon/education.svg" class="block w-8 icon" /></span>
             </div>
             <div class="flex items-center w-32">
               <a href="#section4" class="dotss mr-2"></a>
-              <span class="px-2 py-1 rounded"><img src="./../../icon/health.svg" class="  block w-7" /></span>
+              <span class="px-2 py-1 rounded"><img src="./../../icon/health.svg" class="block w-8 icon" /></span>
             </div>
             <div class="flex items-center gap-4 w-32">
               <a href="#section5" class="dotss"></a>
-              <span class="px-2 py-1 rounded"><img src="./../../icon/graphics-scale.svg" class=" block w-7" /></span>
+              <span class="px-2 py-1 rounded"><img src="./../../icon/graphics-scale.svg"
+                  class="block w-8 icon" /></span>
             </div>
           </div>
           <script src="../js/sideMenu.js"></script>
@@ -378,9 +379,9 @@ of the pandemic.
           <!--BUBBLECHART_2-->
           <div class="window mt-10">
 
-            <h3 class="plot-title">Tourism inbound during Covid</h3>
+            <h3 class="plot-title">Inbound tourism during Covid</h3>
             <div class="container-selector">
-              <label for="selector_year_2" class=" selector me-4">Select metric</label>
+              <label for="selector_year_2" class=" selector me-4">Select year</label>
               <select id="selector_year_2" class=" text-gray-800 select w-30"></select>
             </div>
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
@@ -602,8 +603,8 @@ of the pandemic.
             <h3 class="plot-title">Did COVID-19 affect the number of deaths for mental disorders?</h3>
 
             <div id="waffle-categories" class="flex flex-col gap-1">
-              <div class="container-selector ">
-                <p class="selector  me-4">Select the causes of deaths to show</p>
+              <div class="container-selector">
+                <p class="selector me-4">Select the causes of deaths:</p>
 
                 <div>
                   <input type="checkbox" id="waffle-covid" name="waffle-metric" value="COVID-19" checked
@@ -623,25 +624,24 @@ of the pandemic.
                 </div>
               </div>
             </div>
-            <div id="waffle-country">
-              <label class="selector me-4">Select country</p>
-                <select id="waffle-country-selector" class="text-black"></select>
+            <div id="waffle-country" class="container-selector">  
+              <label class="selector me-4">Select country</label>
+                <select id="waffle-country-selector" class="select text-black"></select>
             </div>
-
             <div id="waffle-years" class="w-full flex justify-around margin-top-4">
               <div class="container-selector ">
-                <label for="waffle-year-1" class="selector me-4">Select the first year</label>
-                <select id="waffle-year-1" class="text-black"></select>
+                <label for="waffle-year-1" class="selector me-4">Select the first year:</label>
+                <select id="waffle-year-1" class="select text-black"></select>
               </div>
               <div class="container-selector">
-                <label for="waffle-year-2" class=" selector me-4">Select the second year</label>
-                <select id="waffle-year-2" class="text-black"></select>
+                <label for="waffle-year-2" class="selector me-4">Select the second year:</label>
+                <select id="waffle-year-2" class="select text-black"></select>
               </div>
             </div>
+            <div id="waffle-deaths-per-dot" class="w-full flex justify-center items-center gap-1"></div>
 
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
 
-            <div id="waffle-deaths-per-dot" class="w-full flex justify-center items-center gap-1 "></div>
             <div id="waffle-chart-container" class="flex justify-center"></div>
 
             <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
@@ -662,7 +662,7 @@ of the pandemic.
             <h3 class="plot-title">Bar Chart title</h3>
             <div id="age-range-selector"></div>
             <label for="age-range">Select Age Range:</label>
-            <select id="age-range">
+            <select id="age-range" class="select">
               <option value="Total">All Ages</option>
               <option value="0-14">0-14</option>
               <option value="15-24">15-24</option>
@@ -762,7 +762,9 @@ of the pandemic.
         <div id="section5" class="min-h-screen flex flex-col items-center mb-20">
           <h2 class="text-3xl font-semibold my-10 mt-5">Outcomes</h2>
           <p class="corpus">
-            
+            Based on the visualizations presented above, the final outcomes underscore a series of notable trends and
+            concerning insights. These results not only highlight ongoing challenges but also call for further analysis
+            to better understand their implications.
           </p>
           <!-- Grid -->
           <div class="grid grid-cols-3 gap-4">
@@ -788,7 +790,7 @@ of the pandemic.
             </div>
             <!-- Education & Jobs: unemployment decreased after it -->
             <div class="p-4 flex flex-col items-center">
-              <h3 class="plot-title text-white mb-4 w-64">Unemployment increased</h3>
+              <h3 class="plot-title text-white mb-4 w-64">People earn less</h3>
               <div class="flex flex-col items-center border-2 border-gray-200 w-64 rounded-md p-4">
                 <div class="flex flex-col items-center gap-4">
                   <span class="text-gray-300 text-2xl">Unemployment change (2019-2023)</span>
@@ -798,7 +800,7 @@ of the pandemic.
             </div>
             <!-- Education & Jobs: enroll increase during covid, decrease after it -->
             <div class="p-4 flex flex-col items-center">
-              <h3 class="plot-title text-white mb-4 w-64">Universities were not impacted that much</h3>
+              <h3 class="plot-title text-white mb-4 w-64">Universities were not involved</h3>
               <div class="flex flex-col items-center border-2 border-gray-200 w-64 rounded-md p-4">
                 <div class="flex flex-col items-center gap-4">
                   <span class="text-gray-300 text-2xl">Tertiary enrollment change (2019-2023)</span>
@@ -808,8 +810,8 @@ of the pandemic.
             </div>
             <!-- Healthcare: generam mental disorders deaths decreased -->
             <div class="p-4 flex flex-col items-center">
-              <h3 class="plot-title text-white mb-4 w-64">Mental disorders deaths continue to decrease (including drugs,
-                alchool and Intentional self-harm)</h3>
+              <h3 class="plot-title text-white mb-4 w-64">Mental disorders deaths keep decreasing (incl. drugs, alcohol
+                & self-harm)</h3>
               <div class="flex flex-col items-center border-2 border-gray-200 w-64 rounded-md p-4">
                 <div class="flex flex-col items-center gap-4">
                   <span class="text-gray-300 text-2xl">Deaths change (2019-2021)</span>
@@ -834,7 +836,7 @@ of the pandemic.
     </div>
 
     <!-- COVID -->
-    <script type="module" src="./../js/covidspread/map.js"></script>
+    <script type="module" src="./../js/covidspread/map.js"></script> 
     <script type="module" src="./../js/covidspread/linechart.js"></script>
     <script type="module" src="./../js/covidspread/stackedbarchart.js"></script>
 
@@ -861,7 +863,7 @@ of the pandemic.
     <script type="module" src="../js/outcomes/enrollmentChange.js"></script>
     <script type="module" src="../js/outcomes/unemploymentChange.js"></script>
     <script type="module" src="../js/outcomes/mentalDeathsChange.js"></script>
-    <script type="module" src="../js/outcomes/mentalDisordersDeathsChange.js"></script>
+    <script type="module" src="../js/outcomes/mentalDisordersDeathsChange.js"></script> 
 
     <script type="module" src="./../js/utils.js"></script>
 
