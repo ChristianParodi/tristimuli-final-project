@@ -10,7 +10,7 @@ function barChartHealth() {
         !d.country.includes("Union") &&
         !d.country.includes("Metropolitan"));
 
-    let currentCategory = "Total";
+    let currentCategory = "total";
     const data = originalData.filter(d => d.age === "Total" && d.sex === "Total");
     const parentContainer = d3.select("#bar-chart-health-container").node().parentNode;
     const width = 1000;
@@ -35,8 +35,6 @@ function barChartHealth() {
         }
         return acc;
     }, {});
-
-    console.log(top10Countries);
 
     const avgDeaths = Object.entries(top10Countries).map(([country, values]) => ({
         country,
@@ -72,6 +70,10 @@ function barChartHealth() {
     const color = d3.scaleOrdinal()
         .domain(["pre2020", "post2020"])
         .range(["#1f77b4", "#ff7f0e"]);
+
+    const splitColor = d3.scaleOrdinal()
+        .domain(currentCategory === "sex" ? ["Males", "Females"] : ["15-64", "65"])
+        .range(currentCategory === "sex" ? ["steelblue", "#FF69B4"] : ["#673AB7", "#FFC107"]);
 
     const tooltip = d3.select('#bar-chart-health-container')
         .append('div')
@@ -193,6 +195,65 @@ function barChartHealth() {
         .attr("dy", "1.2em")
         .text("2020");
 
+    const yAxisPosition = svg.select(".x-axis").node().getBoundingClientRect().top + window.scrollY;
+    const container = d3.select("#bar-chart-overlay")
+        .style("right", "350px")
+        .style("top", `${yAxisPosition - (height / 1.5)}px`)
+        .style("width", "130px")
+        .style("height", "90px");
+
+    const legend = container.append("svg").append("g")
+        .attr("class", "legend")
+        .attr("transform", `translate(13, 23)`);
+
+    function getLegendData(category) {
+        if (category === "total") {
+            return [
+                { label: "2016-2019", color: "#1f77b4" },
+                { label: "2020-2023", color: "#ff7f0e" }
+            ];
+        } else if (category === "sex") {
+            return [
+                { label: "Males", color: "steelblue" },
+                { label: "Females", color: "#FF69B4" }
+            ];
+        } else {
+            return [
+                { label: "Under 65", color: "#673AB7" },
+                { label: "Over 65", color: "#FFC107" }
+            ];
+        }
+    }
+
+    let legendData = getLegendData(currentCategory);
+
+    const legendTitle = legend.append("text")
+        .attr("x", 0)
+        .attr("y", 0)
+        .text("Year Ranges")
+        .style("font-size", "18px")
+        .style("font-weight", "bold");
+
+    legend.selectAll("rect")
+        .data(legendData)
+        .enter()
+        .append("rect")
+        .attr("x", 0)
+        .attr("y", (d, i) => i * 25 + 10)
+        .attr("width", 20)
+        .attr("height", 20)
+        .attr("fill", d => d.color);
+
+    legend.selectAll(".legend-item")
+        .data(legendData)
+        .enter()
+        .append("text")
+        .attr("class", "legend-item")
+        .attr("x", 30)
+        .attr("y", (_, i) => i * 25 + 25)
+        .text(d => d.label)
+        .style("font-size", "16px");
+
     const bars = svg.append("g")
         .selectAll("g")
         .data(top10)
@@ -305,121 +366,139 @@ function barChartHealth() {
             .attr("height", 0)
             .remove();
 
-        if (currentCategory === "total") {
-            return;
-        }
+        if (currentCategory !== "total") {
 
-        const currentData = currentCategory === "sex" ? sexData : ageData;
 
-        const splitByCountry = currentData.reduce((acc, d) => {
-            if (!acc[d.country]) {
-                acc[d.country] = { pre2020: [], post2020: [] };
-            }
-            if (d.year < 2020) {
-                acc[d.country].pre2020.push(d);
-            } else {
-                acc[d.country].post2020.push(d);
-            }
-            return acc;
-        }, {});
 
-        const splitAvgDeaths = Object.entries(splitByCountry).map(([country, values]) => {
-            const pre2020 = d3.groups(values.pre2020, d => d[currentCategory]).map(([key, group]) => ({
-                key,
-                value: d3.mean(group.filter(d => d.deaths > 0), d => d.deaths)
-            }));
-            const post2020 = d3.groups(values.post2020, d => d[currentCategory]).map(([key, group]) => ({
-                key,
-                value: d3.mean(group.filter(d => d.deaths > 0), d => d.deaths)
-            }));
+            const currentData = currentCategory === "sex" ? sexData : ageData;
 
-            const pre2020Total = pre2020.find(d => d.key === "Total").value;
-            const post2020Total = post2020.find(d => d.key === "Total").value;
-
-            if (pre2020.length > 1) {
-                pre2020[1].value = pre2020Total - pre2020[0].value;
-            }
-            if (post2020.length > 1) {
-                post2020[1].value = post2020Total - post2020[0].value;
-            }
-
-            return {
-                country,
-                pre2020: pre2020Total,
-                post2020: post2020Total,
-                pre2020Split: pre2020.filter(d => d.key !== "Total").sort((a, b) => d3.ascending(a.key, b.key)),
-                post2020Split: post2020.filter(d => d.key !== "Total").sort((a, b) => d3.ascending(a.key, b.key))
-            };
-        });
-
-        const splitColor = d3.scaleOrdinal()
-            .domain(currentCategory === "sex" ? ["Males", "Females"] : ["15-64", "65"])
-            .range(currentCategory === "sex" ? ["steelblue", "#FF69B4"] : ["#673AB7", "#FFC107"]);
-
-        splitAvgDeaths.forEach(d => {
-            ["pre2020", "post2020"].forEach(key => {
-                const splitValues = d[`${key}Split`];
-                let yOffset = 0;
-                splitValues.forEach(split => {
-                    svg.append("rect")
-                        .datum({ country: d.country, key: split.key, value: split.value, period: key, perc: (split.value / d[key] * 100).toFixed(2) })
-                        .attr("class", "split-rect")
-                        .attr("x", x0(d.country) + x1(key))
-                        .attr("y", y(d[key]) - yOffset)
-                        .attr("width", x1.bandwidth())
-                        .attr("height", 0)
-                        .attr("fill", splitColor(split.key))
-                        .attr("opacity", 1)
-                        .transition()
-                        .duration(500)
-                        .attr("height", y(d[key] - split.value) - y(d[key]));
-                    yOffset += y(d[key]) - y(d[key] - split.value);
-                });
-            });
-        });
-
-        svg.selectAll(".split-rect")
-            .on("mouseover", function (event, d) {
-                let tooltipText;
-                if (currentCategory == "sex") {
-                    tooltipText = `<h2 class="text-center m-0 font-bold">${d.country}</h2>
-                         <div class="flex flex-col items-center">
-                            <p class="m-0 text-black">Average annual ${d.key.toLowerCase()}
-                            deaths from ${d.period === "pre2020" ? "2016 to 2019" : "2020 to 2023"}</p>
-                            <p class="m-0 text-black"><b>${d.value.toFixed(0)}</b> - ${d.perc}% of all deaths</p>
-                         </div>`;
+            const splitByCountry = currentData.reduce((acc, d) => {
+                if (!acc[d.country]) {
+                    acc[d.country] = { pre2020: [], post2020: [] };
+                }
+                if (d.year < 2020) {
+                    acc[d.country].pre2020.push(d);
                 } else {
-                    tooltipText = `<h2 class="text-center m-0 font-bold">${d.country}</h2>
-                         <div class="flex flex-col items-center">
-                            <p class="m-0 text-black">Average annual deaths for age group ${d.key === "15-64" ? "below 65" : "65 and over"}
-                            from ${d.period === "pre2020" ? "2016 to 2019" : "2020 to 2023"}</p>
-                            <p class="m-0 text-black"><b>${d.value.toFixed(0)}</b> - ${d.perc}% of all deaths</p>
-                         </div>`;
+                    acc[d.country].post2020.push(d);
+                }
+                return acc;
+            }, {});
+
+            const splitAvgDeaths = Object.entries(splitByCountry).map(([country, values]) => {
+                const pre2020 = d3.groups(values.pre2020, d => d[currentCategory]).map(([key, group]) => ({
+                    key,
+                    value: d3.mean(group.filter(d => d.deaths > 0), d => d.deaths)
+                }));
+                const post2020 = d3.groups(values.post2020, d => d[currentCategory]).map(([key, group]) => ({
+                    key,
+                    value: d3.mean(group.filter(d => d.deaths > 0), d => d.deaths)
+                }));
+
+                const pre2020Total = pre2020.find(d => d.key === "Total").value;
+                const post2020Total = post2020.find(d => d.key === "Total").value;
+
+                if (pre2020.length > 1) {
+                    pre2020[1].value = pre2020Total - pre2020[0].value;
+                }
+                if (post2020.length > 1) {
+                    post2020[1].value = post2020Total - post2020[0].value;
                 }
 
-                tooltip.style("opacity", "0.9")
-                    .html(tooltipText);
-
-                svg.selectAll(".bar").style("opacity", 0);
-
-                svg.selectAll(".split-rect")
-                    .filter(rect => rect.country !== d.country)
-                    .style("opacity", 0.3);
-            })
-            .on("mousemove", function (event, d) {
-                const hoveredRect = d3.select(this);
-                const hoveredRectY = hoveredRect.node().getBoundingClientRect().bottom + window.scrollY;
-                const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
-                const tooltipHeight = tooltip.node().getBoundingClientRect().height;
-                tooltip
-                    .style('left', `${svgLeft + x0(d.country) + (d.period === "pre2020" ? 3 : 4) * x1("post2020") + 5}px`)
-                    .style('top', `${hoveredRectY - tooltipHeight - 2}px`);
-            })
-            .on("mouseout", function () {
-                tooltip.style("opacity", "0");
-                svg.selectAll(".split-rect").style("opacity", 1);
-                svg.selectAll(".bar").style("opacity", 1);
+                return {
+                    country,
+                    pre2020: pre2020Total,
+                    post2020: post2020Total,
+                    pre2020Split: pre2020.filter(d => d.key !== "Total").sort((a, b) => d3.ascending(a.key, b.key)),
+                    post2020Split: post2020.filter(d => d.key !== "Total").sort((a, b) => d3.ascending(a.key, b.key))
+                };
             });
+
+            const splitColor = d3.scaleOrdinal()
+                .domain(currentCategory === "sex" ? ["Males", "Females"] : ["15-64", "65"])
+                .range(currentCategory === "sex" ? ["steelblue", "#FF69B4"] : ["#673AB7", "#FFC107"]);
+
+
+            splitAvgDeaths.forEach(d => {
+                ["pre2020", "post2020"].forEach(key => {
+                    const splitValues = d[`${key}Split`];
+                    let yOffset = 0;
+                    splitValues.forEach(split => {
+                        svg.append("rect")
+                            .datum({ country: d.country, key: split.key, value: split.value, period: key, perc: (split.value / d[key] * 100).toFixed(2) })
+                            .attr("class", "split-rect")
+                            .attr("x", x0(d.country) + x1(key))
+                            .attr("y", y(d[key]) - yOffset)
+                            .attr("width", x1.bandwidth())
+                            .attr("height", 0)
+                            .attr("fill", splitColor(split.key))
+                            .attr("opacity", 1)
+                            .transition()
+                            .duration(500)
+                            .attr("height", y(d[key] - split.value) - y(d[key]));
+                        yOffset += y(d[key]) - y(d[key] - split.value);
+                    });
+                });
+            });
+
+            svg.selectAll(".split-rect")
+                .on("mouseover", function (event, d) {
+                    let tooltipText;
+                    if (currentCategory == "sex") {
+                        tooltipText = ` <h2 class="text-center m-0 font-bold">${d.country}</h2>
+                                    <div class="flex flex-col items-center">
+                                        <p class="m-0 text-black">Average annual ${d.key.toLowerCase()}
+                                        deaths from ${d.period === "pre2020" ? "2016 to 2019" : "2020 to 2023"}</p>
+                                        <p class="m-0 text-black"><b>${d.value.toFixed(0)}</b> - ${d.perc}% of all deaths</p>
+                                    </div>`;
+                    } else {
+                        tooltipText = ` <h2 class="text-center m-0 font-bold">${d.country}</h2>
+                                    <div class="flex flex-col items-center">
+                                        <p class="m-0 text-black">Average annual deaths for age group ${d.key === "15-64" ? "below 65" : "65 and over"}
+                                        from ${d.period === "pre2020" ? "2016 to 2019" : "2020 to 2023"}</p>
+                                        <p class="m-0 text-black"><b>${d.value.toFixed(0)}</b> - ${d.perc}% of all deaths</p>
+                                    </div>`;
+                    }
+
+                    tooltip.style("opacity", "0.9")
+                        .html(tooltipText);
+
+                    svg.selectAll(".bar").style("opacity", 0);
+
+                    svg.selectAll(".split-rect")
+                        .filter(rect => rect.country !== d.country)
+                        .style("opacity", 0.3);
+                })
+                .on("mousemove", function (event, d) {
+                    const hoveredRect = d3.select(this);
+                    const hoveredRectY = hoveredRect.node().getBoundingClientRect().bottom + window.scrollY;
+                    const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
+                    const tooltipHeight = tooltip.node().getBoundingClientRect().height;
+                    tooltip
+                        .style('left', `${svgLeft + x0(d.country) + (d.period === "pre2020" ? 3 : 4) * x1("post2020") + 5}px`)
+                        .style('top', `${hoveredRectY - tooltipHeight - 2}px`);
+                })
+                .on("mouseout", function () {
+                    tooltip.style("opacity", "0");
+                    svg.selectAll(".split-rect").style("opacity", 1);
+                    svg.selectAll(".bar").style("opacity", 1);
+                });
+        }
+
+        legendTitle.text(currentCategory === "total"
+            ? "Year Ranges"
+            : (currentCategory === "sex"
+                ? "Sex"
+                : "Age Ranges"));
+
+        legendData = getLegendData(currentCategory);
+
+        legend.selectAll("rect")
+            .data(legendData)
+            .attr("fill", d => d.color);
+
+        legend.selectAll(".legend-item")
+            .data(legendData)
+            .text(d => d.label);
     }
 
     totalButton.addEventListener('click', () => {
@@ -427,7 +506,7 @@ function barChartHealth() {
         removeClassesSex();
         sexButton.classList.add('border-r', 'border-[#ffffff7d]');
         if (currentCategory != "total") {
-            currentCategory = "total"
+            currentCategory = "total";
             updateChart();
         }
     });
