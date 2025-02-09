@@ -400,13 +400,13 @@
         <!--BUBBLECHART_2-->
         <div class="window mt-10">
 
-            <h3 class="plot-title">Inbound tourism during Covid</h3>
-            <div class="container-selector">
-              <label for="selector_year_2" class="selector me-4">Select year</label>
-              <select id="selector_year_2" class="select w-30"></select>
-            </div>
-            <div id="bubblechart_legend" class="rounded-lg"></div>
-            <div id="bubblechart_container_2"></div>
+          <h3 class="plot-title">Inbound tourism during Covid</h3>
+          <div class="container-selector">
+            <label for="selector_year_2" class="selector me-4">Select year</label>
+            <select id="selector_year_2" class="select w-30"></select>
+          </div>
+          <div id="bubblechart_legend" class="rounded-lg"></div>
+          <div id="bubblechart_container_2"></div>
 
 
           <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
@@ -517,13 +517,13 @@
           <p class="selector text-2xl ">Month <span id="number-month" class="font-thin text-2xl">01</span></p>
 
 
-            <div class="flex flex-row items-center w-full justify-between">
-              <label for="month-slider-butt" class="selector mr-4 whitespace-nowrap">Select month</label>
-              <div id="slider-container" style="position: relative; width: 100%; height: 40px;">
+          <div class="flex flex-row items-center w-full justify-between">
+            <label for="month-slider-butt" class="selector mr-4 whitespace-nowrap">Select month</label>
+            <div id="slider-container" style="position: relative; width: 100%; height: 40px;">
               <input type="range" id="month-slider-butt" min="1" max="12" value="1"
                 class="slider w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800">
-              </div>
             </div>
+          </div>
 
           <!--slider_end-->
 
@@ -741,8 +741,13 @@
 
         <!-- BAR CHART HEALTH START -->
         <div class="window mt-10">
-          <h3 class="plot-title">Bar Chart title</h3>
-          <div class="flex justify-center items-center gap-4 mt-4 w-full">
+          <h3 class="plot-title mb-2">COVID Deepened the Mental Health Crisis: Visualizing Deaths by Country</h3>
+          <p class="corpus text-center mb-2">
+            Let's now examine how the average annual number of deaths from mental and behavioral disorders has changed
+            before and after the pandemic in the 10 countries reporting the highest death toll. We will also explore the
+            distribution of these deaths across different age groups and between genders.
+          </p>
+          <div class="flex justify-center items-center gap-4 w-full">
             <div class="relative w-[30%] border-[1px] border-[#ffffff7d] rounded-md">
               <div id="overlay" class="absolute inset-0 bg-blue-500 rounded-md transition-transform duration-300 w-1/3">
               </div>
@@ -757,14 +762,24 @@
           <div id="bar-chart-health-container"></div>
           <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
 
-          <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit,
-            sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrum exercitationem ullam
-            corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-            consequatur. Quis aute iure reprehenderit in voluptate velit
-            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-            obcaecat cupiditat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
+          <p class="corpus">It's clear we were right about Germany: the average annual deaths from mental and behavioral
+            disorders increased by <strong>17.9%</strong>, peaking at an average of <strong>65,854 deaths</strong>
+            between 2020 and 2023. Despite this significant number, Germany ranks as the country with the second-largest
+            percentage increase; the most alarming record belongs to <strong>Portugal</strong>, which saw an increase of
+            nearly <strong>38%</strong>. <strong>Italy</strong> is the only other country that reported an increase in
+            average annual deaths caused by mental and behavioral disorders, rising by <strong>11.8%</strong>.
+            <br><br>
+            Regarding gender, the data indicates that the male-to-female death ratio for mental and behavioral disorders
+            has remained largely unchanged before and after COVID-19. However, the same cannot be said for age groups:
+            in all countries, the majority of these deaths continue to be concentrated in the 65+ age group, while the
+            percentage of deaths among those aged 15-64 has more than doubled across all countries. The highest
+            increases were observed in <strong>Germany</strong> (rising from <strong>0.26% to 8.35%</strong>) and
+            <strong>The Netherlands</strong> (rising from <strong>0.36% to 7.21%</strong>).
+            <br><br>
+            While we cannot be 100% certain that COVID-19 had a direct impact on this phenomenon, as other factors may
+            also be involved and would require further analysis, we can confidently say that it likely influenced these
+            trends.
+          </p>
         </div>
 
         <!-- BAR CHART HEALTH END -->
