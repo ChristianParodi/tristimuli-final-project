@@ -88,7 +88,7 @@ function mapMercator() {
   const colorMap = new Map([
     ["cases", customColors['red-gradient']],
     ["deaths", customColors['blue-gradient']],
-    ["vaccines", ["#bae4b3", "#005a32"]],
+    ["vaccines", customColors['green-gradient']],
   ]);
 
   function updateMap() {
@@ -96,9 +96,12 @@ function mapMercator() {
     const selectedData = processedData[selectedMetric]
     const filteredData = selectedData.filter(d => +d.year === currentYear && +d.month === currentMonth);
 
+    const colors = colorMap.get(selectedMetric);
+    const maxValue = d3.max(selectedData, d => d[selectedMetric]);
+    const domainArray = colors.map((_, i) => i * maxValue / (colors.length - 1));
     const colorScale = d3.scaleLinear()
-      .domain([0, d3.max(selectedData, d => d[selectedMetric])])
-      .range(colorMap.get(selectedMetric));
+      .domain(domainArray)
+      .range(colors);
 
     europeMap.selectAll("path")
       .data(europeGeoJson.features)
@@ -196,11 +199,17 @@ function mapMercator() {
     // Remove any existing stops before appending new ones
     gradient.selectAll("stop").remove();
 
-    const interpolator = d3.interpolate(colorMap.get(selectedMetric)[0], colorMap.get(selectedMetric)[1]);
+    const interpolator = t => t < 0.3
+      ? d3.interpolate(colors[0], colors[1])(t / 0.3)
+      : d3.interpolate(colors[1], colors[2])((t - 0.3) / 0.7);
 
     gradient.append("stop")
       .attr("offset", "0%")
       .attr("stop-color", interpolator(0));
+
+    gradient.append("stop")
+      .attr("offset", "30%")
+      .attr("stop-color", interpolator(0.3));
 
     gradient.append("stop")
       .attr("offset", "100%")
@@ -283,7 +292,7 @@ function mapMercator() {
         currentMonth = date.getMonth() + 1;
         mapLabel.text(`Date: ${currentMonth < 10 ? `0${currentMonth}` : currentMonth}/${currentYear}`);
         updateMap();
-      }, 100);
+      }, 200);
     } else {
       clearInterval(intervalId);
     }

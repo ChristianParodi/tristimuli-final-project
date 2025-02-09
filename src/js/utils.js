@@ -30,8 +30,9 @@ export async function includeHTML() {
 }
 
 export const customColors = {
-  "red-gradient": ['#ffd9d9', '#e94f37'],
-  "blue-gradient": ['#d3ebff', '#003965'],
+  "red-gradient": ['#ffd3d3', '#ff3030', '#5e0000'],
+  "blue-gradient": ['#d3ebff', '#008bff', '#002847'],
+  'green-gradient': ["#c6e2c1", '#72a269', "#006236"],
   "red": '#E94F37',
   'blue': '#3F88C5',
   'green': '#03A059',
