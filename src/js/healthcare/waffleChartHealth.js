@@ -316,7 +316,7 @@ function waffleChart() {
                         .style("opacity", 0.9);
 
 
-                    let rectsToBlur = d3.selectAll("rect").filter(function () {
+                    let rectsToBlur = svg.selectAll("rect").filter(function () {
                         return !this.classList.contains('num-deaths');
                     });
 

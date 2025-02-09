@@ -6,7 +6,7 @@ function barChartHealth() {
         year: +d.year,
         deaths: +d.deaths,
         percentage: +d.percentage
-    })).filter(d => (d.cause === "Mental and behavioural disorders" || d.cause === "Intentional self-harm") &&
+    })).filter(d => (d.cause === "Mental and behavioural disorders") &&
         !d.country.includes("Union") &&
         !d.country.includes("Metropolitan"));
 
@@ -36,10 +36,12 @@ function barChartHealth() {
         return acc;
     }, {});
 
+    console.log(top10Countries);
+
     const avgDeaths = Object.entries(top10Countries).map(([country, values]) => ({
         country,
-        pre2020: d3.mean(values.pre2020),
-        post2020: d3.mean(values.post2020)
+        pre2020: d3.mean(values.pre2020.filter(d => d > 0)),
+        post2020: d3.mean(values.post2020.filter(d => d > 0))
     }));
 
     const top10 = avgDeaths.sort((a, b) => d3.descending(a.pre2020, b.pre2020)).slice(0, 10);
@@ -162,7 +164,7 @@ function barChartHealth() {
     const preText = svg.append("text")
         .attr("text-anchor", "middle")
         .attr("x", x0(firstCountry) + x1("pre2020") + x1.bandwidth() / 2)
-        .attr("y", 22)
+        .attr("y", 100)
         .style("font-size", "12px")
         .style("font-weight", "bold");
 
@@ -177,7 +179,7 @@ function barChartHealth() {
     const postText = svg.append("text")
         .attr("text-anchor", "middle")
         .attr("x", x0(firstCountry) + x1("post2020") + x1.bandwidth() / 2)
-        .attr("y", 98)
+        .attr("y", 14)
         .attr("fill", "#000")
         .style("font-size", "12px")
         .style("font-weight", "bold");
@@ -324,11 +326,11 @@ function barChartHealth() {
         const splitAvgDeaths = Object.entries(splitByCountry).map(([country, values]) => {
             const pre2020 = d3.groups(values.pre2020, d => d[currentCategory]).map(([key, group]) => ({
                 key,
-                value: d3.mean(group, d => d.deaths)
+                value: d3.mean(group.filter(d => d.deaths > 0), d => d.deaths)
             }));
             const post2020 = d3.groups(values.post2020, d => d[currentCategory]).map(([key, group]) => ({
                 key,
-                value: d3.mean(group, d => d.deaths)
+                value: d3.mean(group.filter(d => d.deaths > 0), d => d.deaths)
             }));
 
             const pre2020Total = pre2020.find(d => d.key === "Total").value;
@@ -386,7 +388,7 @@ function barChartHealth() {
                             deaths from ${d.period === "pre2020" ? "2016 to 2019" : "2020 to 2023"}</p>
                             <p class="m-0 text-black"><b>${d.value.toFixed(0)}</b> - ${d.perc}% of all deaths</p>
                          </div>`;
-                }else{
+                } else {
                     tooltipText = `<h2 class="text-center m-0 font-bold">${d.country}</h2>
                          <div class="flex flex-col items-center">
                             <p class="m-0 text-black">Average annual deaths for age group ${d.key === "15-64" ? "below 65" : "65 and over"}
