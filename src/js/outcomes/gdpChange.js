@@ -1,7 +1,7 @@
 import { datasets } from "../utils.js";
 
 function gdpChange() {
-  const unit = "Contribution to GDP growth, percentage point change compared to same period in previous year"
+  const unit = "Current prices, million euro"
   const adj = "Seasonally and calendar adjusted data";
   const europe = "European Union - 27 countries (from 2020)"
 
@@ -13,11 +13,11 @@ function gdpChange() {
     gdp2023: d["2023-Q4"],
   }))[0]
 
-  const change = ((gdpData.gdp2023 - gdpData.gdp2019) / gdpData.gdp2019) * 100;
+  const change = (gdpData.gdp2023 - gdpData.gdp2019) / gdpData.gdp2019 * 100;
 
   d3.select("#gdp-change-value")
     .style("color", change > 0 ? "lightgreen" : "lightcoral")
-    .text(change.toFixed(2) + "%");
+    .text(`${change > 0 ? '+' : ''}${change.toFixed(2)}%`);
 };
 
 gdpChange()

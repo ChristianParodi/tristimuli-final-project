@@ -5,12 +5,21 @@ async function loadMentalDeathsChange() {
 async function mentalDeathsChange() {
   const age = "Total"
   const sex = "Total"
-  const cause = "Total"
+  const cause = [
+    "Drug dependence",
+    "Intentional self-harm",
+    "Mental and behavioural disorders",
+    "Use of alcohol"
+  ]
   const europe = "European Union - 27 countries (from 2020)"
 
   const mentalData = await loadMentalDeathsChange()
   const filteredData = mentalData.filter(
-    d => d.age === age && d.sex === sex && d.country === europe && d.cause === cause
+    d =>
+      d.age === age &&
+      d.sex === sex &&
+      d.country === europe &&
+      cause.includes(d.cause)
   ).map(d => ({
     country: d["country"],
     deaths2019: d["2019"],
