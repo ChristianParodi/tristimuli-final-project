@@ -1,649 +1,711 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Covid</title>
-    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-    <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js" defer></script>
-    <script src="./../../libs/tailwind.js"></script>
-    <link href="./../css/plot.css" rel="stylesheet">
-    <link href="./../../dist/plot.css" rel="stylesheet">
-    <script src="https://unpkg.com/d3-simple-slider"></script>
-    <script src="./../js/plot.js"></script>
-    <link rel="icon" type="image/png" href="./../../tristi.png" />
-    <style>
-      .grid-line {
-        stroke: lightgrey;
-        stroke-opacity: 1;
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Covid</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js" defer></script>
+  <script src="./../../libs/tailwind.js"></script>
+  <link href="./../css/plot.css" rel="stylesheet">
+  <link href="./../../dist/plot.css" rel="stylesheet">
+  <script src="https://unpkg.com/d3-simple-slider"></script>
+  <script src="./../js/plot.js"></script>
+  <link rel="icon" type="image/png" href="./../../tristi.png" />
+  <style>
+    .grid-line {
+      stroke: lightgrey;
+      stroke-opacity: 1;
+    }
+
+    .grid line {
+      stroke: black;
+      stroke-opacity: 0.7;
+      shape-rendering: crispEdges;
+    }
+
+    .grid path {
+      stroke-width: 0;
+    }
+
+    #min-year-text,
+    #year-1-text,
+    #year-2-text,
+    #year-3-text,
+    #max-year-text {
+      color: white;
+    }
+
+
+
+    /* Applica lo stile solo agli elementi NON contenuti in #slider-range */
+    :not(#slider-range) path,
+    :not(#slider-range) line {
+      stroke: white !important;
+      color: white !important;
+    }
+
+    #map-covid-container path,
+    #map-covid-container line {
+      stroke: #1e1612 !important;
+    }
+
+    #map-container-bubble path,
+    #map-container-bubble line {
+      stroke: #1e1612 !important;
+    }
+
+    :not(#slider-range) text {
+      color: white !important;
+    }
+
+    /* Imposta lo stile per lo slider */
+    #slider-range .track-overlay {
+      stroke-width: 4 !important;
+      fill: green !important;
+      /* Colore della selezione */
+    }
+
+    #slider-range .track-inset {
+      stroke: black !important;
+    }
+
+    #slider-range .track {
+      stroke: grey !important;
+    }
+
+    #slider-range .handle {
+      fill: white !important;
+      stroke: black !important;
+      stroke-width: 1 !important;
+
+    }
+
+    path,
+    line {
+      stroke: white;
+    }
+
+    .track-overlay {
+      stroke-width: 4 !important;
+    }
+
+    text {
+      fill: white;
+    }
+
+    .tick {
+      color: white !important;
+    }
+
+    @keyframes drawTriangle {
+      0% {
+        stroke-dashoffset: 300;
       }
 
-      .grid line {
-        stroke: black;
-        stroke-opacity: 0.7;
-        shape-rendering: crispEdges;
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
       }
 
-      .grid path {
-        stroke-width: 0;
+      100% {
+        opacity: 1;
       }
+    }
 
-      #min-year-text,
-      #year-1-text,
-      #year-2-text,
-      #year-3-text,
-      #max-year-text {
-        color: white;
-      }
+    /* Disegna il triangolo gradualmente */
+    .animate-draw-triangle polygon {
+      animation: drawTriangle 2s ease-out forwards;
+      stroke-linecap: round;
+      /* Arrotonda gli estremi */
+      stroke-linejoin: round;
+      /* Arrotonda gli angoli */
+    }
 
+    /* Ritarda la comparsa del punto esclamativo */
+    .animate-fade-in-delay {
+      animation: fadeIn 1s ease-in forwards;
+      animation-delay: 2s;
+    }
+  </style>
+</head>
 
+<body class=" min-h-screen">
+  <div id="home" class="relative isolate px-6 pt-14 lg:px-8 min-h-screen ">
+    <!-- Background image with parallax effect -->
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      style="background-image: url('./../../covid.jpg'); background-attachment: fixed;">
+      <div class="absolute inset-0 bg-black opacity-60"></div> <!-- Semi-transparent black overlay -->
+    </div>
 
-      /* Applica lo stile solo agli elementi NON contenuti in #slider-range */
-      :not(#slider-range) path,
-      :not(#slider-range) line {
-        stroke: white !important;
-        color: white !important;
-      }
+    <!-- Content -->
+    <div class="relative mx-auto max-w-2xl py-16 sm:py-24 lg:py-32 -mt-20 z-10 text-center ">
+      <!-- Logo centered -->
+      <img src="./../../tristi.png" class="logo mx-auto block mb-10 w-32" />
+      <h1 class="text-balance text-5xl font-semibold tracking-tight text-white sm:text-7xl ">The Effects of Covid in
+        Europe</h1>
+      <p class="mt-8 text-pretty font-medium text-white tracking-widest mx-auto max-w-3xl">
+        The SARS-CoV-2 Coronavirus is a respiratory virus that belongs to the large family of coronaviruses (CoV).
+        Coronaviruses are responsible for a range of diseases, varying in severity, from common colds to more serious
+        respiratory conditions.
+      </p>
+    </div>
 
-      #map-covid-container path,
-      #map-covid-container line {
-        stroke: #1e1612 !important;
-      }
-
-      #map-container-bubble path,
-      #map-container-bubble line {
-        stroke: #1e1612 !important;
-      }
-
-      :not(#slider-range) text {
-        color: white !important;
-      }
-
-      /* Imposta lo stile per lo slider */
-      #slider-range .track-overlay {
-        stroke-width: 4 !important;
-        fill: green !important;
-        /* Colore della selezione */
-      }
-
-      #slider-range .track-inset {
-        stroke: black !important;
-      }
-
-      #slider-range .track {
-        stroke: grey !important;
-      }
-
-      #slider-range .handle {
-        fill: white !important;
-        stroke: black !important;
-        stroke-width: 1 !important;
-
-      }
-
-      path,
-      line {
-        stroke: white;
-      }
-
-      .track-overlay {
-        stroke-width: 4 !important;
-      }
-
-      text {
-        fill: white;
-      }
-
-      .tick {
-        color: white !important;
-      }
-
-      @keyframes drawTriangle {
-        0% {
-          stroke-dashoffset: 300;
-        }
-
-        100% {
-          stroke-dashoffset: 0;
-        }
-      }
-
-      @keyframes fadeIn {
-        0% {
-          opacity: 0;
-        }
-
-        100% {
-          opacity: 1;
-        }
-      }
-
-      /* Disegna il triangolo gradualmente */
-      .animate-draw-triangle polygon {
-        animation: drawTriangle 2s ease-out forwards;
-        stroke-linecap: round;
-        /* Arrotonda gli estremi */
-        stroke-linejoin: round;
-        /* Arrotonda gli angoli */
-      }
-
-      /* Ritarda la comparsa del punto esclamativo */
-      .animate-fade-in-delay {
-        animation: fadeIn 1s ease-in forwards;
-        animation-delay: 2s;
-      }
-    </style>
-  </head>
-
-  <body class=" min-h-screen">
-    <div id="home" class="relative isolate px-6 pt-14 lg:px-8 min-h-screen ">
-      <!-- Background image with parallax effect -->
-      <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style="background-image: url('./../../covid.jpg'); background-attachment: fixed;">
-        <div class="absolute inset-0 bg-black opacity-60"></div> <!-- Semi-transparent black overlay -->
-      </div>
-
-      <!-- Content -->
-      <div class="relative mx-auto max-w-2xl py-16 sm:py-24 lg:py-32 -mt-20 z-10 text-center ">
-        <!-- Logo centered -->
-        <img src="./../../tristi.png" class="logo mx-auto block mb-10 w-32" />
-        <h1 class="text-balance text-5xl font-semibold tracking-tight text-white sm:text-7xl ">The Effects of Covid in
-          Europe</h1>
-        <p class="mt-8 text-pretty font-medium text-white tracking-widest mx-auto max-w-3xl">
-          The SARS-CoV-2 Coronavirus is a respiratory virus that belongs to the large family of coronaviruses (CoV).
-          Coronaviruses are responsible for a range of diseases, varying in severity, from common colds to more serious
-          respiratory conditions.
-        </p>
-      </div>
-
-      <!-- Background gradient -->
+    <!-- Background gradient -->
+    <div
+      class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+      aria-hidden="true">
       <div
-        class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-        aria-hidden="true">
-        <div
-          class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#923737] to-[#fc89936d] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-          style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+        class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#923737] to-[#fc89936d] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+        style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+      </div>
+    </div>
+  </div>
+
+  <div id="page-background" class="bg-[#1F202A]  text-white min-h-screen flex">
+
+    <!-- Sidebar -->
+    <div class="fixed left-0 top-0 h-full flex flex-col items-center justify-center sidebar">
+      <div class="relative flex flex-col items-center h-full">
+        <!-- Vertical Line -->
+        <div class="absolute w-1 bg-gray-200 top-0 bottom-0 left-10 transform -translate-x-1/2 z-0"></div>
+        <!-- Dots -->
+        <div class="absolute flex flex-col items-center space-y-20 z-10 top-[10%] left-7">
+          <div class="flex items-center gap-4 w-32">
+            <a href="#home" class="dotss"></a>
+            <span class="px-2 py-1 rounded cursor-pointer"><img src="./../../icon/home.svg" class="block w-8 icon" /></span>
+          </div>
+          <div class="flex items-center gap-4 w-32">
+            <a href="#section1" class="dotss"></a>
+            <span class="px-2 py-1 rounded cursor-pointer"><img src="./../../icon/covid-19.svg" class="block w-8 icon" /></span>
+          </div>
+          <div class="flex items-center gap-4 w-32">
+            <a href="#section2" class="dotss"></a>
+            <span class="px-2 py-1 rounded cursor-pointer"><img src="./../../icon/dollar.svg" class="block w-8 icon" /></span>
+          </div>
+          <div class="flex items-center gap-4 w-32">
+            <a href="#section3" class="dotss "></a>
+            <span class="px-2 py-1 rounded cursor-pointer"><img src="./../../icon/education.svg" class="block w-8 icon" /></span>
+          </div>
+          <div class="flex items-center w-32">
+            <a href="#section4" class="dotss mr-2"></a>
+            <span class="px-2 py-1 rounded cursor-pointer"><img src="./../../icon/health.svg" class="block w-8 icon" /></span>
+          </div>
+          <div class="flex items-center gap-4 w-32">
+            <a href="#section5" class="dotss"></a>
+            <span class="px-2 py-1 rounded cursor-pointer"><img src="./../../icon/graphics-scale.svg" class="block w-8 icon" /></span>
+          </div>
         </div>
+        <script src="../js/sideMenu.js"></script>
       </div>
     </div>
 
-    <div id="page-background" class="bg-[#1F202A]  text-white min-h-screen flex">
-
-      <!-- Sidebar -->
-      <div class="fixed left-0 top-0 h-full flex flex-col items-center justify-center sidebar">
-        <div class="relative flex flex-col items-center h-full">
-          <!-- Vertical Line -->
-          <div class="absolute w-1 bg-gray-200 top-0 bottom-0 left-10 transform -translate-x-1/2 z-0"></div>
-          <!-- Dots -->
-          <div class="absolute flex flex-col items-center space-y-20 z-10 top-[10%] left-7">
-            <div class="flex items-center gap-4 w-32">
-              <a href="#home" class="dotss"></a>
-              <span class="px-2 py-1 rounded"><img src="./../../icon/home.svg" class="block w-8 icon" /></span>
-            </div>
-            <div class="flex items-center gap-4 w-32">
-              <a href="#section1" class="dotss"></a>
-              <span class="px-2 py-1 rounded"><img src="./../../icon/covid-19.svg" class="block w-8 icon" /></span>
-            </div>
-            <div class="flex items-center gap-4 w-32">
-              <a href="#section2" class="dotss"></a>
-              <span class="px-2 py-1 rounded"><img src="./../../icon/dollar.svg" class="block w-8 icon" /></span>
-            </div>
-            <div class="flex items-center gap-4 w-32">
-              <a href="#section3" class="dotss "></a>
-              <span class="px-2 py-1 rounded"><img src="./../../icon/education.svg" class="block w-8 icon" /></span>
-            </div>
-            <div class="flex items-center w-32">
-              <a href="#section4" class="dotss mr-2"></a>
-              <span class="px-2 py-1 rounded"><img src="./../../icon/health.svg" class="block w-8 icon" /></span>
-            </div>
-            <div class="flex items-center gap-4 w-32">
-              <a href="#section5" class="dotss"></a>
-              <span class="px-2 py-1 rounded"><img src="./../../icon/graphics-scale.svg"
-                  class="block w-8 icon" /></span>
+    <!-- Content -->
+    <div class=" w-full mt-20 ">
+      <div id="section1" class="min-h-screen flex flex-col items-center justify-center gap-6">
+        <h1 class="section-title">Covid Spread</h1>
+        <p class="corpus mb-5">
+          Throughout the COVID-19 pandemic, widespread attention has highlighted the profound impact of the virus. In
+          this section, we explore how infections, deaths, and vaccination rates evolved over time, offering a clear
+          view of when each metric peaked and when the situation eventually stabilized.
+        </p>
+        <!--Container-->
+        <div class="window">
+          <h3 class="plot-title"><span class="text-[#E94F37]">Cases</span>, <span class="text-[#3F88C5]">Deaths</span>
+            and <span class="text-[#03A059]">Vaccines</span> in contries during COVID-19</h3>
+          <!-- select metric  -->
+          <div class="container-selector">
+            <label for="map-selector" class="selector me-4">Select type of data</label>
+            <div class="select-wrapper">
+              <select id="map-selector" class="select">
+                <option value="cases">Confirmed cases</option>
+                <option value="deaths">Confirmed deaths</option>
+                <option value="vaccines">Vaccines</option>
+              </select>
             </div>
           </div>
-          <script src="../js/sideMenu.js"></script>
+          <!-- end select metric  -->
+
+          <div id="map-covid-container" class="self-center"></div>
+          <span id="map-label" class="w-fit"></span>
+          <!--Switch-->
+          <div class="flex-1 w-full">
+            <div class="flex items-center gap-4">
+              <!-- Play button -->
+              <button id="play-button-covid-map" class="play-button">⏵︎</button>
+              <!-- year selector -->
+              <div class="w-full">
+                <label for="covid-map-year-slider" class="selector me-4">
+                  Select year
+                </label>
+                <input type="range" id="covid-map-year-slider" name="covid-map-year-slider" class="year-slider">
+                <div class="flex justify-between text-sm">
+                  <span id="min-year-text"></span>
+                  <span id="year-1-text"></span>
+                  <span id="year-2-text"></span>
+                  <span id="year-3-text"></span>
+                  <span id="max-year-text"></span>
+                </div>
+              </div>
+              <!-- end year selector -->
+            </div>
+          </div>
+          <p class="corpus">
+            After the initial few cases, the situation rapidly deteriorated, especially following the emergence of the
+            Omicron variant in November 2021. However, thanks to widespread vaccination efforts, the severity of the
+            pandemic gradually diminished, paving the way toward recovery.
+          </p>
         </div>
+
+        <!--MAP_END-->
+
+        <!--LINECHART-->
+        <div class="window mt-10">
+          <h1 class="plot-title">Infection Trends by Country</h1>
+          <div class="container-selector">
+            <label for="country-selector" class="selector me-4">Select country</label>
+            <select id="country-selector" class=" select"></select>
+          </div>
+          <div id="linechart-covid"></div>
+          <p class="corpus">
+            In many countries, the introduction of vaccines played a crucial role in mitigating the pandemic. However,
+            the situation appeared to stabilize around <strong>2022</strong>. After the emergence of the Omicron
+            variant, many
+            countries experienced a peak in infections. Notably, some regions responded differently to vaccine
+            rollouts. For instance, in <strong>Cyprus</strong> the number of infections eventually surpassed the
+            number of individuals who had received at least one dose, prompting further analysis into vaccine efficacy
+            and public health strategies during the later stages of the pandemic.
+          </p>
+        </div>
+        <!--LINECHART_END-->
+
+        <!-- STACKEDBARCHART -->
+        <div class="window mt-10">
+          <h1 class="plot-title">COVID-19 Mortality (2024)</h1>
+          <button id="barchart-covid-button"
+            class="mb-5 select p-2 hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+            Confirmed cases
+          </button>
+
+          <div id="barchart-covid-container"></div>
+          <p class="corpus">
+            Although the absolute number of deaths is high, it is important to consider
+            that the overall percentage mortality remains relatively low compared to the total number of infection
+            cases. This plot illustrates that while the absolute number of deaths is high, the overall percentage
+            mortality remains relatively low when compared to the total number of infection cases.
+          </p>
+        </div>
+        <!-- STACKEDBARCHART END -->
       </div>
 
-      <!-- Content -->
-      <div class=" w-full mt-20 ">
-        <div id="section1" class="min-h-screen flex flex-col items-center justify-center gap-6">
-          <h1 class="text-4xl font-bold text-center mb-5">Covid Spread</h1>
-          <p class="corpus mb-5">
-            Throughout the COVID-19 pandemic, widespread attention has highlighted the profound impact of the virus. In
-            this section, we explore how infections, deaths, and vaccination rates evolved over time, offering a clear
-            view of when each metric peaked and when the situation eventually stabilized.
-          </p>
-          <!--Container-->
-          <div class="window">
-            <h3 class="plot-title"><span class="text-[#E94F37]">Cases</span>, <span class="text-[#3F88C5]">Deaths</span>
-              and <span class="text-[#03A059]">Vaccines</span> in contries during COVID-19</h3>
-            <!-- select metric  -->
+      <div id="section2" class="min-h-screen flex flex-col items-center justify-center gap-6 mt-20">
+        <h1 class="section-title">Economy</h1>
+        <p class="corpus">
+          The COVID-19 pandemic and lockdown had a profound economic
+          impact on Europe, causing changes in various sectors such as
+          the housing market, GDP, and tourism. In this section, we will
+          explore the impact of the pandemic, analyzing whether it slowed
+          down the market in different aspects or, on the contrary, fueled new dynamics.
+        </p>
+        <!--BUBBLECHART-->
+        <div class="window">
+          <h3 class="plot-title">Flow of GDP and House Price during Covid years</h3>
+          <div class="flex items-center justify-center w-full gap-x-12">
+
             <div class="container-selector">
-              <label for="map-selector" class="selector me-4">Select type of data</label>
-              <div class="select-wrapper">
-                <select id="map-selector" class="select">
-                  <option value="cases">Confirmed cases</option>
-                  <option value="deaths">Confirmed deaths</option>
-                  <option value="vaccines">Vaccines</option>
-                </select>
-              </div>
+              <label for="contry_selector_bubble" class="selector me-4">Select country</label>
+              <select id="contry_selector_bubble" class="select w-40"></select>
             </div>
-            <!-- end select metric  -->
 
-            <div id="map-covid-container" class="self-center"></div>
-            <span id="map-label" class="w-fit"></span>
-            <!--Switch-->
-            <div class="flex-1 w-full">
-              <div class="flex items-center gap-4">
-                <!-- Play button -->
-                <button id="play-button-covid-map" class="play-button">⏵︎</button>
-                <!-- year selector -->
-                <div class="w-full">
-                  <label for="covid-map-year-slider" class="selector me-4">
-                    Select Year
-                  </label>
-                  <input type="range" id="covid-map-year-slider" name="covid-map-year-slider" class="year-slider">
-                  <div class="flex justify-between text-sm">
-                    <span id="min-year-text"></span>
-                    <span id="year-1-text"></span>
-                    <span id="year-2-text"></span>
-                    <span id="year-3-text"></span>
-                    <span id="max-year-text"></span>
-                  </div>
-                </div>
-                <!-- end year selector -->
-              </div>
-            </div>
-            <p class="corpus">
-              After the initial few cases, the situation rapidly deteriorated, especially following the emergence of the
-              Omicron variant in November 2021. However, thanks to widespread vaccination efforts, the severity of the
-              pandemic gradually diminished, paving the way toward recovery.
-            </p>
-          </div>
-
-          <!--MAP_END-->
-
-          <!--LINECHART-->
-          <div class="window mt-10">
-            <h1 class="plot-title">Infection Trends by Country</h1>
             <div class="container-selector">
-              <label for="country-selector" class="selector me-4">Select country</label>
-              <select id="country-selector" class=" select"></select>
+              <label for="metric_selector_bubble" class="selector me-4">Select metric</label>
+              <select id="metric_selector_bubble" class="select w-40"></select>
             </div>
-            <div id="linechart-covid"></div>
-            <p class="corpus">
-              In many countries, the introduction of vaccines played a crucial role in mitigating the pandemic. However,
-              the situation appeared to stabilize around <strong>2022</strong>. After the emergence of the Omicron
-              variant, many
-              countries experienced a peak in infections. Notably, some regions responded differently to vaccine
-              rollouts. For instance, in <strong>Cyprus</strong> the number of infections eventually surpassed the
-              number of individuals who had received at least one dose, prompting further analysis into vaccine efficacy
-              and public health strategies during the later stages of the pandemic.
-            </p>
+
           </div>
-          <!--LINECHART_END-->
 
-          <!-- STACKEDBARCHART -->
-          <div class="window mt-10">
-            <h1 class="plot-title">COVID-19 Mortality (2024)</h1>
-            <button id="barchart-covid-button"
-              class="mb-5 select p-2 hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
-              Confirmed cases
-            </button>
+          <div id="bubble-gdphouse-legend" class="rounded-lg"></div>
+          <div id="bubblechart_container"></div>
 
-            <div id="barchart-covid-container"></div>
-            <p class="corpus">
-              Although the absolute number of deaths is high, it is important to consider
-              that the overall percentage mortality remains relatively low compared to the total number of infection
-              cases. This plot illustrates that while the absolute number of deaths is high, the overall percentage
-              mortality remains relatively low when compared to the total number of infection cases.
-            </p>
-          </div>
-          <!-- STACKEDBARCHART END -->
-        </div>
+          <div id="slider-range"></div>
 
-        <div id="section2" class="min-h-screen flex flex-col items-center gap-8 mt-20">
-          <h1 class="text-4xl font-bold  mb-5">Economy</h1>
+          <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
+
+
           <p class="corpus">
-            The COVID-19 pandemic and lockdown had a profound economic
-            impact on Europe, causing changes in various sectors such as
-            the housing market, GDP, and tourism. In this section, we will
-            explore the impact of the pandemic, analyzing whether it slowed
-            down the market in different aspects or, on the contrary, fueled new dynamics.
+            The plot shows the trend of house prices and the Gross Domestic Product (GDP)
+            in the various quarters from 2020 to 2023, maintaining the relationship with
+            the number of new cases in the analyzed country. The GDP indicates the percentage
+            growth rate of real GDP, adjusted for seasonal fluctuations and calendar
+            irregularities. It tells you whether the economy is growing or contracting
+            compared to the previous quarter, by comparing consecutive periods without
+            distortions due to seasonality or calendar variations, as the data has been
+            adjusted for both seasonal effects (variations due to holidays, seasonal cycles)
+            and calendar differences (e.g., leap years). If the value is positive,
+            it means the economy has grown compared to the previous period,
+            while if it is negative, it means there has been an economic contraction.
+            Meanwhile, the house price provides an overall overview of the real estate
+            price trends, showing the percentage change in house prices compared to the
+            previous quarter.</p>
+          <p class="corpus">
+            GDP has experienced more pronounced fluctuations compared to house prices,
+            showing greater sensitivity to economic shocks. The data indicates that the
+            impact of the pandemic was most evident in the early quarters of 2020, while
+            in the following years, a gradual normalization of the economy was observed.
+
+            Due to the pandemic, GDP saw a sharp decline, especially in the first two quarters of 2020,
+            with negative values for almost all European countries. In Italy, where the country was under
+            lockdown from March 9, 2020, to May 18, 2020, GDP dropped by <span class="text-[#E94F37]">-5.8%</span> in
+            the first quarter (Q1)
+            and by <span class="text-[#E94F37]">-12.3%</span> in the second quarter (Q2). After the reopening in the
+            third quarter (Q3), GDP
+            rebounded significantly in many countries (Italy +14.4%, Spain +15.9%, France +15.6%). In general,
+            for most countries, from 2021 onwards, a gradual recovery was observed without extreme peaks until 2023.
+
+            Regarding house prices, a different trend can be observed, with greater resilience compared to
+            GDP. In Italy, for example, in the second quarter (Q2) of 2020, there was an increase of +3%,
+            followed by a slight decrease of <span class="text-[#E94F37]">-2.5% </span>in the third quarter (Q3). In
+            the 2021-2023 period,
+            the situation varies across different countries: in Italy, moderate fluctuations between positive and
+            negative values were recorded,
+            while in other countries, such as Luxembourg, a continuous decline in prices has been observed since the
+            last quarter of 2023.
+
+            Finally, the data shows that the months with the highest number of new COVID-19 cases were at
+            the end of 2021 and the beginning of 2022. However, likely thanks to the widespread distribution
+            of vaccines, these peaks did not lead to prolonged lockdowns or significant declines in GDP
+            and house prices, indicating a greater ability of the economy to adapt compared to the early stages
+            of the pandemic.
           </p>
-          <!--BUBBLECHART-->
-          <div class="window">
-            <h3 class="plot-title">Flow of GDP and House Price during Covid years</h3>
-            <div class="flex items-center justify-center w-full gap-x-12">
-
-              <div class="container-selector">
-                <label for="contry_selector_bubble" class="selector me-4">Select country</label>
-                <select id="contry_selector_bubble" class="select w-40"></select>
-              </div>
-
-              <div class="container-selector">
-                <label for="metric_selector_bubble" class="selector me-4">Select metric</label>
-                <select id="metric_selector_bubble" class="select w-40"></select>
-              </div>
-
-            </div>
-
-            <div id="bubble-gdphouse-legend" class="rounded-lg"></div>
-            <div id="bubblechart_container"></div>
-
-            <div id="slider-range"></div>
-
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
 
 
-            <p class="corpus">
-              The plot shows the trend of house prices and the Gross Domestic Product (GDP)
-              in the various quarters from 2020 to 2023, maintaining the relationship with
-              the number of new cases in the analyzed country. The GDP indicates the percentage
-              growth rate of real GDP, adjusted for seasonal fluctuations and calendar
-              irregularities. It tells you whether the economy is growing or contracting
-              compared to the previous quarter, by comparing consecutive periods without
-              distortions due to seasonality or calendar variations, as the data has been
-              adjusted for both seasonal effects (variations due to holidays, seasonal cycles)
-              and calendar differences (e.g., leap years). If the value is positive,
-              it means the economy has grown compared to the previous period,
-              while if it is negative, it means there has been an economic contraction.
-              Meanwhile, the house price provides an overall overview of the real estate
-              price trends, showing the percentage change in house prices compared to the
-              previous quarter.</p>
-            <p class="corpus">
-              GDP has experienced more pronounced fluctuations compared to house prices,
-              showing greater sensitivity to economic shocks. The data indicates that the
-              impact of the pandemic was most evident in the early quarters of 2020, while
-              in the following years, a gradual normalization of the economy was observed.
-
-              Due to the pandemic, GDP saw a sharp decline, especially in the first two quarters of 2020,
-              with negative values for almost all European countries. In Italy, where the country was under
-              lockdown from March 9, 2020, to May 18, 2020, GDP dropped by <span class="text-[#E94F37]">-5.8%</span> in
-              the first quarter (Q1)
-              and by <span class="text-[#E94F37]">-12.3%</span> in the second quarter (Q2). After the reopening in the
-              third quarter (Q3), GDP
-              rebounded significantly in many countries (Italy +14.4%, Spain +15.9%, France +15.6%). In general,
-              for most countries, from 2021 onwards, a gradual recovery was observed without extreme peaks until 2023.
-
-              Regarding house prices, a different trend can be observed, with greater resilience compared to
-              GDP. In Italy, for example, in the second quarter (Q2) of 2020, there was an increase of +3%,
-              followed by a slight decrease of <span class="text-[#E94F37]">-2.5% </span>in the third quarter (Q3). In
-              the 2021-2023 period,
-              the situation varies across different countries: in Italy, moderate fluctuations between positive and
-              negative values were recorded,
-              while in other countries, such as Luxembourg, a continuous decline in prices has been observed since the
-              last quarter of 2023.
-
-              Finally, the data shows that the months with the highest number of new COVID-19 cases were at
-              the end of 2021 and the beginning of 2022. However, likely thanks to the widespread distribution
-              of vaccines, these peaks did not lead to prolonged lockdowns or significant declines in GDP
-              and house prices, indicating a greater ability of the economy to adapt compared to the early stages
-              of the pandemic.
-            </p>
+        </div>
+        <!--BUBBLECHART_END-->
 
 
+        <!--BUBBLECHART_2-->
+        <div class="window mt-10">
+
+          <h3 class="plot-title">Inbound tourism during Covid</h3>
+          <div class="container-selector">
+            <label for="selector_year_2" class="selector me-4">Select year</label>
+            <select id="selector_year_2" class="select w-30"></select>
           </div>
-          <!--BUBBLECHART_END-->
+
+          <div id="bubblechart_container_2"></div>
 
 
-          <!--BUBBLECHART_2-->
-          <div class="window mt-10">
+          <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
 
-            <h3 class="plot-title">Inbound tourism during Covid</h3>
-            <div class="container-selector">
-              <label for="selector_year_2" class="selector me-4">Select year</label>
-              <select id="selector_year_2" class="select w-30"></select>
-            </div>
+          <p class="corpus">
+            The following plot presents data on inbound tourists, represented by the size of the flag,
+            in relation to the total number of infected cases (x-axis), expressed as a percentage of
+            the population, and the number of vaccinated individuals(y-axis),
+            also expressed as a percentage of the population. The data refers to the number of vaccinated
+            and infected individuals in that specific year.
+          </p>
+          <p class="corpus">
+            From the plot, it can be observed that from 2020 to 2022, there was a significant increase in infections.
+            For instance, countries like France saw a rise from 3.53% in 2020 to 9.61% in 2021, reaching
+            44.18% in 2022, which represents a growth of 40.65% from 2020 to 2022. Similar trends are visible in
+            countries
+            such as Germany and Italy. On the other hand, different trends can be observed in countries like Poland,
+            where
+            the infection rate increased from 3.38% in 2020 to 7.33% in 2021, followed by a decrease of 1.44% in 2022
+            (infection rate in 2022: 5.89%).
 
-            <div id="bubblechart_container_2"></div>
+            In 2021, most countries recorded a high vaccination rate. For example, Italy (81.26%), France (80.31%),
+            Portugal
+            (90.16%), and Spain (82.76%) reached very high levels. However, in 2022, the percentage of newly vaccinated
+            individuals
+            dropped drastically, with values around 2-4% in most countries.
+
+            Regarding inbound tourism, what can be observed is that despite the surge in infections in 2022, tourism
+            increased in
+            countries like France, Italy, and Germany, as well as in most other countries. This was likely facilitated
+            by the high
+            vaccination rates achieved in 2021, which encouraged the return of tourists. Moreover, it highlights a
+            global shift in attitudes towards the virus.
+
+            However, some countries, such as Norway, the Netherlands, and Slovenia, deviated from the general trend,
+            experiencing
+            stagnant or declining tourism in 2022 despite a pandemic situation similar to other countries. This suggests
+            that additional factors,
+            such as local restrictions or economic conditions, may have played a role.
+          </p>
+
+        </div>
+        <!--BUBBLECHART_2_END-->
 
 
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
+        <!--butterflychart-->
+        <div class="window mt-10">
+          <h3 class="plot-title">COVID-19 impact on HICP - monthly data (annual rate of change)</h3>
 
-            <p class="corpus">
-              The following plot presents data on inbound tourists, represented by the size of the flag, 
-              in relation to the total number of infected cases (x-axis), expressed as a percentage of 
-              the population, and the number of vaccinated individuals(y-axis), 
-              also expressed as a percentage of the population. The data refers to the number of vaccinated 
-              and infected individuals in that specific year.
-            </p>
-            <p class="corpus">
-From the plot, it can be observed that from 2020 to 2022, there was a significant increase in infections. 
-For instance, countries like France saw a rise from 3.53% in 2020 to 9.61% in 2021, reaching 
-44.18% in 2022, which represents a growth of 40.65% from 2020 to 2022. Similar trends are visible in countries
- such as Germany and Italy. On the other hand, different trends can be observed in countries like Poland, where
-  the infection rate increased from 3.38% in 2020 to 7.33% in 2021, followed by a decrease of 1.44% in 2022 (infection rate in 2022: 5.89%).
+          <!--selector-->
+          <div class="relative w-fit">
+            <select id="data-selector-butt" class="select">
+              <option value="All-items HICP">General Inflation</option>
+              <option value="Food and non-alcoholic beverages">Food and non-alcoholic beverages</option>
+              <option value="Transport">Transport</option>
+              <option value="Fuels and lubricants for personal transport equipment">Fuels and lubricants</option>
+              <option value="Health">Health</option>
+              <option value="Medical products, appliances and equipment">Medical products</option>
+              <option value="Restaurants and hotels">Restaurants and hotels</option>
+              <option value="Accommodation services">Accommodation services</option>
+              <option value="Education">Education</option>
+              <option value="Communications">Communications</option>
+              <option value="Alcoholic beverages, tobacco and narcotics">Alcoholic beverages, tobacco and narcotics
+              </option>
+              <option value="Alcoholic beverages">Alcoholic beverages</option>
+            </select>
 
-In 2021, most countries recorded a high vaccination rate. For example, Italy (81.26%), France (80.31%), Portugal 
-(90.16%), and Spain (82.76%) reached very high levels. However, in 2022, the percentage of newly vaccinated individuals 
-dropped drastically, with values around 2-4% in most countries.
-
-Regarding inbound tourism, what can be observed is that despite the surge in infections in 2022, tourism increased in
- countries like France, Italy, and Germany, as well as in most other countries. This was likely facilitated by the high 
- vaccination rates achieved in 2021, which encouraged the return of tourists. Moreover, it highlights a global shift in attitudes towards the virus.
-
-However, some countries, such as Norway, the Netherlands, and Slovenia, deviated from the general trend, experiencing 
-stagnant or declining tourism in 2022 despite a pandemic situation similar to other countries. This suggests that additional factors,
- such as local restrictions or economic conditions, may have played a role.
-            </p>
-
+            <div w3-include-html="components/arrow.svg"></div>
           </div>
-          <!--BUBBLECHART_2_END-->
+          <!--end_selector-->
 
 
-          <!--butterflychart-->
-          <div class="window mt-10">
-            <h3 class="plot-title">COVID-19 impact on HICP - monthly data (annual rate of change)</h3>
 
-            <!--selector-->
-            <div class="relative w-fit">
-              <select id="data-selector-butt" class="select">
-                <option value="All-items HICP">General Inflation</option>
-                <option value="Food and non-alcoholic beverages">Food and non-alcoholic beverages</option>
-                <option value="Transport">Transport</option>
-                <option value="Fuels and lubricants for personal transport equipment">Fuels and lubricants</option>
-                <option value="Health">Health</option>
-                <option value="Medical products, appliances and equipment">Medical products</option>
-                <option value="Restaurants and hotels">Restaurants and hotels</option>
-                <option value="Accommodation services">Accommodation services</option>
-                <option value="Education">Education</option>
-                <option value="Communications">Communications</option>
-                <option value="Alcoholic beverages, tobacco and narcotics">Alcoholic beverages, tobacco and narcotics
-                </option>
-                <option value="Alcoholic beverages">Alcoholic beverages</option>
+          <div class="flex w-full justify-start space-x-[255px]">
+            <!-- Selector Year 1 -->
+            <div class="container-selector ml-[200px] mt-5">
+              <label for="selector-butt-1" class="selector me-4">Year</label>
+              <select id="selector-butt-1" class="select w-40">
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
               </select>
-
-              <div w3-include-html="components/arrow.svg"></div>
-            </div>
-            <!--end_selector-->
-
-
-
-            <div class="flex w-full justify-start space-x-[255px]">
-              <!-- Selector Year 1 -->
-              <div class="container-selector ml-[200px] mt-5">
-                <label for="selector-butt-1" class="selector me-4">Year</label>
-                <select id="selector-butt-1" class="select w-40">
-                  <option value="2018">2018</option>
-                  <option value="2019">2019</option>
-                  <option value="2020">2020</option>
-                  <option value="2021">2021</option>
-                  <option value="2022">2022</option>
-                  <option value="2023">2023</option>
-                </select>
-              </div>
-
-              <!-- Selector Year 2 -->
-              <div class="container-selector mt-5">
-                <label for="selector-butt-2" class="selector me-4">Year</label>
-                <select id="selector-butt-2" class="select w-40">
-                  <option value="2018">2018</option>
-                  <option value="2019">2019</option>
-                  <option value="2020">2020</option>
-                  <option value="2021">2021</option>
-                  <option value="2022">2022</option>
-                  <option value="2023">2023</option>
-                </select>
-              </div>
             </div>
 
-
-            <!--selctorsyear-->
-
-
-            <div id="butterflychart_container" class="flex justify-center items-center w-full -mb-10"></div>
-            <!--slider-->
-            <p class="selector text-2xl ">Month <span id="number-month" class="font-thin text-2xl">01</span></p>
-
-
-            <div class="flex flex-row items-center w-full justify-between">
-              <label for="month-slider-butt" class="selector mr-4 whitespace-nowrap">Select month</label>
-              <input type="range" id="month-slider-butt" min="1" max="12" value="1"
-                class="slider w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800">
+            <!-- Selector Year 2 -->
+            <div class="container-selector mt-5">
+              <label for="selector-butt-2" class="selector me-4">Year</label>
+              <select id="selector-butt-2" class="select w-40">
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+              </select>
             </div>
-
-            <!--slider_end-->
-
-
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
-
-            <p class="corpus">
-              The plot presents the Harmonized Index of Consumer Prices (HICP)
-              in European countries and indicates the percentage change in
-              inflation compared to the same month of the previous year.
-
-              From the values observed it is possible to note a general stability
-              between the years of <span class="font-bold">2018</span> and <span class="font-bold">2019</span>, but a
-              significant change regarding
-              specific sectors such as medical products and transport and fuels and
-              lubricants for personal transport equipment, in which, between <span class="font-bold">2018</span> and
-              <span class="font-bold">2023</span>
-              went from sharply falling prices probably caused by a collapse in demand
-              compared to previous years, to a strong increase even above 10%.
-              <span class="font-bold">2020</span> marks the collapse of <span
-                class=" font-bold text-green-600">inflation</span>, due
-              to the economic restrictions caused by the lockdown,
-              especially for transport, fuels and lubricants. In <span class="font-bold">2021</span>,
-              the post-pandemic recovery leads
-              to price growth, with a surge in <span class="font-bold">2022</span> in conjunction with the war in
-              Ukraine.
-              The <span class="font-bold">2023</span> marks the start of a <span
-                class="font-bold text-red-500">deflation</span>,
-              in particular for the transport and fuels
-              and lubricants categories, while education shows an inverse trend.
-            </p>
           </div>
-          <!--butterflychart_END-->
-        </div>
 
-        <!-- Education & Jobs -->
-        <div id="section3" class="min-h-screen flex flex-col items-center justify-center gap-6 mt-20">
-          <h2 class="text-3xl font-semibold mb-5">Education & Jobs</h2>
+
+          <!--selctorsyear-->
+
+
+          <div id="butterflychart_container" class="flex justify-center items-center w-full -mb-10"></div>
+          <!--slider-->
+          <p class="selector text-2xl ">Month <span id="number-month" class="font-thin text-2xl">01</span></p>
+
+
+          <div class="flex flex-row items-center w-full justify-between">
+            <label for="month-slider-butt" class="selector mr-4 whitespace-nowrap">Select month</label>
+            <input type="range" id="month-slider-butt" min="1" max="12" value="1"
+              class="slider w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800">
+          </div>
+
+          <!--slider_end-->
+
+
+          <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div>
+
           <p class="corpus">
-            The COVID-19 pandemic has reshaped the landscape of education and employment in profound ways. In this
-            section, we explore the challenges and adaptations within higher education and the job market. From the
-            rapid
-            shift to remote learning and digital classrooms to the evolving nature of work and employment opportunities,
-            we delve into how these changes have impacted students, educators, and professionals alike. Join us as we
-            examine the trends, impacts, and future possibilities in education and jobs during and after the pandemic.
+            The plot presents the Harmonized Index of Consumer Prices (HICP)
+            in European countries and indicates the percentage change in
+            inflation compared to the same month of the previous year.
+
+            From the values observed it is possible to note a general stability
+            between the years of <span class="font-bold">2018</span> and <span class="font-bold">2019</span>, but a
+            significant change regarding
+            specific sectors such as medical products and transport and fuels and
+            lubricants for personal transport equipment, in which, between <span class="font-bold">2018</span> and
+            <span class="font-bold">2023</span>
+            went from sharply falling prices probably caused by a collapse in demand
+            compared to previous years, to a strong increase even above 10%.
+            <span class="font-bold">2020</span> marks the collapse of <span
+              class=" font-bold text-green-600">inflation</span>, due
+            to the economic restrictions caused by the lockdown,
+            especially for transport, fuels and lubricants. In <span class="font-bold">2021</span>,
+            the post-pandemic recovery leads
+            to price growth, with a surge in <span class="font-bold">2022</span> in conjunction with the war in
+            Ukraine.
+            The <span class="font-bold">2023</span> marks the start of a <span
+              class="font-bold text-red-500">deflation</span>,
+            in particular for the transport and fuels
+            and lubricants categories, while education shows an inverse trend.
           </p>
-          <!--DUMBBELLCHART 1-->
-          <div class="window ">
-            <h3 class="plot-title">COVID-19 impact on Education (<span class="text-[steelblue]">Males</span>, <span
-                class="text-[#FF69B4]">Females</span> and <span class="text-[#03A059]">Total</span>)</h3>
-            <div class="container-selector">
-              <label for="country-selector-dumbbell-enrollments" class="selector me-4">Country</label>
-              <select id="country-selector-dumbbell-enrollments" class="select"></select>
-            </div>
-
-            <div id="dumbbell-enrollments"></div>
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
-
-            <p class="corpus">
-              Our first assumption was that COVID-19 negatively influenced tertiary enrollments, primarily due to the
-              abrupt shift to remote learning and the economic uncertainty that accompanied the pandemic. Initially,
-              many prospective students deferred or reconsidered their higher education plans, leading to a short-term
-              decline in university enrollments. However, further analysis indicates that while the immediate impact was
-              significant, the overall long-term trend in enrollments has since stabilized and shows only minor
-              deviations from historical patterns. In some countries, educational enrollment trends changed after
-              COVID-19 - such as in <strong>Czechia</strong> - although overall, the trends remained stable.
-
-              Moreover, across Europe, females tend to enroll in higher education more frequently than males. However,
-              exceptions exist; for example, in <strong>Germany</strong>, <strong>Greece</strong> and
-              <strong>Turkey</strong> on top, the difference is
-              minimal. Specifically, in Turkey the gap shrinked afer the pandemic, while in some cases, such as in
-              <strong>Cyprus</strong>, the gap between male and female
-              enrollments has widened.
-            </p>
-          </div>
-          <!--DUMBBELLCHART_END 1-->
-
-          <!-- DUMBBELLCHART 2 -->
-          <div class="window mt-10">
-            <h3 class="plot-title">COVID-19 impact on Unemployment (<span class="text-[steelblue]">Males</span>, <span
-                class="text-[#FF69B4]">Females</span> and <span class="text-[#03A059]">Total</span>)</h3>
-            <div class="container-selector">
-              <label for="country-selector-dumbbell-unemployments" class="selector me-4">Country</label>
-              <select id="country-selector-dumbbell-unemployments" class="select"></select>
-            </div>
-
-
-            <div id="dumbbell-unemployments"></div>
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
-
-            <p class="corpus">
-              On the unemployment side, our hypothesis was founded on multifaceted economic dynamics observed at the
-              start of the pandemic. Almost every country in Europe experienced a sharp spike in unemployment as
-              lockdowns and restrictions forced businesses to close or downsize abruptly. This initial surge was driven
-              primarily by the sudden disruption in sectors such as hospitality, tourism, and retail, where job losses
-              were immediate and severe. However, over time, targeted government interventions, financial aid packages,
-              and adaptations in business models helped stabilize the job market. By 2023, unemployment trends began
-              reverting to pre-pandemic levels, reflecting not only the resilience of the labor market but also
-              strategic recovery measures implemented across various industries. <br /><br />
-              In Europe, the unemployment trends reveal a nuanced picture. Overall, males have experienced marginally
-              higher unemployment rates compared to females. However, this trend is not uniform across all regions. In
-              <strong>Croatia</strong> and <strong>Cyprus</strong>, for instance, the leading gender in unemployment
-              varies over time, with
-              periods when males are more affected and other times when females experience higher job losses. In
-              contrast, <strong>Germany</strong> exhibits a significant gender gap, with male unemployment notably
-              exceeding that of
-              females. Meanwhile, in <strong>Greece</strong> and <strong>Portugal</strong>, the data indicate that
-              females have tended to face higher
-              unemployment rates than their male counterparts. These observations underline the diverse economic and
-              social dynamics influencing labor market outcomes during and after the pandemic.
-            </p>
-          </div>
-          <!-- DUMBBELLCHART_END 2 -->
-          <!-- BUBBLE -->
-          <div class="window gap-12 mt-10">
-            <h3 class="plot-title">Lockdown Impact on Education (2019-2021)</h3>
-            <div class="flex justify-center">
-              <div id="bubble-lockdown"></div>
-              <div id="bubble-lockdown-legend" class="rounded-lg"></div>
-            </div>
-            <div class="w-full h-px bg-gray-200 mt-4"></div><!--line-->
-
-            <p class="corpus">
-              Another assumption we had was that prolonged lockdowns would have significantly impacted tertiary
-              enrollment numbers. We anticipated that regions with extended closures would show a negative trend in
-              enrollment growth. However, the data above indicates that among the surveyed countries, there has been
-              little to no decline in the percentage of tertiary enrollments. This unexpected result suggests that rapid
-              adaptations, such as the shift to online learning and the implementation of innovative teaching
-              methods, may
-              have helped mitigate the potential negative effects of extended lockdown periods. Further analysis could
-              explore whether these adaptive strategies have led to long-term improvements in the resilience of higher
-              education systems.
-            </p>
-          </div>
-          <!-- BUBBLE END 2 -->
         </div>
+        <!--butterflychart_END-->
+      </div>
 
-        <div id="section4" class="min-h-screen flex flex-col items-center justify-center gap-6 mt-20">
-          <h2 class="text-3xl font-semibold mb-5">Section 5</h2>
+      <!-- Education & Jobs -->
+      <div id="section3" class="min-h-screen flex flex-col items-center justify-center gap-6 mt-20">
+        <h2 class="section-title">Education & Jobs</h2>
+        <p class="corpus">
+          The COVID-19 pandemic has reshaped the landscape of education and employment in profound ways. In this
+          section, we explore the challenges and adaptations within higher education and the job market. From the
+          rapid
+          shift to remote learning and digital classrooms to the evolving nature of work and employment opportunities,
+          we delve into how these changes have impacted students, educators, and professionals alike. Join us as we
+          examine the trends, impacts, and future possibilities in education and jobs during and after the pandemic.
+        </p>
+        <!--DUMBBELLCHART 1-->
+        <div class="window ">
+          <h3 class="plot-title">COVID-19 impact on Education (<span class="text-[steelblue]">Males</span>, <span
+              class="text-[#FF69B4]">Females</span> and <span class="text-[#03A059]">Total</span>)</h3>
+          <div class="container-selector">
+            <label for="country-selector-dumbbell-enrollments" class="selector me-4">Country</label>
+            <select id="country-selector-dumbbell-enrollments" class="select"></select>
+          </div>
+
+          <div id="dumbbell-enrollments"></div>
+          <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
+          <p class="corpus">
+            Our first assumption was that COVID-19 negatively influenced tertiary enrollments, primarily due to the
+            abrupt shift to remote learning and the economic uncertainty that accompanied the pandemic. Initially,
+            many prospective students deferred or reconsidered their higher education plans, leading to a short-term
+            decline in university enrollments. However, further analysis indicates that while the immediate impact was
+            significant, the overall long-term trend in enrollments has since stabilized and shows only minor
+            deviations from historical patterns. In some countries, educational enrollment trends changed after
+            COVID-19 - such as in <strong>Czechia</strong> - although overall, the trends remained stable.
+
+            Moreover, across Europe, females tend to enroll in higher education more frequently than males. However,
+            exceptions exist; for example, in <strong>Germany</strong>, <strong>Greece</strong> and
+            <strong>Turkey</strong> on top, the difference is
+            minimal. Specifically, in Turkey the gap shrinked afer the pandemic, while in some cases, such as in
+            <strong>Cyprus</strong>, the gap between male and female
+            enrollments has widened.
+          </p>
+        </div>
+        <!--DUMBBELLCHART_END 1-->
+
+        <!-- DUMBBELLCHART 2 -->
+        <div class="window mt-10">
+          <h3 class="plot-title">COVID-19 impact on Unemployment (<span class="text-[steelblue]">Males</span>, <span
+              class="text-[#FF69B4]">Females</span> and <span class="text-[#03A059]">Total</span>)</h3>
+          <div class="container-selector">
+            <label for="country-selector-dumbbell-unemployments" class="selector me-4">Country</label>
+            <select id="country-selector-dumbbell-unemployments" class="select"></select>
+          </div>
+
+
+          <div id="dumbbell-unemployments"></div>
+          <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
+          <p class="corpus">
+            On the unemployment side, our hypothesis was founded on multifaceted economic dynamics observed at the
+            start of the pandemic. Almost every country in Europe experienced a sharp spike in unemployment as
+            lockdowns and restrictions forced businesses to close or downsize abruptly. This initial surge was driven
+            primarily by the sudden disruption in sectors such as hospitality, tourism, and retail, where job losses
+            were immediate and severe. However, over time, targeted government interventions, financial aid packages,
+            and adaptations in business models helped stabilize the job market. By 2023, unemployment trends began
+            reverting to pre-pandemic levels, reflecting not only the resilience of the labor market but also
+            strategic recovery measures implemented across various industries. <br /><br />
+            In Europe, the unemployment trends reveal a nuanced picture. Overall, males have experienced marginally
+            higher unemployment rates compared to females. However, this trend is not uniform across all regions. In
+            <strong>Croatia</strong> and <strong>Cyprus</strong>, for instance, the leading gender in unemployment
+            varies over time, with
+            periods when males are more affected and other times when females experience higher job losses. In
+            contrast, <strong>Germany</strong> exhibits a significant gender gap, with male unemployment notably
+            exceeding that of
+            females. Meanwhile, in <strong>Greece</strong> and <strong>Portugal</strong>, the data indicate that
+            females have tended to face higher
+            unemployment rates than their male counterparts. These observations underline the diverse economic and
+            social dynamics influencing labor market outcomes during and after the pandemic.
+          </p>
+        </div>
+        <!-- DUMBBELLCHART_END 2 -->
+        <!-- BUBBLE -->
+        <div class="window gap-12 mt-10">
+          <h3 class="plot-title">Lockdown Impact on Education (2019-2021)</h3>
+          <div class="flex justify-center">
+            <div id="bubble-lockdown"></div>
+            <div id="bubble-lockdown-legend" class="rounded-lg"></div>
+          </div>
+          <div class="w-full h-px bg-gray-200 mt-4"></div><!--line-->
+
+          <p class="corpus">
+            Another assumption we had was that prolonged lockdowns would have significantly impacted tertiary
+            enrollment numbers. We anticipated that regions with extended closures would show a negative trend in
+            enrollment growth. However, the data above indicates that among the surveyed countries, there has been
+            little to no decline in the percentage of tertiary enrollments. This unexpected result suggests that rapid
+            adaptations, such as the shift to online learning and the implementation of innovative teaching
+            methods, may
+            have helped mitigate the potential negative effects of extended lockdown periods. Further analysis could
+            explore whether these adaptive strategies have led to long-term improvements in the resilience of higher
+            education systems.
+          </p>
+        </div>
+        <!-- BUBBLE END 2 -->
+      </div>
+
+      <div id="section4" class="min-h-screen flex flex-col items-center justify-center gap-6 mt-20">
+        <h2 class="section-title">Mental disorders & Healthcare</h2>
+        <p class="corpus">
+          This section explores the impact of the pandemic on mortality rates related to mental disorders and self-harm,
+          shedding light on the potential consequences of prolonged social isolation, economic distress, and healthcare
+          disruptions. Additionally, it examines the relationship between healthcare spending, total cases,
+          vaccinations, and COVID-19-related deaths. Understanding these connections provides insight into how different
+          levels of investment in healthcare may have influenced pandemic outcomes and the broader implications for
+          public health policies.</p>
+        <!--WAFFLE CHART-->
+        <div class="window">
+          <h3 class="plot-title">Did the pandemic affect the number of deaths for mental disorders?</h3>
+
+          <div id="waffle-categories" class="flex flex-col gap-1">
+            <div class="container-selector">
+              <p class="selector me-4">Select the causes of deaths</p>
+
+              <div>
+                <input type="checkbox" id="waffle-covid" name="waffle-metric" value="COVID-19" checked
+                  class="cursor-pointer">
+                <label for="waffle-covid" class="text-white cursor-pointer me-4">Covid</label>
+              </div>
+              <div>
+                <input type="checkbox" id="waffle-mental-disturb" name="waffle-metric"
+                  value="Mental and behavioural disorders" class="cursor-pointer" checked>
+                <label for="waffle-mental-disturb" class="text-white cursor-pointer me-4">Mental and behavioural
+                  disorders</label>
+              </div>
+              <div>
+                <input type="checkbox" id="waffle-self-harm" name="waffle-metric" value="Intentional self-harm"
+                  class="cursor-pointer" checked>
+                <label for="waffle-self-harm" class="text-white cursor-pointer me-4">Intentional self-harm</label>
+              </div>
+            </div>
+          </div>
+          <div id="waffle-country" class="container-selector">
+            <label class="selector me-4">Select country</label>
+            <select id="waffle-country-selector" class="select"></select>
+          </div>
+          <div id="waffle-years" class="w-full flex justify-around margin-top-4">
+            <div class="container-selector ">
+              <label for="waffle-year-1" class="selector me-4">Select the first year</label>
+              <select id="waffle-year-1" class="select"></select>
+            </div>
+            <div class="container-selector">
+              <label for="waffle-year-2" class="selector me-4">Select the second year</label>
+              <select id="waffle-year-2" class="select"></select>
+            </div>
+          </div>
+          <div id="waffle-deaths-per-dot" class="w-full flex justify-center items-center gap-1"></div>
+
+          <div id="waffle-chart-container" class="flex justify-center"></div>
+
+          <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
           <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit,
             sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
             Ut enim ad minim veniam, quis nostrum exercitationem ullam
@@ -652,299 +714,245 @@ stagnant or declining tourism in 2022 despite a pandemic situation similar to ot
             esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
             obcaecat cupiditat non proident, sunt in culpa qui officia
             deserunt mollit anim id est laborum.</p>
-          <!--WAFFLE CHART-->
-          <div class="window">
-            <h3 class="plot-title">Did COVID-19 affect the number of deaths for mental disorders?</h3>
+        </div>
+        <!--WAFFLE CHART_END-->
 
-            <div id="waffle-categories" class="flex flex-col gap-1">
-              <div class="container-selector">
-                <p class="selector me-4">Select the causes of deaths:</p>
-
-                <div>
-                  <input type="checkbox" id="waffle-covid" name="waffle-metric" value="COVID-19" checked
-                    class="cursor-pointer">
-                  <label for="waffle-covid" class="text-white cursor-pointer me-4">Covid</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="waffle-mental-disturb" name="waffle-metric"
-                    value="Mental and behavioural disorders" class="cursor-pointer" checked>
-                  <label for="waffle-mental-disturb" class="text-white cursor-pointer me-4">Mental and behavioural
-                    disorders</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="waffle-self-harm" name="waffle-metric" value="Intentional self-harm"
-                    class="cursor-pointer" checked>
-                  <label for="waffle-self-harm" class="text-white cursor-pointer me-4">Intentional self-harm</label>
-                </div>
+        <!-- BAR CHART HEALTH START -->
+        <div class="window mt-10">
+          <h3 class="plot-title">Bar Chart title</h3>
+          <div class="flex justify-center items-center gap-4 mt-4 w-full">
+            <div class="relative w-[30%] border-[1px] border-[#ffffff7d] rounded-md">
+              <div id="overlay" class="absolute inset-0 bg-blue-500 rounded-md transition-transform duration-300 w-1/3">
+              </div>
+              <div class="flex">
+                <button id="total-button" class="relative z-10 px-4 py-2 text-white w-1/3">Total</button>
+                <button id="sex-button"
+                  class="relative z-10 px-4 py-2 text-white w-1/3 border-r border-[#ffffff7d] rounded-md">Sex</button>
+                <button id="age-button" class="relative z-10 px-4 py-2 text-white w-1/3">Age</button>
               </div>
             </div>
-            <div id="waffle-country" class="container-selector">
-              <label class="selector me-4">Select country</label>
-              <select id="waffle-country-selector" class="select"></select>
-            </div>
-            <div id="waffle-years" class="w-full flex justify-around margin-top-4">
-              <div class="container-selector ">
-                <label for="waffle-year-1" class="selector me-4">Select the first year:</label>
-                <select id="waffle-year-1" class="select"></select>
-              </div>
-              <div class="container-selector">
-                <label for="waffle-year-2" class="selector me-4">Select the second year:</label>
-                <select id="waffle-year-2" class="select"></select>
-              </div>
-            </div>
-            <div id="waffle-deaths-per-dot" class="w-full flex justify-center items-center gap-1"></div>
-
-            <div id="waffle-chart-container" class="flex justify-center"></div>
-
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
-
-            <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit,
-              sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrum exercitationem ullam
-              corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-              consequatur. Quis aute iure reprehenderit in voluptate velit
-              esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-              obcaecat cupiditat non proident, sunt in culpa qui officia
-              deserunt mollit anim id est laborum.</p>
           </div>
-          <!--WAFFLE CHART_END-->
+          <div id="bar-chart-health-container"></div>
+          <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
 
-          <!-- BAR CHART HEALTH START -->
-          <div class="window mt-10">
-            <h3 class="plot-title">Bar Chart title</h3>
-            <div class="flex justify-center items-center gap-4 mt-4 w-full">
-              <div class="relative w-[30%] border-[1px] border-[#ffffff7d] rounded-md">
-                <div id="overlay"
-                  class="absolute inset-0 bg-blue-500 rounded-md transition-transform duration-300 w-1/3"></div>
-                <div class="flex">
-                  <button id="total-button" class="relative z-10 px-4 py-2 text-white w-1/3">Total</button>
-                  <button id="sex-button"
-                    class="relative z-10 px-4 py-2 text-white w-1/3 border-r border-[#ffffff7d] rounded-md">Sex</button>
-                  <button id="age-button" class="relative z-10 px-4 py-2 text-white w-1/3">Age</button>
-                </div>
-              </div>
-            </div>
-            <div id="bar-chart-health-container"></div>
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
-
-            <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit,
-              sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrum exercitationem ullam
-              corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-              consequatur. Quis aute iure reprehenderit in voluptate velit
-              esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-              obcaecat cupiditat non proident, sunt in culpa qui officia
-              deserunt mollit anim id est laborum.</p>
-          </div>
-
-          <!-- BAR CHART HEALTH END -->
-
-          <!-- BEESWARM START -->
-          <div class="window mt-10">
-            <h3 class="plot-title">Beeswarm title</h3>
-            <div id="beeswarm-legend" class="border-[1px] rounded-md p-2"></div>
-            <div id="beeswarm-container"></div>
-            <div class="flex-1 w-full">
-              <div class="flex justify-center items-center gap-4">
-                <button id="play-button" class="play-button">⏵︎</button>
-                <div id="beeswarm-slider-container" class="w-full">
-                  <label for="beeswarm-slider" class="selector me-4">
-                    Select Year
-                  </label>
-                  <input type="range" id="beeswarm-slider" name="beeswarm-slider" class="year-slider">
-                  <div id="slider-ticks" class="flex justify-between"></div>
-                </div>
-              </div>
-            </div>
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
-
-            <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit,
-              sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrum exercitationem ullam
-              corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-              consequatur. Quis aute iure reprehenderit in voluptate velit
-              esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-              obcaecat cupiditat non proident, sunt in culpa qui officia
-              deserunt mollit anim id est laborum.</p>
-          </div>
-          <!-- BEESWARM END -->
-
-
-          <!--BUBBLEMAP-->
-
-          <div class="window mt-10">
-            <h3 class="plot-title">Health spending during COVID-19</h3>
-            <div class="container-selector">
-              <label for="map-selector-2" class="selector me-4">Select type of data</label>
-              <select id="map-selector-2" class="select">
-                <option value="deaths">Confirmed deaths</option>
-                <option value="cases">Confirmed cases</option>
-                <option value="vaccines">Vaccines</option>
-                <!-- <option value="hospitalized">Ricoverati</option> -->
-              </select>
-            </div>
-
-            <div id="map-container-bubble"></div>
-
-            <!--Switch-->
-            <span id="number-date" class="w-fit justify-center -mb-10"></span>
-            <div class="flex-1 w-full">
-              <div class="flex items-center gap-4">
-                <!-- year selector -->
-                <div class="w-full">
-                  <label for="year-slider-2" class="selector me-4">
-                    Select Year
-                  </label>
-                  <input type="range" id="year-slider-2" name="year-slider-2" class="year-slider">
-                  <div class="flex justify-between text-sm text-gray-400 w-full">
-                    <span id="min-year-text-2"></span>
-                    <span id="year-1-text-2"></span>
-                    <span id="year-2-text-2"></span>
-                    <span id="year-3-text-2"></span>
-                    <span id="max-year-text-2"></span>
-                  </div>
-                </div>
-                <!-- end year selector -->
-              </div>
-            </div>
-
-            <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
-
-            <p class="corpus">The plot shows the values ​​of healthcare spending between 
-              2020 and 2022 in the various European countries. Each year is represented 
-              by a single value, while the monthly change reflects the evolution of the 
-              number of deaths, vaccinated or infected, depending on the selected metric. 
-              Healthcare spending is indicated by the change in the color scale in the bubbles,
-               while their size represents the number of deaths, vaccinations or confirmed cases.
-</p>
-               <p class="corpus">
-              Looking at the plot, we note that healthcare spending remained relatively 
-              constant in most countries between 2020 and 2022. However, some notable 
-              exceptions emerge, such as in the case of Italy. Despite being one of 
-              the countries with the highest spending, it contributed to <span class="font-bold">79.61% of the 
-              total deaths</span> until 2022 among the countries considered. This data appears 
-              disproportionate when compared with the number of infections, which in Italy 
-              represented <span class="font-bold">64.53% of total cases</span>, compared to other countries such as Germany, 
-              where the percentage of infections was <span class="font-bold">95.46%</span> in 2022.
-              
-              This comparison highlights how Italy has recorded a particularly high 
-              impact in terms of mortality compared to the expenditure incurred and 
-              the number of infections, suggesting possible differences in the 
-              effectiveness of health measures, in the organization of the hospital 
-              system or in the timing of intervention compared to other European countries.</p>
-          </div>
-
-          <!--BUBBLEMAP_END-->
+          <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit,
+            sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrum exercitationem ullam
+            corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
+            consequatur. Quis aute iure reprehenderit in voluptate velit
+            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+            obcaecat cupiditat non proident, sunt in culpa qui officia
+            deserunt mollit anim id est laborum.</p>
         </div>
 
+        <!-- BAR CHART HEALTH END -->
 
-        <div id="section5" class="min-h-screen flex flex-col items-center mb-20">
-          <h2 class="text-3xl font-semibold my-10 mt-5">Outcomes</h2>
-          <p class="corpus">
-            Based on the visualizations presented above, the final outcomes underscore a series of notable trends and
-            concerning insights. These results not only highlight ongoing challenges but also call for further analysis
-            to better understand their implications.
+        <!-- BEESWARM START -->
+        <div class="window mt-10">
+          <h3 class="plot-title">Beeswarm title</h3>
+          <div id="beeswarm-legend" class="border-[1px] rounded-md p-2"></div>
+          <div id="beeswarm-container"></div>
+          <div class="flex-1 w-full">
+            <div class="flex justify-center items-center gap-4">
+              <button id="play-button" class="play-button">⏵︎</button>
+              <div id="beeswarm-slider-container" class="w-full">
+                <label for="beeswarm-slider" class="selector me-4">
+                  Select year
+                </label>
+                <input type="range" id="beeswarm-slider" name="beeswarm-slider" class="year-slider">
+                <div id="slider-ticks" class="flex justify-between"></div>
+              </div>
+            </div>
+          </div>
+          <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
+          <p class="corpus">Lorem ipsum dolor sit amet, consectetur adipisci elit,
+            sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrum exercitationem ullam
+            corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
+            consequatur. Quis aute iure reprehenderit in voluptate velit
+            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+            obcaecat cupiditat non proident, sunt in culpa qui officia
+            deserunt mollit anim id est laborum.</p>
+        </div>
+        <!-- BEESWARM END -->
+
+
+        <!--BUBBLEMAP-->
+
+        <div class="window mt-10">
+          <h3 class="plot-title">Health spending during COVID-19</h3>
+          <div class="container-selector">
+            <label for="map-selector-2" class="selector me-4">Select type of data</label>
+            <select id="map-selector-2" class="select">
+              <option value="deaths">Confirmed deaths</option>
+              <option value="cases">Confirmed cases</option>
+              <option value="vaccines">Vaccines</option>
+            </select>
+          </div>
+
+          <div id="map-container-bubble"></div>
+
+          <!--Switch-->
+          <span id="number-date" class="w-fit justify-center -mb-10"></span>
+          <div class="flex-1 w-full">
+            <div class="flex items-center gap-4">
+              <!-- year selector -->
+              <div class="w-full">
+                <label for="year-slider-2" class="selector me-4">
+                  Select year
+                </label>
+                <input type="range" id="year-slider-2" name="year-slider-2" class="year-slider">
+                <div class="flex justify-between text-sm text-gray-400 w-full">
+                  <span id="min-year-text-2"></span>
+                  <span id="year-1-text-2"></span>
+                  <span id="year-2-text-2"></span>
+                  <span id="year-3-text-2"></span>
+                  <span id="max-year-text-2"></span>
+                </div>
+              </div>
+              <!-- end year selector -->
+            </div>
+          </div>
+
+          <div class="w-full h-px bg-gray-200 mt-4 mb-4"></div><!--line-->
+
+          <p class="corpus">The plot shows the values ​​of healthcare spending between
+            2020 and 2022 in the various European countries. Each year is represented
+            by a single value, while the monthly change reflects the evolution of the
+            number of deaths, vaccinated or infected, depending on the selected metric.
+            Healthcare spending is indicated by the change in the color scale in the bubbles,
+            while their size represents the number of deaths, vaccinations or confirmed cases.
           </p>
-          <!-- Grid -->
-          <div class="grid grid-cols-3 gap-4">
-            <!-- Economy outcomes: Every one is poorer -->
-            <div class="p-4 flex flex-col items-center justify-end">
-              <h3 class="plot-title text-white mb-4 w-64">Everybody is poorer</h3>
-              <div class="flex flex-col items-center border-2 border-gray-200 w-64 rounded-md p-4">
-                <div class="flex flex-col items-center gap-4">
-                  <span class="text-gray-300 text-2xl">GDP change (2019-2023)</span>
-                  <span id="gdp-change-value" class="text-6xl"></span>
-                </div>
+          <p class="corpus">
+            Looking at the plot, we note that healthcare spending remained relatively
+            constant in most countries between 2020 and 2022. However, some notable
+            exceptions emerge, such as in the case of Italy. Despite being one of
+            the countries with the highest spending, it contributed to <span class="font-bold">79.61% of the
+              total deaths</span> until 2022 among the countries considered. This data appears
+            disproportionate when compared with the number of infections, which in Italy
+            represented <span class="font-bold">64.53% of total cases</span>, compared to other countries such as
+            Germany,
+            where the percentage of infections was <span class="font-bold">95.46%</span> in 2022.
+
+            This comparison highlights how Italy has recorded a particularly high
+            impact in terms of mortality compared to the expenditure incurred and
+            the number of infections, suggesting possible differences in the
+            effectiveness of health measures, in the organization of the hospital
+            system or in the timing of intervention compared to other European countries.</p>
+        </div>
+
+        <!--BUBBLEMAP_END-->
+      </div>
+
+      <!-- Outcomes -->
+      <div id="section5" class="min-h-screen flex flex-col items-center justify-center gap-6 my-20">
+        <h2 class="section-title">Outcomes</h2>
+        <p class="corpus">
+          Based on the visualizations presented above, the final outcomes underscore a series of notable trends and
+          concerning insights. These results not only highlight ongoing challenges but also call for further analysis
+          to better understand their implications.
+        </p>
+        <!-- Grid -->
+        <div class="grid grid-cols-3 gap-4">
+          <!-- Economy outcomes: Every one is poorer -->
+          <div class="p-4 flex flex-col items-center justify-end">
+            <h3 class="plot-title text-white mb-4 w-64">Everybody is poorer</h3>
+            <div class="flex flex-col items-center border-2 border-gray-200 w-64 rounded-md p-4">
+              <div class="flex flex-col items-center gap-4">
+                <span class="text-gray-300 text-2xl">GDP change (2019-2023)</span>
+                <span id="gdp-change-value" class="text-6xl"></span>
               </div>
             </div>
-            <!-- Economy: Inflation is increased -->
-            <div class="p-4 flex flex-col items-center justify-end">
-              <h3 class="plot-title text-white mb-4 w-64">Everything costs more</h3>
-              <div class="flex flex-col items-center border-2 border-gray-200 w-64 rounded-md p-4">
-                <div class="flex flex-col items-center gap-4">
-                  <span class="text-gray-300 text-2xl">General inflation change (2019-2023)</span>
-                  <span id="inflation-change-value" class="text-6xl"></span>
-                </div>
+          </div>
+          <!-- Economy: Inflation is increased -->
+          <div class="p-4 flex flex-col items-center justify-end">
+            <h3 class="plot-title text-white mb-4 w-64">Everything costs more</h3>
+            <div class="flex flex-col items-center border-2 border-gray-200 w-64 rounded-md p-4">
+              <div class="flex flex-col items-center gap-4">
+                <span class="text-gray-300 text-2xl">General inflation change (2019-2023)</span>
+                <span id="inflation-change-value" class="text-6xl"></span>
               </div>
             </div>
-            <!-- Education & Jobs: unemployment decreased after it -->
-            <div class="p-4 flex flex-col items-center justify-end">
-              <h3 class="plot-title text-white mb-4 w-64">People earn less</h3>
-              <div class="flex flex-col items-center border-2 border-gray-200 w-64 rounded-md p-4">
-                <div class="flex flex-col items-center gap-4">
-                  <span class="text-gray-300 text-2xl">Unemployment change (2019-2023)</span>
-                  <span id="unemployment-change-value" class="text-6xl"></span>
-                </div>
+          </div>
+          <!-- Education & Jobs: unemployment decreased after it -->
+          <div class="p-4 flex flex-col items-center justify-end">
+            <h3 class="plot-title text-white mb-4 w-64">People earn less</h3>
+            <div class="flex flex-col items-center border-2 border-gray-200 w-64 rounded-md p-4">
+              <div class="flex flex-col items-center gap-4">
+                <span class="text-gray-300 text-2xl">Unemployment change (2019-2023)</span>
+                <span id="unemployment-change-value" class="text-6xl"></span>
               </div>
             </div>
-            <!-- Education & Jobs: enroll increase during covid, decrease after it -->
-            <div class="p-4 flex flex-col items-center justify-end">
-              <h3 class="plot-title text-white mb-4 w-64">Universities were not involved</h3>
-              <div class="flex flex-col items-center border-2 border-gray-200 w-64 rounded-md p-4">
-                <div class="flex flex-col items-center gap-4">
-                  <span class="text-gray-300 text-2xl">Tertiary enrollment change (2019-2023)</span>
-                  <span id="enrollment-change-value" class="text-6xl"></span>
-                </div>
+          </div>
+          <!-- Education & Jobs: enroll increase during covid, decrease after it -->
+          <div class="p-4 flex flex-col items-center justify-end">
+            <h3 class="plot-title text-white mb-4 w-64">Universities were not involved</h3>
+            <div class="flex flex-col items-center border-2 border-gray-200 w-64 rounded-md p-4">
+              <div class="flex flex-col items-center gap-4">
+                <span class="text-gray-300 text-2xl">Tertiary enrollment change (2019-2023)</span>
+                <span id="enrollment-change-value" class="text-6xl"></span>
               </div>
             </div>
-            <!-- Healthcare: generam mental disorders deaths decreased -->
-            <div class="p-4 flex flex-col items-center justify-end">
-              <h3 class="plot-title text-white mb-4 w-64">Mental disorders deaths keep decreasing (incl. drugs, alcohol
-                & self-harm)</h3>
-              <div class="flex flex-col items-center border-2 border-gray-200 w-64 rounded-md p-4">
-                <div class="flex flex-col items-center gap-4">
-                  <span class="text-gray-300 text-2xl">Deaths change (2019-2021)</span>
-                  <span id="mental-deaths-change-value" class="text-6xl"></span>
-                </div>
+          </div>
+          <!-- Healthcare: generam mental disorders deaths decreased -->
+          <div class="p-4 flex flex-col items-center justify-end">
+            <h3 class="plot-title text-white mb-4 w-64">Mental disorders deaths keep decreasing (incl. drugs, alcohol
+              & self-harm)</h3>
+            <div class="flex flex-col items-center border-2 border-gray-200 w-64 rounded-md p-4">
+              <div class="flex flex-col items-center gap-4">
+                <span class="text-gray-300 text-2xl">Deaths change (2019-2021)</span>
+                <span id="mental-deaths-change-value" class="text-6xl"></span>
               </div>
             </div>
-            <!-- Healthcare: mental disorders deaths increased -->
-            <div class="p-4 flex flex-col items-center justify-end">
-              <h3 class="plot-title text-white mb-4 w-64">Mental disorders deaths have slightly incresed</h3>
-              <div class="flex flex-col items-center border-2 border-gray-200 w-64 rounded-md p-4">
-                <div class="flex flex-col items-center gap-4">
-                  <span class="text-gray-300 text-2xl">Mental disorders deaths change (2019-2021)</span>
-                  <span id="mental-disorders-deaths-change-value" class="text-6xl"></span>
-                </div>
+          </div>
+          <!-- Healthcare: mental disorders deaths increased -->
+          <div class="p-4 flex flex-col items-center justify-end">
+            <h3 class="plot-title text-white mb-4 w-64">Mental disorders deaths have slightly incresed</h3>
+            <div class="flex flex-col items-center border-2 border-gray-200 w-64 rounded-md p-4">
+              <div class="flex flex-col items-center gap-4">
+                <span class="text-gray-300 text-2xl">Mental disorders deaths change (2019-2021)</span>
+                <span id="mental-disorders-deaths-change-value" class="text-6xl"></span>
               </div>
             </div>
           </div>
         </div>
-
       </div>
+
     </div>
+  </div>
 
-    <!-- COVID -->
-    <script type="module" src="./../js/covidspread/map.js"></script>
-    <script type="module" src="./../js/covidspread/linechart.js"></script>
-    <script type="module" src="./../js/covidspread/stackedbarchart.js"></script>
+  <!-- COVID -->
+  <script type="module" src="./../js/covidspread/map.js"></script>
+  <script type="module" src="./../js/covidspread/linechart.js"></script>
+  <script type="module" src="./../js/covidspread/stackedbarchart.js"></script>
 
-    <!-- ECONOMY -->
-    <script src="./../js/economy/bubblechart.js"></script>
-    <script src="./../js/economy/bubblechart_percentage.js"> </script>
-    <script src="./../js/lockdowns/bubbleEnrollments.js"></script>
-    <script src="./../js/economy/butterflychart.js"></script>
+  <!-- ECONOMY -->
+  <script src="./../js/economy/bubblechart.js"></script>
+  <script src="./../js/economy/bubblechart_percentage.js"> </script>
+  <script src="./../js/lockdowns/bubbleEnrollments.js"></script>
+  <script src="./../js/economy/butterflychart.js"></script>
 
-    <!-- EDUCATION -->
-    <script type="module" src="../js/education_jobs/dumbbellEnrollments.js"></script>
-    <script type="module" src="../js/education_jobs/dumbbellUnemployment.js"></script>
-    <script type="module" src="../js/education_jobs/bubbleLockdown.js"></script>
+  <!-- EDUCATION -->
+  <script type="module" src="../js/education_jobs/dumbbellEnrollments.js"></script>
+  <script type="module" src="../js/education_jobs/dumbbellUnemployment.js"></script>
+  <script type="module" src="../js/education_jobs/bubbleLockdown.js"></script>
 
-    <!-- HEALTHCARE -->
-    <script type="module" src="./../js/healthcare/waffleChartHealth.js"></script>
-    <script type="module" src="./../js/healthcare/barChartHealth.js"></script>
-    <script type="module" src="./../js/healthcare/beeswarmHealth.js"></script>
-    <script type="module" src="./../js/healthcare/mapHealth.js"></script>
+  <!-- HEALTHCARE -->
+  <script type="module" src="./../js/healthcare/waffleChartHealth.js"></script>
+  <script type="module" src="./../js/healthcare/barChartHealth.js"></script>
+  <script type="module" src="./../js/healthcare/beeswarmHealth.js"></script>
+  <script type="module" src="./../js/healthcare/mapHealth.js"></script>
 
-    <!-- OUTCOMES -->
-    <script type="module" src="../js/outcomes/gdpChange.js"></script>
-    <script type="module" src="../js/outcomes/inflationChange.js"></script>
-    <script type="module" src="../js/outcomes/enrollmentChange.js"></script>
-    <script type="module" src="../js/outcomes/unemploymentChange.js"></script>
-    <script type="module" src="../js/outcomes/mentalDeathsChange.js"></script>
-    <script type="module" src="../js/outcomes/mentalDisordersDeathsChange.js"></script>
+  <!-- OUTCOMES -->
+  <script type="module" src="../js/outcomes/gdpChange.js"></script>
+  <script type="module" src="../js/outcomes/inflationChange.js"></script>
+  <script type="module" src="../js/outcomes/enrollmentChange.js"></script>
+  <script type="module" src="../js/outcomes/unemploymentChange.js"></script>
+  <script type="module" src="../js/outcomes/mentalDeathsChange.js"></script>
+  <script type="module" src="../js/outcomes/mentalDisordersDeathsChange.js"></script>
 
-    <script type="module" src="./../js/utils.js"></script>
-  </body>
+  <script type="module" src="./../js/utils.js"></script>
+</body>
 
 </html>

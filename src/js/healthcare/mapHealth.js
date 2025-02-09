@@ -163,7 +163,6 @@ function mapBubble() {
   const legendRanges = [
     { label: "Not Available", values: "Not Available", color: "lightgray" },
     ...quantiles.map((d, i) => {
-      console.log(d);
       return {
         label: i === 0
           ? `< ${((i + 1) * quantileStep * 100).toFixed(0)}th`

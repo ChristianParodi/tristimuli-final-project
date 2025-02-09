@@ -688,6 +688,16 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+.section-title{
+  margin-bottom: 1.25rem;
+  text-align: center;
+  font-size: 3.75rem;
+  line-height: 1;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
 .sr-only{
   position: absolute;
   width: 1px;
@@ -698,6 +708,10 @@ video {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+.visible{
+  visibility: visible;
 }
 
 .collapse{
