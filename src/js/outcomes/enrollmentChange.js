@@ -14,7 +14,7 @@ function enrollmentChange() {
     enrollments2022: d["2022"],
   }))[0]
 
-  const change = ((enrollmentData.enrollments2019 - enrollmentData.enrollments2022) / enrollmentData.enrollments2019) * 100;
+  const change = ((enrollmentData.enrollments2022 - enrollmentData.enrollments2019) / enrollmentData.enrollments2019) * 100;
 
   d3.select("#enrollment-change-value")
     .text(change.toFixed(2) + "%");
