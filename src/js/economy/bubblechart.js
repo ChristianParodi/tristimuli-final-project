@@ -1,4 +1,5 @@
 function createGrid(svg, x, y, width, height) {
+    
     // Griglia orizzontale
     svg.append("g")
         .attr("class", "grid horizontal")
@@ -131,8 +132,7 @@ function BubbleChart() {
         const filteredCovidData = covidData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);
 
 
-        drawLeg(filteredCovidData.map( d=>d.new_cases));
-        
+     
         // Associa le metriche ai rispettivi dataset
         const metrics = ["gdpPercap", "housePrices"];
         const dataMap = {
@@ -392,7 +392,8 @@ function BubbleChart() {
                     };
                 });
 
-
+                d3.select("#bubble-gdphouse-legend").select("svg").remove();
+                drawLeg(covidCountryData.map(d => d.new_cases));
 
             // Aggiorna il grafico
             updateGraph(combinedData, filterData, selectedCountry, selectedMetric);
