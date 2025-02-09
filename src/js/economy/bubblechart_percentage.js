@@ -1,3 +1,72 @@
+function drawSquareLegend(inboundData) {
+    const legendWidth = 575;
+    const legendHeight = 150;
+    const legendMargin = 15;
+    const maxSquareSize = 100; // Massima dimensione del quadrato
+    const minSquareSize = 1; // Dimensione minima del quadrato
+    const squareSpacing = 120;
+    
+    const svgLegend = d3.select('#bubblechart_legend')
+        .append('svg')
+        .attr('width', legendWidth)
+        .attr('height', legendHeight)
+        .style('border', '1px solid white')
+        .style("border-radius", '0.3rem');
+
+    const legendGroup = svgLegend.append('g')
+        .attr("transform", `translate(${legendMargin}, ${legendHeight / 2})`);
+
+    const minInbound = d3.min(inboundData);
+    const maxInbound = d3.max(inboundData);
+
+    const legendData = [
+        { scale: 1 / 4, x: 0 },
+        { scale: 1 / 2, x: maxSquareSize * 0.5 + squareSpacing},  // Distanza tra le palle
+        { scale: 1, x: maxSquareSize * 2.5 + squareSpacing }
+    ];
+
+    legendGroup.append('text')
+        .attr('x', 50) // Center the title
+        .attr('y', -50) // Position it above the bubbles
+        .attr('text-anchor', 'middle')
+        .attr('fill', 'white')
+        .style('font-size', '16px')
+        .text('Inbound Tourists');
+
+    legendData.forEach(d => {
+        const inboundValue = Math.round(minInbound + (maxInbound - minInbound) * d.scale);
+        const squareSize = Math.max(minSquareSize, maxSquareSize * d.scale); // Imposta la dimensione minima
+        const unit = inboundValue >= 1000000000 ? 'Bil' : 'Mil';
+        const displayValue = inboundValue >= 1000000000 ? (inboundValue / 1000000000).toFixed(4) : (inboundValue / 1000000).toFixed(4);
+
+        // Crea il quadrato
+        legendGroup.append('rect')
+            .attr('x', d.x)
+            .attr('y', -squareSize / 2)
+            .attr('width', squareSize)
+            .attr('height', squareSize)
+            .attr('fill', 'none')
+            .attr('stroke', 'white');
+
+        // Linea di riferimento centrata nel quadrato
+        legendGroup.append('line')
+            .attr('x1', d.x + squareSize / 2)
+            .attr('y1', 0)
+            .attr('x2', d.x + squareSize / 2)
+            .attr('y2', squareSize / 2)
+            .attr('stroke', 'white');
+
+        // Testo accanto al quadrato
+        legendGroup.append('text')
+            .attr('x',  d.x + squareSize + 10)
+            .attr('y', 0)
+            .attr('dominant-baseline', 'middle')
+            .attr('fill', 'white')
+            .text(`${displayValue} ${unit}`);
+    });
+}
+
+
 function BubbleChart() {
     Promise.all([
         d3.csv("./../../../dataset/TOURISM/clean/tourism_final.csv", d => {
@@ -48,6 +117,9 @@ function BubbleChart() {
         const y = d3.scaleLinear().range([height, 0]);
         const z = d3.scaleSqrt().range([1, 100]);
 
+        drawSquareLegend(combinedData.map(d => d.inbound), z);
+
+
         // // Crea un pattern per ogni bandiera
         // const flagPatterns = svg.append("defs")
         //     .selectAll("pattern")
@@ -63,6 +135,9 @@ function BubbleChart() {
         //     .attr("y", 0)
         //     .attr("width", 1)
         //     .attr("height", 1);
+
+    
+        
 
         const xAxis = svg.append("g")
             .attr("class", "x axis")
@@ -175,7 +250,7 @@ function BubbleChart() {
 
             x.domain([-5, d3.max(filteredData, d => d.percentage_vaccines)]);
             // Calcola il massimo di inbound sull'intero dataset (tutti gli anni)
-const maxInbound = d3.max(combinedData, d => d.inbound);
+const maxInbound = d3.max(combinedData, d => d.inbound);         
 
 // Imposta il dominio della scala z una volta sola
 z.domain([4, maxInbound]);
@@ -206,6 +281,7 @@ function updateChart(selectedYear) {
     bubbles.exit().remove();
 
     const borders = svg.selectAll(".border").data(filteredData, d => d.country);
+
     borders.exit().remove();
 
     borders.enter()
@@ -245,6 +321,8 @@ function updateChart(selectedYear) {
 
         updateChart(years[0]);
     });
+
+
 }
 
 BubbleChart();
