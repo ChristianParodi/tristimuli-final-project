@@ -240,15 +240,8 @@ function beeswarm() {
     });
 
 
-
     function drawLegend() {
         const legendData = [500, 10000, 50000, 100000, 200000]; // Example expenditure values
-
-        let total = 0;
-        legendData.forEach(d => {
-            total += radiusScale(d);
-        });
-        console.log(total);
 
         const legendWidth = 435;
         const legendHeight = 120;
