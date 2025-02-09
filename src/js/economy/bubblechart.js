@@ -1,10 +1,12 @@
 function createGrid(svg, x, y, width, height) {
+    
     // Griglia orizzontale
     svg.append("g")
         .attr("class", "grid horizontal")
         .call(d3.axisLeft(y).tickSize(-width).tickFormat(""))
         .selectAll("line")
-        .style("stroke", "#ccc")
+        .style("stroke", d => (y(0) === y(d) ? "#1F202A" : "#ccc"))
+        .style("stroke-width", d => (y(0) === y(d) ? "4px" : "1px"))
         .style("stroke-opacity", 0.7)
         .style("shape-rendering", "crispEdges");
 
@@ -18,6 +20,84 @@ function createGrid(svg, x, y, width, height) {
         .style("stroke-opacity", 0.7)
         .style("shape-rendering", "crispEdges");
 }
+
+function drawLeg(newCasesData) {
+    const legendWidth = 590;
+    const legendHeight = 150;
+    const legendMargin = 15;
+    const legendRadius = 40;
+    const svgLegend = d3.select('#bubble-gdphouse-legend')
+        .append('svg')
+        .attr('width', legendWidth)
+        .attr('height', legendHeight)
+        .style('border', '1px solid white')
+        .style("border-radius", '0.3rem')
+
+    
+        
+    const legendGroup = svgLegend.append('g')
+        .attr("transform", `translate(${legendMargin}, ${legendHeight / 2})`);  // Centra verticalmente
+
+    const minCases = d3.min(newCasesData);
+    const maxCases = d3.max(newCasesData);
+
+    const legendData = [
+        { scale: 1 / 4, x: 0 },
+        { scale: 1 / 2, x: legendRadius * 5 },  // Distanza tra le palle
+        { scale: 1, x: legendRadius * 10 }
+    ];
+
+    legendGroup.append('text')
+    .attr('x', 55) // Center the title
+    .attr('y', -legendRadius * 1.35) // Position it above the bubbles
+    .attr('text-anchor', 'middle')
+    .attr('fill', 'white')
+    .style('font-size', '16px')
+    .text('New cases of Covid');
+
+    legendData.forEach(d => {
+        const newCases = minCases + (maxCases - minCases) * d.scale;
+        const populationText = Math.round(newCases).toLocaleString();
+
+        
+        // Crea il cerchio
+        legendGroup.append('circle')
+            .attr('cx', d.x)
+            .attr('cy', 0)
+            .attr('r', legendRadius * d.scale)
+            .attr('fill', 'none')
+            .attr('stroke', 'white');
+
+        // Crea la linea che va dal cerchio
+        legendGroup.append('line')
+            .attr('x1', d.x)
+            .attr('y1', 0)
+            .attr('x2', d.x)
+            .attr('y2', legendRadius * d.scale)  // Lunghezza della linea
+            .attr('stroke', 'white');
+
+            let unit, displayValue;
+            if (newCases >= 1000000000) {
+                unit = 'Bil';
+                displayValue = (newCases / 1000000000).toFixed(3);
+            } else if (newCases >= 1000000) {  // Cambia la soglia a 1 Milione
+                unit = 'Mil';
+                displayValue = (newCases / 1000000).toFixed(3);
+            } else {
+                unit = 'K';
+                displayValue = (newCases / 1000).toFixed(3);
+            }
+        // Aggiungi il testo accanto alla palla
+        legendGroup.append('text')
+            .attr('x', d.x + legendRadius * d.scale + 10)
+            .attr('y', d.y)
+            .attr('dominant-baseline', 'middle')
+            .attr('fill', 'white')
+            .text(`${displayValue} ${unit}`);
+    });
+}
+
+
 
 // Funzione per aggiornare la Y all'inizio
 function initializeYScale(selectedMetric) {
@@ -62,6 +142,8 @@ function BubbleChart() {
         const filteredHousePriceData = housePriceData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);
         const filteredCovidData = covidData.filter(d => d.year === 2020 || d.year === 2021 || d.year === 2022 || d.year === 2023);
 
+
+     
         // Associa le metriche ai rispettivi dataset
         const metrics = ["gdpPercap", "housePrices"];
         const dataMap = {
@@ -71,8 +153,8 @@ function BubbleChart() {
 
         // Dimensioni e margini del grafico
         const margin = { top: 60, right: 40, bottom: 80, left: 75 };
-        const width = 700;
-        const height = 450;
+        const width = 900;
+        const height = 420;
 
         // Crea l'elemento SVG
         const svg = d3.select("#bubblechart_container")
@@ -141,7 +223,7 @@ function BubbleChart() {
         
                         <!-- Colonna Destra: New Cases -->
                         <div class="flex flex-col items-center">
-                            <div style="font-weight: bold;">Covid cases</div>
+                            <div style="font-weight: bold;">New Covid cases</div>
                             <div style="font-size: 22px; font-weight: bold; color: black;">
                                 ${d.new_cases.toLocaleString()}
                             </div>
@@ -321,11 +403,14 @@ function BubbleChart() {
                     };
                 });
 
-
+                d3.select("#bubble-gdphouse-legend").select("svg").remove();
+                drawLeg(covidCountryData.map(d => d.new_cases));
 
             // Aggiorna il grafico
             updateGraph(combinedData, filterData, selectedCountry, selectedMetric);
         }
+
+
 
         // Funzione per aggiornare il grafico (scales e bubbles)
         function updateGraph(combinedData, filterData, selectedCountry, selectedMetric) {
@@ -422,6 +507,7 @@ function BubbleChart() {
         updateCountrySelector(metrics[0]);
         updateChart();
     });
+
 }
 
 BubbleChart();

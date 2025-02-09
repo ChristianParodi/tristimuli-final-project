@@ -49,13 +49,13 @@ function dumbbellEnrollments() {
     const currentCountry = enrollemntQuantiles.find(d => d.country === country);
     switch (currentCountry.enrollment_category) {
       case 'Extremely Low':
-        return 20000;
+        return 35000;
       case 'Very Low':
-        return 50000;
+        return 70000;
       case 'Low':
         return 100000;
       case 'Medium Low':
-        return 300000;
+        return 400000;
       case 'Medium':
         return 500000;
       case 'Medium High':
@@ -65,7 +65,7 @@ function dumbbellEnrollments() {
       case 'Very High':
         return 8000000;
       default:
-        return currentCountry.enrollments;
+        return currentCountry.enrollments + 3000000;
     }
   };
 
@@ -99,32 +99,24 @@ function dumbbellEnrollments() {
     .style("font-size", "18px")
     .text("Tertiary education enrollments");
 
+  // Mark covid start
+  g.append("line")
+    .attr("x1", covidStartX)
+    .attr("x2", covidStartX)
+    .attr("y1", 0)
+    .attr("y2", height)
+    .attr("stroke-width", 2)
+    .attr("stroke-dasharray", "4");
+
+  g.append("text")
+    .attr("x", covidStartX)
+    .attr("y", -10)
+    .attr("text-anchor", "middle")
+    .style("font-size", "12px")
+    .text("COVID Starts");
+
   function updateChart(country) {
     easeOutLines(g);
-    // remove total
-    g.selectAll('path')
-      .filter(function () {
-        return d3.select(this).attr('stroke') === customColors['green'];
-      })
-      .transition()
-      .duration(200)
-      .remove()
-
-    // Mark covid start
-    g.append("line")
-      .attr("x1", covidStartX)
-      .attr("x2", covidStartX)
-      .attr("y1", 0)
-      .attr("y2", height)
-      .attr("stroke-width", 2)
-      .attr("stroke-dasharray", "4");
-
-    g.append("text")
-      .attr("x", covidStartX)
-      .attr("y", -10)
-      .attr("text-anchor", "middle")
-      .style("font-size", "12px")
-      .text("COVID Starts");
 
     const filteredData = processedData.filter(d =>
       d.level === selectedLevel && d.country === country && d.age === selectedAge
@@ -132,17 +124,6 @@ function dumbbellEnrollments() {
     const maleData = filteredData.filter(d => d.sex === "Males");
     const femaleData = filteredData.filter(d => d.sex === "Females");
     const totalData = filteredData.filter(d => d.sex === "Total")
-
-    if (totalData.map(d => d.enrollments).reduce((a, b) => a + b, 0) === 0) {
-      g.append("text")
-        .attr("x", width / 2)
-        .attr("y", height / 2)
-        .attr("text-anchor", "middle")
-        .attr("fill", "red")
-        .style("font-size", "16px")
-        .text("No data available");
-      return;
-    }
 
     yScale.domain([0, getMaxEnrollments(country)]);
     g.select(".yaxis")
@@ -165,7 +146,8 @@ function dumbbellEnrollments() {
       .attr("class", "dot male")
       .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
       .attr("r", 6)
-      .attr("fill", "steelblue")
+      .attr("fill", customColors["blue"])
+      .attr("opacity", d => d.enrollments === 0 ? 0 : 1)
       .attr("opacity", 0)
       .raise()
       .merge(maleDots)
@@ -199,7 +181,7 @@ function dumbbellEnrollments() {
       .duration(500)
       .ease(d3.easeCubicInOut)
       .attr("cy", d => yScale(d.enrollments))
-      .attr("opacity", 1);
+      .attr("opacity", d => d.enrollments === 0 ? 0 : 1);
 
     // female dots
     const femaleDots = g.selectAll(".dot.female").data(femaleData);
@@ -208,7 +190,8 @@ function dumbbellEnrollments() {
       .attr("class", "dot female")
       .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
       .attr("r", 6)
-      .attr("fill", "#FF69B4")
+      .attr("fill", customColors["pink"])
+      .attr("opacity", d => d.enrollments === 0 ? 0 : 1)
       .attr("opacity", 0)
       .raise()
       .merge(femaleDots)
@@ -240,14 +223,16 @@ function dumbbellEnrollments() {
       .duration(500)
       .ease(d3.easeCubicInOut)
       .attr("cy", d => yScale(d.enrollments))
-      .attr("opacity", 1);
+      .attr("opacity", d => d.enrollments === 0 ? 0 : 1);
 
     // Connect totalData points
     const totalLine = d3.line()
+      .defined(d => d.enrollments !== 0)
       .x(d => xScale(d.year) + xScale.bandwidth() / 2)
       .y(d => yScale(d.enrollments));
 
     g.insert("path", ":first-child")
+      .attr("class", "enrollments-total-line")
       .datum(totalData)
       .attr("fill", "none")
       .attr("stroke", customColors["green"])
@@ -269,7 +254,7 @@ function dumbbellEnrollments() {
       .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
       .attr("r", 6)
       .attr("fill", customColors["green"])
-      .attr("opacity", 0)
+      .attr("opacity", d => d.enrollments === 0 ? 0 : 1)
       .raise()
       .merge(totalDots)
       .on("mouseover", function (_, d) {
@@ -300,7 +285,7 @@ function dumbbellEnrollments() {
       .duration(500)
       .ease(d3.easeCubicInOut)
       .attr("cy", d => yScale(d.enrollments))
-      .attr("opacity", 1);
+      .attr("opacity", d => d.enrollments === 0 ? 0 : 1);
   }
 
   updateChart(selectedCountry);
@@ -313,7 +298,7 @@ function dumbbellEnrollments() {
 
 // Removes old lines nicely
 function easeOutLines(g) {
-  g.selectAll("line")
+  g.selectAll("line.male-female-line, path.enrollments-total-line")
     .transition()
     .duration(200)
     .attr("x1", function () {
@@ -342,6 +327,7 @@ function easeOutLines(g) {
 function drawLines(g, male, female, xScale, yScale) {
   const middleY = (yScale(male.enrollments) + yScale(female.enrollments)) / 2;
   g.insert("line", ":first-child")
+    .attr("class", "male-female-line")
     .attr("x1", xScale(male.year) + xScale.bandwidth() / 2)
     .attr("y1", middleY)
     .attr("x2", xScale(female.year) + xScale.bandwidth() / 2)

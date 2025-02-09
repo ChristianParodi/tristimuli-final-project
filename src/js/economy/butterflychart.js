@@ -6,9 +6,9 @@ function ButterflyChart() {
     coicop: d.coicop,
     value: +d.value
   })).then(inflation => {
-    const margin = { top: 40, right: 40, bottom: 40, left: 90 };
+    const margin = { top: 40, right: 40, bottom: 40, left: 150 };
     const width = 400;
-    const height = 500;
+    const height = 750;
 
     const container = d3.select("#butterflychart_container")
       .style("display", "flex")
@@ -57,9 +57,11 @@ function ButterflyChart() {
         .attr("x", width / 2)
         .attr("y", margin.top / 2)
         .attr("text-anchor", "middle")
-        .text(`Inflation Comparison by Country (${year})`);
+        .text(`Inflation(%) Comparison by Country (${year})`)
+        .style("font-size", "20px");
 
-      svg.append("g").attr("class", "y-axis");
+      svg.append("g").attr("class", "y-axis")
+      .style("font-size", "14px");
 
 
       svg.append("g").attr("class", "bars");
@@ -109,7 +111,7 @@ function ButterflyChart() {
         const yScale = d3.scaleBand()
           .domain(filteredData.map(d => d.country))
           .range([margin.top, height - margin.bottom])
-          .padding(0.1);
+          .padding(0.2);
 
         const maxValue = d3.max(filteredData, d => Math.abs(d.value));
 
@@ -136,7 +138,7 @@ function ButterflyChart() {
           .attr("y", d => yScale(d.country))
           .attr("width", d => Math.abs(xScale(d.value) - xScale(0)))
           .attr("height", yScale.bandwidth())
-          .attr("fill", d => d.value > 0 ? "#11AD39" : "#CC2D28");
+          .attr("fill", d => d.value > 0 ? "#03A059" : "#E94F37");
 
         const labels = svg.select(".bars").selectAll(".country-label").data(filteredData, d => d.country);
 
@@ -158,6 +160,24 @@ function ButterflyChart() {
 
     const monthSlider = d3.select("#month-slider-butt");
     const dataSelector = d3.select("#data-selector-butt");
+
+
+        // Definisce i tick personalizzati per i mesi
+        const tickMonths = [1, 3, 6, 9, 12];
+    
+        // Aggiunge i tick visivi sullo slider
+        const sliderContainer = d3.select("#slider-container");
+        sliderContainer.selectAll(".tick-label").remove();
+        
+        tickMonths.forEach(month => {
+          sliderContainer.append("span")
+            .attr("class", "tick-label")
+            .style("position", "absolute")
+            .style("left", `${(month - 1) / 11 * 100}%`)
+            .style("transform", "translateX(-50%)")
+            .style("bottom", "-10px")
+            .text(month.toString().padStart(2, "0"));
+        });
 
     monthSlider.on("input", () => {
       const monthValue = monthSlider.property("value");

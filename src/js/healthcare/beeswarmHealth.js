@@ -1,4 +1,4 @@
-import { datasets } from "../utils.js";
+import { datasets, population } from "../utils.js";
 
 function beeswarm() {
     const mentalDeaths = datasets.mentalHealthData
@@ -17,23 +17,27 @@ function beeswarm() {
 
     mentalDeaths.forEach(md => {
         const entry = expendituresData.find(ed => ed.country === md.country && +ed.year === +md.year);
-        if (entry) {
+        const popEntry = population.find(p => p.country === md.country && +p.year === +md.year);
+        if (entry && popEntry) {
             data.push({
                 ISO2: md.ISO2,
                 country: md.country,
                 year: +md.year,
                 deaths: +md.deaths,
                 percDeaths: +md.percDeaths.toFixed(2),
-                healthExp: +entry.health,
-                totalExp: +entry.total,
-                percExp: +entry.percentage
+                healthExp: +entry.health * 1e6 / +popEntry.population,
+                totalExp: +entry.total * 1e6 / +popEntry.population,
+                percExp: +entry.percentage,
+                population: +popEntry.population
             });
         }
     });
 
+    console.log(population);
+
 
     const width = 1000;
-    const height = 600;
+    const height = 300;
     const margin = { top: 50, right: 50, bottom: 50, left: 50 };
 
     const svg = d3.select("#beeswarm-container")
@@ -51,23 +55,34 @@ function beeswarm() {
 
     const radiusScale = d3.scaleSqrt()
         .domain([0, d3.max(data, d => +d.healthExp)]) // Map totalCases to circle size
-        .range([3, 40]); // Circle radius range
+        .range([3, 50]); // Circle radius range
 
 
     // Axes
     svg.append("g")
-        .attr("transform", `translate(0,${height})`)
-        .call(d3.axisBottom(xScale).tickFormat(d => `${d}%`));
+        .attr("transform", `translate(0,${height - 5})`)
+        .call(d3.axisBottom(xScale).tickFormat(d => `${d}%`))
+        .selectAll("text")
+        .style("font-size", "14px");
+
+    const tickss = xScale.ticks(10);
+
+    tickss.forEach(tick => {
+        svg.append("line")
+            .attr("x1", xScale(tick))
+            .attr("x2", xScale(tick))
+            .attr("y1", 0)
+            .attr("y2", height)
+            .attr("stroke", "black")
+            .attr("stroke-width", 1)
+            .attr("stroke-dasharray", "4,4");
+    });
 
     svg.append("text")
         .attr("x", width / 2)
         .attr("y", height + 40)
         .style("text-anchor", "middle")
         .text("Percentage of Deaths Due to Mental Disorders")
-        .style("color", "black");
-
-    svg.selectAll("path, line").style("stroke", "black").style("color", "black");
-    svg.selectAll(" .tick").style("color", "black");
 
     const years = Array.from(new Set(data.map(d => +d.year)));
     let currentYear = d3.min(years);
@@ -84,7 +99,6 @@ function beeswarm() {
         .data(years)
         .enter()
         .append("p")
-        .attr("class", "text-black")
         .text(d => d);
 
     const simulation = d3.forceSimulation()
@@ -157,16 +171,14 @@ function beeswarm() {
         circlesEnter.append("clipPath")
             .attr("id", d => `circle-clip-${d.country}-${d.year}`)
             .append("circle")
-            .style("stroke", "black")
             .style("stroke-width", "2px")
             .attr("r", d => d.percDeaths === 0 ? 0 : radiusScale(+d.healthExp));
 
         circlesEnter.append("circle")
             .attr("class", "circle")
             .attr("clip-path", d => `url(#circle-clip-${d.country}-${d.year})`)
-            .style("fill", "black")
             .style("opacity", 0.8)
-            .style("stroke", "black")
+            .style("stroke", "white")
             .style("stroke-width", "2px");
 
         circles.merge(circlesEnter)
@@ -174,26 +186,35 @@ function beeswarm() {
             .duration(750)
             .attr("transform", d => `translate(${d.x},${d.y})`)
             .select("circle")
-            .style("stroke", "black")
+            .style("stroke", "white")
             .style("stroke-width", "2px")
             .attr("r", d => d.percDeaths === 0 ? 0 : radiusScale(+d.healthExp));
 
         circles.exit().remove();
 
         svg.selectAll(".flag-icon")
-            .on("mouseover", (_, d) => {
+            .on("mouseover", (event, d) => {
                 tooltip.style("opacity", "0.9")
-                    .html(`
-                        <strong>Country:</strong> ${d.country}<br>
-                        <strong>Deaths (%):</strong> ${d.percDeaths}<br>
-                        <strong>Health expenditure:</strong> ${d3.format(",")(+d.healthExp)}`)
+                    .html(`<h2 class="text-center m-0 font-bold">${d.country}</h2>
+                <p class="text-black">Mental disorders deaths:<strong> ${d.percDeaths}%</strong></p>
+                <p class="text-black">Health spending per capita:<strong> ${(+d.healthExp.toFixed(2)) + '€'}</strong></p>`)
                     .style("color", "black");
+
+                svg.selectAll(".flag-icon")
+                    .style("opacity", 0.3);
+
+                d3.select(event.currentTarget)
+                    .style("opacity", 1);
             })
             .on("mousemove", (event) => {
                 tooltip.style("top", `${event.pageY + 10}px`)
                     .style("left", `${event.pageX + 10}px`);
             })
-            .on("mouseout", () => tooltip.style("opacity", "0"));
+            .on("mouseout", () => {
+                tooltip.style("opacity", "0");
+                svg.selectAll(".flag-icon")
+                    .style("opacity", 1);
+            });
     }
 
     // Initial rendering
@@ -220,7 +241,7 @@ function beeswarm() {
 
                 currentYear = +yearSlider.node().value;
                 updateChart();
-            }, 800);
+            }, 1000);
         } else {
             clearInterval(intervalId);
         }
@@ -230,6 +251,59 @@ function beeswarm() {
         currentYear = +this.value;
         updateChart();
     });
+
+
+    function drawLegend() {
+        const legendData = [200, 500, 1000, 2000, 3000]; // Example expenditure values
+
+        const legendWidth = 435;
+        const legendHeight = 120;
+
+        const legendSvg = d3.select("#beeswarm-legend")
+            .append("svg")
+            .attr("width", legendWidth)
+            .attr("height", legendHeight)
+            .append("g")
+            .attr("transform", "translate(20,20)");
+
+        const legendCircles = legendSvg.selectAll(".legend-circle")
+            .data(legendData)
+            .enter()
+            .append("g")
+            .attr("class", "legend-circle")
+            .attr("transform", (d, i) => `translate(${i * 80}, 0)`);
+
+        legendCircles.append("circle")
+            .attr("r", d => radiusScale(d))
+            .attr("cx", d => radiusScale(d))
+            .attr("cy", d => legendHeight - radiusScale(d) - 30) // Align to the bottom
+            .style("fill", "none")
+            .attr('stroke', 'white');
+
+        legendCircles.append("line")
+            .attr("x1", d => radiusScale(d) - radiusScale(d))
+            .attr("x2", d => radiusScale(d) + radiusScale(d))
+            .attr("y1", d => legendHeight - radiusScale(d) - 30)
+            .attr("y2", d => legendHeight - radiusScale(d) - 30)
+            .attr("stroke", "white")
+            .attr("stroke-width", 1);
+
+        legendCircles.append("text")
+            .attr("x", d => radiusScale(d))
+            .attr("y", d => legendHeight - radiusScale(d) * 2 - 40)
+            .attr("dy", "0.35em")
+            .style("font-size", "14px")
+            .style("text-anchor", "middle")
+            .text(d => `${(+d.toFixed(2)) + '€'}`);
+
+        legendSvg.append("text")
+            .attr("x", -10)
+            .attr("y", 0)
+            .style("font-size", "16px")
+            .text("Health Spending per Capita (€)");
+
+    }
+    drawLegend();
 }
 
 beeswarm();

@@ -1,5 +1,7 @@
 import { datasets, europeGeoJson } from "../utils.js"
 
+
+
 function mapBubble() {
   const width = 900;
   const height = 700;
@@ -24,8 +26,8 @@ function mapBubble() {
     .style("transition", "opacity 0.3s ease-in-out");
 
   const projection = d3.geoMercator()
-    .scale(600)
-    .translate([width / 2.3, height * 1.5]);
+    .scale(650)
+    .translate([width / 2, 1100]);
   const path = d3.geoPath().projection(projection);
 
   const svg = d3.select("#map-container-bubble")
@@ -35,7 +37,6 @@ function mapBubble() {
 
   const europeMap = svg.append("g");
   const bubbleLayer = svg.append("g");
-
 
   const getLastDayData = (data, metric) => {
     const excludedCountries = new Set(["Russia", "Vatican", "Bosnia and Herzegovina", "Cyprus", "Faroe Islands"]);
@@ -76,41 +77,200 @@ function mapBubble() {
   };
 
   const minDate = d3.min(processedData.cases, d => new Date(d.year, d.month, 0));
-  const maxDate = d3.max(processedData.cases, d => new Date(d.year, d.month, 0));
+  const maxDate = d3.max(processedData.cases, d => new Date(2022, 12, 0));
+
+  // Set date labels for slider
+  const dateRange = maxDate.getTime() - minDate.getTime();
+  const dateStep = dateRange / 4;
+  const dateTicks = Array.from({ length: 6 }, (_, i) => new Date(minDate.getTime() + (dateStep * i)));
+  const dateTickLabels = dateTicks.map(date =>
+    `${date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}/${date.getFullYear()}`
+  );
+
+  d3.select("#min-year-text-2").text(dateTickLabels[0]);
+  d3.select("#year-1-text-2").text(dateTickLabels[1]);
+  d3.select("#year-2-text-2").text(dateTickLabels[2]);
+  d3.select("#year-3-text-2").text(dateTickLabels[3]);
+  d3.select("#max-year-text-2").text(dateTickLabels[4]);
 
   // Definiamo la scala dei colori per la spesa sanitaria
   const healthValues = expendituresData.map(d => d.health);
   const minHealth = d3.min(healthValues);
   const maxHealth = d3.max(healthValues);
 
-  // Creiamo una scala di colori per la leggenda
-  const colorScale = d3.scaleLinear()
-    .domain([minHealth, maxHealth])
-    .range(["#f6e7e5", "#8B0000"]);
+
+  // Estendiamo il dominio per includere 4 intervalli extra
+  // const extendedDomain = [...healthValues, 67952, 80000, 100000, 120000];  // Aggiungiamo i valori superiori, in base ai tuoi requisiti
+  // console.log(extendedDomain);
+
+  // Creiamo una nuova scala di colori che va dal verde scuro al nero per gli intervalli extra  
+  // const colorScale = d3.scaleQuantile()
+  //   .domain(extendedDomain)  // Usa il dominio esteso
+  //   .range([
+  //     "#E3FCE8", "#C1EFC3", "#9FE29E", "#7DD579", "#5BC854", "#3BAA3A", "#1B8F20", "#007B44",
+  //     "#006633", "#004D26", "#00321D", "#00170F", "#000000"  // Colori dal verde scuro al nero per gli intervalli più alti
+  //   ]);
+
+  // Otteniamo i quantili dalla scala estesa
+  // const quantiles = colorScale.quantiles();
+
+  // // Aggiungiamo i nuovi intervalli alla legenda
+  // const legendRanges = [
+  //   { label: "Not Available", color: "white" },
+  //   ...quantiles.map((d, i, arr) => ({
+  //     label: `${i === 0 ? d3.min(healthValues).toFixed(0) : arr[i - 1].toFixed(0)} - ${d.toFixed(0)}`,
+  //     color: colorScale(d)
+  //   })),
+  //   { label: `>131696`, color: colorScale(quantiles[quantiles.length - 1]) } // Impostiamo l'ultima label come ">36144"
+  // ];
+
+  // const colorScale = d3.scaleQuantize()
+  //   .domain([minHealth, maxHealth])
+  //   .range(d3.schemeGreens[7]);
+
+  // const thresholds = [...colorScale.thresholds(), maxHealth];
+  // console.log(thresholds);
+  // const legendRanges = [
+  //   { label: "Not Available", color: "white" },
+  //   ...thresholds.map((d, i, arr) => {
+  //     console.log(d);
+  //     return {
+  //       label: `${i === 0 ? minHealth.toFixed(0) : arr[i - 1].toFixed(0)} - ${d.toFixed(0)}`,
+  //       color: colorScale(d)
+  //     };
+  //   })
+  // ];
+
+  function formatNumber(number) {
+    if (number >= 1000) {
+      return `${(number / 1000).toFixed(2)} Bil €`;
+    } else {
+      return `${number} Mil €`;
+    }
+  }
+
+  const quantileStep = 0.15;
+  const quantiles = d3.scaleQuantile()
+    .domain(healthValues.sort((a, b) => a - b)) // Ensure healthValues are sorted
+    .range(d3.range(0, 1, quantileStep))
+    .quantiles();
 
 
-  // Definiamo i range per la legenda in base ai dati effettivi
+  const colorScale = d3.scaleThreshold()
+    .domain([...quantiles, maxHealth])
+    .range(d3.schemeGreens[(quantiles.length + 1) % 10]);
+
+
   const legendRanges = [
-    { label: `Not Available`, color: "white" },
-    { label: `${minHealth.toFixed(0)} - ${(minHealth + (maxHealth - minHealth) * 0.25).toFixed(0)}`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.125) },
-    { label: `${(minHealth + (maxHealth - minHealth) * 0.25).toFixed(0)} - ${(minHealth + (maxHealth - minHealth) * 0.5).toFixed(0)}`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.375) },
-    { label: `${(minHealth + (maxHealth - minHealth) * 0.5).toFixed(0)} - ${(minHealth + (maxHealth - minHealth) * 0.75).toFixed(0)}`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.625) },
-    { label: `${(minHealth + (maxHealth - minHealth) * 0.75).toFixed(0)} - ${maxHealth.toFixed(0)}`, color: colorScale(minHealth + (maxHealth - minHealth) * 0.875) }
+    { label: "Not Available", values: "Not Available", color: "lightgray" },
+    ...quantiles.map((d, i) => {
+
+      return {
+        label: i === 0
+          ? `< ${((i + 1) * quantileStep * 100).toFixed(0)}th`
+          : `${((i) * quantileStep * 100).toFixed(0)}th - ${((i + 1) * quantileStep * 100).toFixed(0)}th`,
+        values: i === 0
+          ? `< ${formatNumber(d)}`
+          : `${formatNumber(quantiles[i - 1])} - ${formatNumber(d)}`,
+        color: i === 0 ? colorScale.range()[0] : colorScale.range()[i]
+      };
+    }),
+    { label: `> ${((quantiles.length) * quantileStep * 100).toFixed(0)}th`, values: `> ${formatNumber(quantiles[quantiles.length - 1])}`, color: colorScale(maxHealth) }
   ];
+
+  legendRanges.reverse();
 
   // Creiamo il gruppo della legenda
   const legend = svg.append("g")
     .attr("id", "legend")
-    .attr("transform", `translate(${width - 900}, ${height - 180})`);  // Aggiustato il margine a seconda della posizione
+    .attr("transform", `translate(${width - 900}, ${height - 400})`);  // Aggiustato il margine a seconda della posizione
 
   // Aggiungiamo il titolo della legenda
   legend.append("text")
     .attr("x", 0)
-    .attr("y", -20)
+    .attr("y", -32)
     .attr("text-anchor", "start")
     .text("Health Spending")
     .style("font-size", "16px")
     .style("font-weight", "bold");
+
+
+
+  legend.append("text")
+    .attr("id", "legend-subtitle")
+    .attr("x", 0)
+    .attr("y", -15)  // Posiziona il sottotitolo subito sotto il titolo
+    .attr("text-anchor", "start")
+    .text("(Percentiles)")  // Il testo del sottotitolo
+    .style("font-size", "14px")  // Imposta una dimensione del font più piccola per il sottotitolo
+    .style("font-weight", "normal");
+
+  // Aggiungiamo il pulsante per cambiare la visualizzazione della legenda
+  const legendButton = legend.append("g")
+    .attr("transform", "translate(0, 210)");
+
+  legendButton.append("rect")
+    .attr("width", 150)
+    .attr("height", 30)
+    .attr("fill", "#ccc")
+    .attr("stroke", "#000")
+    .attr("stroke-width", 0.5)
+    .attr("rx", 5)
+    .attr("ry", 5)
+    .style("cursor", "pointer")
+    .on("click", () => {
+      isPercentile = !isPercentile;
+      updateLegend();
+    });
+
+  legendButton.append("text")
+    .attr("x", 75)
+    .attr("y", 20)
+    .attr("text-anchor", "middle")
+    .text("Switch to Euros")
+    .style("font-size", "14px")
+    .style("font-weight", "bold")
+    .style("pointer-events", "none")
+    .style("fill", "#333");
+
+  let isPercentile = true;
+
+  function updateLegend() {
+    legend.selectAll("rect.legend-box").remove();
+    legend.selectAll("text.legend-label").remove();
+
+    legend.selectAll("rect.legend-box")
+      .data(legendRanges)
+      .enter()
+      .append("rect")
+      .attr("class", "legend-box")
+      .attr("x", 0)
+      .attr("y", (d, i) => i * 25)
+      .attr("width", 20)
+      .attr("height", 20)
+      .attr("fill", d => d.color)
+      .attr("stroke", "#000")
+      .attr("stroke-width", 0.5);
+
+    legend.selectAll("text.legend-label")
+      .data(legendRanges)
+      .enter()
+      .append("text")
+      .attr("class", "legend-label")
+      .attr("x", 30)
+      .attr("y", (d, i) => i * 25 + 15)
+      .text(d => isPercentile ? d.label : d.values)
+      .style("font-size", "14px")
+      .attr("fill", "#333");
+
+    legendButton.select("text")
+      .text(isPercentile ? "Switch to Euros" : "Switch to Percentiles");
+
+    legend.select("#legend-subtitle")
+      .text(isPercentile ? "(Percentiles)" : "(Euros)");
+  }
+
+  updateLegend();
 
   // Aggiungiamo i rettangoli colorati per la legenda
   legend.selectAll("rect")
@@ -139,22 +299,21 @@ function mapBubble() {
 
 
 
-  let currentYear = maxDate.getFullYear();
-  let currentMonth = maxDate.getMonth() + 1;
+  let currentYear = minDate.getFullYear();
+  let currentMonth = minDate.getMonth() + 1;
 
   yearSlider
     .attr("min", minDate.getTime())
     .attr("max", maxDate.getTime())
-    .attr("value", maxDate.getTime())
-    .property("value", maxDate.getTime());
+    .attr("value", minDate.getTime())
+    .property("value", minDate.getTime());
 
-  d3.select("#min-year-text-2").text(`${minDate.getMonth() + 1}/${minDate.getFullYear()}`);
-  d3.select("#max-year-text-2").text(`${maxDate.getMonth() + 1}/${maxDate.getFullYear()}`);
 
   function updateMap() {
     const selectedMetric = dataSelector.value; // cases, deaths, vaccines
     const selectedData = processedData[selectedMetric];
     const filteredData = selectedData.filter(d => +d.year === currentYear && +d.month === currentMonth);
+
 
     europeMap.selectAll("path")
       .data(europeGeoJson.features.filter(d => !excludedCountries.has(d.properties.name)))
@@ -164,16 +323,16 @@ function mapBubble() {
       .attr("stroke", "black")
       .attr("stroke-width", 0.5);
 
-    // Creiamo una scala di colori per la spesa sanitaria
-    const healthByCountry = new Map(expendituresData.map(d => [d.country, d.health]));
-    const maxHealth = d3.max(expendituresData, d => d.health);
-    const colorScale = d3.scaleLinear().domain([0, maxHealth]).range(["#f6e7e5", "#8B0000"]);
+
+    const healthByCountry = new Map(
+      datasets.expendituresData
+        .filter(d => +d.year === currentYear) // Converte `d.year` in numero
+        .map(d => [d.country, d.health])
+    );
 
     const maxValue = d3.max(selectedData, d => d[selectedMetric]);
-    const radiusScale = d3.scaleSqrt().domain([0, maxValue]).range([4, 30]);
-
-
-
+    const radiusScale = d3.scaleSqrt().domain([0, maxValue]).range([8, 35]);
+   
     bubbleLayer.selectAll("circle")
       .data(filteredData, d => d.country)
       .join("circle")
@@ -189,45 +348,35 @@ function mapBubble() {
       })
       .attr("r", d => radiusScale(d[selectedMetric]))
       .attr("fill", d => {
-        const healthValue = healthByCountry.get(d.country);
-        return isNaN(healthValue) ? "white" : colorScale(healthValue);
+        return isNaN(healthByCountry.get(d.country)) ? "lightgray" : colorScale(healthByCountry.get(d.country));
       })
       .attr("stroke", "black")
       .attr("stroke-width", 1)
       .on("mouseover", (event, d) => {
         tooltip
           .style("opacity", 1)
-          .html(`
-      <div style="font-size: 14px; "> MM/YYYY: ${d.month}/${d.year} </div>
-        <div style="font-size: 18px; font-weight: bold;">${d.country}  </div>
+          .html(`<p class="text-[14px] text-black"> ${d.month}/${d.year}</p>
+                 <p class="text-[14px] text-black font-bold;">${d.country}</p>
+                 <hr class="border-t border-gray-300 my-1">
+                 <div class="mh-5 mt-1 w-full">
+                   <div class="flex justify-between text-center gap-10">
 
-        <hr class="border-t border-gray-300 my-1">
+                    <!-- Colonna Sinistra: Number of selectedMetric -->
+                    <div class="flex flex-col items-center">
+                      <p class="font-bold text-black">Number of ${selectedMetric}</p>
+                      <p class="font-bold text-black text-[18px]">${d[selectedMetric].toLocaleString()}</p>
+                      <p class="text-[grey] text-[16px]">${((d[selectedMetric] / maxValue) * 100).toFixed(2)}%</p>
+                    </div>
 
-        <div class="mh-5 mt-1 w-full">
-      <div class="flex justify-between text-center gap-10">
-
-        <!-- Colonna Sinistra: Number of selectedMetric -->
-        <div class="flex flex-col items-center">
-          <div style="font-weight: bold;">Number of ${selectedMetric}</div>
-          <div style="font-size: 18px; font-weight: bold; color: black;">
-            ${d[selectedMetric].toLocaleString()}
-          </div>
-          <div style="font-size: 16px; color: gray;">
-            ${((d[selectedMetric] / maxValue) * 100).toFixed(2)}%
-          </div>
-        </div>
-
-        <!-- Colonna Destra: Health Spending -->
-        <div class="flex flex-col items-center">
-          <div style="font-weight: bold;">Health Spending</div>
-          <div style="font-size: 22px; font-weight: bold; color: black;">
-            ${healthByCountry.get(d.country) || "N/A"}
-          </div>
-        </div>
-
-      </div>
-    </div>
-      `)
+                    <!-- Colonna Destra: Health Spending -->
+                    <div class="flex flex-col items-center">
+                      <p class="font-bold text-black";">Health Spending (${d.year})</p>
+                      <p class="font-bold text-black text-[22px]">
+                      ${healthByCountry.get(d.country) && !isNaN(healthByCountry.get(d.country)) ? formatNumber(healthByCountry.get(d.country)) : "N/A"}
+                      </p>
+                    </div>
+                  </div>
+                 </div>`)
           .style("left", `${event.pageX + 10}px`)
           .style("top", `${event.pageY}px`);
         //.html(`<strong>${d.country}</strong><br>${d[selectedMetric].toLocaleString()} ${selectedMetric}<br>Health Spending: ${healthByCountry.get(d.country) || "Not Available"}`)
@@ -235,8 +384,14 @@ function mapBubble() {
       .on("mouseout", () => tooltip.style("opacity", 0));
   }
 
-
   updateMap();
+  const mapLabel = d3.select("#number-date")
+    .style("padding", "10px")
+    .style("font-size", "24px")
+    .style("border", "1px solid #fff")
+    .style("border-radius", "5px")
+    .text(`Date: ${minDate.getMonth() + 1 < 10 ? `0${minDate.getMonth() + 1}` : minDate.getMonth() + 1}/${minDate.getFullYear()}`);
+
 
   dataSelector.addEventListener("change", updateMap);
 
@@ -244,8 +399,20 @@ function mapBubble() {
     const date = new Date(+this.value);
     currentYear = date.getFullYear();
     currentMonth = date.getMonth() + 1;
+
+
+    if (currentYear > 2022 || (currentYear === 2022 && currentMonth > 12)) {
+      currentYear = 2022;
+      currentMonth = 12;
+      yearSlider.property("value", new Date(2022, 11, 1).getTime());
+    }
+    mapLabel.text(`Date: ${currentMonth < 10 ? `0${currentMonth}` : currentMonth}/${currentYear}`);
+
     updateMap();
   });
 }
 
 mapBubble();
+
+
+

@@ -24,6 +24,7 @@ span,
 text,
 label {
   font-family: 'Fira Sans', sans-serif;
+  color: #ccc;
 }
 
 @layer components {
@@ -33,15 +34,15 @@ label {
   }
 
   .selector {
-    @apply text-white font-sans text-lg font-semibold
+    @apply text-white font-sans text-lg font-semibold;
   }
 
   .window {
-    @apply flex flex-col items-center max-w-[90%] justify-end lg:justify-center mr-12 lg:mr-0 self-end lg:self-center gap-6 w-[80%] border border-white p-8 rounded-lg shadow-lg bg-[#ffffff21];
+    @apply flex flex-col items-center max-w-[80%] justify-end lg:justify-center mr-12 lg:mr-0 self-end lg:self-center gap-6 w-[80%] border border-white p-8 rounded-lg shadow-lg bg-[#242734];
   }
 
   .select {
-    @apply bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 pl-3 pr-8 p-2 text-black;
+    @apply block bg-[#1F202A] border border-2 border-gray-500 text-white py-2 px-4 pr-10 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400;
   }
 
   .plot-title {
@@ -59,15 +60,21 @@ label {
   .play-button {
     @apply w-12 h-12 flex items-center justify-center bg-[#E94F37] text-white text-4xl px-4 py-2 rounded;
   }
+
+  .section-title{
+    @apply text-white text-6xl font-bold text-center mb-5;
+  }
 }
 
 .corpus {
-  @apply text-white max-w-4xl;
+  @apply text-[#ccc] max-w-4xl;
 }
 
 .container-selector {
   @apply flex flex-row items-center mb-5
 }
+
+
 
 
 html {

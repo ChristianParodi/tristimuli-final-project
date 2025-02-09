@@ -1,21 +1,21 @@
 import { datasets } from "../utils.js";
 
 function barChartHealth() {
-
-    const data = datasets.mentalHealthData.map(d => ({
+    const originalData = datasets.mentalHealthData.map(d => ({
         ...d,
         year: +d.year,
         deaths: +d.deaths,
         percentage: +d.percentage
-    })).filter(d => (d.cause === "Mental and behavioural disorders" || d.cause === "Intentional self-harm") &&
-        d.age === "Total" && d.sex === "Total" &&
+    })).filter(d => (d.cause === "Mental and behavioural disorders") &&
         !d.country.includes("Union") &&
         !d.country.includes("Metropolitan"));
 
+    let currentCategory = "total";
+    const data = originalData.filter(d => d.age === "Total" && d.sex === "Total");
     const parentContainer = d3.select("#bar-chart-health-container").node().parentNode;
-    const width = parentContainer.getBoundingClientRect().width * 0.9;
-    const height = 400;
-    const margin = { top: 20, right: 30, bottom: 50, left: 60 };
+    const width = 1000;
+    const height = 600;
+    const margin = { top: 20, right: 30, bottom: 80, left: 100 };
 
     const svg = d3.select("#bar-chart-health-container")
         .append("svg")
@@ -38,11 +38,15 @@ function barChartHealth() {
 
     const avgDeaths = Object.entries(top10Countries).map(([country, values]) => ({
         country,
-        pre2020: d3.mean(values.pre2020),
-        post2020: d3.mean(values.post2020)
+        pre2020: d3.mean(values.pre2020.filter(d => d > 0)),
+        post2020: d3.mean(values.post2020.filter(d => d > 0))
     }));
 
     const top10 = avgDeaths.sort((a, b) => d3.descending(a.pre2020, b.pre2020)).slice(0, 10);
+    const top10CountriesArray = top10.map(d => d.country);
+
+    const sexData = originalData.filter(d => d.age === "Total" && top10CountriesArray.includes(d.country));
+    const ageData = originalData.filter(d => d.sex === "Total" && top10CountriesArray.includes(d.country));
 
     const years = data.map(d => d.year);
     const minYear = d3.min(years);
@@ -67,7 +71,12 @@ function barChartHealth() {
         .domain(["pre2020", "post2020"])
         .range(["#1f77b4", "#ff7f0e"]);
 
-    const tooltip = d3.select('#bar-chart-health-container').append('div')
+    const splitColor = d3.scaleOrdinal()
+        .domain(currentCategory === "sex" ? ["Males", "Females"] : ["15-64", "65"])
+        .range(currentCategory === "sex" ? ["steelblue", "#FF69B4"] : ["#673AB7", "#FFC107"]);
+
+    const tooltip = d3.select('#bar-chart-health-container')
+        .append('div')
         .attr('class', 'tooltip-bar-health')
         .style('position', 'absolute')
         .style('background', '#fff')
@@ -88,6 +97,12 @@ function barChartHealth() {
         .attr("class", "y-axis")
         .call(d3.axisLeft(y));
 
+    svg.select(".x-axis").selectAll("text")
+        .style("font-size", "14px"); // or any desired size
+
+    svg.select(".y-axis").selectAll("text")
+        .style("font-size", "14px"); // or any desired size
+
     // Add X axis label
     svg.append("text")
         .attr("class", "x-axis-label")
@@ -103,7 +118,7 @@ function barChartHealth() {
         .attr("transform", "rotate(-90)")
         .attr("y", -margin.left + 20)
         .attr("x", -height / 2)
-        .text("Average Deaths");
+        .text("Average annual deaths");
 
     // Add Y axis line
     svg.append("line")
@@ -146,7 +161,100 @@ function barChartHealth() {
         .attr("stroke", "red")
         .attr("stroke-width", 1);
 
-    svg.append("g")
+    const firstCountry = top10[0].country;
+
+    const preText = svg.append("text")
+        .attr("text-anchor", "middle")
+        .attr("x", x0(firstCountry) + x1("pre2020") + x1.bandwidth() / 2)
+        .attr("y", 100)
+        .style("font-size", "12px")
+        .style("font-weight", "bold");
+
+    preText.append("tspan")
+        .text("pre");
+
+    preText.append("tspan")
+        .attr("x", x0(firstCountry) + x1("pre2020") + x1.bandwidth() / 2)
+        .attr("dy", "1.2em")
+        .text("2020");
+
+    const postText = svg.append("text")
+        .attr("text-anchor", "middle")
+        .attr("x", x0(firstCountry) + x1("post2020") + x1.bandwidth() / 2)
+        .attr("y", 14)
+        .attr("fill", "#000")
+        .style("font-size", "12px")
+        .style("font-weight", "bold");
+
+    postText.append("tspan")
+        .text("post")
+        .attr("x", x0(firstCountry) + x1("post2020") + x1.bandwidth() / 2);
+
+    postText.append("tspan")
+        .attr("x", x0(firstCountry) + x1("post2020") + x1.bandwidth() / 2)
+        .attr("dy", "1.2em")
+        .text("2020");
+
+    const yAxisPosition = svg.select(".x-axis").node().getBoundingClientRect().top + window.scrollY;
+    const container = d3.select("#bar-chart-overlay")
+        .style("right", "350px")
+        .style("top", `${yAxisPosition - (height / 1.5)}px`)
+        .style("width", "130px")
+        .style("height", "90px");
+
+    const legend = container.append("svg").append("g")
+        .attr("class", "legend")
+        .attr("transform", `translate(13, 23)`);
+
+    function getLegendData(category) {
+        if (category === "total") {
+            return [
+                { label: "2016-2019", color: "#1f77b4" },
+                { label: "2020-2023", color: "#ff7f0e" }
+            ];
+        } else if (category === "sex") {
+            return [
+                { label: "Males", color: "steelblue" },
+                { label: "Females", color: "#FF69B4" }
+            ];
+        } else {
+            return [
+                { label: "Under 65", color: "#673AB7" },
+                { label: "Over 65", color: "#FFC107" }
+            ];
+        }
+    }
+
+    let legendData = getLegendData(currentCategory);
+
+    const legendTitle = legend.append("text")
+        .attr("x", 0)
+        .attr("y", 0)
+        .text("Year Ranges")
+        .style("font-size", "18px")
+        .style("font-weight", "bold");
+
+    legend.selectAll("rect")
+        .data(legendData)
+        .enter()
+        .append("rect")
+        .attr("x", 0)
+        .attr("y", (d, i) => i * 25 + 10)
+        .attr("width", 20)
+        .attr("height", 20)
+        .attr("fill", d => d.color);
+
+    legend.selectAll(".legend-item")
+        .data(legendData)
+        .enter()
+        .append("text")
+        .attr("class", "legend-item")
+        .attr("x", 30)
+        .attr("y", (_, i) => i * 25 + 25)
+        .text(d => d.label)
+        .style("font-size", "16px");
+
+    const bars = svg.append("g")
         .selectAll("g")
         .data(top10)
         .enter().append("g")
@@ -165,16 +273,16 @@ function barChartHealth() {
             const secondValue = (d.key === "pre2020" ? +d.otherValue.toFixed(0) : +d.value.toFixed(0));
             const percVar = (((secondValue - firstValue) / firstValue) * 100).toFixed(2);
             const tooltipText = `<h2 class="text-center m-0">${d.country}: deaths due to <b>mental</b></h2>
-                                <h2 class="text-center font-bold m-0">disorders or intentional self-harm</h2>
+                                <h2 class="text-center font-bold m-0">and behavioural disorders</h2>
                                 <div class="mh-5 mt-1 w-full flex justify-between">
                                     <div class="flex flex-col items-left w-[60%]">
-                                        <h2 class="text-left m-0 w-fit">Average deaths</h2>
-                                        <p class="text-left text-md">${minYear}-2020: ${firstValue}</p>
-                                        <p class="text-left text-md">2020-${maxYear}: ${secondValue}</p>
+                                        <h2 class="text-left m-0 w-fit">Average annual deaths</h2>
+                                        <p class="text-left text-md text-black">${minYear}-2019: ${firstValue}</p>
+                                        <p class="text-left text-md text-black">2020-${maxYear}: ${secondValue}</p>
                                     </div>
                                     <div class="flex flex-col items-center justify-center border-2 border-black rounded-lg w-[40%] mx-1">
-                                        <p class="text-center">% variation</p>
-                                        <p class="font-bold text-center">${percVar >= 0 ? "+" : ""}${percVar}%</p>
+                                        <p class="text-center text-black">% variation</p>
+                                        <p class="font-bold text-center text-black">${percVar >= 0 ? "+" : ""}${percVar}%</p>
                                     </div>
                                 </div>`;
             tooltip.style("opacity", "0.9")
@@ -215,9 +323,19 @@ function barChartHealth() {
             const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
             const yAxisPosition = svg.select(".x-axis").node().getBoundingClientRect().top + window.scrollY;
             const tooltipHeight = tooltip.node().getBoundingClientRect().height;
+            let tooltipLeft = svgLeft + x0(d.country) + 4 * x1("post2020") + 5;
+            let tooltipTop = yAxisPosition - tooltipHeight - 5;
+
+            // Check if tooltip exceeds the right edge of the page
+            const tooltipWidth = tooltip.node().getBoundingClientRect().width;
+            const pageWidth = window.innerWidth;
+            if (tooltipLeft + tooltipWidth > pageWidth) {
+                tooltipLeft = svgLeft + x0(d.country) - 4 * x1("post2020"); // Adjust to fit within the page
+            }
+
             tooltip
-                .style('left', `${svgLeft + x0(d.country) + 3 * x1("post2020") + 10}px`)
-                .style('top', `${yAxisPosition - tooltipHeight - 5}px`);
+                .style('left', `${tooltipLeft}px`)
+                .style('top', `${tooltipTop}px`);
 
         })
         .on("mouseout", function (event, d) {
@@ -226,6 +344,191 @@ function barChartHealth() {
             svg.selectAll(".highlight-rect").interrupt().remove();
             svg.selectAll(".hover-line").remove();
         });
+
+    const overlay = d3.select('#overlay').node();
+    const totalButton = d3.select('#total-button').node();
+    const sexButton = d3.select('#sex-button').node();
+    const ageButton = d3.select('#age-button').node();
+
+    function removeClassesSex() {
+        Array.from(sexButton.classList).forEach(className => {
+            if (className.startsWith('border')) {
+                sexButton.classList.remove(className);
+            }
+        });
+    }
+
+    function updateChart() {
+        // Remove existing split rects
+        svg.selectAll(".split-rect")
+            .transition()
+            .duration(500)
+            .attr("height", 0)
+            .remove();
+
+        if (currentCategory !== "total") {
+
+
+
+            const currentData = currentCategory === "sex" ? sexData : ageData;
+
+            const splitByCountry = currentData.reduce((acc, d) => {
+                if (!acc[d.country]) {
+                    acc[d.country] = { pre2020: [], post2020: [] };
+                }
+                if (d.year < 2020) {
+                    acc[d.country].pre2020.push(d);
+                } else {
+                    acc[d.country].post2020.push(d);
+                }
+                return acc;
+            }, {});
+
+            const splitAvgDeaths = Object.entries(splitByCountry).map(([country, values]) => {
+                const pre2020 = d3.groups(values.pre2020, d => d[currentCategory]).map(([key, group]) => ({
+                    key,
+                    value: d3.mean(group.filter(d => d.deaths > 0), d => d.deaths)
+                }));
+                const post2020 = d3.groups(values.post2020, d => d[currentCategory]).map(([key, group]) => ({
+                    key,
+                    value: d3.mean(group.filter(d => d.deaths > 0), d => d.deaths)
+                }));
+
+                const pre2020Total = pre2020.find(d => d.key === "Total").value;
+                const post2020Total = post2020.find(d => d.key === "Total").value;
+
+                if (pre2020.length > 1) {
+                    pre2020[1].value = pre2020Total - pre2020[0].value;
+                }
+                if (post2020.length > 1) {
+                    post2020[1].value = post2020Total - post2020[0].value;
+                }
+
+                return {
+                    country,
+                    pre2020: pre2020Total,
+                    post2020: post2020Total,
+                    pre2020Split: pre2020.filter(d => d.key !== "Total").sort((a, b) => d3.ascending(a.key, b.key)),
+                    post2020Split: post2020.filter(d => d.key !== "Total").sort((a, b) => d3.ascending(a.key, b.key))
+                };
+            });
+
+            const splitColor = d3.scaleOrdinal()
+                .domain(currentCategory === "sex" ? ["Males", "Females"] : ["15-64", "65"])
+                .range(currentCategory === "sex" ? ["steelblue", "#FF69B4"] : ["#673AB7", "#FFC107"]);
+
+
+            splitAvgDeaths.forEach(d => {
+                ["pre2020", "post2020"].forEach(key => {
+                    const splitValues = d[`${key}Split`];
+                    let yOffset = 0;
+                    splitValues.forEach(split => {
+                        svg.append("rect")
+                            .datum({ country: d.country, key: split.key, value: split.value, period: key, perc: (split.value / d[key] * 100).toFixed(2) })
+                            .attr("class", "split-rect")
+                            .attr("x", x0(d.country) + x1(key))
+                            .attr("y", y(d[key]) - yOffset)
+                            .attr("width", x1.bandwidth())
+                            .attr("height", 0)
+                            .attr("fill", splitColor(split.key))
+                            .attr("opacity", 1)
+                            .transition()
+                            .duration(500)
+                            .attr("height", y(d[key] - split.value) - y(d[key]));
+                        yOffset += y(d[key]) - y(d[key] - split.value);
+                    });
+                });
+            });
+
+            svg.selectAll(".split-rect")
+                .on("mouseover", function (event, d) {
+                    let tooltipText;
+                    if (currentCategory == "sex") {
+                        tooltipText = ` <h2 class="text-center m-0 font-bold">${d.country}</h2>
+                                    <div class="flex flex-col items-center">
+                                        <p class="m-0 text-black">Average annual ${d.key.toLowerCase()}
+                                        deaths from ${d.period === "pre2020" ? "2016 to 2019" : "2020 to 2023"}</p>
+                                        <p class="m-0 text-black"><b>${d.value.toFixed(0)}</b> - ${d.perc}% of all deaths</p>
+                                    </div>`;
+                    } else {
+                        tooltipText = ` <h2 class="text-center m-0 font-bold">${d.country}</h2>
+                                    <div class="flex flex-col items-center">
+                                        <p class="m-0 text-black">Average annual deaths for age group ${d.key === "15-64" ? "below 65" : "65 and over"}
+                                        from ${d.period === "pre2020" ? "2016 to 2019" : "2020 to 2023"}</p>
+                                        <p class="m-0 text-black"><b>${d.value.toFixed(0)}</b> - ${d.perc}% of all deaths</p>
+                                    </div>`;
+                    }
+
+                    tooltip.style("opacity", "0.9")
+                        .html(tooltipText);
+
+                    svg.selectAll(".bar").style("opacity", 0);
+
+                    svg.selectAll(".split-rect")
+                        .filter(rect => rect.country !== d.country)
+                        .style("opacity", 0.3);
+                })
+                .on("mousemove", function (event, d) {
+                    const hoveredRect = d3.select(this);
+                    const hoveredRectY = hoveredRect.node().getBoundingClientRect().bottom + window.scrollY;
+                    const svgLeft = svg.node().getBoundingClientRect().left + window.scrollX;
+                    const tooltipHeight = tooltip.node().getBoundingClientRect().height;
+                    tooltip
+                        .style('left', `${svgLeft + x0(d.country) + (d.period === "pre2020" ? 3 : 4) * x1("post2020") + 5}px`)
+                        .style('top', `${hoveredRectY - tooltipHeight - 2}px`);
+                })
+                .on("mouseout", function () {
+                    tooltip.style("opacity", "0");
+                    svg.selectAll(".split-rect").style("opacity", 1);
+                    svg.selectAll(".bar").style("opacity", 1);
+                });
+        }
+
+        legendTitle.text(currentCategory === "total"
+            ? "Year Ranges"
+            : (currentCategory === "sex"
+                ? "Sex"
+                : "Age Ranges"));
+
+        legendData = getLegendData(currentCategory);
+
+        legend.selectAll("rect")
+            .data(legendData)
+            .attr("fill", d => d.color);
+
+        legend.selectAll(".legend-item")
+            .data(legendData)
+            .text(d => d.label);
+    }
+
+    totalButton.addEventListener('click', () => {
+        overlay.style.transform = 'translateX(0%)';
+        removeClassesSex();
+        sexButton.classList.add('border-r', 'border-[#ffffff7d]');
+        if (currentCategory != "total") {
+            currentCategory = "total";
+            updateChart();
+        }
+    });
+
+    sexButton.addEventListener('click', () => {
+        overlay.style.transform = 'translateX(100%)';
+        removeClassesSex();
+        if (currentCategory != "sex") {
+            currentCategory = "sex";
+            updateChart();
+        }
+    });
+
+    ageButton.addEventListener('click', () => {
+        overlay.style.transform = 'translateX(200%)';
+        removeClassesSex();
+        sexButton.classList.add('border-l', 'border-[#ffffff7d]');
+        if (currentCategory != "age") {
+            currentCategory = "age";
+            updateChart();
+        }
+    });
 }
 
 barChartHealth();

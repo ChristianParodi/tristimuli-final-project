@@ -141,7 +141,7 @@ function waffleChart() {
             .style("font-size", "16px")
             .transition()
             .duration(500)
-            .style("color", "red")
+            .style("color", "orange")
             .style("font-size", "20px")
             .transition()
             .duration(500)
@@ -256,17 +256,17 @@ function waffleChart() {
                                         <hr class="border-t border-gray-300 my-1">
 
                                         <div class="flex items-center justify-between">
-                                            <p class="font-bold text-center w-[20%]">${deaths1}</p>
-                                            <p class="text-center w-[60%]">Number of deaths</p>
-                                            <p class="font-bold text-center w-[20%]">${deaths2}</p>
+                                            <p class="font-bold text-center w-[20%] text-black">${deaths1}</p>
+                                            <p class="text-center w-[60%] text-black">Number of deaths</p>
+                                            <p class="font-bold text-center w-[20%] text-black">${deaths2}</p>
                                         </div>
 
                                         <hr class="border-t border-gray-300 my-1">
                                         
                                         <div class="flex items-center justify-between">
-                                            <p class="font-bold text-center w-[20%]">${perc1.toFixed(2)}%</p>
-                                            <p class="text-center w-[60%]">% over total deaths</p>
-                                            <p class="font-bold text-center w-[20%]">${perc2.toFixed(2)}%</p>
+                                            <p class="font-bold text-center w-[20%] text-black">${perc1.toFixed(2)}%</p>
+                                            <p class="text-center w-[60%] text-black">% over total deaths</p>
+                                            <p class="font-bold text-center w-[20%] text-black">${perc2.toFixed(2)}%</p>
                                         </div>
                                     </div>`;
                     }
@@ -290,23 +290,23 @@ function waffleChart() {
                                 other2 -= currentDeaths2;
                                 tooltipText += `<hr class="border-t border-gray-300 my-1">
                                                 <div class="flex items-center justify-between">
-                                                    <p class="font-bold text-center w-[20%]">${currentDeaths1}</p>
+                                                    <p class="font-bold text-center w-[20%] text-black">${currentDeaths1}</p>
                                                     <p class="text-center w-[60%]" style="color: ${fillColor(key)}">${value.cause}</p>
-                                                    <p class="font-bold text-center w-[20%]">${currentDeaths2}</p>
+                                                    <p class="font-bold text-center w-[20%] text-black">${currentDeaths2}</p>
                                                 </div>`;
                             }
                         });
                         tooltipText += `<hr class="border-t border-gray-300 my-1">
                                         <div class="flex items-center justify-between">
-                                            <p class="font-bold text-center w-[20%]">${other1}</p>
-                                            <p class="text-center w-[60%]">Other causes</p>
-                                            <p class="font-bold text-center w-[20%]">${other2}</p>
+                                            <p class="font-bold text-center w-[20%] text-black">${other1}</p>
+                                            <p class="text-center w-[60%] text-black">Other causes</p>
+                                            <p class="font-bold text-center w-[20%] text-black">${other2}</p>
                                         </div>
                                         <hr class="border-t border-gray-300 my-1">
                                         <div class="flex items-center justify-between">
-                                            <p class="font-bold text-center w-[20%]">${total1}</p>
-                                            <p class="text-center w-[60%]">Total deaths</p>
-                                            <p class="font-bold text-center w-[20%]">${total2}</p>
+                                            <p class="font-bold text-center w-[20%] text-black">${total1}</p>
+                                            <p class="text-center w-[60%] text-black">Total deaths</p>
+                                            <p class="font-bold text-center w-[20%] text-black">${total2}</p>
                                         </div>`;
                     }
 
@@ -316,7 +316,7 @@ function waffleChart() {
                         .style("opacity", 0.9);
 
 
-                    let rectsToBlur = d3.selectAll("rect").filter(function () {
+                    let rectsToBlur = svg.selectAll("rect").filter(function () {
                         return !this.classList.contains('num-deaths');
                     });
 
