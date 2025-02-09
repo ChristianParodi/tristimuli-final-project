@@ -12,10 +12,10 @@ function unemploymentChange() {
   ).map(d => ({
     country: d["country"],
     unemployment2019: d["2019-12"],
-    unemployment2023: d["2023-12"],
+    unemployment2020: d["2020-12"],
   }))[0]
 
-  const change = ((unemploymentData.unemployment2019 - unemploymentData.unemployment2023) / unemploymentData.unemployment2019) * 100;
+  const change = ((unemploymentData.unemployment2020 - unemploymentData.unemployment2019) / unemploymentData.unemployment2019) * 100;
 
   d3.select("#unemployment-change-value")
     .style("color", change > 0 ? "lightcoral" : "lightgreen")

@@ -212,7 +212,7 @@ function barChartHealth() {
             const secondValue = (d.key === "pre2020" ? +d.otherValue.toFixed(0) : +d.value.toFixed(0));
             const percVar = (((secondValue - firstValue) / firstValue) * 100).toFixed(2);
             const tooltipText = `<h2 class="text-center m-0">${d.country}: deaths due to <b>mental</b></h2>
-                                <h2 class="text-center font-bold m-0">disorders or intentional self-harm</h2>
+                                <h2 class="text-center font-bold m-0">and behavioural disorders</h2>
                                 <div class="mh-5 mt-1 w-full flex justify-between">
                                     <div class="flex flex-col items-left w-[60%]">
                                         <h2 class="text-left m-0 w-fit">Average annual deaths</h2>
