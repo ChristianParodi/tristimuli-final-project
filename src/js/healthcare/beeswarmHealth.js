@@ -1,4 +1,4 @@
-import { datasets } from "../utils.js";
+import { datasets, population } from "../utils.js";
 
 function beeswarm() {
     const mentalDeaths = datasets.mentalHealthData
@@ -17,19 +17,23 @@ function beeswarm() {
 
     mentalDeaths.forEach(md => {
         const entry = expendituresData.find(ed => ed.country === md.country && +ed.year === +md.year);
-        if (entry) {
+        const popEntry = population.find(p => p.country === md.country && +p.year === +md.year);
+        if (entry && popEntry) {
             data.push({
                 ISO2: md.ISO2,
                 country: md.country,
                 year: +md.year,
                 deaths: +md.deaths,
                 percDeaths: +md.percDeaths.toFixed(2),
-                healthExp: +entry.health,
-                totalExp: +entry.total,
-                percExp: +entry.percentage
+                healthExp: +entry.health * 1e6 / +popEntry.population,
+                totalExp: +entry.total * 1e6 / +popEntry.population,
+                percExp: +entry.percentage,
+                population: +popEntry.population
             });
         }
     });
+
+    console.log(population);
 
 
     const width = 1000;
@@ -51,7 +55,7 @@ function beeswarm() {
 
     const radiusScale = d3.scaleSqrt()
         .domain([0, d3.max(data, d => +d.healthExp)]) // Map totalCases to circle size
-        .range([6, 50]); // Circle radius range
+        .range([3, 50]); // Circle radius range
 
 
     // Axes
@@ -189,19 +193,28 @@ function beeswarm() {
         circles.exit().remove();
 
         svg.selectAll(".flag-icon")
-            .on("mouseover", (_, d) => {
+            .on("mouseover", (event, d) => {
                 tooltip.style("opacity", "0.9")
-                    .html(`
-                        <strong>Country:</strong> ${d.country}<br>
-                        <strong>Deaths:</strong> ${d.percDeaths}%<br>
-                        <strong>Health expenditure:</strong> ${(+d.healthExp > 1000) ? (d3.format(",")((+d.healthExp / 1000).toFixed(2)) + 'B€') : (d3.format(",")(+d.healthExp) + 'M€')}`)
+                    .html(`<h2 class="text-center m-0 font-bold">${d.country}</h2>
+                <p class="text-black">Mental disorders deaths:<strong> ${d.percDeaths}%</strong></p>
+                <p class="text-black">Health spending per capita:<strong> ${(+d.healthExp.toFixed(2)) + '€'}</strong></p>`)
                     .style("color", "black");
+
+                svg.selectAll(".flag-icon")
+                    .style("opacity", 0.3);
+
+                d3.select(event.currentTarget)
+                    .style("opacity", 1);
             })
             .on("mousemove", (event) => {
                 tooltip.style("top", `${event.pageY + 10}px`)
                     .style("left", `${event.pageX + 10}px`);
             })
-            .on("mouseout", () => tooltip.style("opacity", "0"));
+            .on("mouseout", () => {
+                tooltip.style("opacity", "0");
+                svg.selectAll(".flag-icon")
+                    .style("opacity", 1);
+            });
     }
 
     // Initial rendering
@@ -228,7 +241,7 @@ function beeswarm() {
 
                 currentYear = +yearSlider.node().value;
                 updateChart();
-            }, 800);
+            }, 1000);
         } else {
             clearInterval(intervalId);
         }
@@ -241,7 +254,7 @@ function beeswarm() {
 
 
     function drawLegend() {
-        const legendData = [500, 10000, 50000, 100000, 200000]; // Example expenditure values
+        const legendData = [200, 500, 1000, 2000, 3000]; // Example expenditure values
 
         const legendWidth = 435;
         const legendHeight = 120;
@@ -281,13 +294,13 @@ function beeswarm() {
             .attr("dy", "0.35em")
             .style("font-size", "14px")
             .style("text-anchor", "middle")
-            .text(d => `${(+d > 1000) ? (d3.format(",")((+d / 1000).toFixed(2)) + 'B€') : (d3.format(",")(+d) + 'M€')}`);
+            .text(d => `${(+d.toFixed(2)) + '€'}`);
 
         legendSvg.append("text")
             .attr("x", -10)
             .attr("y", 0)
             .style("font-size", "16px")
-            .text("Health Expenditure (€)");
+            .text("Health Spending per Capita (€)");
 
     }
     drawLegend();
