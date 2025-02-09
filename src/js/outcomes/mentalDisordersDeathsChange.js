@@ -1,5 +1,5 @@
 async function loadMentalDeathsChange() {
-  return await d3.csv("./../../../dataset/MENTAL_HEALTH/clean/melted_estat_hlth_cd_aro_ISO2_NEW.csv");
+  return await d3.csv("../../dataset/MENTAL_HEALTH/clean/melted_estat_hlth_cd_aro_ISO2_NEW.csv");
 }
 
 async function computeChange() {
