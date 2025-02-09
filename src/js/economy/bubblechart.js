@@ -48,12 +48,12 @@ function drawLeg(newCasesData) {
     ];
 
     legendGroup.append('text')
-    .attr('x', 40) // Center the title
+    .attr('x', 55) // Center the title
     .attr('y', -legendRadius * 1.35) // Position it above the bubbles
     .attr('text-anchor', 'middle')
     .attr('fill', 'white')
     .style('font-size', '16px')
-    .text('Cases of Covid');
+    .text('New cases of Covid');
 
     legendData.forEach(d => {
         const newCases = minCases + (maxCases - minCases) * d.scale;
@@ -76,13 +76,24 @@ function drawLeg(newCasesData) {
             .attr('y2', legendRadius * d.scale)  // Lunghezza della linea
             .attr('stroke', 'white');
 
+            let unit, displayValue;
+            if (newCases >= 1000000000) {
+                unit = 'Bil';
+                displayValue = (newCases / 1000000000).toFixed(3);
+            } else if (newCases >= 1000000) {  // Cambia la soglia a 1 Milione
+                unit = 'Mil';
+                displayValue = (newCases / 1000000).toFixed(3);
+            } else {
+                unit = 'K';
+                displayValue = (newCases / 1000).toFixed(3);
+            }
         // Aggiungi il testo accanto alla palla
         legendGroup.append('text')
             .attr('x', d.x + legendRadius * d.scale + 10)
             .attr('y', d.y)
             .attr('dominant-baseline', 'middle')
             .attr('fill', 'white')
-            .text(`${populationText} Mil`);
+            .text(`${displayValue} ${unit}`);
     });
 }
 
@@ -212,7 +223,7 @@ function BubbleChart() {
         
                         <!-- Colonna Destra: New Cases -->
                         <div class="flex flex-col items-center">
-                            <div style="font-weight: bold;">Covid cases</div>
+                            <div style="font-weight: bold;">New Covid cases</div>
                             <div style="font-size: 22px; font-weight: bold; color: black;">
                                 ${d.new_cases.toLocaleString()}
                             </div>

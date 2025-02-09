@@ -36,9 +36,17 @@ function drawSquareLegend(inboundData) {
     legendData.forEach(d => {
         const inboundValue = Math.round(minInbound + (maxInbound - minInbound) * d.scale);
         const squareSize = Math.max(minSquareSize, maxSquareSize * d.scale); // Imposta la dimensione minima
-        const unit = inboundValue >= 1000000000 ? 'Bil' : 'Mil';
-        const displayValue = inboundValue >= 1000000000 ? (inboundValue / 1000000000).toFixed(4) : (inboundValue / 1000000).toFixed(4);
-
+        let unit, displayValue;
+        if (inboundValue >= 1_000_000_000) {
+            unit = 'Bil';
+            displayValue = (inboundValue / 1_000_000_000).toFixed(3);
+        } else if (inboundValue >= 100_000_000) {
+            unit = 'Mil';
+            displayValue = (inboundValue / 1_000_000).toFixed(3);
+        } else {
+            unit = 'K';
+            displayValue = (inboundValue / 1_000).toFixed(3);
+        }
         // Crea il quadrato
         legendGroup.append('rect')
             .attr('x', d.x)
@@ -117,7 +125,6 @@ function BubbleChart() {
         const y = d3.scaleLinear().range([height, 0]);
         const z = d3.scaleSqrt().range([1, 100]);
 
-        drawSquareLegend(combinedData.map(d => d.inbound), z);
 
 
         // // Crea un pattern per ogni bandiera
@@ -271,6 +278,11 @@ function updateChart(selectedYear) {
 
     xAxis.transition().duration(500).call(d3.axisBottom(x));
     yAxis.transition().duration(500).call(d3.axisLeft(y));
+
+    d3.select("#bubblechart_legend").select("svg").remove();
+
+    drawSquareLegend(filteredData.map(d => d.inbound, z));
+
 
     // Aggiorna la griglia
     svg.selectAll(".grid").remove();
