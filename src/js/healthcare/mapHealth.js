@@ -1,5 +1,7 @@
 import { datasets, europeGeoJson } from "../utils.js"
 
+
+
 function mapBubble() {
   const width = 900;
   const height = 700;
@@ -35,7 +37,6 @@ function mapBubble() {
 
   const europeMap = svg.append("g");
   const bubbleLayer = svg.append("g");
-
 
   const getLastDayData = (data, metric) => {
     const excludedCountries = new Set(["Russia", "Vatican", "Bosnia and Herzegovina", "Cyprus", "Faroe Islands"]);
@@ -163,6 +164,7 @@ function mapBubble() {
   const legendRanges = [
     { label: "Not Available", values: "Not Available", color: "lightgray" },
     ...quantiles.map((d, i) => {
+
       return {
         label: i === 0
           ? `< ${((i + 1) * quantileStep * 100).toFixed(0)}th`
@@ -333,7 +335,7 @@ function mapBubble() {
     const maxValue = d3.max(selectedData, d => d[selectedMetric]);
     const radiusScale = d3.scaleSqrt().domain([0, maxValue]).range([8, 35]);
 
-
+   
     bubbleLayer.selectAll("circle")
       .data(filteredData, d => d.country)
       .join("circle")

@@ -161,6 +161,24 @@ function ButterflyChart() {
     const monthSlider = d3.select("#month-slider-butt");
     const dataSelector = d3.select("#data-selector-butt");
 
+
+        // Definisce i tick personalizzati per i mesi
+        const tickMonths = [1, 3, 6, 9, 12];
+    
+        // Aggiunge i tick visivi sullo slider
+        const sliderContainer = d3.select("#slider-container");
+        sliderContainer.selectAll(".tick-label").remove();
+        
+        tickMonths.forEach(month => {
+          sliderContainer.append("span")
+            .attr("class", "tick-label")
+            .style("position", "absolute")
+            .style("left", `${(month - 1) / 11 * 100}%`)
+            .style("transform", "translateX(-50%)")
+            .style("bottom", "-10px")
+            .text(month.toString().padStart(2, "0"));
+        });
+
     monthSlider.on("input", () => {
       const monthValue = monthSlider.property("value");
       d3.select("#number-month").text(monthValue.padStart(2, "0"));

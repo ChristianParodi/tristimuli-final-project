@@ -47,12 +47,12 @@ function drawLeg(newCasesData) {
     ];
 
     legendGroup.append('text')
-    .attr('x', legendWidth / 18) // Center the title
+    .attr('x', 40) // Center the title
     .attr('y', -legendRadius * 1.35) // Position it above the bubbles
     .attr('text-anchor', 'middle')
     .attr('fill', 'white')
     .style('font-size', '16px')
-    .text('People');
+    .text('Cases of Covid');
 
     legendData.forEach(d => {
         const newCases = minCases + (maxCases - minCases) * d.scale;
