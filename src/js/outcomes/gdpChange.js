@@ -16,7 +16,7 @@ function gdpChange() {
   const change = (gdpData.gdp2023 - gdpData.gdp2019) / gdpData.gdp2019 * 100;
 
   d3.select("#gdp-change-value")
-    .style("color", change > 0 ? "lightgreen" : "lightcoral")
+    .style("color", change > 0 ? "current" : "lightcoral")
     .text(`${change > 0 ? '+' : ''}${change.toFixed(2)}%`);
 };
 
