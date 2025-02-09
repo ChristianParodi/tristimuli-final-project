@@ -98,49 +98,6 @@ function mapBubble() {
   const minHealth = d3.min(healthValues);
   const maxHealth = d3.max(healthValues);
 
-
-  // Estendiamo il dominio per includere 4 intervalli extra
-  // const extendedDomain = [...healthValues, 67952, 80000, 100000, 120000];  // Aggiungiamo i valori superiori, in base ai tuoi requisiti
-  // console.log(extendedDomain);
-
-  // Creiamo una nuova scala di colori che va dal verde scuro al nero per gli intervalli extra  
-  // const colorScale = d3.scaleQuantile()
-  //   .domain(extendedDomain)  // Usa il dominio esteso
-  //   .range([
-  //     "#E3FCE8", "#C1EFC3", "#9FE29E", "#7DD579", "#5BC854", "#3BAA3A", "#1B8F20", "#007B44",
-  //     "#006633", "#004D26", "#00321D", "#00170F", "#000000"  // Colori dal verde scuro al nero per gli intervalli più alti
-  //   ]);
-
-  // Otteniamo i quantili dalla scala estesa
-  // const quantiles = colorScale.quantiles();
-
-  // // Aggiungiamo i nuovi intervalli alla legenda
-  // const legendRanges = [
-  //   { label: "Not Available", color: "white" },
-  //   ...quantiles.map((d, i, arr) => ({
-  //     label: `${i === 0 ? d3.min(healthValues).toFixed(0) : arr[i - 1].toFixed(0)} - ${d.toFixed(0)}`,
-  //     color: colorScale(d)
-  //   })),
-  //   { label: `>131696`, color: colorScale(quantiles[quantiles.length - 1]) } // Impostiamo l'ultima label come ">36144"
-  // ];
-
-  // const colorScale = d3.scaleQuantize()
-  //   .domain([minHealth, maxHealth])
-  //   .range(d3.schemeGreens[7]);
-
-  // const thresholds = [...colorScale.thresholds(), maxHealth];
-  // console.log(thresholds);
-  // const legendRanges = [
-  //   { label: "Not Available", color: "white" },
-  //   ...thresholds.map((d, i, arr) => {
-  //     console.log(d);
-  //     return {
-  //       label: `${i === 0 ? minHealth.toFixed(0) : arr[i - 1].toFixed(0)} - ${d.toFixed(0)}`,
-  //       color: colorScale(d)
-  //     };
-  //   })
-  // ];
-
   function formatNumber(number) {
     if (number >= 1000) {
       return `${(number / 1000).toFixed(2)} Bil €`;
@@ -332,7 +289,7 @@ function mapBubble() {
 
     const maxValue = d3.max(selectedData, d => d[selectedMetric]);
     const radiusScale = d3.scaleSqrt().domain([0, maxValue]).range([8, 35]);
-   
+
     bubbleLayer.selectAll("circle")
       .data(filteredData, d => d.country)
       .join("circle")
