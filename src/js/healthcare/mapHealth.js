@@ -103,7 +103,7 @@ function mapBubble() {
   // const extendedDomain = [...healthValues, 67952, 80000, 100000, 120000];  // Aggiungiamo i valori superiori, in base ai tuoi requisiti
   // console.log(extendedDomain);
 
-// Creiamo una nuova scala di colori che va dal verde scuro al nero per gli intervalli extra  
+  // Creiamo una nuova scala di colori che va dal verde scuro al nero per gli intervalli extra  
   // const colorScale = d3.scaleQuantile()
   //   .domain(extendedDomain)  // Usa il dominio esteso
   //   .range([
@@ -187,23 +187,23 @@ function mapBubble() {
 
   // Aggiungiamo il titolo della legenda
   legend.append("text")
-    .attr("id", "legend-title")
     .attr("x", 0)
     .attr("y", -32)
     .attr("text-anchor", "start")
-    .text("Health Spending (percentiles)")
+    .text("Health Spending")
     .style("font-size", "16px")
     .style("font-weight", "bold");
-    
+
 
 
   legend.append("text")
-  .attr("x", 0)
-  .attr("y", -15)  // Posiziona il sottotitolo subito sotto il titolo
-  .attr("text-anchor", "start")
-  .text("(Mil/Bil)")  // Il testo del sottotitolo
-  .style("font-size", "14px")  // Imposta una dimensione del font più piccola per il sottotitolo
-  .style("font-weight", "normal"); 
+    .attr("id", "legend-subtitle")
+    .attr("x", 0)
+    .attr("y", -15)  // Posiziona il sottotitolo subito sotto il titolo
+    .attr("text-anchor", "start")
+    .text("(Percentiles)")  // Il testo del sottotitolo
+    .style("font-size", "14px")  // Imposta una dimensione del font più piccola per il sottotitolo
+    .style("font-weight", "normal");
 
   // Aggiungiamo il pulsante per cambiare la visualizzazione della legenda
   const legendButton = legend.append("g")
@@ -266,8 +266,8 @@ function mapBubble() {
     legendButton.select("text")
       .text(isPercentile ? "Switch to Euros" : "Switch to Percentiles");
 
-    legend.select("#legend-title")
-      .text(isPercentile ? "Health Spending (Percentiles)" : "Health Spending (Euros)");
+    legend.select("#legend-subtitle")
+      .text(isPercentile ? "(Percentiles)" : "(Euros)");
   }
 
   updateLegend();
@@ -330,11 +330,8 @@ function mapBubble() {
         .map(d => [d.country, d.health])
     );
 
-
-
     const maxValue = d3.max(selectedData, d => d[selectedMetric]);
     const radiusScale = d3.scaleSqrt().domain([0, maxValue]).range([8, 35]);
-
    
     bubbleLayer.selectAll("circle")
       .data(filteredData, d => d.country)
@@ -360,38 +357,28 @@ function mapBubble() {
       .on("mouseover", (event, d) => {
         tooltip
           .style("opacity", 1)
-          .html(`
-      <div style="font-size: 14px; "> ${d.month}/${d.year} </div>
-        <div style="font-size: 18px; font-weight: bold;">${d.country}  </div>
+          .html(`<p class="text-[14px] text-black"> ${d.month}/${d.year}</p>
+                 <p class="text-[14px] text-black font-bold;">${d.country}</p>
+                 <hr class="border-t border-gray-300 my-1">
+                 <div class="mh-5 mt-1 w-full">
+                   <div class="flex justify-between text-center gap-10">
 
-        <hr class="border-t border-gray-300 my-1">
+                    <!-- Colonna Sinistra: Number of selectedMetric -->
+                    <div class="flex flex-col items-center">
+                      <p class="font-bold text-black">Number of ${selectedMetric}</p>
+                      <p class="font-bold text-black text-[18px]">${d[selectedMetric].toLocaleString()}</p>
+                      <p class="text-[grey] text-[16px]">${((d[selectedMetric] / maxValue) * 100).toFixed(2)}%</p>
+                    </div>
 
-        <div class="mh-5 mt-1 w-full">
-      <div class="flex justify-between text-center gap-10">
-
-        <!-- Colonna Sinistra: Number of selectedMetric -->
-        <div class="flex flex-col items-center">
-          <div style="font-weight: bold;">Number of ${selectedMetric}</div>
-          <div style="font-size: 18px; font-weight: bold; color: black;">
-            ${d[selectedMetric].toLocaleString()}
-          </div>
-          <div style="font-size: 16px; color: gray;">
-            ${((d[selectedMetric] / maxValue) * 100).toFixed(2)}%
-          </div>
-        </div>
-
-        <!-- Colonna Destra: Health Spending -->
-        <div class="flex flex-col items-center">
-          <div style="font-weight: bold;">Health Spending</div>
-          <div style="font-size: 22px; font-weight: bold; color: black;">
-          ${healthByCountry.get(d.country) && !isNaN(healthByCountry.get(d.country)) ?
-              formatNumber(healthByCountry.get(d.country))
-              : "N/A"}          </div>
-        </div>
-
-      </div>
-    </div>
-      `)
+                    <!-- Colonna Destra: Health Spending -->
+                    <div class="flex flex-col items-center">
+                      <p class="font-bold text-black";">Health Spending (${d.year})</p>
+                      <p class="font-bold text-black text-[22px]">
+                      ${healthByCountry.get(d.country) && !isNaN(healthByCountry.get(d.country)) ? formatNumber(healthByCountry.get(d.country)) : "N/A"}
+                      </p>
+                    </div>
+                  </div>
+                 </div>`)
           .style("left", `${event.pageX + 10}px`)
           .style("top", `${event.pageY}px`);
         //.html(`<strong>${d.country}</strong><br>${d[selectedMetric].toLocaleString()} ${selectedMetric}<br>Health Spending: ${healthByCountry.get(d.country) || "Not Available"}`)
