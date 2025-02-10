@@ -321,8 +321,7 @@ function mapBubble() {
                     <!-- Colonna Sinistra: Number of selectedMetric -->
                     <div class="flex flex-col items-center">
                       <p class="font-bold text-black">Number of ${selectedMetric}</p>
-                      <p class="font-bold text-black text-[18px]">${d[selectedMetric].toLocaleString()}</p>
-                      <p class="text-[grey] text-[16px]">${((d[selectedMetric] / maxValue) * 100).toFixed(2)}%</p>
+                      <p class="font-bold text-black text-[22px]">${d[selectedMetric].toLocaleString()}</p>
                     </div>
 
                     <!-- Colonna Destra: Health Spending -->
