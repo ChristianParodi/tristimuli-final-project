@@ -14,8 +14,8 @@ async function computeChange() {
     (+d.year === 2019 || +d.year === 2020)
   );
 
-  const mentalData2019 = filteredData.filter(d => +d.year === 2019).map(d => +d.deaths)
-  const mentalData2021 = filteredData.filter(d => +d.year === 2020).map(d => +d.deaths)
+  const mentalData2019 = filteredData.filter(d => +d.year === 2019 && +d.deaths > 0).map(d => +d.deaths)
+  const mentalData2021 = filteredData.filter(d => +d.year === 2020 && +d.deaths > 0).map(d => +d.deaths)
 
   const meanMentalData2019 = mentalData2019.reduce((sum, value) => sum + value, 0) / mentalData2019.length;
   const meanMentalData2021 = mentalData2021.reduce((sum, value) => sum + value, 0) / mentalData2021.length;

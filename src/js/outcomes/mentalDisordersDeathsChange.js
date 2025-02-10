@@ -6,9 +6,7 @@ async function computeChange() {
   const age = "Total";
   const sex = "Total";
   const cause = [
-    "Drug dependence",
-    "Intentional self-harm",
-    "Use of alcohol"
+    "Intentional self-harm"
   ];
 
   const mentalData = await loadMentalDeathsChange();
